@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Schizophrenia — Exam Concept Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070a12;
+  --surface: #0e1220;
+  --surface2: #141928;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8edf5;
+  --muted: #6b7a99;
+  --center-color: #a855f7;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{background:var(--bg);font-family:'Nunito',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* animated background mesh */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(124,58,237,0.07) 0%,transparent 70%),
+    radial-gradient(2px 2px at 12% 18%, rgba(168,85,247,0.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 88% 12%, rgba(56,189,248,0.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 85%, rgba(52,211,153,0.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 22% 80%, rgba(251,191,36,0.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 55%, rgba(249,168,212,0.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 45% 92%, rgba(99,102,241,0.4) 0%,transparent 100%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── PAGE HEADER ── */
+.page-header{text-align:center;padding:28px 20px 8px;position:relative;z-index:10;}
+.page-header h1{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(1.8rem,4.5vw,2.8rem);
+  background:linear-gradient(135deg,#a855f7,#ec4899,#f59e0b);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.page-header .sub{color:var(--muted);font-size:0.82rem;margin-top:5px;font-weight:700;letter-spacing:0.5px;}
+.page-header .hint{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);
+  border-radius:20px;padding:5px 16px;font-size:0.75rem;color:#c4b5fd;
+}
+
+/* ── MAP STAGE ── */
+.map-wrap{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;padding:30px 16px 10px;}
+.map-stage{position:relative;width:min(860px,96vw);aspect-ratio:1/1;}
+.lines-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+
+/* ── CENTER NODE ── */
+.center-node{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:24%;aspect-ratio:1/1;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#7c3aed,#4c1d95 55%,#2e1065 90%);
+  border:2.5px solid #a855f7;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:10px;z-index:5;cursor:default;
+  box-shadow:0 0 55px rgba(168,85,247,0.6),0 0 110px rgba(168,85,247,0.2),inset 0 0 30px rgba(168,85,247,0.12);
+  animation:centerPulse 3.5s ease-in-out infinite;
+}
+@keyframes centerPulse{
+  0%,100%{box-shadow:0 0 55px rgba(168,85,247,0.6),0 0 110px rgba(168,85,247,0.2);}
+  50%{box-shadow:0 0 80px rgba(168,85,247,0.85),0 0 160px rgba(168,85,247,0.35);}
+}
+.center-node .c-icon{font-size:clamp(1.2rem,3.2vw,2rem);}
+.center-node h2{font-family:'Fredoka One',cursive;font-size:clamp(0.6rem,1.9vw,1rem);color:#fff;line-height:1.2;margin-top:3px;}
+.center-node .c-sub{font-size:clamp(0.38rem,0.95vw,0.56rem);color:#c4b5fd;margin-top:3px;line-height:1.3;display:none;}
+@media(min-width:560px){.center-node .c-sub{display:block;}}
+
+/* ── BUBBLES ── */
+.bubble{
+  position:absolute;transform:translate(-50%,-50%);
+  width:16%;aspect-ratio:1/1;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:7px;cursor:pointer;z-index:4;border:2px solid;
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;
+  animation:bubblePop .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+.bubble:hover{transform:translate(-50%,-50%) scale(1.14);z-index:6;}
+.bubble:active{transform:translate(-50%,-50%) scale(0.97);}
+.bubble .b-icon{font-size:clamp(0.9rem,2.3vw,1.4rem);line-height:1;}
+.bubble .b-label{font-family:'Fredoka One',cursive;font-size:clamp(0.42rem,1.25vw,0.72rem);line-height:1.2;margin-top:3px;}
+
+@keyframes bubblePop{
+  from{opacity:0;transform:translate(-50%,-50%) scale(0.3);}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+.bubble:nth-child(1){animation-delay:.08s;} .bubble:nth-child(2){animation-delay:.13s;}
+.bubble:nth-child(3){animation-delay:.18s;} .bubble:nth-child(4){animation-delay:.23s;}
+.bubble:nth-child(5){animation-delay:.28s;} .bubble:nth-child(6){animation-delay:.33s;}
+.bubble:nth-child(7){animation-delay:.38s;} .bubble:nth-child(8){animation-delay:.43s;}
+.bubble:nth-child(9){animation-delay:.48s;} .bubble:nth-child(10){animation-delay:.53s;}
+.bubble:nth-child(11){animation-delay:.58s;} .bubble:nth-child(12){animation-delay:.63s;}
+
+/* color themes */
+.bc-red{background:radial-gradient(circle at 35% 35%,#be123c,#7f1d1d);border-color:#fb7185;box-shadow:0 0 20px rgba(251,113,133,0.4);}
+.bc-red .b-label{color:#fda4af;}
+.bc-cyan{background:radial-gradient(circle at 35% 35%,#0e7490,#164e63);border-color:#22d3ee;box-shadow:0 0 20px rgba(34,211,238,0.35);}
+.bc-cyan .b-label{color:#a5f3fc;}
+.bc-green{background:radial-gradient(circle at 35% 35%,#047857,#064e3b);border-color:#34d399;box-shadow:0 0 20px rgba(52,211,153,0.35);}
+.bc-green .b-label{color:#a7f3d0;}
+.bc-rose{background:radial-gradient(circle at 35% 35%,#b91c1c,#7f1d1d);border-color:#f87171;box-shadow:0 0 22px rgba(248,113,113,0.45);}
+.bc-rose .b-label{color:#fecaca;}
+.bc-amber{background:radial-gradient(circle at 35% 35%,#b45309,#78350f);border-color:#fbbf24;box-shadow:0 0 20px rgba(251,191,36,0.35);}
+.bc-amber .b-label{color:#fde68a;}
+.bc-orange{background:radial-gradient(circle at 35% 35%,#c2410c,#7c2d12);border-color:#fb923c;box-shadow:0 0 20px rgba(251,146,60,0.35);}
+.bc-orange .b-label{color:#fed7aa;}
+.bc-violet{background:radial-gradient(circle at 35% 35%,#6d28d9,#3b0764);border-color:#a78bfa;box-shadow:0 0 22px rgba(167,139,250,0.4);}
+.bc-violet .b-label{color:#ede9fe;}
+.bc-pink{background:radial-gradient(circle at 35% 35%,#be185d,#831843);border-color:#f472b6;box-shadow:0 0 20px rgba(244,114,182,0.35);}
+.bc-pink .b-label{color:#fce7f3;}
+.bc-indigo{background:radial-gradient(circle at 35% 35%,#3730a3,#1e1b4b);border-color:#818cf8;box-shadow:0 0 20px rgba(129,140,248,0.35);}
+.bc-indigo .b-label{color:#e0e7ff;}
+.bc-teal{background:radial-gradient(circle at 35% 35%,#0f766e,#134e4a);border-color:#2dd4bf;box-shadow:0 0 20px rgba(45,212,191,0.35);}
+.bc-teal .b-label{color:#ccfbf1;}
+.bc-lime{background:radial-gradient(circle at 35% 35%,#4d7c0f,#365314);border-color:#a3e635;box-shadow:0 0 20px rgba(163,230,53,0.3);}
+.bc-lime .b-label{color:#ecfccb;}
+.bc-yellow{background:radial-gradient(circle at 35% 35%,#a16207,#713f12);border-color:#fcd34d;box-shadow:0 0 20px rgba(252,211,77,0.3);}
+.bc-yellow .b-label{color:#fef3c7;}
+
+/* ── LEGEND ── */
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:6px 20px 22px;position:relative;z-index:2;}
+.leg{display:flex;align-items:center;gap:5px;font-size:0.7rem;color:var(--muted);}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+/* ── BACKDROP ── */
+.backdrop{
+  display:none;position:fixed;inset:0;
+  background:rgba(4,6,14,0.82);z-index:200;
+  backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+  animation:bdFade .2s ease;
+}
+.backdrop.open{display:flex;}
+@keyframes bdFade{from{opacity:0;}to{opacity:1;}}
+
+/* ── PANEL ── */
+.panel{
+  background:var(--surface);border-radius:22px;
+  width:min(640px,94vw);max-height:88vh;
+  display:flex;flex-direction:column;
+  border:2px solid;position:relative;
+  animation:panelRise .28s cubic-bezier(.34,1.2,.64,1);
+  overflow:hidden;
+}
+@keyframes panelRise{from{opacity:0;transform:translateY(32px) scale(.95);}to{opacity:1;transform:none;}}
+
+.panel-top{padding:20px 24px 0;flex-shrink:0;}
+.panel-close{
+  position:absolute;top:14px;right:14px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  color:#94a3b8;font-size:1rem;width:28px;height:28px;
+  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s;z-index:10;
+}
+.panel-close:hover{background:rgba(255,255,255,0.15);color:#fff;}
+
+.panel-icon{font-size:2rem;line-height:1;display:block;margin-bottom:6px;}
+.panel-title{font-family:'Fredoka One',cursive;font-size:1.5rem;margin-bottom:2px;}
+.panel-sub{font-size:0.73rem;color:var(--muted);font-style:italic;margin-bottom:14px;}
+
+/* TABS */
+.tabs{display:flex;gap:2px;padding:0 24px;border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab-btn{
+  padding:9px 14px;font-size:0.73rem;font-weight:800;letter-spacing:0.5px;
+  text-transform:uppercase;color:var(--muted);background:none;border:none;
+  cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;
+  white-space:nowrap;transition:color .15s,border-color .15s;font-family:'Nunito',sans-serif;
+}
+.tab-btn.active{color:#fff;border-bottom-color:currentColor;}
+.tab-btn:hover:not(.active){color:#cbd5e1;}
+
+/* TAB CONTENT */
+.tab-content{overflow-y:auto;padding:18px 24px 24px;flex:1;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;}
+
+/* Content elements */
+.section{margin-bottom:18px;}
+.sec-label{font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:8px;opacity:.65;}
+.sec-label.colored{opacity:1;}
+
+p.body-text{font-size:0.84rem;color:#cbd5e1;line-height:1.6;}
+ul.body-list{list-style:none;padding:0;}
+ul.body-list li{font-size:0.82rem;color:#cbd5e1;line-height:1.55;padding:4px 0 4px 18px;position:relative;}
+ul.body-list li::before{content:'▸';position:absolute;left:0;opacity:.5;}
+
+.pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.pill{border-radius:16px;padding:4px 11px;font-size:0.71rem;font-weight:700;border:1px solid;}
+.p-r{background:rgba(239,68,68,.18);color:#f87171;border-color:rgba(239,68,68,.3);}
+.p-g{background:rgba(52,211,153,.15);color:#34d399;border-color:rgba(52,211,153,.28);}
+.p-a{background:rgba(251,191,36,.15);color:#fbbf24;border-color:rgba(251,191,36,.28);}
+.p-c{background:rgba(34,211,238,.15);color:#22d3ee;border-color:rgba(34,211,238,.28);}
+.p-v{background:rgba(167,139,250,.15);color:#a78bfa;border-color:rgba(167,139,250,.28);}
+.p-w{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.14);}
+.p-pk{background:rgba(244,114,182,.15);color:#f472b6;border-color:rgba(244,114,182,.28);}
+.p-o{background:rgba(251,146,60,.15);color:#fb923c;border-color:rgba(251,146,60,.28);}
+.p-lm{background:rgba(163,230,53,.13);color:#a3e635;border-color:rgba(163,230,53,.26);}
+
+/* tip boxes */
+.tip{border-radius:0 10px 10px 0;padding:8px 12px;font-size:0.8rem;line-height:1.45;margin-bottom:6px;border-left:3px solid;}
+.tip-green{background:rgba(52,211,153,.08);border-color:#059669;color:#a7f3d0;}
+.tip-green strong{color:#34d399;}
+.tip-red{background:rgba(220,38,38,.08);border-color:#dc2626;color:#fca5a5;}
+.tip-red strong{color:#f87171;}
+.tip-amber{background:rgba(251,191,36,.08);border-color:#d97706;color:#fde68a;}
+.tip-amber strong{color:#fbbf24;}
+.tip-cyan{background:rgba(34,211,238,.08);border-color:#0891b2;color:#a5f3fc;}
+.tip-cyan strong{color:#22d3ee;}
+.tip-violet{background:rgba(167,139,250,.08);border-color:#7c3aed;color:#ddd6fe;}
+.tip-violet strong{color:#a78bfa;}
+
+/* NCLEX question */
+.nclex-q{
+  background:var(--surface2);border:1px solid rgba(168,85,247,.2);
+  border-radius:14px;padding:14px 16px;margin-bottom:12px;
+}
+.nclex-q .q-label{font-size:0.58rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#a78bfa;margin-bottom:8px;}
+.nclex-q .q-text{font-size:0.83rem;color:#e2e8f0;line-height:1.5;margin-bottom:10px;font-weight:600;}
+.nclex-opts{display:flex;flex-direction:column;gap:5px;}
+.nclex-opt{
+  padding:7px 12px;border-radius:8px;font-size:0.78rem;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  cursor:pointer;transition:background .15s,border-color .15s;text-align:left;color:#cbd5e1;
+  font-family:'Nunito',sans-serif;
+}
+.nclex-opt:hover:not(.revealed){background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.3);}
+.nclex-opt.correct{background:rgba(52,211,153,.15);border-color:#059669;color:#a7f3d0;}
+.nclex-opt.wrong{background:rgba(220,38,38,.12);border-color:#dc2626;color:#fca5a5;}
+.nclex-opt.reveal-wrong{opacity:.45;}
+.nclex-rat{margin-top:10px;padding:8px 12px;border-radius:8px;font-size:0.78rem;line-height:1.5;display:none;}
+.nclex-rat.show{display:block;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);color:#ddd6fe;}
+
+/* mnemonic box */
+.mnemonic{
+  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.08));
+  border:1px solid rgba(168,85,247,.25);border-radius:14px;
+  padding:14px 16px;
+}
+.mnemonic .mn-title{font-family:'Fredoka One',cursive;font-size:1rem;color:#c084fc;margin-bottom:8px;}
+.mnemonic .mn-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:5px;}
+.mnemonic .mn-letter{
+  font-family:'Fredoka One',cursive;font-size:1.3rem;color:#f0abfc;
+  min-width:24px;line-height:1;
+}
+.mnemonic .mn-word{font-size:0.82rem;color:#e2e8f0;line-height:1.4;}
+.mnemonic .mn-word span{color:#a78bfa;font-weight:700;}
+
+/* clinical pearl */
+.pearl{
+  background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(234,88,12,.05));
+  border:1px solid rgba(251,191,36,.22);border-radius:12px;
+  padding:11px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;
+}
+.pearl .p-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.pearl .p-text{font-size:0.8rem;color:#fde68a;line-height:1.5;}
+.pearl .p-text strong{color:#fbbf24;}
+
+/* badge */
+.badge{display:inline-block;font-size:0.58rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:10px;margin-bottom:10px;}
+.badge-fga{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.35);}
+.badge-sga{background:rgba(124,58,237,.2);color:#a78bfa;border:1px solid rgba(124,58,237,.35);}
+.badge-proto{background:rgba(236,72,153,.2);color:#f472b6;border:1px solid rgba(236,72,153,.35);}
+
+/* comparison table */
+.comp-table{width:100%;border-collapse:collapse;font-size:0.78rem;margin-top:8px;}
+.comp-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-weight:800;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;}
+.comp-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:#cbd5e1;line-height:1.4;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:rgba(255,255,255,.02);}
+
+/* priority flag */
+.flag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+  padding:3px 10px;border-radius:20px;margin-bottom:10px;
+}
+.flag-red{background:rgba(220,38,38,.2);color:#f87171;border:1px solid rgba(220,38,38,.35);}
+.flag-amber{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.35);}
+
+/* divider */
+.divider{height:1px;background:var(--border);margin:14px 0;}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🧠 Schizophrenia Exam Concept Map</h1>
+  <div class="sub">PP2 Deep-Study Guide · NCLEX Practice · Mnemonics · Clinical Pearls</div>
+  <div class="hint">🖱️ Click any bubble → tabs open with full exam content</div>
+</div>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <div class="map-stage" id="stage">
+    <svg class="lines-svg" id="linesSvg" viewBox="0 0 860 860" preserveAspectRatio="xMidYMid meet"></svg>
+
+    <!-- CENTER -->
+    <div class="center-node">
+      <span class="c-icon">🧠</span>
+      <h2>Schizophrenia</h2>
+      <div class="c-sub">Chronic psychiatric disorder<br>Dopamine excess → disordered reality</div>
+    </div>
+
+    <!-- 12 → Signs & Symptoms -->
+    <div class="bubble bc-red" style="left:50%;top:7.5%;" data-key="symptoms">
+      <span class="b-icon">📋</span><div class="b-label">Signs &amp; Symptoms</div>
+    </div>
+    <!-- 1 → Haloperidol -->
+    <div class="bubble bc-amber" style="left:80%;top:15%;" data-key="haldol">
+      <span class="b-icon">💊</span><div class="b-label">Haloperidol</div>
+    </div>
+    <!-- 2 → Chlorpromazine -->
+    <div class="bubble bc-orange" style="left:91.5%;top:35%;" data-key="chloro">
+      <span class="b-icon">💊</span><div class="b-label">Chlorpromazine</div>
+    </div>
+    <!-- 3 → Clozapine -->
+    <div class="bubble bc-violet" style="left:91.5%;top:60%;" data-key="cloza">
+      <span class="b-icon">⭐</span><div class="b-label">Clozapine</div>
+    </div>
+    <!-- 4 → Risperidone -->
+    <div class="bubble bc-pink" style="left:80%;top:80%;" data-key="risper">
+      <span class="b-icon">💊</span><div class="b-label">Risperidone</div>
+    </div>
+    <!-- 5 → Olanzapine -->
+    <div class="bubble bc-indigo" style="left:62%;top:91%;" data-key="olanza">
+      <span class="b-icon">💊</span><div class="b-label">Olanzapine</div>
+    </div>
+    <!-- 6 → Quetiapine -->
+    <div class="bubble bc-teal" style="left:38%;top:91%;" data-key="queti">
+      <span class="b-icon">💊</span><div class="b-label">Quetiapine</div>
+    </div>
+    <!-- 7 → Aripiprazole -->
+    <div class="bubble bc-lime" style="left:20%;top:80%;" data-key="aripi">
+      <span class="b-icon">💊</span><div class="b-label">Aripiprazole</div>
+    </div>
+    <!-- 8 → Ziprasidone -->
+    <div class="bubble bc-yellow" style="left:8.5%;top:60%;" data-key="ziprasi">
+      <span class="b-icon">💊</span><div class="b-label">Ziprasidone</div>
+    </div>
+    <!-- 9 → Adverse Effects -->
+    <div class="bubble bc-rose" style="left:8.5%;top:35%;" data-key="adverse">
+      <span class="b-icon">🚨</span><div class="b-label">Adverse Effects</div>
+    </div>
+    <!-- 10 → Nursing Care -->
+    <div class="bubble bc-cyan" style="left:20%;top:15%;" data-key="nursing">
+      <span class="b-icon">🏥</span><div class="b-label">Nursing Care</div>
+    </div>
+    <!-- 11 → Therapeutic Comm -->
+    <div class="bubble bc-green" style="left:38%;top:7.5%;" data-key="comm">
+      <span class="b-icon">💬</span><div class="b-label">Therapeutic Comm.</div>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#fb7185"></div>Signs &amp; Symptoms</div>
+  <div class="leg"><div class="leg-dot" style="background:#22d3ee"></div>Nursing</div>
+  <div class="leg"><div class="leg-dot" style="background:#34d399"></div>Communication</div>
+  <div class="leg"><div class="leg-dot" style="background:#f87171"></div>Adverse Effects</div>
+  <div class="leg"><div class="leg-dot" style="background:#fbbf24"></div>FGA Meds</div>
+  <div class="leg"><div class="leg-dot" style="background:#a78bfa"></div>SGA Meds</div>
+</div>
+
+<!-- ═══ BACKDROP + PANEL ═══ -->
+<div class="backdrop" id="backdrop">
+  <div class="panel" id="panel">
+    <button class="panel-close" id="closeBtn">✕</button>
+
+    <div class="panel-top" id="panelTop">
+      <!-- injected: icon, title, sub -->
+    </div>
+
+    <div class="tabs" id="tabBar">
+      <!-- injected tabs -->
+    </div>
+
+    <div class="tab-content" id="tabContent">
+      <!-- injected panes -->
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── NODE DATA ────────────────────────────────────────────────────────────────
+const nodes = {
+
+symptoms:{
+  icon:'📋', title:'Signs & Symptoms', sub:'Three categories — Positive, Negative, Cognitive',
+  color:'#fb7185', border:'#be123c',
+  tabs:['Overview','Positive','Negative','Cognitive','NCLEX Practice'],
+  content:{
+    'Overview':`
+      <div class="section">
+        <div class="mnemonic">
+          <div class="mn-title">🧠 Mnemonic: Remember the 3 Types</div>
+          <div class="mn-row"><div class="mn-letter">P</div><div class="mn-word"><span>Positive</span> — too MUCH (hallucinations, delusions, paranoia)</div></div>
+          <div class="mn-row"><div class="mn-letter">N</div><div class="mn-word"><span>Negative</span> — too LITTLE (flat affect, alogia, no motivation)</div></div>
+          <div class="mn-row"><div class="mn-letter">C</div><div class="mn-word"><span>Cognitive</span> — foggy brain (↓ memory, ↓ concentration, disorganized thinking)</div></div>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Clinical Pearl:</strong> Cognitive symptoms often appear BEFORE the first psychotic break — they are the earliest warning signs and the hardest to treat.</div></div>
+      <div class="pearl"><div class="p-icon">📌</div><div class="p-text"><strong>NCLEX tip:</strong> FGAs (Haloperidol) treat POSITIVE symptoms best. SGAs (Clozapine, Risperidone) treat ALL three categories — especially negative and cognitive.</div></div>`,
+
+    'Positive':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fb7185;">➕ Positive Symptoms — Excess / Distortion of Normal Function</div>
+        <div class="tip tip-red"><strong>Key concept:</strong> "Positive" does NOT mean good — it means an EXCESS or addition of something abnormal.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Hallucinations</div>
+        <ul class="body-list">
+          <li><strong>Auditory</strong> — Most common. Hearing voices (command hallucinations are most dangerous)</li>
+          <li><strong>Visual</strong> — Seeing things not present</li>
+          <li><strong>Tactile, Olfactory, Gustatory</strong> — Less common; consider substance-induced if present</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Delusions</div>
+        <ul class="body-list">
+          <li><strong>Persecutory</strong> — Most common type: "people are out to get me"</li>
+          <li><strong>Grandiose</strong> — Exaggerated sense of power or importance</li>
+          <li><strong>Referential</strong> — Believing neutral events are directed at them</li>
+          <li><strong>Somatic</strong> — False belief about one's own body</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Other Positive Symptoms</div>
+        <div class="pill-row">
+          <span class="pill p-r">Paranoia</span><span class="pill p-r">Agitation</span>
+          <span class="pill p-r">Disorganized Speech</span><span class="pill p-r">Word Salad</span>
+          <span class="pill p-r">Clang Associations</span><span class="pill p-r">Loose Associations</span>
+        </div>
+      </div>`,
+
+    'Negative':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#22d3ee;">➖ Negative Symptoms — Loss of Normal Function</div>
+        <div class="tip tip-cyan"><strong>Key concept:</strong> "Negative" means something is MISSING or diminished. These often persist even between psychotic episodes.</div>
+      </div>
+      <div class="mnemonic" style="margin-bottom:14px;">
+        <div class="mn-title">Mnemonic: 5 A's of Negative Symptoms</div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Alogia</span> — poverty of speech; brief, empty replies</div></div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Avolition</span> — inability to initiate/persist in goal-directed behavior</div></div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Affect (flat/blunted)</span> — diminished emotional expression</div></div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Anhedonia</span> — inability to feel pleasure</div></div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Asociality</span> — social withdrawal, lack of interest in others</div></div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Clinical Pearl:</strong> Negative symptoms are often mistaken for depression. Key distinction: in schizophrenia, the patient lacks desire; in depression, the patient often still desires but cannot act.</div></div>`,
+
+    'Cognitive':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a78bfa;">🧩 Cognitive Symptoms</div>
+        <div class="tip tip-violet"><strong>Key concept:</strong> Cognitive symptoms are the EARLIEST to appear and the most persistent — they significantly impair daily functioning even during remission.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">What's Impaired</div>
+        <ul class="body-list">
+          <li><strong>Working memory</strong> — difficulty holding information in mind</li>
+          <li><strong>Attention & concentration</strong> — easily distracted, poor focus</li>
+          <li><strong>Executive function</strong> — poor planning, problem-solving, decision-making</li>
+          <li><strong>Processing speed</strong> — slower to respond and process information</li>
+          <li><strong>Insight</strong> — poor awareness that they are ill (anosognosia)</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">🏥</div><div class="p-text"><strong>Nursing implication:</strong> Due to cognitive impairment, use SHORT, SIMPLE instructions. Repeat often. Check for understanding. Do not assume noncompliance without assessing comprehension.</div></div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="1">
+        <div class="q-label">NCLEX-Style Question 1</div>
+        <div class="q-text">A patient with schizophrenia sits in a corner and speaks only in one- or two-word responses when addressed. Which symptom category does this BEST represent?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Positive symptom — auditory hallucination</button>
+          <button class="nclex-opt" data-i="1">B. Negative symptom — alogia</button>
+          <button class="nclex-opt" data-i="2">C. Cognitive symptom — impaired memory</button>
+          <button class="nclex-opt" data-i="3">D. Positive symptom — disorganized thinking</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: B.</strong> Alogia (poverty of speech) is a negative symptom — it represents a LOSS of normal verbal function. The patient is not hallucinating or showing disorganized thinking.</div>
+      </div>
+      <div class="nclex-q" data-answer="2">
+        <div class="q-label">NCLEX-Style Question 2</div>
+        <div class="q-text">A patient tells the nurse, "The government has implanted a chip in my brain to control my thoughts." This is BEST classified as:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Auditory hallucination</button>
+          <button class="nclex-opt" data-i="1">B. Anosognosia</button>
+          <button class="nclex-opt" data-i="2">C. Persecutory delusion</button>
+          <button class="nclex-opt" data-i="3">D. Loose association</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: C.</strong> A persecutory delusion is a fixed false belief that one is being harmed, controlled, or monitored by an external force — a classic positive symptom of schizophrenia.</div>
+      </div>`
+  }
+},
+
+nursing:{
+  icon:'🏥', title:'Nursing Care', sub:'Assessment, safety, adherence & non-pharmacologic interventions',
+  color:'#22d3ee', border:'#0e7490',
+  tabs:['Assessment','Interventions','Adherence','NCLEX Practice'],
+  content:{
+    'Assessment':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#22d3ee;">🔍 Priority Assessments</div>
+        <div class="flag flag-red">🚨 Safety is ALWAYS the #1 priority</div>
+        <ul class="body-list">
+          <li>Risk of harm to self or others (command hallucinations → danger)</li>
+          <li>Thought processes: coherence, flight of ideas, loose associations, word salad</li>
+          <li>Reality orientation: does patient know person, place, time, situation?</li>
+          <li>Ability to perform ADLs (grooming, hygiene, nutrition, sleep)</li>
+          <li>Vital signs, weight, blood glucose, lipid levels, BMI</li>
+          <li>Extrapyramidal symptoms (AIMS scale for tardive dyskinesia)</li>
+          <li>Signs of NMS: fever, rigidity, altered LOC, diaphoresis</li>
+          <li>WBC if on clozapine (agranulocytosis surveillance)</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">📌</div><div class="p-text"><strong>NCLEX tip:</strong> When a patient hears command hallucinations telling them to harm someone, the nurse's FIRST action is to assess whether the patient intends to act on them — then notify the provider immediately.</div></div>`,
+
+    'Interventions':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#22d3ee;">🩺 Nursing Interventions</div>
+        <div class="tip tip-cyan"><strong>Environment:</strong> Keep surroundings calm, structured, and low-stimulation. Predictable routines reduce anxiety and psychotic episodes.</div>
+        <ul class="body-list">
+          <li>Establish a <strong>therapeutic one-to-one relationship</strong> — be consistent and trustworthy</li>
+          <li>Use <strong>reality orientation</strong> without arguing or reinforcing delusions</li>
+          <li>Encourage <strong>structured daily routines</strong> — sleep, meals, hygiene</li>
+          <li>Promote <strong>socialization gradually</strong> — do not force interactions</li>
+          <li>Involve <strong>family members</strong> in psychoeducation and discharge planning</li>
+          <li>Monitor <strong>nutritional status</strong> — many patients have poor self-care</li>
+          <li>Provide <strong>safety supervision</strong> during acute psychosis</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Non-Pharmacologic Supports</div>
+        <div class="pill-row">
+          <span class="pill p-g">Cognitive Behavioral Therapy</span>
+          <span class="pill p-g">Vocational Rehabilitation</span>
+          <span class="pill p-g">Social Skills Training</span>
+          <span class="pill p-g">Family Psychoeducation</span>
+          <span class="pill p-g">Assertive Community Treatment</span>
+        </div>
+      </div>`,
+
+    'Adherence':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#22d3ee;">💊 Medication Adherence — CRITICAL Nursing Priority</div>
+        <div class="flag flag-red">🚨 Non-adherence is the #1 cause of relapse</div>
+        <div class="tip tip-red"><strong>Key point:</strong> Patients stop medications because they feel better, experience side effects, or lack insight (anosognosia). The nurse's role is EDUCATION, not judgment.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Teach Patients & Families</div>
+        <ul class="body-list">
+          <li>Take medications <strong>consistently, long-term</strong> — even when feeling well</li>
+          <li>Do <strong>NOT stop abruptly</strong> — this causes rapid relapse</li>
+          <li>Side effects are manageable — report them before stopping</li>
+          <li>Long-acting injectable (LAI) antipsychotics are an option for adherence issues</li>
+          <li>Recognize early warning signs of relapse: insomnia, increased suspicion, social withdrawal</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Clinical Pearl:</strong> Long-Acting Injectable (LAI) antipsychotics (e.g., Haloperidol Decanoate, Risperdal Consta) eliminate the daily adherence burden and are often used for chronic non-compliant patients.</div></div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="0">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient with schizophrenia tells the nurse, "I stopped taking my medication because I feel fine." What is the nurse's BEST response?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. "Feeling well is a sign the medication is working — stopping it can cause your symptoms to return."</button>
+          <button class="nclex-opt" data-i="1">B. "That's okay, you can take a medication break when you feel better."</button>
+          <button class="nclex-opt" data-i="2">C. "You'll need to be hospitalized again if you stop."</button>
+          <button class="nclex-opt" data-i="3">D. "You should discuss stopping medications with your doctor first."</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: A.</strong> This response educates the patient therapeutically — it explains WHY they feel well (the medication is working) and the consequence of stopping. Option D is partially correct but doesn't address the misunderstanding directly.</div>
+      </div>`
+  }
+},
+
+comm:{
+  icon:'💬', title:'Therapeutic Communication', sub:'How to talk with — and listen to — patients with schizophrenia',
+  color:'#34d399', border:'#047857',
+  tabs:['Principles','DO / DON\'T','Hallucinations','Delusions','NCLEX Practice'],
+  content:{
+    'Principles':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#34d399;">🎯 Core Principles</div>
+        <ul class="body-list">
+          <li><strong>Clarity:</strong> Use simple, short, concrete sentences</li>
+          <li><strong>Consistency:</strong> Same nurse, same routine, same responses build trust</li>
+          <li><strong>Empathy:</strong> Acknowledge emotional experience without validating false content</li>
+          <li><strong>Non-judgment:</strong> Never mock, dismiss, or argue with the patient's perception</li>
+          <li><strong>Calm tone:</strong> Speak slowly, quietly — model the affect you want to see</li>
+          <li><strong>Non-threatening body language:</strong> Open posture, eye contact, appropriate distance</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">🏥</div><div class="p-text"><strong>Nursing goal:</strong> Build a trusting therapeutic relationship. Trust is the foundation — without it, no intervention will work. Consistency over time is more powerful than any single technique.</div></div>`,
+
+    'DO / DON\'T':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#34d399;">✅ DO These</div>
+        <div class="tip tip-green"><strong>Use clear, direct language:</strong> "It is time for lunch." not "Would you perhaps consider eating?"</div>
+        <div class="tip tip-green"><strong>Acknowledge feelings:</strong> "I can see you're feeling frightened right now."</div>
+        <div class="tip tip-green"><strong>Orient to reality gently:</strong> "I understand that feels very real to you. I don't see/hear that."</div>
+        <div class="tip tip-green"><strong>Use silence & active listening:</strong> Give the patient time to respond without filling the space.</div>
+        <div class="tip tip-green"><strong>Limit stimuli:</strong> Move to a quieter environment when patient is overwhelmed.</div>
+        <div class="tip tip-green"><strong>Reinforce appropriate behavior:</strong> Positive reinforcement builds self-esteem.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label colored" style="color:#f87171;">🚫 DON'T Do These</div>
+        <div class="tip tip-red"><strong>Don't argue or debate:</strong> "That's not real." → escalates distress and destroys trust.</div>
+        <div class="tip tip-red"><strong>Don't play along / validate:</strong> "I hear the voices too." → reinforces delusion.</div>
+        <div class="tip tip-red"><strong>Don't whisper near the patient:</strong> Increases paranoia — they think you are talking about them.</div>
+        <div class="tip tip-red"><strong>Don't touch without warning:</strong> May be interpreted as threatening during psychosis.</div>
+        <div class="tip tip-red"><strong>Don't use complex abstract language:</strong> Confuses disorganized thinking further.</div>
+      </div>`,
+
+    'Hallucinations':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#34d399;">👂 Managing Hallucinations</div>
+        <div class="tip tip-cyan"><strong>Safe example response:</strong> "I know these voices feel very real to you. I'm not hearing them, but I can see how distressing they are. Let's focus on something here together."</div>
+        <ul class="body-list">
+          <li>Assess whether hallucinations are commanding harm → document, notify provider</li>
+          <li>Do not leave the patient alone if command hallucinations are present</li>
+          <li>Distraction techniques: music, walking, conversation, tasks</li>
+          <li>Teach patient to recognize when hallucinations worsen (stress triggers)</li>
+          <li>Encourage patient to tell staff when voices start</li>
+        </ul>
+      </div>`,
+
+    'Delusions':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#34d399;">🌀 Managing Delusions</div>
+        <div class="tip tip-green"><strong>Goal:</strong> Do not confirm OR deny the delusion. Focus on the patient's emotional experience, not the content of the belief.</div>
+        <div class="tip tip-green"><strong>Example:</strong> Patient says "The CIA is watching me through the TV." → Nurse: "It sounds like you're feeling very unsafe right now. Let's move somewhere you feel more secure."</div>
+        <ul class="body-list">
+          <li>Never argue → increases agitation and entrenches belief</li>
+          <li>Never agree → reinforces false belief, damages therapeutic relationship</li>
+          <li>Redirect to the emotion, not the content</li>
+          <li>Monitor for safety implications — can the patient distinguish delusion from action?</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="2">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient states, "The nurses are poisoning my food." Which response by the nurse is MOST therapeutic?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. "That's not true. We would never poison anyone."</button>
+          <button class="nclex-opt" data-i="1">B. "I understand — I'll make sure no one touches your food."</button>
+          <button class="nclex-opt" data-i="2">C. "I can see you're feeling unsafe. I want to help you feel more secure."</button>
+          <button class="nclex-opt" data-i="3">D. "Why do you think we would do that?"</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: C.</strong> This response acknowledges the patient's emotional experience (feeling unsafe) without confirming OR denying the delusion. Option A argues, Option B reinforces the delusion, Option D can escalate paranoia by inviting them to elaborate on the false belief.</div>
+      </div>`
+  }
+},
+
+adverse:{
+  icon:'🚨', title:'Adverse Effects', sub:'EPS, NMS, Metabolic Syndrome, Anticholinergic, QT Prolongation',
+  color:'#f87171', border:'#b91c1c',
+  tabs:['EPS','NMS','Metabolic','Other','NCLEX Practice'],
+  content:{
+    'EPS':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#f87171;">🤸 Extrapyramidal Symptoms (EPS)</div>
+        <div class="flag flag-red">⚠️ Higher risk with FGAs (Haloperidol, Chlorpromazine)</div>
+      </div>
+      <div class="mnemonic">
+        <div class="mn-title">Mnemonic: 4 Types of EPS — "ADAPT"</div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Akathisia</span> — restlessness, inability to sit still; feels internal, not just observable</div></div>
+        <div class="mn-row"><div class="mn-letter">D</div><div class="mn-word"><span>Dystonia</span> — sudden, sustained muscle contractions (neck, eyes, tongue) → can be life-threatening if laryngeal</div></div>
+        <div class="mn-row"><div class="mn-letter">A</div><div class="mn-word"><span>Akinesia / Parkinsonism</span> — bradykinesia, tremor, rigidity, shuffling gait, mask-like face</div></div>
+        <div class="mn-row"><div class="mn-letter">T</div><div class="mn-word"><span>Tardive Dyskinesia (TD)</span> — late-onset; lip smacking, tongue thrusting, involuntary movements → may be IRREVERSIBLE</div></div>
+      </div>
+      <div class="section" style="margin-top:14px;">
+        <div class="sec-label">Treatment of EPS</div>
+        <ul class="body-list">
+          <li><strong>Dystonia / Parkinsonism:</strong> Benztropine (Cogentin) or Diphenhydramine (Benadryl)</li>
+          <li><strong>Akathisia:</strong> Propranolol (beta-blocker) or Benzodiazepine</li>
+          <li><strong>Tardive Dyskinesia:</strong> STOP or ↓ antipsychotic dose; switch to SGA; Valbenazine or Deutetrabenazine</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Clinical Pearl:</strong> Tardive Dyskinesia can be PERMANENT — monitor all patients on long-term antipsychotics using the AIMS (Abnormal Involuntary Movement Scale) every 6-12 months.</div></div>`,
+
+    'NMS':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#f87171;">🚨 Neuroleptic Malignant Syndrome (NMS)</div>
+        <div class="flag flag-red">🚨 LIFE-THREATENING EMERGENCY</div>
+        <div class="tip tip-red"><strong>Definition:</strong> A rare but potentially fatal reaction to antipsychotics caused by excessive dopamine blockade in the hypothalamus and basal ganglia.</div>
+      </div>
+      <div class="mnemonic">
+        <div class="mn-title">Mnemonic: FEVER</div>
+        <div class="mn-row"><div class="mn-letter">F</div><div class="mn-word"><span>Fever</span> — high-grade hyperthermia (>38°C / 101°F) — hallmark sign</div></div>
+        <div class="mn-row"><div class="mn-letter">E</div><div class="mn-word"><span>Encephalopathy</span> — altered LOC, confusion, agitation</div></div>
+        <div class="mn-row"><div class="mn-letter">V</div><div class="mn-word"><span>Vitals unstable</span> — tachycardia, hypertension, diaphoresis</div></div>
+        <div class="mn-row"><div class="mn-letter">E</div><div class="mn-word"><span>Elevated CPK</span> — muscle breakdown (rhabdomyolysis → renal failure)</div></div>
+        <div class="mn-row"><div class="mn-letter">R</div><div class="mn-word"><span>Rigidity</span> — "lead-pipe" muscle rigidity</div></div>
+      </div>
+      <div class="section" style="margin-top:14px;">
+        <div class="sec-label">Nursing Action for NMS</div>
+        <ul class="body-list">
+          <li>🛑 STOP the antipsychotic <strong>immediately</strong></li>
+          <li>Call provider / rapid response</li>
+          <li>Supportive care: IV fluids, cooling blankets, monitor vitals</li>
+          <li>Monitor BUN/Creatinine (rhabdomyolysis → AKI)</li>
+          <li>Dantrolene (muscle relaxant) or Bromocriptine may be used</li>
+        </ul>
+      </div>`,
+
+    'Metabolic':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fbbf24;">⚖️ Metabolic Syndrome</div>
+        <div class="flag flag-amber">⚠️ Especially HIGH risk with Olanzapine & Clozapine</div>
+        <div class="tip tip-amber"><strong>Metabolic syndrome</strong> = a cluster of conditions that significantly ↑ risk of cardiovascular disease and type 2 diabetes.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Components to Monitor</div>
+        <ul class="body-list">
+          <li><strong>Weight / BMI</strong> — rapid gain common; check at every visit</li>
+          <li><strong>Blood glucose / HbA1c</strong> — new-onset diabetes possible</li>
+          <li><strong>Lipids</strong> — triglycerides ↑, HDL ↓</li>
+          <li><strong>Waist circumference</strong> — central obesity (>40" men, >35" women)</li>
+          <li><strong>Blood pressure</strong> — hypertension risk ↑</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Clinical Pearl:</strong> Patients on SGAs should have baseline metabolic labs before starting, then at 3 months, then annually. Aripiprazole has the LOWEST metabolic risk of all SGAs.</div></div>`,
+
+    'Other':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a78bfa;">🌵 Anticholinergic Effects</div>
+        <div class="mnemonic">
+          <div class="mn-title">Mnemonic: "Can't See, Spit, Pee, Poop, or Cool Down"</div>
+          <div class="mn-row"><div class="mn-letter">👁️</div><div class="mn-word"><span>Blurred vision</span> — can't see clearly</div></div>
+          <div class="mn-row"><div class="mn-letter">🦷</div><div class="mn-word"><span>Dry mouth</span> — can't spit</div></div>
+          <div class="mn-row"><div class="mn-letter">🚽</div><div class="mn-word"><span>Urinary retention</span> — can't pee</div></div>
+          <div class="mn-row"><div class="mn-letter">💩</div><div class="mn-word"><span>Constipation</span> — can't poop</div></div>
+          <div class="mn-row"><div class="mn-letter">🌡️</div><div class="mn-word"><span>Decreased sweating</span> → hyperthermia</div></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <div class="sec-label colored" style="color:#22d3ee;">😵‍💫 Orthostatic Hypotension</div>
+        <ul class="body-list">
+          <li>BP drops when patient stands → dizziness, syncope, falls</li>
+          <li>Teach: <strong>rise slowly</strong>, dangle legs first, hold rails</li>
+          <li>Common with FGAs and Clozapine</li>
+          <li>Assess BP lying → sitting → standing (orthostatic vitals)</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <div class="sec-label colored" style="color:#fbbf24;">💓 QT Prolongation</div>
+        <ul class="body-list">
+          <li>Risk of ventricular arrhythmias (Torsades de Pointes)</li>
+          <li>Monitor ECG baseline and periodically</li>
+          <li>Highest risk: <strong>Ziprasidone, Haloperidol IV</strong></li>
+          <li>Avoid co-administering other QT-prolonging drugs</li>
+          <li>Monitor electrolytes: K+ and Mg2+ depletion worsens QT risk</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="3">
+        <div class="q-label">NCLEX-Style Question 1</div>
+        <div class="q-text">A patient on Haloperidol develops a high fever (102°F), severe muscle rigidity, altered mental status, and diaphoresis. What is the nurse's PRIORITY action?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Administer Benztropine for EPS</button>
+          <button class="nclex-opt" data-i="1">B. Apply a cooling blanket and continue the medication</button>
+          <button class="nclex-opt" data-i="2">C. Document findings and notify the provider at the next scheduled call</button>
+          <button class="nclex-opt" data-i="3">D. Stop the antipsychotic immediately and notify the provider</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: D.</strong> These are classic signs of NMS — a medical emergency. The antipsychotic must be stopped IMMEDIATELY. NMS is life-threatening (hyperthermia → rhabdomyolysis → renal failure, cardiovascular collapse).</div>
+      </div>
+      <div class="nclex-q" data-answer="1">
+        <div class="q-label">NCLEX-Style Question 2</div>
+        <div class="q-text">The nurse notes a patient on long-term Haloperidol is making repetitive lip-smacking and tongue-thrusting movements. The nurse recognizes this as:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Acute dystonia — treat with Benztropine</button>
+          <button class="nclex-opt" data-i="1">B. Tardive Dyskinesia — notify provider, may be irreversible</button>
+          <button class="nclex-opt" data-i="2">C. Akathisia — treat with Propranolol</button>
+          <button class="nclex-opt" data-i="3">D. Neuroleptic Malignant Syndrome — stop medication</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: B.</strong> Tardive Dyskinesia (TD) presents as late-onset repetitive involuntary movements — classically lip smacking, tongue thrusting, grimacing. It occurs with long-term antipsychotic use and can be IRREVERSIBLE. Early detection and provider notification are crucial.</div>
+      </div>`
+  }
+},
+
+haldol:{
+  icon:'🔵', title:'Haloperidol', sub:'Haldol — First Generation (Typical) Antipsychotic',
+  color:'#fbbf24', border:'#b45309',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-fga">FGA — Typical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#fbbf24;">💊 Classification & Mechanism</div>
+        <div class="tip tip-amber"><strong>Mechanism:</strong> Blocks D2 dopamine receptors in the mesolimbic pathway → reduces positive symptoms. Does NOT block serotonin receptors (unlike SGAs).</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Indications</div>
+        <div class="pill-row">
+          <span class="pill p-a">Schizophrenia</span><span class="pill p-a">Acute Psychosis</span>
+          <span class="pill p-a">Tourette Syndrome</span><span class="pill p-a">Agitation (acute)</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Available Formulations</div>
+        <ul class="body-list">
+          <li><strong>PO tablet / liquid</strong> — daily oral dosing</li>
+          <li><strong>IM (short-acting)</strong> — for acute agitation</li>
+          <li><strong>Haloperidol Decanoate (LAI)</strong> — long-acting injectable every 4 weeks for adherence</li>
+        </ul>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Pearl:</strong> Haloperidol is one of the most commonly used drugs for acute agitation in the ED. IV haloperidol has HIGH QT prolongation risk — always monitor ECG.</div></div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fbbf24;">⚠️ Adverse Effects</div>
+        <div class="flag flag-red">⚠️ HIGHEST EPS risk of all antipsychotics</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Details</th></tr>
+          <tr><td>EPS</td><td>Dystonia, Akathisia, Parkinsonism, Tardive Dyskinesia — very common</td></tr>
+          <tr><td>NMS</td><td>Medical emergency — FEVER + FEVER mnemonic</td></tr>
+          <tr><td>QT Prolongation</td><td>Especially with IV route — ECG monitoring required</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Rise slowly, fall precautions</td></tr>
+          <tr><td>Sedation</td><td>Caution with driving/alcohol</td></tr>
+          <tr><td>Anticholinergic</td><td>Dry mouth, constipation, urinary retention, blurred vision</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fbbf24;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>Obtain <strong>baseline ECG</strong> — monitor QT interval throughout therapy</li>
+          <li>Assess for <strong>EPS at every visit</strong> (AIMS scale for long-term use)</li>
+          <li>Monitor <strong>NMS signs</strong>: fever, rigidity, altered LOC, diaphoresis</li>
+          <li>Caution in patients with <strong>glaucoma</strong> (anticholinergic effects ↑ IOP)</li>
+          <li>Caution in <strong>cardiovascular disease</strong> (QT + orthostatic hypotension)</li>
+          <li>Monitor <strong>bowel sounds</strong> and urinary output</li>
+          <li>Educate: <strong>avoid alcohol</strong> (↑ CNS depression)</li>
+          <li>Rise <strong>slowly</strong> from bed (orthostatic hypotension risk)</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Drug Interactions</div>
+        <div class="pill-row">
+          <span class="pill p-r">CNS depressants → ↑ sedation</span>
+          <span class="pill p-r">Anticholinergics → ↑ side effects</span>
+          <span class="pill p-r">Dopamine agonists → ↓ effectiveness</span>
+          <span class="pill p-r">Other QT drugs → ↑ arrhythmia risk</span>
+        </div>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="2">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient started on Haloperidol 2 days ago develops sudden neck stiffness with eyes rolling upward. The nurse recognizes this as:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Tardive Dyskinesia — document and monitor</button>
+          <button class="nclex-opt" data-i="1">B. Akathisia — administer Propranolol</button>
+          <button class="nclex-opt" data-i="2">C. Acute Dystonia — administer Benztropine or Diphenhydramine IM</button>
+          <button class="nclex-opt" data-i="3">D. NMS — stop medication and call rapid response</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: C.</strong> Sudden onset neck stiffness (torticollis) and oculogyric crisis (eyes rolling up) are classic ACUTE DYSTONIA — a type of EPS. It appears early (within hours to days). Treatment is Benztropine (Cogentin) or Diphenhydramine IM for rapid relief.</div>
+      </div>`
+  }
+},
+
+chloro:{
+  icon:'🟠', title:'Chlorpromazine', sub:'Thorazine — First Generation (Typical) Antipsychotic',
+  color:'#fb923c', border:'#c2410c',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-fga">FGA — Typical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#fb923c;">💊 Classification & Mechanism</div>
+        <div class="tip tip-amber"><strong>Mechanism:</strong> Blocks D2 dopamine receptors. Also has strong anticholinergic, antihistamine, and alpha-1 adrenergic blocking effects → MORE sedation and hypotension than Haloperidol.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Indications</div>
+        <div class="pill-row">
+          <span class="pill p-o">Schizophrenia</span><span class="pill p-o">Psychosis</span>
+          <span class="pill p-o">Severe Nausea/Vomiting</span><span class="pill p-o">Hiccups (intractable)</span>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Historical Pearl:</strong> Chlorpromazine was the FIRST antipsychotic ever developed (1952) — it revolutionized psychiatry and led to deinstitutionalization. It is the prototype FGA.</div></div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fb923c;">⚠️ Adverse Effects</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Details</th></tr>
+          <tr><td>EPS</td><td>Less than Haloperidol but still significant</td></tr>
+          <tr><td>Photosensitivity</td><td>Severe sunburn risk — educate on sun protection, long sleeves, SPF</td></tr>
+          <tr><td>Agranulocytosis</td><td>↓ WBC → infection risk — monitor CBC</td></tr>
+          <tr><td>Contact Dermatitis</td><td>Skin contact with liquid form → nurse must wear gloves</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>More pronounced than Haloperidol due to alpha-1 blockade</td></tr>
+          <tr><td>Sedation</td><td>Strong — may be used therapeutically for agitation</td></tr>
+          <tr><td>Anticholinergic</td><td>Dry mouth, constipation, urinary retention</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fb923c;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>⚠️ <strong>Wear gloves when handling liquid form</strong> — contact dermatitis risk</li>
+          <li>Monitor <strong>WBC</strong> — agranulocytosis risk (less than Clozapine but still present)</li>
+          <li>Teach <strong>sun protection</strong>: sunscreen SPF 30+, protective clothing, avoid prolonged sun exposure</li>
+          <li>Monitor <strong>BP (orthostatic)</strong> — alpha-1 blockade causes significant hypotension</li>
+          <li>Assess for <strong>EPS</strong> regularly</li>
+          <li>Caution: <strong>avoid alcohol</strong> and other CNS depressants</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Drug Interactions</div>
+        <div class="pill-row">
+          <span class="pill p-r">Alcohol → ↑ sedation</span>
+          <span class="pill p-r">CNS depressants → ↑ sedation</span>
+          <span class="pill p-r">Anticholinergics → worsen side effects</span>
+        </div>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="0">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A nurse is preparing to administer liquid Chlorpromazine. Which action is MOST important?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Wear gloves to avoid skin contact</button>
+          <button class="nclex-opt" data-i="1">B. Administer on an empty stomach</button>
+          <button class="nclex-opt" data-i="2">C. Monitor blood glucose before administering</button>
+          <button class="nclex-opt" data-i="3">D. Assess for QT prolongation before giving</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: A.</strong> Liquid Chlorpromazine causes contact dermatitis — the nurse MUST wear gloves when handling. This is a classic, frequently tested nursing consideration specific to Chlorpromazine.</div>
+      </div>`
+  }
+},
+
+cloza:{
+  icon:'⭐', title:'Clozapine', sub:'Clozaril — SGA Prototype · Treatment-Resistant Schizophrenia',
+  color:'#a78bfa', border:'#6d28d9',
+  tabs:['Drug Profile','REMS & Monitoring','Side Effects','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Prototype</span><span class="badge badge-proto" style="margin-left:6px;">Treatment-Resistant</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#a78bfa;">💊 Classification & Mechanism</div>
+        <div class="tip tip-violet"><strong>Mechanism:</strong> Blocks D4 dopamine receptors AND multiple serotonin receptors (5-HT2A). Does NOT significantly block D2 → explains WHY EPS risk is lower, but also why agranulocytosis risk is unique.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Indications</div>
+        <div class="pill-row">
+          <span class="pill p-v">Treatment-Resistant Schizophrenia</span>
+          <span class="pill p-v">Reduces Suicidal Behavior</span>
+          <span class="pill p-v">Schizoaffective Disorder</span>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Pearl:</strong> Clozapine is the ONLY antipsychotic proven to reduce suicidality in schizophrenia patients — this is a unique and frequently tested fact.</div></div>`,
+
+    'REMS & Monitoring':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a78bfa;">📋 REMS Program — Required Enrollment</div>
+        <div class="flag flag-red">🚨 CANNOT dispense without REMS monitoring</div>
+        <div class="tip tip-violet"><strong>REMS (Risk Evaluation and Mitigation Strategy):</strong> Because of agranulocytosis risk, ALL patients must be enrolled in the Clozapine REMS program. WBC must be checked before EACH dispensing.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">WBC Monitoring Schedule</div>
+        <ul class="body-list">
+          <li><strong>Weekly</strong> — first 6 months</li>
+          <li><strong>Every 2 weeks</strong> — months 6–12</li>
+          <li><strong>Monthly</strong> — after 12 months (if stable)</li>
+          <li>Hold medication if WBC &lt;3,000/mm³ or ANC &lt;1,500/mm³</li>
+          <li>NEVER rechallenge if patient develops agranulocytosis</li>
+        </ul>
+      </div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a78bfa;">⚠️ Adverse Effects</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td style="color:#f87171;font-weight:700;">Agranulocytosis 🚨</td><td>Most serious — ↓ WBC → life-threatening infection. Requires REMS</td></tr>
+          <tr><td>Weight Gain</td><td>One of the highest rates among all antipsychotics</td></tr>
+          <tr><td>New-Onset Diabetes</td><td>Monitor fasting glucose / HbA1c</td></tr>
+          <tr><td>Dyslipidemia</td><td>Monitor triglycerides and LDL</td></tr>
+          <tr><td>Seizures</td><td>Dose-dependent — higher doses → ↑ seizure risk</td></tr>
+          <tr><td>Hypersalivation</td><td>Unique to Clozapine — drooling, especially at night</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Significant — fall precautions</td></tr>
+          <tr><td>Sedation</td><td>Very sedating — often dosed at bedtime</td></tr>
+        </table>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="3">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient is being started on Clozapine. Which statement by the nurse is MOST important to include in patient education?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. "Take this medication with food to reduce nausea."</button>
+          <button class="nclex-opt" data-i="1">B. "Avoid the sun while taking this medication."</button>
+          <button class="nclex-opt" data-i="2">C. "You will need monthly cholesterol checks."</button>
+          <button class="nclex-opt" data-i="3">D. "You must have your blood drawn regularly to check your white blood cell count."</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: D.</strong> The most critical education for Clozapine is the REMS program requirement — regular WBC monitoring is mandatory before every dispensing because of the life-threatening risk of agranulocytosis. Without monitoring, the medication cannot be dispensed.</div>
+      </div>`
+  }
+},
+
+risper:{
+  icon:'🩷', title:'Risperidone', sub:'Risperdal — Second Generation (Atypical) Antipsychotic',
+  color:'#f472b6', border:'#be185d',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Atypical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#f472b6;">💊 Mechanism</div>
+        <div class="tip tip-red" style="border-color:#be185d;background:rgba(190,24,93,.08);color:#fce7f3;"><strong>Blocks D2 (dopamine) AND 5-HT2A (serotonin)</strong> → treats positive AND negative symptoms. Serotonin blockade in the nigrostriatal pathway reduces EPS risk vs. FGAs.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Forms</div>
+        <ul class="body-list">
+          <li><strong>PO tablet/liquid</strong> — daily dosing</li>
+          <li><strong>Risperdal Consta (LAI)</strong> — every 2 weeks injection for adherence</li>
+          <li><strong>Perseris (subcutaneous LAI)</strong> — monthly</li>
+        </ul>
+      </div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#f472b6;">⚠️ Adverse Effects</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td>Metabolic Syndrome</td><td>Weight gain, diabetes, dyslipidemia — monitor all metabolic labs</td></tr>
+          <tr><td>EPS</td><td>Lower than FGAs but higher than other SGAs at HIGH doses</td></tr>
+          <tr><td>Hyperprolactinemia</td><td>↑ prolactin → gynecomastia, galactorrhea, amenorrhea, sexual dysfunction</td></tr>
+          <tr><td>QT Prolongation</td><td>Monitor ECG — avoid with other QT drugs</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Fall precautions</td></tr>
+          <tr><td>Sedation</td><td>Moderate</td></tr>
+        </table>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Pearl:</strong> Risperidone has the HIGHEST rate of hyperprolactinemia among SGAs (similar to FGAs). This is a frequently tested adverse effect — ask patients about sexual dysfunction, irregular periods, or breast changes.</div></div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#f472b6;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>Monitor <strong>weight, glucose, lipids, BP</strong> at baseline and regularly</li>
+          <li>Assess for <strong>EPS</strong> — especially at higher doses</li>
+          <li>Ask about <strong>sexual dysfunction, amenorrhea, gynecomastia</strong> (hyperprolactinemia)</li>
+          <li>Monitor <strong>ECG</strong> for QT prolongation</li>
+          <li><strong>Fall precautions</strong> — orthostatic hypotension</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="sec-label">Drug Interactions</div>
+        <div class="pill-row">
+          <span class="pill p-r">Carbamazepine → ↓ Risperidone levels</span>
+          <span class="pill p-r">CNS depressants → ↑ sedation</span>
+        </div>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="1">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A male patient on Risperidone reports breast tenderness and nipple discharge. The nurse understands this is related to:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Metabolic syndrome causing hormonal changes</button>
+          <button class="nclex-opt" data-i="1">B. Hyperprolactinemia — an adverse effect of Risperidone</button>
+          <button class="nclex-opt" data-i="2">C. A sign of agranulocytosis requiring immediate WBC check</button>
+          <button class="nclex-opt" data-i="3">D. Tardive Dyskinesia involving chest muscles</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: B.</strong> Risperidone causes hyperprolactinemia — elevated prolactin can cause gynecomastia (breast enlargement) and galactorrhea (nipple discharge) in both men and women. This is a classic adverse effect that distinguishes Risperidone from other SGAs.</div>
+      </div>`
+  }
+},
+
+olanza:{
+  icon:'🔷', title:'Olanzapine', sub:'Zyprexa — Second Generation (Atypical) Antipsychotic',
+  color:'#818cf8', border:'#3730a3',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Atypical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#818cf8;">💊 Mechanism & Uses</div>
+        <div class="tip tip-violet" style="border-color:#3730a3;color:#e0e7ff;"><strong>Blocks D2 + 5-HT2A</strong> receptors. Also blocks histamine and muscarinic receptors → responsible for its strong weight gain and sedation effects.</div>
+        <div class="pill-row" style="margin-top:10px;">
+          <span class="pill p-v">Schizophrenia</span><span class="pill p-v">Bipolar Mania</span>
+          <span class="pill p-v">Bipolar Depression (+ Fluoxetine = Symbyax)</span>
+          <span class="pill p-v">Acute Agitation (IM)</span>
+        </div>
+      </div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#818cf8;">⚠️ Adverse Effects</div>
+        <div class="flag flag-amber">⚠️ HIGHEST weight gain risk among commonly used SGAs</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td style="color:#fbbf24;font-weight:700;">Weight Gain ⚠️</td><td>Average gain of 10+ lbs in first year — monitor EVERY visit</td></tr>
+          <tr><td>New-Onset Diabetes</td><td>High risk — monitor fasting glucose/HbA1c</td></tr>
+          <tr><td>Dyslipidemia</td><td>↑ triglycerides, ↓ HDL</td></tr>
+          <tr><td>EPS</td><td>Low risk — lower than FGAs</td></tr>
+          <tr><td>Sedation</td><td>Strong — histamine blockade; often given at bedtime</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Fall precautions</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#818cf8;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>⚠️ Monitor <strong>metabolic syndrome CLOSELY</strong> — weight at every visit</li>
+          <li>Baseline and follow-up: <strong>glucose, HbA1c, lipid panel, weight, waist circumference</strong></li>
+          <li>Give at <strong>bedtime</strong> — strong sedation effect</li>
+          <li>Educate on <strong>diet and exercise</strong> to mitigate weight gain</li>
+          <li>Avoid combining with <strong>CNS depressants</strong> — additive sedation</li>
+          <li>Monitor for <strong>diabetes symptoms</strong>: polydipsia, polyuria, fatigue</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="0">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient started on Olanzapine 3 months ago comes to a clinic visit. Which assessment finding requires PRIORITY follow-up?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Weight gain of 15 lbs and fasting glucose of 136 mg/dL</button>
+          <button class="nclex-opt" data-i="1">B. Mild drowsiness in the mornings</button>
+          <button class="nclex-opt" data-i="2">C. Patient reports taking medication at bedtime</button>
+          <button class="nclex-opt" data-i="3">D. Dry mouth and mild constipation</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: A.</strong> Significant weight gain (15 lbs in 3 months) and an elevated fasting glucose indicate developing metabolic syndrome / pre-diabetes — a serious, life-threatening complication of Olanzapine that requires immediate provider notification and possible medication adjustment.</div>
+      </div>`
+  }
+},
+
+queti:{
+  icon:'🩵', title:'Quetiapine', sub:'Seroquel — Second Generation (Atypical) Antipsychotic',
+  color:'#2dd4bf', border:'#0f766e',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Atypical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#2dd4bf;">💊 Mechanism & Uses</div>
+        <div class="tip tip-cyan"><strong>Blocks D2 + 5-HT2A + Histamine H1 receptors.</strong> H1 blockade → very strong sedation — this property is often used therapeutically for insomnia and agitation.</div>
+        <div class="pill-row" style="margin-top:10px;">
+          <span class="pill p-c">Schizophrenia</span><span class="pill p-c">Bipolar Disorder (mania & depression)</span>
+          <span class="pill p-c">Major Depressive Disorder (adjunct)</span><span class="pill p-c">Insomnia (off-label)</span>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Pearl:</strong> Quetiapine XR (extended release) is sometimes prescribed at LOW doses (25-50mg) just for sleep — this is a controversial off-label use. At FULL doses it treats schizophrenia and bipolar disorder.</div></div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#2dd4bf;">⚠️ Adverse Effects</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td style="color:#22d3ee;font-weight:700;">Sedation ⚠️</td><td>VERY sedating — H1 blockade; dose at BEDTIME</td></tr>
+          <tr><td>Metabolic Syndrome</td><td>Weight gain, diabetes, dyslipidemia — monitor closely</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Significant — especially when starting; rise slowly</td></tr>
+          <tr><td>QT Prolongation</td><td>Monitor ECG; avoid other QT drugs</td></tr>
+          <tr><td>EPS</td><td>Low risk — one of the lowest among antipsychotics</td></tr>
+          <tr><td>Cataract Formation</td><td>Baseline and annual eye exams recommended</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#2dd4bf;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>🌙 <strong>Give at BEDTIME</strong> — highly sedating; daytime drowsiness is common</li>
+          <li>Monitor <strong>BP orthostatic</strong> — alpha-1 blockade causes hypotension</li>
+          <li>Monitor <strong>metabolic labs</strong> — weight, glucose, lipids</li>
+          <li>Educate: <strong>avoid alcohol</strong> — ↑ sedation dangerously</li>
+          <li>Annual <strong>eye exams</strong> — lens changes / cataracts</li>
+          <li>Monitor <strong>ECG</strong> for QT prolongation</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="1">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient prescribed Quetiapine calls the nurse and says, "I fell asleep at the dinner table again." What is the nurse's BEST response?</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. "Stop taking the medication and call your doctor immediately."</button>
+          <button class="nclex-opt" data-i="1">B. "Sedation is a common effect — try taking it at bedtime to reduce daytime drowsiness."</button>
+          <button class="nclex-opt" data-i="2">C. "This is a sign of NMS — go to the emergency room."</button>
+          <button class="nclex-opt" data-i="3">D. "Reduce your dose by half until the drowsiness goes away."</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: B.</strong> Sedation is an expected and common effect of Quetiapine due to H1 blockade. The appropriate intervention is to take it at BEDTIME — this is a key nursing education point. The patient should NOT stop or adjust the dose without provider guidance.</div>
+      </div>`
+  }
+},
+
+aripi:{
+  icon:'🟢', title:'Aripiprazole', sub:'Abilify — Dopamine Partial Agonist (SGA)',
+  color:'#a3e635', border:'#4d7c0f',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Partial Agonist</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#a3e635;">💊 Unique Mechanism — Dopamine Stabilizer</div>
+        <div class="tip tip-green"><strong>Partial D2 agonist</strong> — acts as a STABILIZER: when dopamine is too high (positive symptoms), it competes and lowers activity; when dopamine is too low (negative symptoms), it provides partial stimulation. This is why it's called a "dopamine stabilizer."</div>
+        <div class="tip tip-green"><strong>Also:</strong> Partial 5-HT1A agonist + 5-HT2A antagonist → low EPS and lowest metabolic effects of all SGAs.</div>
+      </div>
+      <div class="section">
+        <div class="sec-label">Indications</div>
+        <div class="pill-row">
+          <span class="pill p-lm">Schizophrenia</span><span class="pill p-lm">Bipolar Disorder</span>
+          <span class="pill p-lm">MDD (adjunct)</span><span class="pill p-lm">Autism Irritability</span>
+          <span class="pill p-lm">Tourette Syndrome</span>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Pearl:</strong> Aripiprazole has the LOWEST metabolic side effect profile of all SGAs — it is preferred for patients at high risk for diabetes or weight gain.</div></div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a3e635;">⚠️ Adverse Effects</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td>EPS</td><td>Moderate risk — lower than FGAs, higher than Quetiapine</td></tr>
+          <tr><td>Akathisia</td><td>Most common EPS — inner restlessness (treat with Propranolol)</td></tr>
+          <tr><td>Metabolic</td><td>LOWEST risk of all SGAs — minimal weight gain</td></tr>
+          <tr><td>Sedation</td><td>Mild — less sedating than others</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Mild compared to other antipsychotics</td></tr>
+          <tr><td>Nausea</td><td>Common early side effect — usually resolves</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#a3e635;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>Monitor <strong>mental status</strong> — look for improvement in positive AND negative symptoms</li>
+          <li>Assess for <strong>akathisia</strong> — "do you feel restless or unable to sit still?"</li>
+          <li>Monitor <strong>metabolic changes</strong> — though low risk, still watch weight/glucose</li>
+          <li>Can be taken with or without food</li>
+          <li>Available as <strong>LAI (Abilify Maintena)</strong> — monthly injection for adherence</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="2">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient on Aripiprazole reports feeling unable to sit still and constantly needing to pace. The nurse recognizes this as:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. Tardive Dyskinesia — document and monitor</button>
+          <button class="nclex-opt" data-i="1">B. An expected effect of the dopamine stabilizer mechanism</button>
+          <button class="nclex-opt" data-i="2">C. Akathisia — notify provider; Propranolol may be prescribed</button>
+          <button class="nclex-opt" data-i="3">D. NMS — stop medication immediately</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: C.</strong> Akathisia is the most common EPS with Aripiprazole — it presents as inner motor restlessness, pacing, and inability to sit still. Unlike TD (which involves involuntary movements), akathisia is a subjective feeling of restlessness. Treatment: Propranolol or benzodiazepines.</div>
+      </div>`
+  }
+},
+
+ziprasi:{
+  icon:'🟡', title:'Ziprasidone', sub:'Geodon — Second Generation (Atypical) Antipsychotic',
+  color:'#fcd34d', border:'#a16207',
+  tabs:['Drug Profile','Side Effects','Nursing','NCLEX Practice'],
+  content:{
+    'Drug Profile':`
+      <span class="badge badge-sga">SGA — Atypical</span>
+      <div class="section">
+        <div class="sec-label colored" style="color:#fcd34d;">💊 Mechanism & Uses</div>
+        <div class="tip tip-amber"><strong>Blocks D2 + 5-HT2A</strong> and also inhibits serotonin/norepinephrine reuptake. Notable for its HIGH QT prolongation risk — most of the SGAs.</div>
+        <div class="pill-row" style="margin-top:10px;">
+          <span class="pill p-a">Schizophrenia</span><span class="pill p-a">Acute Mania</span>
+          <span class="pill p-a">Bipolar Disorder</span>
+        </div>
+      </div>
+      <div class="pearl"><div class="p-icon">💡</div><div class="p-text"><strong>Key Pearl:</strong> Ziprasidone must be taken WITH FOOD — bioavailability doubles with food. A 500-calorie meal is recommended. This is a classic NCLEX fact.</div></div>`,
+
+    'Side Effects':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fcd34d;">⚠️ Adverse Effects</div>
+        <div class="flag flag-red">⚠️ Highest QT prolongation risk among SGAs</div>
+        <table class="comp-table">
+          <tr><th>Effect</th><th>Key Details</th></tr>
+          <tr><td style="color:#fbbf24;font-weight:700;">QT Prolongation ⚠️</td><td>Highest among SGAs — monitor ECG; avoid with other QT drugs</td></tr>
+          <tr><td>Stevens-Johnson Syndrome (SJS)</td><td>Severe rash — STOP medication immediately; life-threatening</td></tr>
+          <tr><td>Metabolic</td><td>LOWEST metabolic risk among SGAs (similar to Aripiprazole)</td></tr>
+          <tr><td>EPS</td><td>Moderate</td></tr>
+          <tr><td>Sedation</td><td>Moderate</td></tr>
+          <tr><td>Orthostatic Hypotension</td><td>Present — fall precautions</td></tr>
+        </table>
+      </div>`,
+
+    'Nursing':`
+      <div class="section">
+        <div class="sec-label colored" style="color:#fcd34d;">🩺 Nursing Considerations</div>
+        <ul class="body-list">
+          <li>⚠️ <strong>Monitor ECG</strong> — baseline and periodically; QT prolongation risk</li>
+          <li>⚠️ <strong>Teach: take WITH FOOD</strong> (≥500 calories) — absorption doubles</li>
+          <li>Monitor <strong>electrolytes</strong>: K+ and Mg2+ → depletion worsens QT risk</li>
+          <li><strong>Watch for rash</strong> — SJS can be fatal; stop med if rash develops</li>
+          <li><strong>Avoid other QT-prolonging drugs</strong> strictly</li>
+          <li>Fall precautions for orthostatic hypotension</li>
+        </ul>
+      </div>`,
+
+    'NCLEX Practice':`
+      <div class="nclex-q" data-answer="3">
+        <div class="q-label">NCLEX-Style Question</div>
+        <div class="q-text">A patient prescribed Ziprasidone should be educated to take the medication:</div>
+        <div class="nclex-opts">
+          <button class="nclex-opt" data-i="0">A. On an empty stomach for best absorption</button>
+          <button class="nclex-opt" data-i="1">B. With a full glass of water only</button>
+          <button class="nclex-opt" data-i="2">C. At bedtime to reduce daytime sedation</button>
+          <button class="nclex-opt" data-i="3">D. With food (at least 500 calories) to double absorption</button>
+        </div>
+        <div class="nclex-rat">✅ <strong>Correct: D.</strong> Ziprasidone's bioavailability doubles when taken with food (≥500 calories). This is a critical, frequently tested patient education point. Without food, therapeutic blood levels may not be achieved, reducing effectiveness.</div>
+      </div>`
+  }
+}
+
+}; // end nodes
+
+// ─── DRAW LINES ───────────────────────────────────────────────
+function drawLines(){
+  const stage = document.getElementById('stage');
+  const svg   = document.getElementById('linesSvg');
+  const cx    = stage.offsetWidth/2;
+  const cy    = stage.offsetHeight/2;
+  svg.innerHTML='';
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  svg.appendChild(defs);
+
+  document.querySelectorAll('.bubble').forEach(b=>{
+    const bx = b.offsetLeft + b.offsetWidth/2;
+    const by = b.offsetTop  + b.offsetHeight/2;
+    const key = b.dataset.key;
+    const nd = nodes[key];
+    if(!nd) return;
+
+    const id='g_'+key;
+    const grad=document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+    grad.setAttribute('id',id);grad.setAttribute('gradientUnits','userSpaceOnUse');
+    grad.setAttribute('x1',cx);grad.setAttribute('y1',cy);
+    grad.setAttribute('x2',bx);grad.setAttribute('y2',by);
+    const s1=document.createElementNS('http://www.w3.org/2000/svg','stop');
+    s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#7c3aed');s1.setAttribute('stop-opacity','0.7');
+    const s2=document.createElementNS('http://www.w3.org/2000/svg','stop');
+    s2.setAttribute('offset','100%');s2.setAttribute('stop-color',nd.color);s2.setAttribute('stop-opacity','0.5');
+    grad.appendChild(s1);grad.appendChild(s2);defs.appendChild(grad);
+
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',cx);line.setAttribute('y1',cy);
+    line.setAttribute('x2',bx);line.setAttribute('y2',by);
+    line.setAttribute('stroke',`url(#${id})`);
+    line.setAttribute('stroke-width','1.8');
+    line.setAttribute('stroke-dasharray','5 4');
+    svg.appendChild(line);
+  });
+}
+
+// ─── PANEL ───────────────────────────────────────────────────
+const backdrop   = document.getElementById('backdrop');
+const panel      = document.getElementById('panel');
+const panelTop   = document.getElementById('panelTop');
+const tabBar     = document.getElementById('tabBar');
+const tabContent = document.getElementById('tabContent');
+
+function openNode(key){
+  const nd = nodes[key];
+  if(!nd) return;
+  panel.style.borderColor = nd.border;
+
+  panelTop.innerHTML=`
+    <span class="panel-icon">${nd.icon}</span>
+    <div class="panel-title" style="color:${nd.color}">${nd.title}</div>
+    <div class="panel-sub">${nd.sub}</div>
+  `;
+
+  tabBar.innerHTML = nd.tabs.map((t,i)=>
+    `<button class="tab-btn${i===0?' active':''}" data-tab="${t}" style="${i===0?'color:'+nd.color+';border-bottom-color:'+nd.color:''}">${t}</button>`
+  ).join('');
+
+  tabContent.innerHTML = nd.tabs.map((t,i)=>
+    `<div class="tab-pane${i===0?' active':''}" data-pane="${t}">${nd.content[t]||''}</div>`
+  ).join('');
+
+  // tab switching
+  tabBar.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabBar.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active');b.style.color='';b.style.borderBottomColor='';});
+      tabContent.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.style.color=nd.color;btn.style.borderBottomColor=nd.color;
+      tabContent.querySelector(`[data-pane="${btn.dataset.tab}"]`).classList.add('active');
+      tabContent.scrollTop=0;
+    });
+  });
+
+  // NCLEX interactions
+  attachNclex();
+
+  backdrop.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closePanel(){
+  backdrop.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function attachNclex(){
+  tabContent.querySelectorAll('.nclex-q').forEach(q=>{
+    const correct = parseInt(q.dataset.answer);
+    q.querySelectorAll('.nclex-opt').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        if(q.classList.contains('answered')) return;
+        q.classList.add('answered');
+        const chosen = parseInt(opt.dataset.i);
+        q.querySelectorAll('.nclex-opt').forEach((o,i)=>{
+          o.classList.add('revealed');
+          if(i===correct) o.classList.add('correct');
+          else if(i===chosen && chosen!==correct) o.classList.add('wrong');
+          else o.classList.add('reveal-wrong');
+        });
+        q.querySelector('.nclex-rat').classList.add('show');
+      });
+    });
+  });
+}
+
+document.querySelectorAll('.bubble').forEach(b=>{
+  b.addEventListener('click',()=>openNode(b.dataset.key));
+});
+document.getElementById('closeBtn').addEventListener('click',closePanel);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closePanel();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel();});
+
+window.addEventListener('load',drawLines);
+window.addEventListener('resize',drawLines);
+setTimeout(drawLines,300);
+</script>
+</body>
+</html>

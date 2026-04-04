@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bipolar Disorder — Concept Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D0F1A;
+  --bg2: #13152A;
+  --bg3: #1A1D32;
+  --text: #EEF0FF;
+  --muted: #8890BB;
+  --border: rgba(255,255,255,0.07);
+  --glow: rgba(160,140,255,0.18);
+
+  --c1: #C084FC; /* Signs & Symptoms — violet */
+  --c2: #FB923C; /* Lithium — amber */
+  --c3: #38BDF8; /* Valproate — sky */
+  --c4: #FBBF24; /* Carbamazepine — yellow */
+  --c5: #34D399; /* Lamotrigine — emerald */
+  --c6: #F472B6; /* Antipsychotics — pink */
+  --c7: #60A5FA; /* Benzodiazepines — blue */
+  --c8: #A78BFA; /* Nursing — lavender */
+  --c9: #F87171; /* Therapeutic Comm — red */
+  --center: #E2D9F3;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Karla', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === STAR BACKGROUND === */
+.starfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden;
+}
+.starfield::before, .starfield::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 10%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 35%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 10% 65%, rgba(255,255,255,0.28) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 75%, rgba(255,255,255,0.22) 0%, transparent 100%),
+    radial-gradient(1px 1px at 52% 48%, rgba(255,255,255,0.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.3) 0%, transparent 100%);
+}
+
+/* === LAYOUT === */
+.page { position: relative; z-index: 1; }
+
+/* === HEADER === */
+.site-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+.site-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.site-header p {
+  font-size: 13px;
+  color: rgba(136,144,187,0.6);
+  letter-spacing: 0.08em;
+}
+
+/* === MAP CONTAINER === */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* SVG connector lines */
+.connector-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* === CENTER NODE === */
+.center-node {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2A2060 0%, #0D0F1A 100%);
+  border: 2px solid rgba(226,217,243,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 40px rgba(160,140,255,0.15), 0 0 80px rgba(160,140,255,0.05);
+  padding: 20px;
+}
+.center-node:hover {
+  border-color: rgba(226,217,243,0.7);
+  box-shadow: 0 0 60px rgba(160,140,255,0.3), 0 0 120px rgba(160,140,255,0.1);
+}
+.center-node.active {
+  border-color: var(--center);
+  box-shadow: 0 0 80px rgba(160,140,255,0.4);
+}
+.center-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--center);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.center-sub {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.center-pulse {
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(226,217,243,0.15);
+  animation: pulse 3s ease-out infinite;
+}
+.center-pulse:nth-child(2) { animation-delay: 1s; }
+.center-pulse:nth-child(3) { animation-delay: 2s; }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* === ORBIT NODES === */
+.map-orbit {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.orbit-node {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+}
+
+.node-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(.4,0,.2,1);
+  border-radius: 16px;
+  padding: 14px 12px;
+  width: 118px;
+  min-height: 84px;
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.node-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 14px;
+}
+.node-btn:hover::before, .node-btn.active::before { opacity: 1; }
+
+.node-btn:hover, .node-btn.active {
+  transform: scale(1.08);
+  z-index: 20;
+}
+
+.node-icon { font-size: 20px; margin-bottom: 6px; display: block; }
+.node-label {
+  font-family: 'Karla', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* Colored variants */
+.n1 { border-color: rgba(192,132,252,0.4); }
+.n1::before { background: rgba(192,132,252,0.08); }
+.n1 .node-label { color: var(--c1); }
+.n1.active, .n1:hover { border-color: var(--c1); box-shadow: 0 0 24px rgba(192,132,252,0.25); }
+
+.n2 { border-color: rgba(251,146,60,0.4); }
+.n2::before { background: rgba(251,146,60,0.08); }
+.n2 .node-label { color: var(--c2); }
+.n2.active, .n2:hover { border-color: var(--c2); box-shadow: 0 0 24px rgba(251,146,60,0.25); }
+
+.n3 { border-color: rgba(56,189,248,0.4); }
+.n3::before { background: rgba(56,189,248,0.08); }
+.n3 .node-label { color: var(--c3); }
+.n3.active, .n3:hover { border-color: var(--c3); box-shadow: 0 0 24px rgba(56,189,248,0.25); }
+
+.n4 { border-color: rgba(251,191,36,0.4); }
+.n4::before { background: rgba(251,191,36,0.08); }
+.n4 .node-label { color: var(--c4); }
+.n4.active, .n4:hover { border-color: var(--c4); box-shadow: 0 0 24px rgba(251,191,36,0.25); }
+
+.n5 { border-color: rgba(52,211,153,0.4); }
+.n5::before { background: rgba(52,211,153,0.08); }
+.n5 .node-label { color: var(--c5); }
+.n5.active, .n5:hover { border-color: var(--c5); box-shadow: 0 0 24px rgba(52,211,153,0.25); }
+
+.n6 { border-color: rgba(244,114,182,0.4); }
+.n6::before { background: rgba(244,114,182,0.08); }
+.n6 .node-label { color: var(--c6); }
+.n6.active, .n6:hover { border-color: var(--c6); box-shadow: 0 0 24px rgba(244,114,182,0.25); }
+
+.n7 { border-color: rgba(96,165,250,0.4); }
+.n7::before { background: rgba(96,165,250,0.08); }
+.n7 .node-label { color: var(--c7); }
+.n7.active, .n7:hover { border-color: var(--c7); box-shadow: 0 0 24px rgba(96,165,250,0.25); }
+
+.n8 { border-color: rgba(167,139,250,0.4); }
+.n8::before { background: rgba(167,139,250,0.08); }
+.n8 .node-label { color: var(--c8); }
+.n8.active, .n8:hover { border-color: var(--c8); box-shadow: 0 0 24px rgba(167,139,250,0.25); }
+
+.n9 { border-color: rgba(248,113,113,0.4); }
+.n9::before { background: rgba(248,113,113,0.08); }
+.n9 .node-label { color: var(--c9); }
+.n9.active, .n9:hover { border-color: var(--c9); box-shadow: 0 0 24px rgba(248,113,113,0.25); }
+
+/* === DETAIL PANEL === */
+.detail-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: min(520px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.detail-panel.open { transform: translateX(0); }
+
+.panel-header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  background: var(--bg2);
+  z-index: 2;
+}
+.panel-title-wrap { flex: 1; }
+.panel-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.panel-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.close-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--muted);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.close-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+.panel-body { padding: 24px 28px 40px; flex: 1; }
+
+/* === PANEL CONTENT STYLES === */
+.section-block { margin-bottom: 28px; }
+.section-block:last-child { margin-bottom: 0; }
+
+.sb-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sb-label .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sb-text {
+  font-size: 14px;
+  color: rgba(238,240,255,0.82);
+  line-height: 1.8;
+}
+
+.pill-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.pill {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.warning-box {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.warning-box .w-title {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wbox-danger { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: rgba(248,170,170,0.9); }
+.wbox-warning { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); color: rgba(252,211,120,0.9); }
+.wbox-info { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: rgba(125,211,252,0.9); }
+.wbox-success { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); color: rgba(110,231,183,0.9); }
+
+.key-fact {
+  background: var(--bg3);
+  border-left: 3px solid;
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+  color: rgba(238,240,255,0.85);
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card {
+  background: var(--bg3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+}
+.mini-card .mc-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.mini-card .mc-val { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+/* === OVERLAY === */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay.show { opacity: 1; pointer-events: all; }
+
+/* === HINT BAR === */
+.hint-bar {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(136,144,187,0.5);
+  letter-spacing: 0.06em;
+  padding: 0 20px 16px;
+}
+
+/* === SCROLLBAR === */
+.detail-panel::-webkit-scrollbar { width: 4px; }
+.detail-panel::-webkit-scrollbar-track { background: transparent; }
+.detail-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+/* === RESPONSIVE === */
+@media (max-width: 700px) {
+  .node-btn { width: 88px; min-height: 72px; padding: 10px 8px; }
+  .node-label { font-size: 9px; }
+  .node-icon { font-size: 16px; }
+  .center-node { width: 130px; height: 130px; }
+  .center-title { font-size: 16px; }
+  .detail-panel { width: 100vw; }
+}
+
+/* entrance animations */
+.orbit-node { animation: nodeIn 0.5s ease both; }
+.orbit-node:nth-child(1) { animation-delay: 0.05s; }
+.orbit-node:nth-child(2) { animation-delay: 0.1s; }
+.orbit-node:nth-child(3) { animation-delay: 0.15s; }
+.orbit-node:nth-child(4) { animation-delay: 0.2s; }
+.orbit-node:nth-child(5) { animation-delay: 0.25s; }
+.orbit-node:nth-child(6) { animation-delay: 0.3s; }
+.orbit-node:nth-child(7) { animation-delay: 0.35s; }
+.orbit-node:nth-child(8) { animation-delay: 0.4s; }
+.orbit-node:nth-child(9) { animation-delay: 0.45s; }
+@keyframes nodeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.center-node { animation: centerIn 0.6s cubic-bezier(.4,0,.2,1) both; }
+@keyframes centerIn {
+  from { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+  to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+</style>
+</head>
+<body>
+<div class="starfield"></div>
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+
+<div class="page">
+  <div class="site-header">
+    <h1>Bipolar Disorder</h1>
+    <p>Interactive Concept Map — Click any node to explore</p>
+  </div>
+
+  <div class="hint-bar">9 topics surrounding the central concept &nbsp;·&nbsp; click a node to open its full study card</div>
+
+  <div class="map-container" id="map-container">
+    <svg class="connector-svg" id="connector-svg"></svg>
+    <div class="map-orbit" id="map-orbit">
+      <!-- Center -->
+      <div class="center-node" id="center-node" onclick="openPanel('center')">
+        <div class="center-pulse"></div>
+        <div class="center-pulse"></div>
+        <div class="center-pulse"></div>
+        <div class="center-title">Bipolar<br>Disorder</div>
+        <div class="center-sub">Tap to explore</div>
+      </div>
+      <!-- Orbit nodes injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-panel" id="detail-panel">
+  <div class="panel-header" id="panel-header">
+    <div class="panel-title-wrap">
+      <span class="panel-icon" id="panel-icon"></span>
+      <div class="panel-title" id="panel-title"></div>
+      <div class="panel-subtitle" id="panel-subtitle"></div>
+    </div>
+    <button class="close-btn" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<script>
+const nodes = [
+  { id:"n1", label:"Signs &\nSymptoms", icon:"🔴", color:"#C084FC", cls:"n1" },
+  { id:"n2", label:"Lithium", icon:"🟠", color:"#FB923C", cls:"n2" },
+  { id:"n3", label:"Valproate\n(Depakote)", icon:"🔵", color:"#38BDF8", cls:"n3" },
+  { id:"n4", label:"Carba-\nmazepine", icon:"🟡", color:"#FBBF24", cls:"n4" },
+  { id:"n5", label:"Lamotrigine", icon:"🟢", color:"#34D399", cls:"n5" },
+  { id:"n6", label:"Atypical\nAnti-\npsychotics", icon:"🟣", color:"#F472B6", cls:"n6" },
+  { id:"n7", label:"Benzo-\ndiazepines", icon:"⚫", color:"#60A5FA", cls:"n7" },
+  { id:"n8", label:"Nursing\nCare", icon:"🩺", color:"#A78BFA", cls:"n8" },
+  { id:"n9", label:"Therapeutic\nComm.", icon:"💬", color:"#F87171", cls:"n9" },
+];
+
+const content = {
+  center: {
+    title: "Bipolar Disorder",
+    subtitle: "Central Concept — Definition & Overview",
+    color: "#E2D9F3",
+    icon: "🧠",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#E2D9F3"></span>Definition</div>
+        <div class="sb-text">Bipolar disorder is a <strong>chronic mental health condition</strong> characterized by alternating episodes of mania and depression. It is linked to neurotransmitter imbalances involving <strong>dopamine, serotonin, and norepinephrine</strong>, and significantly affects functioning, relationships, and safety.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#E2D9F3"></span>Core Characteristic</div>
+        <div class="key-fact" style="border-color:#E2D9F3">The hallmark of bipolar disorder is <strong>cycling between two extremes</strong> — elevated mood (mania) and low mood (depression). The frequency and severity of these cycles vary between patients and subtypes.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#E2D9F3"></span>Neurotransmitter Basis</div>
+        <div class="two-col">
+          <div class="mini-card"><div class="mc-label">Dopamine</div><div class="mc-val">Elevated in mania; reduced in depression</div></div>
+          <div class="mini-card"><div class="mc-label">Serotonin</div><div class="mc-val">Reduced in both mania and depression</div></div>
+          <div class="mini-card"><div class="mc-label">Norepinephrine</div><div class="mc-val">Increased in mania; decreased in depression</div></div>
+          <div class="mini-card"><div class="mc-label">GABA</div><div class="mc-val">Reduced — targeted by several medications</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#E2D9F3"></span>Management Goals</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Stabilize mood</span>
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Prevent relapse</span>
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Medication adherence</span>
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Safety monitoring</span>
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Psychosocial support</span>
+          <span class="pill" style="color:#E2D9F3;border-color:rgba(226,217,243,0.3);background:rgba(226,217,243,0.08)">Lifelong treatment</span>
+        </div>
+      </div>
+    `
+  },
+  n1: {
+    title: "Signs & Symptoms",
+    subtitle: "Mania & Depression — Recognizing Both Phases",
+    color: "#C084FC",
+    icon: "🔴",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#C084FC"></span>Manic Episode Signs</div>
+        <div class="warning-box wbox-warning">
+          <div class="w-title">⚡ During Mania</div>
+          Elevated or irritable mood · Increased energy · Decreased need for sleep · Rapid pressured speech · Racing thoughts · Impulsive behaviors (spending sprees, risky sexual activity) · Poor judgment · Grandiosity
+        </div>
+        <div class="key-fact" style="border-color:#C084FC;margin-top:10px">Severe mania may include <strong>psychosis</strong> — hallucinations or delusions. This escalation requires antipsychotic intervention alongside mood stabilizers.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#C084FC"></span>Depressive Episode Signs</div>
+        <div class="warning-box wbox-info">
+          <div class="w-title">🌧️ During Depression</div>
+          Persistent sadness · Fatigue · Decreased concentration · Changes in appetite · Sleep disturbances (insomnia or hypersomnia) · Feelings of worthlessness or guilt · <strong>Suicidal ideation ⚠️</strong>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#C084FC"></span>Key Clinical Features</div>
+        <div class="two-col">
+          <div class="mini-card"><div class="mc-label">Cycling Pattern</div><div class="mc-val">Frequency and severity vary per patient and subtype (I vs II)</div></div>
+          <div class="mini-card"><div class="mc-label">Safety Priority</div><div class="mc-val">Assess suicide risk during depression; injury risk during mania</div></div>
+          <div class="mini-card"><div class="mc-label">Mixed States</div><div class="mc-val">Some patients experience mania and depression simultaneously — most dangerous</div></div>
+          <div class="mini-card"><div class="mc-label">Rapid Cycling</div><div class="mc-val">4+ mood episodes per year — harder to treat, often needs valproate</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#C084FC"></span>NCLEX Priority</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">⚠️ Always Assess</div>
+          Suicidal ideation during depressive episodes is the <strong>highest safety priority</strong>. During mania, focus on injury prevention, exhaustion risk, and impaired judgment leading to dangerous behaviors.
+        </div>
+      </div>
+    `
+  },
+  n2: {
+    title: "Lithium",
+    subtitle: "First-Line Mood Stabilizer — Narrow Therapeutic Index",
+    color: "#FB923C",
+    icon: "🟠",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Drug Class & Use</div>
+        <div class="sb-text">Lithium carbonate is the <strong>first-line mood stabilizer</strong> for bipolar disorder. It treats acute mania and prevents relapse. Mechanism is not fully understood but stabilizes neurotransmitter activity across dopamine, serotonin, and norepinephrine pathways.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Critical Lab Values</div>
+        <div class="two-col">
+          <div class="mini-card" style="border-color:rgba(52,211,153,0.3)"><div class="mc-label" style="color:#34D399">Therapeutic</div><div class="mc-val" style="color:#34D399;font-size:18px;font-weight:700">0.6–1.2 mEq/L</div></div>
+          <div class="mini-card" style="border-color:rgba(248,113,113,0.3)"><div class="mc-label" style="color:#F87171">Toxic Level</div><div class="mc-val" style="color:#F87171;font-size:18px;font-weight:700">&gt; 1.5 mEq/L</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Toxicity — Know This Cold</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Lithium Toxicity Symptoms</div>
+          <strong>Early:</strong> Fine tremor, nausea, diarrhea, thirst<br>
+          <strong>Moderate:</strong> Coarse tremor, drowsiness, confusion, ataxia<br>
+          <strong>Severe:</strong> Seizures, cardiac arrhythmia, renal failure, death<br><br>
+          <strong>TRIGGER:</strong> Dehydration OR low sodium intake → kidneys retain lithium → toxic buildup
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Nursing Considerations</div>
+        <div class="key-fact" style="border-color:#FB923C">🧂 <strong>Sodium is life or death with lithium.</strong> Low Na = kidneys hold onto lithium = toxicity. Patients must maintain CONSISTENT sodium intake daily.</div>
+        <div class="key-fact" style="border-color:#FB923C">💧 <strong>Hydration is critical.</strong> Vomiting, diarrhea, sweating, illness — all concentrate lithium. Teach patients: if sick and can't eat or drink, call the provider immediately.</div>
+        <div class="key-fact" style="border-color:#FB923C">🔬 Monitor renal function (lithium is excreted by kidneys). Monitor serum levels regularly — especially after illness or dose changes.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Drug Interactions ⚠️</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.4);background:rgba(248,113,113,0.08)">NSAIDs ↑ lithium</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.4);background:rgba(248,113,113,0.08)">Diuretics ↑ lithium</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.4);background:rgba(248,113,113,0.08)">ACE inhibitors ↑ lithium</span>
+          <span class="pill" style="color:#FBBF24;border-color:rgba(251,191,36,0.4);background:rgba(251,191,36,0.08)">Low sodium diet ↑ lithium</span>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FB923C"></span>Expected Response</div>
+        <div class="warning-box wbox-success">
+          <div class="w-title">✅ Therapeutic Goal</div>
+          Stabilized mood episodes. Reduced frequency and severity of both manic and depressive cycles. Prevention of relapse with long-term use.
+        </div>
+      </div>
+    `
+  },
+  n3: {
+    title: "Valproate (Depakote)",
+    subtitle: "Anticonvulsant / Mood Stabilizer — GABA Enhancer",
+    color: "#38BDF8",
+    icon: "🔵",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#38BDF8"></span>Drug Class & Use</div>
+        <div class="sb-text">Valproate (divalproex/Depakote) is an anticonvulsant used as a mood stabilizer. Particularly effective for <strong>acute mania</strong> and <strong>rapid cycling bipolar disorder</strong>. Works by increasing GABA levels — the brain's main inhibitory neurotransmitter.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#38BDF8"></span>Severe Adverse Effects</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Hepatotoxicity</div>
+          Can cause fatal liver failure, especially in children under 2 and during the first 6 months of therapy. Monitor LFTs before starting and regularly throughout. Signs: jaundice, severe fatigue, right upper quadrant pain.
+        </div>
+        <div class="warning-box wbox-danger" style="margin-top:10px">
+          <div class="w-title">🚨 Teratogenicity — Category X</div>
+          Causes neural tube defects (spina bifida, anencephaly). <strong>NEVER use in pregnancy</strong> without comprehensive counseling and effective contraception. Neural tube closure occurs in weeks 3–4 — before many women know they are pregnant.
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#38BDF8"></span>Common Side Effects</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">Weight gain</span>
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">Sedation</span>
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">Tremors</span>
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">GI upset</span>
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">Hair loss</span>
+          <span class="pill" style="color:#38BDF8;border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.08)">Thrombocytopenia</span>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#38BDF8"></span>Nursing Considerations</div>
+        <div class="key-fact" style="border-color:#38BDF8">Monitor <strong>liver function tests (LFTs)</strong> before and during therapy. Educate patients to report jaundice, severe fatigue, or abdominal pain immediately.</div>
+        <div class="key-fact" style="border-color:#38BDF8">Monitor <strong>CBC and platelet count</strong> — risk of thrombocytopenia (abnormal bleeding/bruising).</div>
+        <div class="key-fact" style="border-color:#38BDF8">Give with food to reduce GI upset. <strong>Never crush enteric-coated tablets.</strong></div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#38BDF8"></span>Drug Interactions</div>
+        <div class="sb-text">Other CNS depressants increase sedation. Medications that affect liver enzymes (CYP inducers/inhibitors) alter valproate levels. Aspirin increases free valproate levels.</div>
+      </div>
+    `
+  },
+  n4: {
+    title: "Carbamazepine",
+    subtitle: "Anticonvulsant / Mood Stabilizer — CYP450 Inducer",
+    color: "#FBBF24",
+    icon: "🟡",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FBBF24"></span>Drug Class & Use</div>
+        <div class="sb-text">Carbamazepine (Tegretol) is an anticonvulsant used for bipolar disorder, especially when patients <strong>do not respond to lithium</strong>. Stabilizes mood by blocking sodium channels and reducing neuronal excitability.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FBBF24"></span>Critical Lab Value</div>
+        <div class="mini-card" style="border-color:rgba(251,191,36,0.4)"><div class="mc-label">Therapeutic Level</div><div class="mc-val" style="color:#FBBF24;font-size:18px;font-weight:700">4–12 mcg/mL</div></div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FBBF24"></span>Life-Threatening Adverse Effects</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Agranulocytosis</div>
+          Crashes white blood cell count. The patient loses defense against infection — even minor illnesses become dangerous. Monitor CBC regularly. First sign is often a <strong>persistent fever</strong> that won't resolve — take it seriously.
+        </div>
+        <div class="warning-box wbox-danger" style="margin-top:10px">
+          <div class="w-title">🚨 Stevens-Johnson Syndrome (SJS)</div>
+          Life-threatening skin reaction. Starts as a rash and escalates to widespread skin detachment (like a severe burn). <strong>Any new rash = STOP the drug and notify provider immediately.</strong> Do not wait.
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FBBF24"></span>Nursing Considerations</div>
+        <div class="key-fact" style="border-color:#FBBF24">🍊 <strong>Avoid grapefruit juice</strong> — inhibits CYP3A4, the enzyme that metabolizes carbamazepine. Drug accumulates to toxic levels.</div>
+        <div class="key-fact" style="border-color:#FBBF24">Monitor CBC regularly for blood dyscrasias. Teach patient to report fever, sore throat, or bruising — signs of agranulocytosis.</div>
+        <div class="key-fact" style="border-color:#FBBF24">Report <strong>any rash immediately</strong> — potential Stevens-Johnson Syndrome. This is non-negotiable patient education.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#FBBF24"></span>Critical Drug Interaction</div>
+        <div class="warning-box wbox-warning">
+          <div class="w-title">⚠️ CYP450 Inducer — TEST POINT</div>
+          Carbamazepine induces CYP450 enzymes, meaning it <strong>DECREASES levels of other medications</strong> including antipsychotics (especially risperidone), oral contraceptives, warfarin, and other anticonvulsants. Doses of co-administered drugs may need to be increased.
+        </div>
+      </div>
+    `
+  },
+  n5: {
+    title: "Lamotrigine",
+    subtitle: "Anticonvulsant — Bipolar Depression Prevention",
+    color: "#34D399",
+    icon: "🟢",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>Drug Class & Use</div>
+        <div class="sb-text">Lamotrigine (Lamictal) is primarily used for <strong>maintenance therapy and prevention of depressive episodes</strong> in bipolar disorder. It is the outlier among mood stabilizers — it targets the depressive pole, not mania. Works by blocking sodium channels and reducing glutamate release.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>The #1 Risk — SJS</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Stevens-Johnson Syndrome (SJS)</div>
+          The biggest danger with lamotrigine. Risk is highest when dose is increased too fast. This is exactly why <strong>titration must be SLOW — weeks, not days.</strong><br><br>
+          <strong>ANY rash that appears = STOP immediately.</strong> Even a mild rash can escalate to fatal skin detachment within hours. No exceptions, no "wait and see."
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>Titration Rule</div>
+        <div class="key-fact" style="border-color:#34D399">Slow titration over several weeks dramatically reduces SJS risk. The typical starting dose is 25 mg/day with gradual increases. Rushing this process is the primary cause of SJS with lamotrigine.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>Common Side Effects</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08)">Headache</span>
+          <span class="pill" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08)">Dizziness</span>
+          <span class="pill" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08)">Nausea</span>
+          <span class="pill" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08)">Blurred vision</span>
+          <span class="pill" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08)">Insomnia</span>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>Nursing Considerations</div>
+        <div class="key-fact" style="border-color:#34D399">Teach the <strong>rash rule before every discharge</strong>: any new rash → stop medication and call provider immediately. This must be documented.</div>
+        <div class="key-fact" style="border-color:#34D399">Monitor for fever or flu-like symptoms alongside rash — systemic involvement signals more serious SJS progression.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#34D399"></span>Drug Interactions</div>
+        <div class="sb-text">Valproate <strong>doubles</strong> lamotrigine levels (requires dose reduction). Carbamazepine and phenytoin decrease lamotrigine levels. Oral contraceptives can also decrease levels.</div>
+      </div>
+    `
+  },
+  n6: {
+    title: "Atypical Antipsychotics",
+    subtitle: "SGAs — Olanzapine, Risperidone, Quetiapine, Aripiprazole",
+    color: "#F472B6",
+    icon: "🟣",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F472B6"></span>Drug Class & Use</div>
+        <div class="sb-text">Second-generation (atypical) antipsychotics are used to treat <strong>acute mania, psychosis, and as adjunct therapy</strong> in bipolar disorder. They block both dopamine AND serotonin receptors — providing broader symptom coverage than first-generation antipsychotics.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F472B6"></span>Critical Adverse Effects</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Metabolic Syndrome</div>
+          These medications hijack metabolic pathways via histamine/serotonin receptor blockade. Patients can gain <strong>20–40 lbs in months</strong>, develop insulin resistance, type 2 diabetes, and hyperlipidemia — dramatically raising long-term cardiovascular mortality.
+        </div>
+        <div class="warning-box wbox-danger" style="margin-top:10px">
+          <div class="w-title">🚨 Elderly Dementia Warning — FDA Black Box</div>
+          SGAs increase risk of <strong>stroke and death</strong> in elderly patients with dementia-related psychosis. Never use routinely for behavioral symptoms in this population.
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F472B6"></span>Common Side Effects</div>
+        <div class="two-col">
+          <div class="mini-card"><div class="mc-label">Metabolic</div><div class="mc-val">Weight gain, hyperglycemia, dyslipidemia</div></div>
+          <div class="mini-card"><div class="mc-label">Cardiac</div><div class="mc-val">QT prolongation → arrhythmia risk</div></div>
+          <div class="mini-card"><div class="mc-label">CNS</div><div class="mc-val">Sedation, EPS (less than FGA)</div></div>
+          <div class="mini-card"><div class="mc-label">Vascular</div><div class="mc-val">Orthostatic hypotension → falls</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F472B6"></span>Nursing Monitoring</div>
+        <div class="key-fact" style="border-color:#F472B6">Monitor <strong>weight, BMI, fasting glucose, and lipid panel</strong> at baseline and every 3 months. These are mandatory metabolic checks — document them.</div>
+        <div class="key-fact" style="border-color:#F472B6">Educate on lifestyle: diet, exercise, avoiding alcohol. Slow position changes to prevent orthostatic hypotension falls.</div>
+        <div class="key-fact" style="border-color:#F472B6">Clozapine additionally requires <strong>REMS enrollment</strong> — mandatory ANC monitoring. No lab = no prescription. Every time.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F472B6"></span>Drug Interactions</div>
+        <div class="sb-text">Alcohol and CNS depressants increase sedation. Medications affecting cardiac rhythm (other QT-prolonging drugs) increase arrhythmia risk. Carbamazepine <strong>decreases risperidone levels</strong> — key test interaction.</div>
+      </div>
+    `
+  },
+  n7: {
+    title: "Benzodiazepines",
+    subtitle: "Lorazepam & Clonazepam — Short-Term Adjunct Only",
+    color: "#60A5FA",
+    icon: "⚫",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#60A5FA"></span>Drug Class & Use</div>
+        <div class="sb-text">Benzodiazepines (lorazepam, clonazepam) are used <strong>short-term</strong> to manage acute agitation, anxiety, or insomnia during manic episodes. They enhance GABA activity, producing a calming effect. They are <em>adjunct</em> tools — not primary mood stabilizers.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#60A5FA"></span>Serious Adverse Effects</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Respiratory Depression</div>
+          GABA enhancement slows CNS activity — including respiratory drive. In high doses or <strong>combined with alcohol or opioids</strong>, this can cause apnea and death. This is non-negotiable patient education before every prescription.
+        </div>
+        <div class="warning-box wbox-danger" style="margin-top:10px">
+          <div class="w-title">🚨 Physical Dependence & Withdrawal</div>
+          Physical dependence develops rapidly. Abrupt discontinuation causes <strong>life-threatening withdrawal including seizures</strong>. Always taper slowly. Never stop abruptly, even if the patient feels better.
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#60A5FA"></span>Nursing Considerations</div>
+        <div class="key-fact" style="border-color:#60A5FA"><strong>Short-term use ONLY.</strong> Not for long-term bipolar management. Document duration clearly. Educate patient on the strict time-limited nature before starting.</div>
+        <div class="key-fact" style="border-color:#60A5FA"><strong>Avoid alcohol absolutely.</strong> Alcohol + benzodiazepine = additive CNS and respiratory depression. Fatal combinations are well-documented.</div>
+        <div class="key-fact" style="border-color:#60A5FA">Implement <strong>fall precautions</strong> — significant sedation, especially in elderly patients. Assess ambulation before discharge.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#60A5FA"></span>Drug Interactions</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.4);background:rgba(248,113,113,0.08)">Alcohol — fatal combo</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.4);background:rgba(248,113,113,0.08)">Opioids — respiratory arrest</span>
+          <span class="pill" style="color:#FBBF24;border-color:rgba(251,191,36,0.4);background:rgba(251,191,36,0.08)">Other CNS depressants ↑ sedation</span>
+        </div>
+      </div>
+    `
+  },
+  n8: {
+    title: "Nursing Care",
+    subtitle: "Safety · Medication Adherence · Stabilization",
+    color: "#A78BFA",
+    icon: "🩺",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#A78BFA"></span>During Manic Episodes</div>
+        <div class="warning-box wbox-warning">
+          <div class="w-title">⚡ Mania Nursing Priorities</div>
+          Set clear limits in a calm, non-confrontational manner · Reduce environmental stimulation (quiet room, dim lighting) · Ensure adequate nutrition — patients may be too distracted to eat · Ensure adequate sleep and rest · Monitor for injury from impulsive behaviors · Protect from poor financial or sexual decision-making
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#A78BFA"></span>During Depressive Episodes</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">🚨 Depression Nursing Priority #1</div>
+          <strong>Suicide risk assessment is always the highest priority.</strong> Use a structured tool (Columbia scale). Remove means when possible. Maintain safety through observation level and therapeutic communication. Emotional support and validation are core interventions.
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#A78BFA"></span>Medication Adherence</div>
+        <div class="key-fact" style="border-color:#A78BFA">Noncompliance is the <strong>leading cause of relapse</strong> in bipolar disorder. The nurse's role is to identify barriers — side effects, cost, stigma, insight deficits — and address them directly with patient-centered education.</div>
+        <div class="key-fact" style="border-color:#A78BFA">Patients often stop medications when they feel good (during euthymia). Teach that <strong>feeling well IS the medication working</strong> — stopping it causes relapse.</div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#A78BFA"></span>Monitoring Checklist</div>
+        <div class="two-col">
+          <div class="mini-card"><div class="mc-label">Labs</div><div class="mc-val">Serum drug levels · LFTs · CBC · Glucose · Lipids · Renal function</div></div>
+          <div class="mini-card"><div class="mc-label">Vitals</div><div class="mc-val">BP (orthostatic) · Weight · BMI · Temperature in NMS risk</div></div>
+          <div class="mini-card"><div class="mc-label">Behaviors</div><div class="mc-val">Mood cycling · Sleep patterns · Appetite · Social functioning</div></div>
+          <div class="mini-card"><div class="mc-label">Side Effects</div><div class="mc-val">EPS · Tremors · Rash · Sedation · GI symptoms</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#A78BFA"></span>Patient Education Must-Haves</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Take meds even when feeling well</span>
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Recognize early warning signs</span>
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Avoid alcohol</span>
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Sleep hygiene matters</span>
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Report toxicity symptoms</span>
+          <span class="pill" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)">Lifelong treatment plan</span>
+        </div>
+      </div>
+    `
+  },
+  n9: {
+    title: "Therapeutic Communication",
+    subtitle: "Mania Phase · Depressive Phase · Cross-Phase Skills",
+    color: "#F87171",
+    icon: "💬",
+    body: `
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F87171"></span>During Manic Episodes</div>
+        <div class="warning-box wbox-warning">
+          <div class="w-title">⚡ Communication in Mania</div>
+          Use <strong>short, direct statements</strong> — avoid lengthy explanations that get lost in the patient's racing thoughts · Set firm but respectful limits · Avoid arguing, debating, or engaging with grandiose ideas · Use <strong>redirection</strong> when the patient becomes distracted or impulsive · Calm, low-stimulation tone of voice · One staff member speaks at a time
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F87171"></span>During Depressive Episodes</div>
+        <div class="warning-box wbox-info">
+          <div class="w-title">🌧️ Communication in Depression</div>
+          Be <strong>empathetic and non-judgmental</strong> · Allow the patient to express feelings without rushing to fix them · Use <strong>open-ended questions</strong>: "Tell me what you're experiencing today" · Practice <strong>active listening</strong> — reflect back what you hear · Validate emotions: "It sounds like you're feeling overwhelmed" · Avoid minimizing: never say "just cheer up" or "others have it worse"
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F87171"></span>Universal Principles</div>
+        <div class="two-col">
+          <div class="mini-card"><div class="mc-label">Consistency</div><div class="mc-val">Maintain consistent boundaries and routines — predictability reduces anxiety and builds trust</div></div>
+          <div class="mini-card"><div class="mc-label">Nonjudgmental</div><div class="mc-val">Approach all behaviors as symptoms of illness, not moral failures — this is fundamental to therapeutic alliance</div></div>
+          <div class="mini-card"><div class="mc-label">Therapeutic Relationship</div><div class="mc-val">Build trust over time. Patients with bipolar disorder need to feel safe enough to disclose mood changes early</div></div>
+          <div class="mini-card"><div class="mc-label">Limit Setting</div><div class="mc-val">Firm but kind. State expectations clearly. Follow through consistently. Avoid power struggles.</div></div>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F87171"></span>Communication Techniques to Use</div>
+        <div class="pill-list">
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Open-ended questions</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Reflection</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Validation</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Redirection</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Clarification</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Active listening</span>
+          <span class="pill" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08)">Silence (therapeutic)</span>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="sb-label"><span class="dot" style="background:#F87171"></span>What to AVOID</div>
+        <div class="warning-box wbox-danger">
+          <div class="w-title">❌ Never Do This</div>
+          Arguing with or reinforcing delusional thinking · False reassurance ("Everything will be fine") · Minimizing feelings · Talking down or being condescending · Engaging in power struggles · Reacting emotionally to manipulative behavior (respond therapeutically instead)
+        </div>
+      </div>
+    `
+  }
+};
+
+// CLOCK POSITIONS (% of container)
+// 12 positions around a circle, 9 nodes starting at 12 o'clock
+const clockAngles = [
+  0,      // 12 o'clock — n1 Signs
+  40,     // ~1-2 o'clock — n2 Lithium
+  80,     // ~2-3 o'clock — n3 Valproate
+  120,    // ~4 o'clock — n4 Carbamazepine
+  160,    // ~5 o'clock — n5 Lamotrigine
+  200,    // ~7 o'clock — n6 Antipsychotics
+  240,    // ~8 o'clock — n7 Benzos
+  280,    // ~9-10 o'clock — n8 Nursing
+  320,    // ~11 o'clock — n9 Therapeutic Comm
+];
+
+function buildMap() {
+  const orbit = document.getElementById("map-orbit");
+  const radius = 41; // % of container width/height
+  const cx = 50, cy = 50;
+
+  nodes.forEach((n, i) => {
+    const angleDeg = clockAngles[i] - 90;
+    const angleRad = angleDeg * Math.PI / 180;
+    const x = cx + radius * Math.cos(angleRad);
+    const y = cy + radius * Math.sin(angleRad);
+
+    const el = document.createElement("div");
+    el.className = "orbit-node";
+    el.style.left = x + "%";
+    el.style.top = y + "%";
+    el.id = "node_" + n.id;
+
+    el.innerHTML = `
+      <div class="node-btn ${n.cls}" id="btn_${n.id}" onclick="openPanel('${n.id}')">
+        <span class="node-icon">${n.icon}</span>
+        <span class="node-label">${n.label.replace(/\n/g, "<br>")}</span>
+      </div>
+    `;
+    orbit.appendChild(el);
+  });
+
+  // Draw connector lines after DOM is ready
+  setTimeout(drawLines, 100);
+}
+
+function drawLines() {
+  const svg = document.getElementById("connector-svg");
+  const container = document.getElementById("map-orbit");
+  const cw = container.offsetWidth;
+  const ch = container.offsetHeight;
+  svg.setAttribute("viewBox", `0 0 ${cw} ${ch}`);
+
+  const cx = cw * 0.5;
+  const cy = ch * 0.5;
+  const radius = cw * 0.41;
+
+  svg.innerHTML = "";
+
+  nodes.forEach((n, i) => {
+    const angleDeg = clockAngles[i] - 90;
+    const angleRad = angleDeg * Math.PI / 180;
+    const x = cx + radius * Math.cos(angleRad);
+    const y = cy + radius * Math.sin(angleRad);
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", cx);
+    line.setAttribute("y1", cy);
+    line.setAttribute("x2", x);
+    line.setAttribute("y2", y);
+    line.setAttribute("stroke", n.color);
+    line.setAttribute("stroke-width", "1.5");
+    line.setAttribute("stroke-opacity", "0.2");
+    line.setAttribute("stroke-dasharray", "4 6");
+    line.id = "line_" + n.id;
+    svg.appendChild(line);
+  });
+}
+
+function openPanel(id) {
+  const data = content[id];
+  if (!data) return;
+
+  // Update panel header color
+  document.getElementById("panel-icon").textContent = data.icon;
+  document.getElementById("panel-title").textContent = data.title;
+  document.getElementById("panel-title").style.color = data.color;
+  document.getElementById("panel-subtitle").textContent = data.subtitle;
+  document.getElementById("panel-body").innerHTML = data.body;
+
+  document.getElementById("detail-panel").classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+
+  // Highlight active node
+  document.querySelectorAll(".node-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("center-node").classList.remove("active");
+
+  if (id === "center") {
+    document.getElementById("center-node").classList.add("active");
+  } else {
+    const btn = document.getElementById("btn_" + id);
+    if (btn) btn.classList.add("active");
+
+    // Brighten connector line
+    const line = document.getElementById("line_" + id);
+    if (line) {
+      line.setAttribute("stroke-opacity", "0.9");
+      line.setAttribute("stroke-width", "2.5");
+    }
+  }
+}
+
+function closePanel() {
+  document.getElementById("detail-panel").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+  document.querySelectorAll(".node-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("center-node").classList.remove("active");
+
+  // Reset all lines
+  document.querySelectorAll("[id^='line_']").forEach(l => {
+    l.setAttribute("stroke-opacity", "0.2");
+    l.setAttribute("stroke-width", "1.5");
+  });
+}
+
+window.addEventListener("resize", drawLines);
+
+buildMap();
+</script>
+</body>
+</html>
