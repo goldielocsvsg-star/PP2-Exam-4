@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych Meds Study Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #6C3FC5;
+    --purple-light: #EDE7FF;
+    --purple-mid: #A07CDF;
+    --teal: #0F9B8E;
+    --teal-light: #D6FAF7;
+    --coral: #E8552A;
+    --coral-light: #FFF0EA;
+    --amber: #E6A817;
+    --amber-light: #FFF8E1;
+    --blue: #1A6FD4;
+    --blue-light: #E3F0FF;
+    --pink: #D4408A;
+    --pink-light: #FCEAF4;
+    --green: #2E9E5B;
+    --green-light: #E4FAF0;
+    --red: #D63B3B;
+    --red-light: #FFF0F0;
+    --dark: #1A1030;
+    --bg: #F7F4FF;
+    --surface: #FFFFFF;
+    --text: #1A1030;
+    --text-muted: #7A6E8A;
+    --border: #E2D8F5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 10% 10%, rgba(108,63,197,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 90% 80%, rgba(15,155,142,0.07) 0%, transparent 60%);
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem 2.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 50%, var(--coral) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.75rem;
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+  .topic-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .chip {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 99px;
+    border: 1.5px solid;
+  }
+  .chip-purple { background: var(--purple-light); color: var(--purple); border-color: #C5AEFF; }
+  .chip-teal   { background: var(--teal-light);   color: var(--teal);   border-color: #7EE8E0; }
+  .chip-coral  { background: var(--coral-light);  color: var(--coral);  border-color: #F5B49B; }
+  .chip-amber  { background: var(--amber-light);  color: #8A6000;       border-color: #F5D98A; }
+  .chip-pink   { background: var(--pink-light);   color: var(--pink);   border-color: #F0AACD; }
+
+  .start-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    padding: 14px 44px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 24px rgba(108,63,197,0.35);
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(108,63,197,0.4); }
+  .start-btn:active { transform: scale(0.97); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.4s ease both;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    background: var(--border);
+    border-radius: 99px;
+    height: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  .streak-msg {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--amber);
+    min-height: 22px;
+    margin-bottom: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.35s ease both;
+    box-shadow: 0 2px 16px rgba(108,63,197,0.07);
+  }
+  .q-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .cat-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+  }
+  .type-badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+  }
+  .q-text {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* OPTIONS */
+  .options { display: flex; flex-direction: column; gap: 9px; margin-top: 1.25rem; }
+
+  .opt-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 13px 16px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    line-height: 1.55;
+    transition: all 0.18s;
+    width: 100%;
+  }
+  .opt-btn:hover:not(:disabled) {
+    border-color: var(--purple-mid);
+    background: var(--purple-light);
+    transform: translateX(3px);
+  }
+  .opt-letter {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: all 0.18s;
+  }
+
+  .opt-btn.correct {
+    border-color: var(--teal);
+    background: var(--teal-light);
+    color: #085041;
+  }
+  .opt-btn.correct .opt-letter {
+    background: var(--teal);
+    color: #fff;
+    border-color: var(--teal);
+  }
+  .opt-btn.incorrect {
+    border-color: var(--red);
+    background: var(--red-light);
+    color: #7A1A1A;
+  }
+  .opt-btn.incorrect .opt-letter {
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+  }
+  .opt-btn.missed {
+    border-color: var(--teal);
+    background: rgba(15,155,142,0.07);
+    color: #085041;
+    opacity: 0.75;
+  }
+  .opt-btn.missed .opt-letter {
+    background: var(--teal);
+    color: #fff;
+    border-color: var(--teal);
+  }
+  .opt-btn:disabled { cursor: default; transform: none; }
+
+  /* SATA checkbox style */
+  .sata-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 13px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+    transition: all 0.18s;
+  }
+  .sata-label:hover { border-color: var(--purple-mid); background: var(--purple-light); }
+  .sata-label input[type=checkbox] { display: none; }
+  .sata-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-size: 12px;
+    color: transparent;
+  }
+  .sata-label.checked .sata-check {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+  }
+  .sata-label.correct { border-color: var(--teal); background: var(--teal-light); color: #085041; }
+  .sata-label.correct .sata-check { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .sata-label.incorrect { border-color: var(--red); background: var(--red-light); color: #7A1A1A; }
+  .sata-label.incorrect .sata-check { background: var(--red); border-color: var(--red); color: #fff; }
+  .sata-label.missed { border-color: var(--teal); background: rgba(15,155,142,0.07); opacity: 0.75; }
+  .sata-label.missed .sata-check { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.15s;
+    box-shadow: 0 4px 18px rgba(108,63,197,0.3);
+  }
+  .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(108,63,197,0.4); }
+  .submit-btn:disabled { opacity: 0.4; cursor: default; transform: none; box-shadow: none; }
+
+  /* RATIONALE */
+  .rationale-box {
+    background: linear-gradient(135deg, #F5F0FF 0%, #EEF9F8 100%);
+    border: 1.5px solid #D4C8FF;
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1rem;
+    display: none;
+    animation: fadeUp 0.3s ease both;
+  }
+  .result-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+  }
+  .result-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .result-icon.correct-icon { background: var(--teal-light); }
+  .result-icon.incorrect-icon { background: var(--red-light); }
+  .result-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .result-label.correct-label { color: var(--teal); }
+  .result-label.incorrect-label { color: var(--red); }
+  .rat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 6px;
+  }
+  .rat-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #3D3050;
+  }
+
+  .next-btn {
+    width: 100%;
+    padding: 13px;
+    background: transparent;
+    border: 2px solid var(--purple);
+    border-radius: 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.15s;
+  }
+  .next-btn:hover { background: var(--purple-light); }
+
+  /* END SCREEN */
+  .end-screen {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 3rem 2rem;
+    text-align: center;
+    animation: fadeUp 0.5s ease both;
+    box-shadow: 0 4px 32px rgba(108,63,197,0.1);
+  }
+  .end-trophy { font-size: 56px; margin-bottom: 1rem; }
+  .end-pct {
+    font-family: 'Syne', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .end-fraction {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 4px 0 12px;
+  }
+  .end-msg {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .end-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+  .end-stat {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 14px 8px;
+    font-family: 'Syne', sans-serif;
+  }
+  .end-stat-v { font-size: 22px; font-weight: 800; color: var(--purple); }
+  .end-stat-l { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 3px; }
+  .restart-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 99px;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(108,63,197,0.35);
+    transition: all 0.15s;
+  }
+  .restart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(108,63,197,0.45); }
+
+  /* CAT colors */
+  .cat-psych   { background: var(--purple-light); color: var(--purple); }
+  .cat-bipolar { background: var(--teal-light); color: var(--teal); }
+  .cat-eps     { background: var(--coral-light); color: var(--coral); }
+  .cat-general { background: var(--blue-light); color: var(--blue); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div id="hero-screen">
+    <div class="hero">
+      <div class="hero-pill">💊 NCLEX Study Tool</div>
+      <h1>Psych Meds<br>Challenge</h1>
+      <p>Test your knowledge on antipsychotics, mood stabilizers, EPS, NMS, lithium toxicity, and more.</p>
+      <div class="topic-chips">
+        <span class="chip chip-purple">Antipsychotics</span>
+        <span class="chip chip-teal">Mood Stabilizers</span>
+        <span class="chip chip-coral">EPS &amp; NMS</span>
+        <span class="chip chip-amber">Lithium</span>
+        <span class="chip chip-pink">Drug Interactions</span>
+      </div>
+      <button class="start-btn" onclick="startGame()">Start Challenge →</button>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <div id="game-screen" class="hidden">
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-val" id="s-score">0</div><div class="stat-lbl">Score</div></div>
+      <div class="stat-card"><div class="stat-val" id="s-q">1/20</div><div class="stat-lbl">Question</div></div>
+      <div class="stat-card"><div class="stat-val" id="s-streak">0</div><div class="stat-lbl">🔥 Streak</div></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    <div class="streak-msg" id="streak-msg"></div>
+    <div id="q-area"></div>
+  </div>
+
+  <!-- END -->
+  <div id="end-screen" class="hidden">
+    <div class="end-screen">
+      <div class="end-trophy" id="end-trophy">🏆</div>
+      <div class="end-pct" id="end-pct">0%</div>
+      <div class="end-fraction" id="end-frac">0 / 20 correct</div>
+      <div class="end-msg" id="end-msg">Great effort!</div>
+      <div class="end-grid">
+        <div class="end-stat"><div class="end-stat-v" id="e-correct">0</div><div class="end-stat-l">Correct</div></div>
+        <div class="end-stat"><div class="end-stat-v" id="e-wrong">0</div><div class="end-stat-l">Incorrect</div></div>
+        <div class="end-stat"><div class="end-stat-v" id="e-best">0</div><div class="end-stat-l">Best streak</div></div>
+      </div>
+      <button class="restart-btn" onclick="restart()">Play Again (Shuffled)</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ALL_Q = [
+  {
+    cat:"EPS", type:"SATA",
+    q:"A nurse is administering haloperidol. Which findings indicate extrapyramidal symptoms (EPS)? Select ALL that apply.",
+    opts:["Lip smacking","Shuffling gait","Fever of 103°F","Muscle rigidity","Restlessness"],
+    correct:[0,1,3,4],
+    rationale:"EPS includes lip smacking (tardive dyskinesia), shuffling gait (parkinsonism), muscle rigidity (parkinsonism), and restlessness (akathisia). Fever is a key sign of Neuroleptic Malignant Syndrome (NMS) — a life-threatening emergency, not EPS. Distinguishing EPS from NMS is critical for NCLEX because interventions differ significantly."
+  },
+  {
+    cat:"Bipolar", type:"Further Teaching",
+    q:"A patient taking lithium makes the following statements. Which requires further teaching?",
+    opts:["I will drink plenty of water daily.","I will limit my salt intake.","I will have my blood levels checked regularly.","I will report tremors or confusion."],
+    correct:[1],
+    rationale:"Lithium and sodium have an inverse relationship. When sodium is reduced, lithium is retained, increasing toxicity risk. Patients must maintain consistent sodium intake — not restrict it. Hydration, lab monitoring, and reporting symptoms are all correct behaviors."
+  },
+  {
+    cat:"Psych", type:"Single Best",
+    q:"Which statement about ziprasidone is correct?",
+    opts:["It has no cardiac risks","It can prolong the QT interval","It does not affect weight","It is only used for anxiety"],
+    correct:[1],
+    rationale:"Ziprasidone is associated with QT prolongation, which can lead to life-threatening arrhythmias like torsades de pointes. While it may cause less weight gain than other atypicals, cardiac monitoring is critical. It is used for schizophrenia and bipolar disorder — not anxiety."
+  },
+  {
+    cat:"EPS", type:"SATA",
+    q:"Which medications are used to treat EPS? Select ALL that apply.",
+    opts:["Benztropine","Diphenhydramine","Lithium","Amantadine","Lorazepam"],
+    correct:[0,1,3],
+    rationale:"Benztropine and diphenhydramine work via anticholinergic effects to restore dopamine-acetylcholine balance. Amantadine increases dopamine activity. Lithium is a mood stabilizer and lorazepam treats anxiety/agitation — neither treats EPS."
+  },
+  {
+    cat:"EPS", type:"Single Best",
+    q:"Which statement by a nurse about NMS is correct?",
+    opts:["It is a mild side effect of antipsychotics","It presents with high fever and rigidity","It is treated with benztropine","It only occurs with atypical antipsychotics"],
+    correct:[1],
+    rationale:"NMS is a medical emergency — not mild. It presents with hyperthermia, severe rigidity, altered mental status, and autonomic instability. It is treated with dantrolene or bromocriptine, not benztropine (which treats EPS). It is more common with typical antipsychotics but can occur with both."
+  },
+  {
+    cat:"Bipolar", type:"SATA",
+    q:"Which are signs of lithium toxicity? Select ALL that apply.",
+    opts:["Severe diarrhea","Confusion","Fine tremor","Seizures","Vomiting"],
+    correct:[0,1,3,4],
+    rationale:"Fine tremor is a mild expected side effect of lithium. Toxicity progresses to GI symptoms (severe vomiting, diarrhea), neurological signs (confusion, seizures). Distinguishing expected effects from toxicity is a classic NCLEX trap."
+  },
+  {
+    cat:"Psych", type:"Single Best",
+    q:"Which condition is a contraindication for anticholinergics like benztropine?",
+    opts:["Glaucoma","Depression","Bipolar disorder","Schizophrenia"],
+    correct:[0],
+    rationale:"Anticholinergics increase intraocular pressure, making them dangerous in patients with glaucoma. The other conditions listed are not contraindications. NCLEX loves linking drug class → disease contraindication."
+  },
+  {
+    cat:"Psych", type:"SATA",
+    q:"A patient is taking olanzapine. Which should the nurse monitor? Select ALL that apply.",
+    opts:["Blood glucose","Lipid levels","White blood cell count","Weight","Sodium levels"],
+    correct:[0,1,3],
+    rationale:"Olanzapine is strongly associated with metabolic syndrome, requiring monitoring of glucose, lipids, and weight. WBC monitoring is specific to clozapine (for agranulocytosis). Sodium monitoring is most relevant to lithium therapy."
+  },
+  {
+    cat:"Bipolar", type:"Further Teaching",
+    q:"Which patient statement about lamotrigine indicates a need for further teaching?",
+    opts:["I will report any rash immediately.","I can stop this medication suddenly.","This medication helps prevent mood swings.","I will take this medication as prescribed."],
+    correct:[1],
+    rationale:"Lamotrigine must be titrated slowly and never stopped abruptly — this increases risk of seizures and severe adverse effects. The rash warning is critical because lamotrigine can cause Stevens-Johnson syndrome, a potentially fatal skin reaction."
+  },
+  {
+    cat:"Psych", type:"SATA",
+    q:"Which are anticholinergic side effects? Select ALL that apply.",
+    opts:["Dry mouth","Constipation","Urinary retention","Diarrhea","Blurred vision"],
+    correct:[0,1,2,4],
+    rationale:"Anticholinergic effects reduce secretions and slow GI motility, causing dry mouth, constipation, urinary retention, and blurred vision. Remember: 'hot, dry, blind, mad.' Diarrhea is the opposite effect and is not associated."
+  },
+  {
+    cat:"Psych", type:"Single Best",
+    q:"Which statement about benzodiazepines is correct?",
+    opts:["They are safe for long-term use","They have no risk of dependence","They can cause respiratory depression","They improve mood stabilization long-term"],
+    correct:[2],
+    rationale:"Benzodiazepines depress the CNS and can suppress respiratory drive, especially when combined with other depressants. They carry a high risk for dependence and are intended for short-term use only — not long-term mood stabilization."
+  },
+  {
+    cat:"EPS", type:"SATA",
+    q:"Which symptoms indicate tardive dyskinesia? Select ALL that apply.",
+    opts:["Tongue protrusion","Lip smacking","Tremors","Facial grimacing","Muscle rigidity"],
+    correct:[0,1,3],
+    rationale:"Tardive dyskinesia involves involuntary, repetitive movements of the face — tongue protrusion, lip smacking, and facial grimacing. Tremors and muscle rigidity are more consistent with drug-induced parkinsonism."
+  },
+  {
+    cat:"EPS", type:"SATA",
+    q:"Which are signs of NMS? Select ALL that apply.",
+    opts:["High fever","Muscle rigidity","Diaphoresis","Bradycardia","Altered mental status"],
+    correct:[0,1,2,4],
+    rationale:"NMS presents with hyperthermia, severe lead-pipe rigidity, diaphoresis, and altered consciousness. It typically causes tachycardia — not bradycardia. Autonomic instability is a hallmark."
+  },
+  {
+    cat:"Psych", type:"Further Teaching",
+    q:"Which patient statement about antipsychotics requires correction?",
+    opts:["I may gain weight.","I should avoid alcohol.","I can stop the medication once I feel better.","I should report unusual movements."],
+    correct:[2],
+    rationale:"Stopping antipsychotics abruptly can cause relapse or withdrawal symptoms. These medications require consistent, long-term adherence even when symptoms improve — this is a major NCLEX safety concept."
+  },
+  {
+    cat:"Psych", type:"SATA",
+    q:"Which medications can cause agranulocytosis? Select ALL that apply.",
+    opts:["Clozapine","Carbamazepine","Lithium","Haloperidol","Valproate"],
+    correct:[0,1],
+    rationale:"Both clozapine and carbamazepine can suppress bone marrow leading to agranulocytosis — a dangerous drop in WBCs. Clozapine requires REMS monitoring. Lithium and haloperidol are not commonly associated with this effect."
+  },
+  {
+    cat:"Bipolar", type:"Single Best",
+    q:"Which is true about carbamazepine's drug interactions?",
+    opts:["It increases risperidone levels","It decreases risperidone levels","It has no drug interactions","It is safe in pregnancy"],
+    correct:[1],
+    rationale:"Carbamazepine is a potent CYP450 inducer, meaning it accelerates metabolism and reduces blood levels of other drugs like risperidone. Carbamazepine is also teratogenic and not safe in pregnancy."
+  },
+  {
+    cat:"Psych", type:"Priority",
+    q:"Which patient requires immediate intervention?",
+    opts:["Weight gain on olanzapine","Dry mouth on benztropine","Fever and rigidity on haloperidol","Mild tremor on lithium"],
+    correct:[2],
+    rationale:"Fever + rigidity on an antipsychotic = NMS, a life-threatening emergency requiring immediate action. Weight gain on olanzapine, dry mouth on benztropine, and mild tremor on lithium are all expected side effects."
+  },
+  {
+    cat:"Psych", type:"Priority",
+    q:"Which patient should the nurse see first?",
+    opts:["Patient on lithium with mild tremor","Patient on clozapine with sore throat","Patient on haloperidol with dry mouth","Patient on lorazepam who is drowsy"],
+    correct:[1],
+    rationale:"Sore throat in a clozapine patient may indicate agranulocytosis — a life-threatening drop in WBCs requiring immediate evaluation. Mild tremor (lithium), dry mouth (anticholinergic), and drowsiness are expected or less urgent."
+  },
+  {
+    cat:"EPS", type:"Single Best",
+    q:"A patient has a mask-like face, pill-rolling tremor, and shuffling gait. What type of EPS is this?",
+    opts:["Akathisia","Tardive dyskinesia","Drug-induced parkinsonism","Neuroleptic malignant syndrome"],
+    correct:[2],
+    rationale:"Mask-like face, tremor, and shuffling gait are classic signs of drug-induced parkinsonism caused by dopamine blockade — mimicking Parkinson's disease. Akathisia = restlessness; tardive dyskinesia = repetitive face movements; NMS = fever + rigidity."
+  },
+  {
+    cat:"EPS", type:"Single Best",
+    q:"Which manifestation is most associated with tardive dyskinesia?",
+    opts:["Pacing and restlessness","Mask-like face and tremor","Worm-like tongue movements","Fever and rigidity"],
+    correct:[2],
+    rationale:"Tardive dyskinesia is characterized by involuntary, repetitive, worm-like movements of the tongue and face. Pacing/restlessness = akathisia; mask-like face/tremor = parkinsonism; fever/rigidity = NMS. This distinction is heavily tested on NCLEX."
+  },
+  {
+    cat:"Psych", type:"SATA",
+    q:"Which findings indicate anticholinergic toxicity? Select ALL that apply.",
+    opts:["Confusion","Dry skin","Urinary retention","Bradycardia","Blurred vision"],
+    correct:[0,1,2,4],
+    rationale:"Anticholinergic toxicity: 'hot as a hare, dry as a bone, blind as a bat, mad as a hatter.' This means dry skin, blurred vision, confusion, and urinary retention. Tachycardia (not bradycardia) is expected with anticholinergic toxicity."
+  }
+];
+
+let questions = [], current = 0, score = 0, streak = 0, bestStreak = 0, wrong = 0, answered = false;
+
+const catClass = { Psych:"cat-psych", Bipolar:"cat-bipolar", EPS:"cat-eps", General:"cat-general" };
+const letters = ["A","B","C","D","E"];
+
+function startGame() {
+  document.getElementById("hero-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
+  questions = [...ALL_Q].sort(() => Math.random() - 0.5);
+  current = 0; score = 0; streak = 0; bestStreak = 0; wrong = 0; answered = false;
+  render();
+}
+
+function render() {
+  if (current >= questions.length) { showEnd(); return; }
+  const q = questions[current];
+  answered = false;
+
+  document.getElementById("s-score").textContent = score;
+  document.getElementById("s-q").textContent = `${current+1}/${questions.length}`;
+  document.getElementById("s-streak").textContent = streak;
+  document.getElementById("prog").style.width = `${(current / questions.length) * 100}%`;
+
+  const sm = document.getElementById("streak-msg");
+  if (streak >= 5) { sm.textContent = `🔥 ${streak} in a row — you're unstoppable!`; }
+  else if (streak >= 3) { sm.textContent = `⚡ ${streak} in a row — keep it up!`; }
+  else { sm.textContent = ""; }
+
+  const isSATA = q.type === "SATA";
+  let html = `<div class="q-card">
+    <div class="q-header">
+      <span class="cat-badge ${catClass[q.cat]||'cat-general'}">${q.cat}</span>
+      <span class="type-badge">${q.type}</span>
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="options" id="opts">`;
+
+  if (isSATA) {
+    q.opts.forEach((o, i) => {
+      html += `<label class="sata-label" id="lbl-${i}" onclick="toggleCheck(${i})">
+        <input type="checkbox" id="chk-${i}">
+        <div class="sata-check" id="chkbox-${i}">✓</div>
+        <span>${letters[i]}. ${o}</span>
+      </label>`;
+    });
+    html += `</div>
+    <button class="submit-btn" id="sub-btn" onclick="submitSATA()">Submit Answer</button>`;
+  } else {
+    q.opts.forEach((o, i) => {
+      html += `<button class="opt-btn" id="opt-${i}" onclick="selectSingle(${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span>${o}</span>
+      </button>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `<div class="rationale-box" id="rat">
+    <div class="result-header" id="rat-hdr"></div>
+    <div class="rat-title">📚 Rationale</div>
+    <div class="rat-text">${q.rationale}</div>
+  </div></div>`;
+
+  document.getElementById("q-area").innerHTML = html;
+}
+
+function toggleCheck(i) {
+  if (answered) return;
+  const lbl = document.getElementById("lbl-"+i);
+  const chk = document.getElementById("chk-"+i);
+  chk.checked = !chk.checked;
+  lbl.classList.toggle("checked", chk.checked);
+}
+
+function selectSingle(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const isCorrect = q.correct.includes(i);
+
+  q.opts.forEach((_, j) => {
+    const btn = document.getElementById("opt-"+j);
+    btn.disabled = true;
+    if (q.correct.includes(j)) btn.classList.add("correct");
+    else if (j === i) btn.classList.add("incorrect");
+  });
+  showResult(isCorrect);
+}
+
+function submitSATA() {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const selected = q.opts.map((_, i) => document.getElementById("chk-"+i).checked);
+  const selectedIdx = selected.map((v,i) => v ? i : -1).filter(x => x >= 0).sort((a,b)=>a-b);
+  const isCorrect = JSON.stringify(selectedIdx) === JSON.stringify([...q.correct].sort((a,b)=>a-b));
+
+  q.opts.forEach((_, j) => {
+    const lbl = document.getElementById("lbl-"+j);
+    if (q.correct.includes(j) && selected[j]) lbl.className = "sata-label correct";
+    else if (!q.correct.includes(j) && selected[j]) lbl.className = "sata-label incorrect";
+    else if (q.correct.includes(j) && !selected[j]) lbl.className = "sata-label missed";
+    else lbl.className = "sata-label";
+    const chkbox = document.getElementById("chkbox-"+j);
+    if (q.correct.includes(j)) chkbox.textContent = "✓";
+    else if (!q.correct.includes(j) && selected[j]) chkbox.textContent = "✗";
+  });
+
+  document.getElementById("sub-btn").style.display = "none";
+  showResult(isCorrect);
+}
+
+function showResult(isCorrect) {
+  if (isCorrect) { score++; streak++; if (streak > bestStreak) bestStreak = streak; }
+  else { streak = 0; wrong++; }
+
+  document.getElementById("s-score").textContent = score;
+  document.getElementById("s-streak").textContent = streak;
+
+  const sm = document.getElementById("streak-msg");
+  if (streak >= 5) sm.textContent = `🔥 ${streak} in a row — you're unstoppable!`;
+  else if (streak >= 3) sm.textContent = `⚡ ${streak} in a row — keep it up!`;
+  else sm.textContent = "";
+
+  const rat = document.getElementById("rat");
+  rat.style.display = "block";
+  document.getElementById("rat-hdr").innerHTML = isCorrect
+    ? `<div class="result-icon correct-icon">✅</div><span class="result-label correct-label">Correct!</span>`
+    : `<div class="result-icon incorrect-icon">❌</div><span class="result-label incorrect-label">Incorrect — study this rationale</span>`;
+
+  const nextBtn = document.createElement("button");
+  nextBtn.className = "next-btn";
+  nextBtn.textContent = current < questions.length - 1 ? "Next Question →" : "See Results →";
+  nextBtn.onclick = () => { current++; render(); };
+  rat.parentElement.appendChild(nextBtn);
+}
+
+function showEnd() {
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("end-screen").classList.remove("hidden");
+  const pct = Math.round((score / questions.length) * 100);
+  const trophy = pct >= 90 ? "🏆" : pct >= 75 ? "⭐" : pct >= 60 ? "📚" : "💪";
+  const msg = pct >= 90 ? "Outstanding — you're NCLEX ready!"
+    : pct >= 75 ? "Strong performance — review your missed questions."
+    : pct >= 60 ? "Getting there — keep reviewing those rationales!"
+    : "Keep studying — use the rationales to learn from each mistake.";
+  document.getElementById("end-trophy").textContent = trophy;
+  document.getElementById("end-pct").textContent = pct + "%";
+  document.getElementById("end-frac").textContent = `${score} / ${questions.length} correct`;
+  document.getElementById("end-msg").textContent = msg;
+  document.getElementById("e-correct").textContent = score;
+  document.getElementById("e-wrong").textContent = wrong;
+  document.getElementById("e-best").textContent = bestStreak;
+  document.getElementById("prog").style.width = "100%";
+}
+
+function restart() {
+  document.getElementById("end-screen").classList.add("hidden");
+  startGame();
+}
+</script>
+</body>
+</html>
