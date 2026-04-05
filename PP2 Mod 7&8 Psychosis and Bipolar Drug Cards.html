@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 PP2 Psychosis & Bipolar · Medication Deck · Source-Limited</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pu:#6a1b9a;--pu-mid:#8e24aa;--pu-pale:#f3e5f5;--pu-dark:#4a148c;
+  --teal:#00838f;--teal-mid:#00acc1;--teal-pale:#e0f7fa;
+  --green:#2e7d32;--green-mid:#43a047;--green-pale:#e8f5e9;
+  --yellow:#f9a825;--yellow-mid:#fbc02d;--yellow-pale:#fffde7;
+  --red:#c62828;--red-pale:#ffebee;--red-mid:#e53935;
+  --bg:#f5f0fa;--card:#fff;--card2:#faf5ff;
+  --text:#1a0a2e;--text2:#4a3468;--text3:#9a80b0;
+  --border:#ddd0ee;--border2:#ece5f5;
+  --shadow:0 2px 14px rgba(106,27,154,.09);
+  --shadow-lg:0 6px 28px rgba(106,27,154,.16);
+  --radius:16px;--radius-sm:10px;
+  --t:.2s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"]{
+  --bg:#0e0618;--card:#1a0e2e;--card2:#1f1238;
+  --text:#ede5ff;--text2:#a080cc;--text3:#6a4a9a;
+  --border:#2d1852;--border2:#221040;
+  --shadow:0 2px 14px rgba(0,0,0,.35);--shadow-lg:0 6px 28px rgba(0,0,0,.5);
+  --pu-pale:#1a0840;--teal-pale:#082028;--green-pale:#0a2010;
+  --yellow-pale:#1e1500;--red-pale:#200a0a;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;
+  transition:background .3s,color .3s}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,var(--pu-dark) 0%,var(--pu-mid) 60%,var(--teal) 100%);
+  color:#fff;padding:0 20px;display:flex;align-items:center;justify-content:space-between;
+  height:62px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(74,20,140,.35)}
+.hd-title{font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1.2}
+.hd-sub{font-size:11px;opacity:.7;font-weight:500;letter-spacing:.4px}
+.hd-right{display:flex;align-items:center;gap:10px}
+.overall-badge{background:var(--yellow);color:#1a0a00;border-radius:50px;
+  padding:3px 12px;font-size:12px;font-weight:800}
+.theme-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+  color:#fff;border-radius:50px;padding:6px 14px;cursor:pointer;font-size:12px;
+  font-weight:700;transition:all var(--t)}
+.theme-btn:hover{background:rgba(255,255,255,.28)}
+
+/* ── NAV ── */
+.mode-nav{background:var(--card);border-bottom:1px solid var(--border);
+  padding:0 12px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  position:sticky;top:62px;z-index:99;box-shadow:var(--shadow)}
+.mode-nav::-webkit-scrollbar{display:none}
+.mode-tab{padding:12px 14px;border:none;background:none;color:var(--text2);font-size:12px;
+  font-weight:700;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;
+  transition:all var(--t);display:flex;align-items:center;gap:4px}
+.mode-tab:hover{color:var(--pu)}
+.mode-tab.active{color:var(--pu);border-bottom-color:var(--pu)}
+
+/* ── LAYOUT ── */
+main{max-width:900px;margin:0 auto;padding:24px 16px 70px}
+.mode-panel{display:none}.mode-panel.active{display:block}
+.mode-hd{margin-bottom:20px}
+.mode-title{font-size:21px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:9px}
+.mode-desc{font-size:13px;color:var(--text2);margin-top:4px;line-height:1.55}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{background:var(--border2);border-radius:50px;height:7px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--pu),var(--teal));
+  border-radius:50px;transition:width .5s ease}
+.prog-row{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text3);
+  margin-bottom:5px;font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);
+  box-shadow:var(--shadow);padding:22px;margin-bottom:14px;transition:box-shadow var(--t)}
+.card:hover{box-shadow:var(--shadow-lg)}
+
+/* ── BUTTONS ── */
+.btn{padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;
+  border:none;transition:all var(--t);display:inline-flex;align-items:center;gap:5px}
+.btn:disabled{opacity:.38;cursor:not-allowed!important;transform:none!important}
+.btn-primary{background:var(--pu);color:#fff}
+.btn-primary:hover:not(:disabled){background:var(--pu-mid);transform:translateY(-1px)}
+.btn-secondary{background:var(--card);color:var(--text);border:2px solid var(--border)}
+.btn-secondary:hover:not(:disabled){border-color:var(--pu);color:var(--pu)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover:not(:disabled){background:var(--green-mid);transform:translateY(-1px)}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover:not(:disabled){background:var(--teal-mid);transform:translateY(-1px)}
+.btn-yellow{background:var(--yellow);color:#1a0a00}
+.btn-yellow:hover:not(:disabled){background:var(--yellow-mid)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover:not(:disabled){background:var(--red-mid);transform:translateY(-1px)}
+.btn-sm{padding:6px 14px;font-size:12px}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px;text-align:center}
+.stat-num{font-size:26px;font-weight:900;color:var(--pu)}
+.stat-lbl{font-size:10.5px;color:var(--text3);font-weight:700;text-transform:uppercase;
+  letter-spacing:.5px;margin-top:2px}
+
+/* ── CATEGORY CHIPS ── */
+.cat-chip{display:inline-block;padding:2px 10px;border-radius:50px;font-size:10px;
+  font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.chip-dopa{background:var(--pu-pale);color:var(--pu)}
+.chip-anti{background:var(--green-pale);color:var(--green)}
+.chip-alz{background:var(--teal-pale);color:var(--teal)}
+
+/* ══════════ FLASHCARDS ══════════ */
+.fc-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.fc-pill{padding:4px 11px;border-radius:50px;font-size:11.5px;font-weight:600;cursor:pointer;
+  border:2px solid var(--border);background:var(--card);color:var(--text2);transition:all var(--t)}
+.fc-pill:hover:not(.active){border-color:var(--pu);color:var(--pu)}
+.fc-pill.active{background:var(--pu);color:#fff;border-color:var(--pu)}
+
+.field-sel{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;
+  padding:12px;background:var(--card2);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.field-sel label{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
+  color:var(--text2);cursor:pointer;padding:5px 11px;border-radius:50px;
+  border:2px solid var(--border);background:var(--card);transition:all var(--t);user-select:none}
+.field-sel label:hover{border-color:var(--pu)}
+.field-sel input[type="checkbox"]{display:none}
+.field-sel label:has(input:checked){background:var(--pu);border-color:var(--pu);color:#fff}
+
+.fc-wrap{perspective:1200px;min-height:290px;cursor:pointer;user-select:none}
+.flashcard{width:100%;min-height:290px;position:relative;transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);border-radius:var(--radius)}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;border-radius:var(--radius);padding:28px;
+  display:flex;flex-direction:column;border:2px solid var(--border)}
+.fc-front{background:linear-gradient(135deg,var(--pu-pale),var(--card));
+  border-color:var(--pu-pale);align-items:center;justify-content:center;text-align:center}
+.fc-back{background:linear-gradient(135deg,var(--green-pale),var(--card));
+  border-color:var(--green-pale);transform:rotateY(180deg);overflow-y:auto}
+.fc-drug-name{font-size:24px;font-weight:900;color:var(--pu);letter-spacing:-.5px;margin-bottom:6px}
+.fc-class-badge{display:inline-block;background:var(--pu-pale);color:var(--pu);
+  border-radius:50px;padding:3px 12px;font-size:11px;font-weight:700;margin-bottom:8px}
+.fc-route{font-size:12px;color:var(--text2);margin-top:5px}
+.flip-hint{font-size:11.5px;color:var(--text3);margin-top:16px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.back-field{margin-bottom:12px}
+.back-label{font-size:9px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:3px}
+.back-value{font-size:12.5px;color:var(--text);line-height:1.55}
+.back-value ul{padding-left:15px;margin-top:2px}
+.back-value li{margin-bottom:2px}
+.key-fact-box{background:var(--yellow-pale);border-left:3px solid var(--yellow);
+  border-radius:6px;padding:10px 12px;margin-top:6px;font-size:12px;font-weight:700;color:var(--text2)}
+.fc-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:10px}
+.fc-counter{font-size:13px;color:var(--text3);font-weight:700}
+.fc-actions{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+
+/* ══════════ ACTIVE RECALL ══════════ */
+.ar-field-lbl{font-size:9px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:7px}
+.ar-question{font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px;line-height:1.5}
+.ar-input{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);
+  font-size:13.5px;background:var(--card);color:var(--text);outline:none;resize:vertical;
+  min-height:70px;font-family:inherit;transition:border-color var(--t)}
+.ar-input:focus{border-color:var(--pu)}
+.ar-answer{background:var(--green-pale);border-left:4px solid var(--green);
+  border-radius:var(--radius-sm);padding:14px 16px;margin-top:12px;font-size:13px;
+  color:var(--text);display:none;animation:slideDown .3s ease}
+.ar-answer.show{display:block}
+.self-grade{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ar-ctrl{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ QUIZ / EXAM ══════════ */
+.quiz-qtext{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:16px;
+  line-height:1.55;padding:15px;background:var(--pu-pale);border-radius:var(--radius-sm);
+  border-left:4px solid var(--pu)}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.quiz-opt{padding:11px 15px;border-radius:var(--radius-sm);border:2px solid var(--border);
+  background:var(--card);cursor:pointer;font-size:13px;font-weight:500;color:var(--text);
+  transition:all var(--t);text-align:left;display:flex;align-items:flex-start;gap:10px}
+.quiz-opt:hover:not(:disabled){border-color:var(--pu);background:var(--pu-pale)}
+.quiz-opt.correct{background:var(--green-pale);border-color:var(--green)}
+.quiz-opt.incorrect{background:var(--red-pale);border-color:var(--red)}
+.quiz-opt:disabled{cursor:default}
+.opt-letter{min-width:23px;height:23px;background:var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;
+  flex-shrink:0;margin-top:1px}
+.quiz-opt.correct .opt-letter{background:var(--green);color:#fff}
+.quiz-opt.incorrect .opt-letter{background:var(--red);color:#fff}
+.rationale-box{background:var(--yellow-pale);border:1px solid var(--yellow-mid);
+  border-left:4px solid var(--yellow);border-radius:var(--radius-sm);padding:13px 15px;
+  font-size:12.5px;color:var(--text);display:none;animation:slideDown .3s ease;line-height:1.55}
+.rationale-box.show{display:block}
+.rat-label{font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:1px;
+  color:var(--yellow-mid);margin-bottom:5px;display:block}
+.score-disp{display:flex;align-items:center;gap:16px;padding:13px 16px;
+  background:var(--card2);border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:16px}
+.score-num{font-size:26px;font-weight:900;color:var(--pu)}
+.score-lbl{font-size:12px;color:var(--text2);font-weight:600}
+
+/* ══════════ START / RESULT SCREENS ══════════ */
+.start-screen{text-align:center;padding:36px 20px}
+.start-icon{font-size:54px;margin-bottom:14px}
+.start-title{font-size:22px;font-weight:800;margin-bottom:8px}
+.start-desc{font-size:14px;color:var(--text2);margin-bottom:22px;line-height:1.6}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:380px;margin:0 auto 22px}
+@media(max-width:480px){.settings-grid{grid-template-columns:1fr}}
+.setting-item{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;text-align:left}
+.setting-lbl{font-size:11.5px;color:var(--text3);font-weight:700;margin-bottom:5px;display:block}
+.setting-item select{width:100%;border:1px solid var(--border);border-radius:7px;
+  padding:6px 9px;background:var(--card);color:var(--text);font-size:13px;font-family:inherit;outline:none}
+.result-screen{text-align:center;padding:30px 20px}
+.result-emoji{font-size:54px;margin-bottom:10px}
+.result-score{font-size:46px;font-weight:900;color:var(--pu);margin-bottom:4px}
+.result-detail{font-size:15px;color:var(--text2);margin-bottom:22px}
+.result-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ══════════ RAPID REVIEW ══════════ */
+.filter-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.rapid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.rapid-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:15px;cursor:pointer;transition:all var(--t);border-top:4px solid var(--pu)}
+.rapid-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.rapid-card.rcat-anti{border-top-color:var(--green)}
+.rapid-card.rcat-alz{border-top-color:var(--teal)}
+.rc-name{font-size:14px;font-weight:800;color:var(--pu);margin-bottom:3px}
+.rapid-card.rcat-anti .rc-name{color:var(--green)}
+.rapid-card.rcat-alz .rc-name{color:var(--teal)}
+.rc-meta{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;
+  letter-spacing:.4px;margin-bottom:7px}
+.rc-snippet{font-size:12px;color:var(--text2);line-height:1.4}
+.rc-detail{display:none}.rc-detail.open{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}
+@media(max-width:560px){.detail-grid{grid-template-columns:1fr}}
+.detail-field{background:var(--card2);border-radius:var(--radius-sm);padding:11px;border:1px solid var(--border2)}
+.detail-lbl{font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.detail-val{font-size:11.5px;color:var(--text);line-height:1.5}
+.detail-val ul{padding-left:13px}.detail-val li{margin-bottom:2px}
+.divider{height:1px;background:var(--border);margin:12px 0}
+
+/* ══════════ TIMED EXAM ══════════ */
+.exam-hd{display:flex;align-items:center;justify-content:space-between;
+  padding:13px 17px;background:var(--card);border-radius:var(--radius);
+  border:1px solid var(--border);margin-bottom:14px}
+.timer-display{font-size:38px;font-weight:900;color:var(--pu);
+  font-variant-numeric:tabular-nums;letter-spacing:-1px;line-height:1}
+.timer-display.warn{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.timer-lbl{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:.5px}
+.missed-list{text-align:left;margin:14px 0}
+.missed-item{padding:10px 13px;background:var(--red-pale);border-radius:8px;margin-bottom:7px;font-size:12px}
+.missed-q{font-weight:700;margin-bottom:3px}
+.missed-correct{color:var(--green);font-size:11.5px}
+.missed-yours{color:var(--red);font-size:11.5px}
+
+/* ══════════ WEAK SPOTS ══════════ */
+.ws-item{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 15px;background:var(--card);border-radius:var(--radius-sm);
+  border:1px solid var(--border);margin-bottom:7px}
+.ws-name{font-size:13px;font-weight:700}
+.ws-class{font-size:11px;color:var(--text3)}
+.ws-score{padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700}
+.sc-good{background:var(--green-pale);color:var(--green)}
+.sc-ok{background:var(--yellow-pale);color:#7a5a00}
+.sc-bad{background:var(--red-pale);color:var(--red)}
+.sc-none{background:var(--border);color:var(--text3)}
+.ws-bar{height:5px;background:var(--border2);border-radius:50px;margin-top:4px;overflow:hidden;width:80px}
+.ws-bar-fill{height:100%;border-radius:50px;transition:width .5s ease}
+
+/* ══════════════════════════════════
+   🎯  MATCH-UP GAME
+══════════════════════════════════ */
+.mu-controls{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.mu-type-btn{padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;
+  border:2px solid var(--border);background:var(--card);color:var(--text2);transition:all var(--t)}
+.mu-type-btn.active{background:var(--pu);border-color:var(--pu);color:#fff}
+.mu-type-btn:hover:not(.active){border-color:var(--pu);color:var(--pu)}
+.mu-stats{display:flex;gap:14px;font-size:12.5px;color:var(--text2);font-weight:700;margin-left:auto}
+.mu-stat{display:flex;align-items:center;gap:4px}
+.mu-stat-val{color:var(--pu);font-size:15px;font-weight:900}
+
+.mu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.mu-col-hd{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--text3);margin-bottom:6px;text-align:center}
+.mu-col{display:flex;flex-direction:column;gap:7px}
+.mu-item{padding:10px 13px;border-radius:var(--radius-sm);border:2px solid var(--border);
+  background:var(--card);cursor:pointer;font-size:12px;font-weight:600;color:var(--text);
+  transition:all .2s;text-align:center;line-height:1.4;min-height:48px;
+  display:flex;align-items:center;justify-content:center}
+.mu-item.mu-right-item{text-align:left;justify-content:flex-start;align-items:flex-start;min-height:72px;word-break:break-word}
+.mu-grid{grid-template-columns:1fr 1.35fr}
+@media(max-width:700px){.mu-grid{grid-template-columns:1fr}}
+
+.mu-item:hover:not(.matched):not(.mu-wrong){border-color:var(--pu);background:var(--pu-pale);color:var(--pu)}
+.mu-item.mu-selected{border-color:var(--pu);background:var(--pu-pale);color:var(--pu);
+  box-shadow:0 0 0 3px rgba(106,27,154,.18)}
+.mu-item.matched{border-color:var(--green);background:var(--green-pale);color:var(--green);
+  cursor:default;pointer-events:none;font-weight:700}
+.mu-item.mu-wrong{border-color:var(--red);background:var(--red-pale);color:var(--red);
+  animation:shake .45s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.mu-round-badge{display:inline-block;background:var(--pu-pale);color:var(--pu);
+  border-radius:50px;padding:3px 12px;font-size:11px;font-weight:800;margin-bottom:12px}
+.mu-complete-banner{text-align:center;padding:28px;background:var(--green-pale);
+  border-radius:var(--radius);border:2px solid var(--green);margin-top:10px}
+.mu-complete-emoji{font-size:48px;margin-bottom:8px}
+.mu-complete-score{font-size:36px;font-weight:900;color:var(--green);margin-bottom:6px}
+.mu-complete-msg{font-size:14px;color:var(--text2);margin-bottom:18px}
+
+/* ══════════════════════════════════
+   🔍  NAME THAT DRUG
+══════════════════════════════════ */
+.ntd-header{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;background:var(--card);border-radius:var(--radius);
+  border:1px solid var(--border);margin-bottom:16px}
+.ntd-round-info{font-size:13px;color:var(--text2);font-weight:700}
+.ntd-points-pill{background:var(--yellow);color:#1a0a00;border-radius:50px;
+  padding:5px 16px;font-size:16px;font-weight:900;display:flex;align-items:center;gap:5px}
+.ntd-total-pts{font-size:12px;opacity:.7;font-weight:700}
+
+.ntd-clue-area{margin-bottom:18px}
+.ntd-clue{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:13px 16px;margin-bottom:8px;display:none;animation:slideDown .35s ease;
+  border-left:4px solid var(--pu)}
+.ntd-clue.revealed{display:block}
+.ntd-clue:nth-child(2){border-left-color:var(--teal)}
+.ntd-clue:nth-child(3){border-left-color:var(--green)}
+.ntd-clue:nth-child(4){border-left-color:var(--yellow-mid)}
+.ntd-clue-label{font-size:9px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--pu);margin-bottom:4px}
+.ntd-clue:nth-child(2) .ntd-clue-label{color:var(--teal)}
+.ntd-clue:nth-child(3) .ntd-clue-label{color:var(--green)}
+.ntd-clue:nth-child(4) .ntd-clue-label{color:var(--yellow-mid)}
+.ntd-clue-text{font-size:13.5px;color:var(--text);font-weight:600;line-height:1.5}
+
+.ntd-pts-hint{text-align:center;margin-bottom:12px;font-size:12px;color:var(--text3);font-weight:700}
+.ntd-pts-now{font-size:17px;font-weight:900;color:var(--pu);margin-right:4px}
+
+.ntd-opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.ntd-opt{padding:13px 12px;border-radius:var(--radius-sm);border:2px solid var(--border);
+  background:var(--card);cursor:pointer;font-size:13px;font-weight:700;color:var(--text);
+  transition:all var(--t);text-align:center;line-height:1.3}
+.ntd-opt:hover:not(:disabled){border-color:var(--pu);background:var(--pu-pale);color:var(--pu)}
+.ntd-opt.ntd-correct{background:var(--green-pale);border-color:var(--green);color:var(--green)}
+.ntd-opt.ntd-wrong{background:var(--red-pale);border-color:var(--red);color:var(--red)}
+.ntd-opt:disabled{cursor:default}
+.ntd-ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+
+.ntd-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;
+  margin:16px 0;text-align:left}
+.ntd-result-item{background:var(--card);border-radius:var(--radius-sm);border:1px solid var(--border);
+  padding:10px 12px}
+.ntd-ri-drug{font-size:12.5px;font-weight:800;margin-bottom:2px}
+.ntd-ri-pts{font-size:11px;font-weight:700}
+.ntd-ri-correct{color:var(--green)}.ntd-ri-wrong{color:var(--red)}
+
+/* ══════════ UTILITY ══════════ */
+.alert-tag{display:inline-flex;align-items:center;gap:4px;background:var(--red-pale);
+  color:var(--red);border-radius:5px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:5px}
+
+/* ══════════ LIGHTNING BLITZ ══════════ */
+.blitz-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.blitz-lives{font-size:24px;letter-spacing:2px}
+.blitz-streak-badge{background:var(--yellow-pale);border:1.5px solid var(--yellow-mid);
+  border-radius:50px;padding:4px 14px;font-size:12px;font-weight:800;color:#7a5a00;min-width:80px;text-align:center}
+.blitz-score-hero{text-align:center;margin:8px 0 14px}
+.blitz-score-hero .score-big{font-size:50px;font-weight:900;color:var(--pu);
+  line-height:1;letter-spacing:-2px;transition:transform .15s}
+.blitz-score-hero .score-lbl-sm{font-size:11px;color:var(--text3);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.blitz-timer-bar{height:9px;background:var(--border2);border-radius:50px;overflow:hidden;margin-bottom:16px;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.blitz-timer-fill{height:100%;border-radius:50px;background:var(--green-mid);transition:width 1s linear,background .3s}
+.blitz-q-box{font-size:15px;font-weight:700;padding:16px;background:var(--pu-pale);
+  border-radius:var(--radius-sm);border-left:4px solid var(--pu);margin-bottom:14px;line-height:1.55;color:var(--text)}
+.blitz-opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+@media(max-width:500px){.blitz-opts-grid{grid-template-columns:1fr}}
+.blitz-opt-btn{padding:12px 14px;border-radius:var(--radius-sm);border:2px solid var(--border);
+  background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text);
+  transition:all var(--t);text-align:left;line-height:1.35}
+.blitz-opt-btn:hover:not(:disabled){border-color:var(--pu);background:var(--pu-pale)}
+.blitz-opt-btn.b-correct{background:var(--green-pale)!important;border-color:var(--green)!important;color:var(--green)!important}
+.blitz-opt-btn.b-wrong{background:var(--red-pale)!important;border-color:var(--red)!important;color:var(--red)!important;animation:shake .35s ease}
+.blitz-feedback{text-align:center;font-size:13px;font-weight:800;min-height:22px;margin-bottom:4px;transition:all .2s}
+.blitz-game-over{text-align:center;padding:32px 20px}
+.blitz-go-emoji{font-size:56px;margin-bottom:12px}
+.blitz-go-score{font-size:48px;font-weight:900;color:var(--pu);letter-spacing:-2px}
+.blitz-go-sub{font-size:14px;color:var(--text2);margin:6px 0 20px}
+.blitz-stat-row{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.blitz-stat-chip{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 18px;text-align:center;min-width:90px}
+.blitz-chip-num{font-size:22px;font-weight:900;color:var(--pu)}
+.blitz-chip-lbl{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+
+/* ══════════ SORT IT OUT ══════════ */
+.sort-card-hero{background:linear-gradient(135deg,var(--pu-pale),var(--card));
+  border:2px solid var(--pu);border-radius:var(--radius);padding:28px;text-align:center;
+  margin-bottom:16px;transition:all .3s}
+.sort-drug-name{font-size:26px;font-weight:900;color:var(--pu);margin-bottom:6px;letter-spacing:-.5px}
+.sort-drug-class{font-size:12.5px;color:var(--text2);font-weight:600}
+.sort-buckets-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:520px){.sort-buckets-row{grid-template-columns:1fr}}
+.sort-bucket-btn{padding:18px 10px;border-radius:var(--radius);border:2px dashed var(--border);
+  background:var(--card2);cursor:pointer;text-align:center;transition:all var(--t);
+  font-size:12px;font-weight:800;color:var(--text2);line-height:1.5}
+.sort-bucket-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.sort-bucket-btn.b-dopa{border-color:var(--pu);color:var(--pu)}
+.sort-bucket-btn.b-anti{border-color:var(--green);color:var(--green)}
+.sort-bucket-btn.b-alz{border-color:var(--teal);color:var(--teal)}
+.sort-bucket-btn.flash-correct{background:var(--green-pale);border-style:solid;
+  animation:popIn .5s ease}
+.sort-bucket-btn.flash-wrong{background:var(--red-pale);border-style:solid;animation:shake .4s ease}
+.sort-bucket-btn.flash-reveal{background:var(--yellow-pale);border-style:solid}
+@keyframes popIn{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+.sort-score-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.sort-mini-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px;text-align:center}
+.sort-mini-num{font-size:22px;font-weight:900;color:var(--pu)}
+.sort-mini-lbl{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.sort-feedback-row{text-align:center;font-size:13px;font-weight:800;min-height:24px;margin-bottom:10px}
+.sort-go-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 20px;max-width:340px;margin-left:auto;margin-right:auto}
+.sort-go-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px;text-align:center}
+.sort-go-num{font-size:28px;font-weight:900;color:var(--pu)}
+.sort-go-lbl{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="hd-title">🧠 Psychosis & Bipolar Meds</div>
+    <div class="hd-sub">PP2 · Psychosis &amp; Bipolar Antipsychotics · 8 Drugs · Offline Ready</div>
+  </div>
+  <div class="hd-right">
+    <span class="overall-badge" id="overall-badge">—%</span>
+    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
+  </div>
+</header>
+
+<nav class="mode-nav">
+  <button class="mode-tab active" onclick="switchMode('medindex',this)">📚 All Meds</button>
+  <button class="mode-tab" onclick="switchMode('flashcard',this)">🃏 Flashcards</button>
+  <button class="mode-tab" onclick="switchMode('recall',this)">💭 Active Recall</button>
+  <button class="mode-tab" onclick="switchMode('quiz',this)">📝 Mini Quiz</button>
+  <button class="mode-tab" onclick="switchMode('rapid',this)">⚡ Rapid Review</button>
+  <button class="mode-tab" onclick="switchMode('exam',this)">⏱️ Timed Exam</button>
+  <button class="mode-tab" onclick="switchMode('matchup',this)">🎯 Match-Up</button>
+  <button class="mode-tab" onclick="switchMode('namedrugm',this)">🔍 Name That Drug</button>
+  <button class="mode-tab" onclick="switchMode('blitz',this)">⚡ Lightning Blitz</button>
+  <button class="mode-tab" onclick="switchMode('sortit',this)">🗂️ Sort It Out</button>
+  <button class="mode-tab" onclick="switchMode('weakspots',this)">📊 Weak Spots</button>
+</nav>
+
+<main>
+
+<!-- ════ FLASHCARDS ════ -->
+<div id="panel-medindex" class="mode-panel active">
+  <div class="mode-hd">
+    <div class="mode-title">📚 Full Medication Index</div>
+    <div class="mode-desc">Every medication from your uploaded Psychosis & Bipolar med sheet is listed below, grouped by section. The interactive games and flashcards in this file remain centered on the antipsychotic set.</div>
+  </div>
+  <div class="card">
+    <div class="rapid-grid">
+      <div class="rapid-card"><div class="rc-name">Typical Antipsychotics (FGA)</div><div class="rc-snippet"><strong>Haloperidol</strong><br><strong>Chlorpromazine</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Atypical Antipsychotics (SGA)</div><div class="rc-snippet"><strong>Clozapine</strong><br><strong>Olanzapine</strong><br><strong>Quetiapine</strong><br><strong>Risperidone</strong><br><strong>Ziprasidone</strong><br><strong>Aripiprazole</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Medications to Treat EPS</div><div class="rc-snippet"><strong>Benztropine mesylate (Cogentin)</strong><br><strong>Trihexyphenidyl (Artane)</strong><br><strong>Diphenhydramine hydrochloride (Benadryl)</strong><br><strong>Amantadine</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Medications to Treat NMS</div><div class="rc-snippet"><strong>Dantrolene</strong><br><strong>Bromocriptine</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Mood Stabilizers</div><div class="rc-snippet"><strong>Lithium carbonate</strong><br><strong>Divalproex</strong><br><strong>Carbamazepine</strong><br><strong>Lamotrigine</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Anxiolytics used to treat bipolar disorder</div><div class="rc-snippet"><strong>Clonazepam</strong><br><strong>Lorazepam</strong></div></div>
+      <div class="rapid-card"><div class="rc-name">Antipsychotics used as sedatives to treat bipolar disorder</div><div class="rc-snippet"><strong>Olanzapine</strong><br><strong>Risperidone</strong><br><strong>Aripiprazole</strong><br><strong>Ziprasidone</strong><br><strong>Quetiapine</strong></div></div>
+    </div>
+    <div class="key-fact-box" style="margin-top:16px">Unique medications listed from your full sheet: 20 total. Repeated appearance across sections: olanzapine, risperidone, aripiprazole, ziprasidone, and quetiapine also reappear under bipolar-sedative antipsychotic use.</div>
+  </div>
+</div>
+
+<div id="panel-flashcard" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">🃏 Flashcards</div>
+    <div class="mode-desc">Filter by antipsychotic group and pick which fields show on the back. Tap the card to flip.</div>
+  </div>
+  <div class="fc-pills" id="fc-pills"></div>
+  <div class="field-sel" id="field-sel">
+    <label><input type="checkbox" value="use" checked> Therapeutic Use</label>
+    <label><input type="checkbox" value="moa" checked> Mechanism of Action</label>
+    <label><input type="checkbox" value="sideEffects" checked> Side Effects</label>
+    <label><input type="checkbox" value="nursing" checked> Nursing</label>
+    <label><input type="checkbox" value="teaching"> Patient Teaching</label>
+    <label><input type="checkbox" value="expected"> Expected Response</label>
+  </div>
+  <div class="fc-wrap" onclick="flipCard()">
+    <div class="flashcard" id="flashcard">
+      <div class="fc-front" id="fc-front">Loading…</div>
+      <div class="fc-back" id="fc-back">Loading…</div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="btn btn-secondary btn-sm" onclick="fcNav(-1)">← Prev</button>
+    <span class="fc-counter" id="fc-counter">1 / 11</span>
+    <button class="btn btn-secondary btn-sm" onclick="fcNav(1)">Next →</button>
+  </div>
+  <div class="fc-actions">
+    <button class="btn btn-yellow btn-sm" onclick="shuffleFC()">🔀 Shuffle</button>
+    <button class="btn btn-secondary btn-sm" onclick="resetFC()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- ════ ACTIVE RECALL ════ -->
+<div id="panel-recall" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">💭 Active Recall</div>
+    <div class="mode-desc">Write your answer, then reveal and self-grade. Results feed your Weak Spots tracker for antipsychotics.</div>
+  </div>
+  <div id="recall-active">
+    <div class="card">
+      <div class="ar-field-lbl" id="ar-field">—</div>
+      <div class="ar-question" id="ar-q">—</div>
+      <textarea class="ar-input" id="ar-input" placeholder="Type your answer here…"></textarea>
+      <div class="ar-answer" id="ar-answer"></div>
+      <div class="self-grade" id="self-grade" style="display:none">
+        <button class="btn btn-green btn-sm" onclick="gradeAR(true)">✅ Got it</button>
+        <button class="btn btn-red btn-sm" onclick="gradeAR(false)">❌ Missed it</button>
+      </div>
+      <div class="ar-ctrl">
+        <button class="btn btn-primary btn-sm" id="ar-reveal-btn" onclick="revealAR()">Reveal Answer</button>
+        <button class="btn btn-secondary btn-sm" id="ar-next-btn" onclick="nextAR()" style="display:none">Next →</button>
+      </div>
+    </div>
+    <div class="prog-row" style="margin-top:6px">
+      <span id="ar-prog-lbl">0 of 0</span>
+      <span id="ar-score-lbl">0 correct</span>
+    </div>
+    <div class="prog-wrap"><div class="prog-bar" id="ar-prog" style="width:0%"></div></div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn btn-sm btn-teal" onclick="initAR()">🔄 Restart Recall</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MINI QUIZ ════ -->
+<div id="panel-quiz" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">📝 Mini Quiz</div>
+    <div class="mode-desc">NCLEX-style antipsychotic multiple choice with immediate rationale. Every answer is tracked for Weak Spots.</div>
+  </div>
+  <div id="quiz-start">
+    <div class="start-screen">
+      <div class="start-icon">📝</div>
+      <div class="start-title">Configure Your Quiz</div>
+      <div class="start-desc">Choose how many questions and what to focus on. Every answer includes a detailed rationale.</div>
+      <div class="settings-grid">
+        <div class="setting-item"><span class="setting-lbl">Questions</span>
+          <select id="quiz-count">
+            <option value="5">5</option><option value="10" selected>10</option>
+            <option value="15">15</option><option value="20">20</option>
+          </select>
+        </div>
+        <div class="setting-item"><span class="setting-lbl">Focus Area</span>
+          <select id="quiz-focus">
+            <option value="all">All Topics</option>
+            <option value="class">Drug Class</option>
+            <option value="moa">Mechanism of Action</option>
+            <option value="side">Side Effects</option>
+            <option value="nursing">Nursing Care</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="startQuiz()">Start Quiz →</button>
+    </div>
+  </div>
+  <div id="quiz-active" style="display:none">
+    <div class="score-disp">
+      <div><div class="score-num" id="quiz-score">0</div><div class="score-lbl">Score</div></div>
+      <div style="flex:1;padding-left:14px">
+        <div style="font-size:12px;color:var(--text2);margin-bottom:5px" id="quiz-qlbl">Q 1/10</div>
+        <div class="prog-wrap"><div class="prog-bar" id="quiz-prog" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="quiz-qtext" id="quiz-q">—</div>
+      <div class="quiz-opts" id="quiz-opts"></div>
+      <div class="rationale-box" id="quiz-rat"></div>
+      <button class="btn btn-primary btn-sm" id="quiz-next" onclick="nextQuizQ()" style="display:none;margin-top:10px">Next →</button>
+    </div>
+  </div>
+  <div id="quiz-results" style="display:none">
+    <div class="result-screen">
+      <div class="result-emoji" id="qr-emoji">🎉</div>
+      <div class="result-score" id="qr-score">—</div>
+      <div class="result-detail" id="qr-detail">—</div>
+      <div class="result-btns">
+        <button class="btn btn-primary" onclick="startQuiz()">Try Again</button>
+        <button class="btn btn-secondary" onclick="showQuizStart()">← Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ RAPID REVIEW ════ -->
+<div id="panel-rapid" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">⚡ Rapid Review</div>
+    <div class="mode-desc">Click any medication card to expand the full profile. This section now includes every medication from your uploaded Psychosis & Bipolar med sheet.</div>
+  </div>
+  <div class="filter-row" id="rapid-filters"></div>
+  <div class="rapid-grid" id="rapid-grid"></div>
+</div>
+
+<!-- ════ TIMED EXAM ════ -->
+<div id="panel-exam" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">⏱️ Timed Exam Drill</div>
+    <div class="mode-desc">Race the clock on your antipsychotics deck. Auto-advances on timeout and flags missed items for review.</div>
+  </div>
+  <div id="exam-start">
+    <div class="start-screen">
+      <div class="start-icon">⏱️</div>
+      <div class="start-title">Set Up Your Exam</div>
+      <div class="start-desc">Timed questions with automatic timeout. Build exam-day confidence!</div>
+      <div class="settings-grid">
+        <div class="setting-item"><span class="setting-lbl">Questions</span>
+          <select id="exam-count">
+            <option value="5">5</option><option value="10" selected>10</option>
+            <option value="15">15</option><option value="20">20</option>
+          </select>
+        </div>
+        <div class="setting-item"><span class="setting-lbl">Time / Question</span>
+          <select id="exam-time">
+            <option value="30">30 sec</option><option value="45" selected>45 sec</option>
+            <option value="60">60 sec</option><option value="90">90 sec</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="startExam()">Start Exam →</button>
+    </div>
+  </div>
+  <div id="exam-active" style="display:none">
+    <div class="exam-hd">
+      <div><div class="timer-display" id="exam-timer">45</div><div class="timer-lbl">SECONDS</div></div>
+      <div style="text-align:right">
+        <div style="font-size:22px;font-weight:900;color:var(--pu)" id="exam-live-score">0</div>
+        <div class="score-lbl" id="exam-qlbl">Q 1/10</div>
+      </div>
+    </div>
+    <div class="prog-wrap" style="margin-bottom:13px"><div class="prog-bar" id="exam-prog" style="width:0%"></div></div>
+    <div class="card">
+      <div class="quiz-qtext" id="exam-q">—</div>
+      <div class="quiz-opts" id="exam-opts"></div>
+      <div class="rationale-box" id="exam-rat"></div>
+      <button class="btn btn-primary btn-sm" id="exam-next" onclick="nextExamQ()" style="display:none;margin-top:10px">Next →</button>
+    </div>
+  </div>
+  <div id="exam-results" style="display:none">
+    <div class="result-screen">
+      <div class="result-emoji" id="er-emoji">⏱️</div>
+      <div class="result-score" id="er-score">—</div>
+      <div class="result-detail" id="er-detail">—</div>
+      <div id="er-missed-list" class="missed-list"></div>
+      <div class="result-btns">
+        <button class="btn btn-primary" onclick="startExam()">Retry</button>
+        <button class="btn btn-secondary" onclick="showExamStart()">← Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MATCH-UP GAME ════ -->
+<div id="panel-matchup" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">🎯 Match-Up Game</div>
+    <div class="mode-desc">Click a drug name on the left, then click its matching property on the right. No peeking! Wrong matches shake and reset. 3 rounds to clear all 11 drugs.</div>
+  </div>
+  <div id="mu-game">
+    <div class="mu-controls">
+      <button class="mu-type-btn active" data-type="moa" onclick="setMUType(this)">⚙️ Mechanism</button>
+      <button class="mu-type-btn" data-type="phClass" onclick="setMUType(this)">🏷️ Drug Class</button>
+      <button class="mu-type-btn" data-type="keyFact" onclick="setMUType(this)">⭐ Key Fact</button>
+      <div class="mu-stats">
+        <div class="mu-stat">Matched: <span class="mu-stat-val" id="mu-matched">0</span>/11</div>
+        <div class="mu-stat">Errors: <span class="mu-stat-val" id="mu-errors" style="color:var(--red)">0</span></div>
+      </div>
+    </div>
+    <div class="mu-round-badge" id="mu-round-badge">Round 1 of 3</div>
+    <div class="mu-grid">
+      <div><div class="mu-col-hd">💊 Drug Name</div><div class="mu-col" id="mu-left"></div></div>
+      <div><div class="mu-col-hd" id="mu-right-hd">⚙️ Mechanism of Action</div><div class="mu-col" id="mu-right"></div></div>
+    </div>
+    <div style="text-align:center;margin-top:6px">
+      <button class="btn btn-secondary btn-sm" onclick="restartMU()">↺ Restart Game</button>
+    </div>
+  </div>
+  <div id="mu-complete" style="display:none">
+    <div class="mu-complete-banner">
+      <div class="mu-complete-emoji">🏆</div>
+      <div class="mu-complete-score" id="mu-final-score">11/11</div>
+      <div class="mu-complete-msg" id="mu-final-msg">All drugs matched!</div>
+      <div class="result-btns" style="justify-content:center">
+        <button class="btn btn-green" onclick="restartMU()">▶ Play Again</button>
+        <button class="mu-type-btn" data-type="phClass" onclick="setMUTypeAndRestart(this)" style="padding:9px 18px">Try: Drug Class</button>
+        <button class="mu-type-btn" data-type="keyFact" onclick="setMUTypeAndRestart(this)" style="padding:9px 18px">Try: Key Facts</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ NAME THAT DRUG ════ -->
+<div id="panel-namedrugm" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">🔍 Name That Drug</div>
+    <div class="mode-desc">Clues are revealed one at a time. Guess with fewer clues = more points! Max 4 pts per drug × 10 drugs = 40 points possible.</div>
+  </div>
+  <div id="ntd-start">
+    <div class="start-screen">
+      <div class="start-icon">🔍</div>
+      <div class="start-title">Name That Drug!</div>
+      <div class="start-desc">You'll see up to 4 progressive clues about a drug. Guess it after Clue 1 = 4 pts. After Clue 2 = 3 pts. After Clue 3 = 2 pts. After Clue 4 = 1 pt. Wrong at any point = 0 pts and next question.</div>
+      <button class="btn btn-primary" onclick="startNTD()">Play Now →</button>
+    </div>
+  </div>
+  <div id="ntd-active" style="display:none">
+    <div class="ntd-header">
+      <div>
+        <div class="ntd-round-info" id="ntd-round-lbl">Drug 1 of 10</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px">Clues revealed: <span id="ntd-clues-used">0</span>/4</div>
+      </div>
+      <div>
+        <div class="ntd-points-pill">⭐ <span id="ntd-total-score">0</span> <span class="ntd-total-pts">pts</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ntd-clue-area" id="ntd-clues"></div>
+      <div class="ntd-pts-hint"><span class="ntd-pts-now" id="ntd-pts-now">4</span>pts if you guess now</div>
+      <div class="ntd-opts" id="ntd-opts"></div>
+      <div class="ntd-ctrl">
+        <button class="btn btn-teal btn-sm" id="ntd-next-clue-btn" onclick="revealNextClue()">💡 Next Clue (−1 pt)</button>
+        <button class="btn btn-secondary btn-sm" id="ntd-skip-btn" onclick="skipNTD()">⏭ Skip (0 pts)</button>
+      </div>
+    </div>
+  </div>
+  <div id="ntd-results" style="display:none">
+    <div class="result-screen">
+      <div class="result-emoji" id="ntdr-emoji">🔍</div>
+      <div class="result-score" id="ntdr-score">—</div>
+      <div class="result-detail" id="ntdr-detail">—</div>
+      <div class="ntd-results-grid" id="ntdr-breakdown"></div>
+      <div class="result-btns" style="margin-top:10px">
+        <button class="btn btn-primary" onclick="startNTD()">Play Again</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('ntd-start').style.display='block';document.getElementById('ntd-results').style.display='none'">← Menu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ LIGHTNING BLITZ ════ -->
+<div id="panel-blitz" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">⚡ Lightning Blitz</div>
+    <div class="mode-desc">3 lives. 10 seconds per question. Build streaks to multiply your score. How high can you go?</div>
+  </div>
+  <div id="blitz-start-screen">
+    <div class="start-screen">
+      <div class="start-icon">⚡</div>
+      <div class="start-title">Lightning Blitz</div>
+      <div class="start-desc">Answer fast — you get <strong>3 lives ❤️</strong> and <strong>10 seconds</strong> per question. Correct streaks multiply your points! 🔥 Wrong answers or timeouts cost a life.</div>
+      <button class="btn btn-primary" style="font-size:15px;padding:12px 28px" onclick="startBlitz()">Start Blitz! ⚡</button>
+    </div>
+  </div>
+  <div id="blitz-active-screen" style="display:none">
+    <div class="blitz-hd">
+      <div class="blitz-lives" id="blitz-lives-disp">❤️❤️❤️</div>
+      <div class="blitz-streak-badge" id="blitz-streak-badge"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--text3)" id="blitz-q-counter">Q 1 / 30</div>
+    </div>
+    <div class="blitz-score-hero">
+      <div class="score-big" id="blitz-score-disp">0</div>
+      <div class="score-lbl-sm">POINTS</div>
+    </div>
+    <div class="blitz-timer-bar"><div class="blitz-timer-fill" id="blitz-timer-fill" style="width:100%"></div></div>
+    <div class="card" style="padding:18px">
+      <div class="blitz-q-box" id="blitz-q">—</div>
+      <div class="blitz-feedback" id="blitz-feedback"></div>
+      <div class="blitz-opts-grid" id="blitz-opts"></div>
+    </div>
+  </div>
+  <div id="blitz-over-screen" style="display:none">
+    <div class="blitz-game-over">
+      <div class="blitz-go-emoji" id="blitz-go-emoji">⚡</div>
+      <div class="blitz-go-score" id="blitz-go-score">0</div>
+      <div class="blitz-go-sub" id="blitz-go-sub">—</div>
+      <div class="blitz-stat-row">
+        <div class="blitz-stat-chip"><div class="blitz-chip-num" id="blitz-stat-correct">0</div><div class="blitz-chip-lbl">Correct</div></div>
+        <div class="blitz-stat-chip"><div class="blitz-chip-num" id="blitz-stat-qs">0</div><div class="blitz-chip-lbl">Answered</div></div>
+        <div class="blitz-stat-chip"><div class="blitz-chip-num" id="blitz-stat-streak">0</div><div class="blitz-chip-lbl">Best Streak</div></div>
+      </div>
+      <div class="result-btns">
+        <button class="btn btn-primary" onclick="startBlitz()">⚡ Play Again</button>
+        <button class="btn btn-secondary" onclick="resetBlitz()">← Menu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SORT IT OUT ════ -->
+<div id="panel-sortit" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">🗂️ Sort It Out</div>
+    <div class="mode-desc">A drug appears — click the correct category bucket. Streaks earn bonus points. Can you go perfect?</div>
+  </div>
+  <div id="sortit-start-screen">
+    <div class="start-screen">
+      <div class="start-icon">🗂️</div>
+      <div class="start-title">Sort It Out</div>
+      <div class="start-desc">All <strong>8 antipsychotics</strong> appear in random order. Tap the right category — <strong>FGA, Clozapine, or Other SGAs</strong>. Build a streak for bonus points. Wrong answers reveal the correct bucket.</div>
+      <button class="btn btn-primary" style="font-size:15px;padding:12px 28px" onclick="initSort()">Start Sorting 🗂️</button>
+    </div>
+  </div>
+  <div id="sortit-active-screen" style="display:none">
+    <div class="sort-score-strip">
+      <div class="sort-mini-stat"><div class="sort-mini-num" id="sort-correct-cnt" style="color:var(--green)">0</div><div class="sort-mini-lbl">Correct</div></div>
+      <div class="sort-mini-stat"><div class="sort-mini-num" id="sort-wrong-cnt" style="color:var(--red)">0</div><div class="sort-mini-lbl">Wrong</div></div>
+      <div class="sort-mini-stat"><div class="sort-mini-num" id="sort-remaining-cnt">11</div><div class="sort-mini-lbl">Left</div></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--text3);margin-bottom:5px">
+      <span id="sort-prog-lbl">1 / 11</span><span id="sort-streak-lbl" style="color:var(--yellow-mid)"></span>
+    </div>
+    <div class="prog-wrap" style="margin-bottom:16px"><div class="prog-bar" id="sort-prog-bar" style="width:0%"></div></div>
+    <div class="sort-card-hero" id="sort-card-hero">
+      <div class="sort-drug-name" id="sort-drug-name">—</div>
+      <div class="sort-drug-class" id="sort-drug-class">—</div>
+    </div>
+    <div class="sort-feedback-row" id="sort-feedback"></div>
+    <div class="sort-buckets-row">
+      <button class="sort-bucket-btn b-dopa" id="sbtn-dopa" onclick="sortAnswer(&quot;Typical Antipsychotics (FGA)&quot;)">🟣<br>Typical<br>Antipsychotic (FGA)</button>
+      <button class="sort-bucket-btn b-anti" id="sbtn-anti" onclick="sortAnswer(&quot;Atypical Antipsychotics - Clozapine&quot;)">🟢<br>Clozapine<br>Special Focus</button>
+      <button class="sort-bucket-btn b-alz" id="sbtn-alz" onclick="sortAnswer(&quot;Atypical Antipsychotics - Other SGAs&quot;)">🔵<br>Other<br>SGAs</button>
+    </div>
+  </div>
+  <div id="sortit-over-screen" style="display:none">
+    <div class="blitz-game-over">
+      <div class="blitz-go-emoji" id="sort-go-emoji">🗂️</div>
+      <div class="blitz-go-score" id="sort-go-score">—</div>
+      <div class="blitz-go-sub" id="sort-go-sub">—</div>
+      <div class="sort-go-grid">
+        <div class="sort-go-card"><div class="sort-go-num" id="sort-go-correct" style="color:var(--green)">0</div><div class="sort-go-lbl">Correct</div></div>
+        <div class="sort-go-card"><div class="sort-go-num" id="sort-go-wrong" style="color:var(--red)">0</div><div class="sort-go-lbl">Wrong</div></div>
+        <div class="sort-go-card"><div class="sort-go-num" id="sort-go-acc">0%</div><div class="sort-go-lbl">Accuracy</div></div>
+        <div class="sort-go-card"><div class="sort-go-num" id="sort-go-streak" style="color:var(--yellow-mid)">0</div><div class="sort-go-lbl">Best Streak</div></div>
+      </div>
+      <div class="result-btns">
+        <button class="btn btn-primary" onclick="initSort()">🗂️ Play Again</button>
+        <button class="btn btn-secondary" onclick="resetSort()">← Menu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ WEAK SPOTS ════ -->
+<div id="panel-weakspots" class="mode-panel">
+  <div class="mode-hd">
+    <div class="mode-title">📊 Weak Spots Tracker</div>
+    <div class="mode-desc">Accuracy per drug tracked across all quiz, recall, and game modes. Stored in your browser.</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num" id="ws-total">0</div><div class="stat-lbl">Total Answered</div></div>
+    <div class="stat-box"><div class="stat-num" id="ws-correct">0</div><div class="stat-lbl">Correct</div></div>
+    <div class="stat-box"><div class="stat-num" id="ws-acc">—</div><div class="stat-lbl">Accuracy</div></div>
+  </div>
+  <div id="ws-list"></div>
+  <div style="text-align:center;margin-top:14px">
+    <button class="btn btn-sm" style="background:var(--red-pale);color:var(--red);border:1px solid var(--red)"
+      onclick="clearProgress()">🗑 Clear All Progress</button>
+  </div>
+</div>
+
+</main>
+<script>
+function escapeHTML(str){
+  return String(str).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+//  DRUG DATABASE
+// ══════════════════════════════════════════════════════════════════
+const DRUGS=[
+  {
+    "id": "haloperidol",
+    "name": "Haloperidol",
+    "short": "Haloperidol",
+    "route": "",
+    "phClass": "Butyrophenone / Typical antipsychotic (FGA)",
+    "category": "Typical Antipsychotics (FGA)",
+    "use": "Schizophrenia, bipolar disorder, and psychosis.",
+    "moa": "Blocks receptors for dopamine, acetylcholine, histamine, and norepinephrine.",
+    "sideEffects": [
+      "EPS (acute dystonia, parkinsonism, akathisia, tardive dyskinesia)",
+      "Neuroleptic malignant syndrome (NMS)",
+      "Orthostatic hypotension",
+      "Sedation",
+      "Sexual dysfunction",
+      "Agranulocytosis",
+      "Anticholinergic effects",
+      "Dysrhythmias / prolonged QT interval"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Contraindicated in glaucoma and cardiovascular disease",
+      "Use caution with urinary hesitancy, constipation, and tachycardia",
+      "Avoid alcohol",
+      "Drug interactions: anticholinergics, Parkinson's drugs, and antihypertensives"
+    ],
+    "teaching": "Teach side effects clearly. Avoid alcohol. Report EPS symptoms, fever/rigidity, palpitations, severe constipation, or urinary retention.",
+    "expected": "Decreased positive symptoms of schizophrenia, suppression of acute episodes, prevention of acute exacerbations, and maintenance of the highest possible level of functioning.",
+    "keyFact": "High-yield FGA: watch for EPS, NMS, orthostatic hypotension, sedation, prolonged QT, and agranulocytosis."
+  },
+  {
+    "id": "chlorpromazine",
+    "name": "Chlorpromazine",
+    "short": "Chlorpromazine",
+    "route": "",
+    "phClass": "Phenothiazine / Typical antipsychotic (FGA)",
+    "category": "Typical Antipsychotics (FGA)",
+    "use": "Schizophrenia, bipolar disorder, and psychosis.",
+    "moa": "Blocks receptors for dopamine, acetylcholine, histamine, and norepinephrine.",
+    "sideEffects": [
+      "EPS (acute dystonia, parkinsonism, akathisia, tardive dyskinesia)",
+      "Neuroleptic malignant syndrome (NMS)",
+      "Orthostatic hypotension",
+      "Sedation",
+      "Sexual dysfunction",
+      "Agranulocytosis",
+      "Anticholinergic effects",
+      "Dysrhythmias / prolonged QT interval"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Contraindicated in glaucoma and cardiovascular disease",
+      "Use caution with urinary hesitancy, constipation, and tachycardia",
+      "Avoid alcohol",
+      "Drug interactions: anticholinergics, Parkinson's drugs, and antihypertensives"
+    ],
+    "teaching": "Teach side effects clearly. Avoid alcohol. Report EPS symptoms, fever/rigidity, palpitations, severe constipation, or urinary retention.",
+    "expected": "Decreased positive symptoms of schizophrenia, suppression of acute episodes, prevention of acute exacerbations, and maintenance of the highest possible level of functioning.",
+    "keyFact": "Prototype-style FGA content in your sheet matches haloperidol for major risks: EPS, NMS, orthostasis, sedation, and QT problems."
+  },
+  {
+    "id": "clozapine",
+    "name": "Clozapine",
+    "short": "Clozapine",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Clozapine",
+    "use": "Schizophrenia only in the provided source; reserved for severe disease when safer alternatives have not worked.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Orthostatic hypotension",
+      "Anticholinergic effects",
+      "Agranulocytosis"
+    ],
+    "nursing": [
+      "REMS plus WBC and ANC monitoring is specific to clozapine",
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Teach to report signs of infection immediately"
+    ],
+    "teaching": "Report sore throat, fever, or other infection signs right away. Expect lab monitoring specific to this drug. Avoid alcohol and use caution with other sedating or anticholinergic drugs.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia.",
+    "keyFact": "Clozapine is the one with REMS plus WBC/ANC monitoring and infection teaching in your notes."
+  },
+  {
+    "id": "olanzapine",
+    "name": "Olanzapine",
+    "short": "Olanzapine",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Other SGAs",
+    "use": "Schizophrenia or bipolar disorders; also used to acutely control manic symptoms and help stabilize mood long term.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Extrapyramidal symptoms",
+      "Orthostatic hypotension",
+      "Anticholinergic effects"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Can be combined with a mood stabilizer"
+    ],
+    "teaching": "Teach sedation, orthostatic precautions, and metabolic syndrome risks. Avoid alcohol and use caution with other sedating medicines.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia and mood stabilization in bipolar disorder.",
+    "keyFact": "Shared SGA profile in your sheet: metabolic syndrome, sedation, EPS, orthostasis, anticholinergic effects."
+  },
+  {
+    "id": "quetiapine",
+    "name": "Quetiapine",
+    "short": "Quetiapine",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Other SGAs",
+    "use": "Schizophrenia or bipolar disorders; also used to acutely control manic symptoms and help stabilize mood long term.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Extrapyramidal symptoms",
+      "Orthostatic hypotension",
+      "Anticholinergic effects",
+      "Prolonged QT per source bipolar-sedative section"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Can be combined with a mood stabilizer"
+    ],
+    "teaching": "Teach sedation and fall precautions, orthostatic precautions, and metabolic syndrome risks. Avoid alcohol.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia and mood stabilization in bipolar disorder.",
+    "keyFact": "Quetiapine appears in your bipolar-sedative antipsychotic list and the source also flags prolonged QT in that section."
+  },
+  {
+    "id": "risperidone",
+    "name": "Risperidone",
+    "short": "Risperidone",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Other SGAs",
+    "use": "Schizophrenia or bipolar disorders; also used to acutely control manic symptoms and help stabilize mood long term.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Extrapyramidal symptoms",
+      "Orthostatic hypotension",
+      "Anticholinergic effects",
+      "Prolonged QT per source bipolar-sedative section"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Carbamazepine lowers risperidone levels per source material",
+      "Can be combined with a mood stabilizer"
+    ],
+    "teaching": "Teach sedation and orthostatic precautions. Avoid alcohol. Let the provider know about carbamazepine because it can lower risperidone levels.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia and mood stabilization in bipolar disorder.",
+    "keyFact": "Risperidone is one of the SGAs in your sheet specifically linked to carbamazepine lowering the level."
+  },
+  {
+    "id": "ziprasidone",
+    "name": "Ziprasidone",
+    "short": "Ziprasidone",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Other SGAs",
+    "use": "Schizophrenia or bipolar disorders; also used to acutely control manic symptoms and help stabilize mood long term.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Extrapyramidal symptoms",
+      "Orthostatic hypotension",
+      "Anticholinergic effects",
+      "Rash / Stevens-Johnson syndrome per source bipolar-sedative section"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Can be combined with a mood stabilizer"
+    ],
+    "teaching": "Teach sedation, orthostatic precautions, and to report rash right away. Avoid alcohol and be careful with other sedating medications.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia and mood stabilization in bipolar disorder.",
+    "keyFact": "Your source uniquely flags rash / Stevens-Johnson syndrome for ziprasidone in the bipolar antipsychotic section."
+  },
+  {
+    "id": "aripiprazole",
+    "name": "Aripiprazole",
+    "short": "Aripiprazole",
+    "route": "",
+    "phClass": "Atypical antipsychotic (SGA)",
+    "category": "Atypical Antipsychotics - Other SGAs",
+    "use": "Schizophrenia or bipolar disorders; also used to acutely control manic symptoms and help stabilize mood long term.",
+    "moa": "Blocks dopamine and serotonin; may also block receptors for norepinephrine, histamine, and acetylcholine.",
+    "sideEffects": [
+      "Metabolic syndrome (diabetes, dyslipidemia, weight gain)",
+      "Sedation",
+      "Extrapyramidal symptoms",
+      "Orthostatic hypotension",
+      "Anticholinergic effects",
+      "Prolonged QT per source bipolar-sedative section"
+    ],
+    "nursing": [
+      "Not recommended in older adults with dementia-related psychosis",
+      "Drug interactions: anticholinergics, alcohol, antihypertensives",
+      "Can be combined with a mood stabilizer"
+    ],
+    "teaching": "Teach sedation and orthostatic precautions, metabolic syndrome monitoring, and to avoid alcohol.",
+    "expected": "Decreased positive, negative, and cognitive symptoms of schizophrenia and mood stabilization in bipolar disorder.",
+    "keyFact": "Aripiprazole is grouped with the shared SGA profile in your notes and also appears in the bipolar-sedative antipsychotic list."
+  },
+  {
+    "id": "benztropine",
+    "name": "Benztropine mesylate (Cogentin)",
+    "short": "Benztropine",
+    "route": "Used IM or IV for intense dystonia; rapid symptom relief may occur.",
+    "phClass": "Anticholinergic agent",
+    "category": "Medications to Treat EPS",
+    "use": "Treats extrapyramidal symptoms (EPS), especially acute dystonia and parkinsonism caused by antipsychotic therapy.",
+    "moa": "Anticholinergic drug. Source material states benztropine blocks receptors for acetylcholine and improves dopamine/acetylcholine balance.",
+    "sideEffects": [
+      "Dry mouth",
+      "Blurred vision",
+      "Photophobia",
+      "Urinary retention",
+      "Constipation",
+      "Tachycardia"
+    ],
+    "nursing": [
+      "May be used IM or IV for intense dystonia with rapid relief",
+      "Beers Criteria warning: anticholinergic drugs are potentially inappropriate in geriatric patients",
+      "Use caution in glaucoma",
+      "Assess older adults for confusion, disorientation, agitation, and psychotic-like symptoms"
+    ],
+    "teaching": "Teach anticholinergic effects and to report urinary retention, constipation, worsening confusion, or vision changes.",
+    "expected": "Decreased dystonia or parkinsonism EPS; improved dopamine/acetylcholine balance; reduced tremors.",
+    "keyFact": "High-yield EPS rescue med for acute dystonia and parkinsonism; use caution in older adults and glaucoma."
+  },
+  {
+    "id": "trihexyphenidyl",
+    "name": "Trihexyphenidyl (Artane)",
+    "short": "Trihexyphenidyl",
+    "route": "",
+    "phClass": "Anticholinergic agent",
+    "category": "Medications to Treat EPS",
+    "use": "Used to treat antipsychotic-induced parkinsonism.",
+    "moa": "Anticholinergic drug. Class material groups it with benztropine as an anticholinergic used for EPS; trihexyphenidyl-specific mechanism details were not provided separately.",
+    "sideEffects": [
+      "Dry mouth",
+      "Blurred vision",
+      "Photophobia",
+      "Urinary retention",
+      "Constipation",
+      "Tachycardia"
+    ],
+    "nursing": [
+      "Used for parkinsonism EPS",
+      "Beers Criteria warning: anticholinergic drugs are potentially inappropriate in geriatric patients",
+      "Use caution in glaucoma",
+      "Assess older adults for confusion, disorientation, agitation, and psychotic-like symptoms"
+    ],
+    "teaching": "Teach anticholinergic effects and to report urinary retention, constipation, worsening confusion, or vision changes.",
+    "expected": "Decreased tremor, rigidity, drooling, shuffling gait, or other parkinsonism EPS; improves dopamine/acetylcholine balance.",
+    "keyFact": "Used for antipsychotic-induced parkinsonism; watch older adults closely for confusion and anticholinergic burden."
+  },
+  {
+    "id": "diphenhydramine",
+    "name": "Diphenhydramine hydrochloride (Benadryl)",
+    "short": "Diphenhydramine",
+    "route": "For intense dystonia, may be given IM or IV. Symptoms may resolve within minutes.",
+    "phClass": "Anticholinergic drug / antihistamine with anticholinergic effects",
+    "category": "Medications to Treat EPS",
+    "use": "Treats acute dystonia and parkinsonism EPS caused by antipsychotic therapy.",
+    "moa": "Blocks histamine H1 receptors and also has central anticholinergic activity; in parkinsonism, anticholinergic effects can help reduce tremor by decreasing acetylcholine activity.",
+    "sideEffects": [
+      "Drowsiness or sedation",
+      "Dizziness",
+      "Dry mouth",
+      "Blurred vision",
+      "Confusion",
+      "Constipation",
+      "Urinary retention or difficulty urinating"
+    ],
+    "nursing": [
+      "For intense dystonia, may be given IM or IV and symptoms may resolve within minutes",
+      "Use caution in older adults and in patients with memory or cognitive symptoms because anticholinergics can worsen confusion and cognition",
+      "Teach that it can cause drowsiness and impair alertness",
+      "Additive sedative effects with alcohol or other CNS depressants",
+      "Use caution in glaucoma or urinary retention or prostatic symptoms"
+    ],
+    "teaching": "Avoid alcohol and other CNS depressants. Expect drowsiness. Report worsening confusion or urinary retention.",
+    "expected": "Reduced tremor or improvement in acute dystonia or other EPS symptoms.",
+    "keyFact": "Fast-acting option for acute dystonia; sedation and confusion are major watch-outs."
+  },
+  {
+    "id": "amantadine",
+    "name": "Amantadine",
+    "short": "Amantadine",
+    "route": "",
+    "phClass": "Dopamine releaser",
+    "category": "Medications to Treat EPS",
+    "use": "Used to treat antipsychotic-induced parkinsonism.",
+    "moa": "Promotes release of dopamine from neurons and blocks dopamine reuptake, making more dopamine available in the synaptic cleft.",
+    "sideEffects": [
+      "Confusion",
+      "Light-headedness",
+      "Anxiety",
+      "Blurred vision",
+      "Urinary retention",
+      "Dry mouth"
+    ],
+    "nursing": [
+      "May be used for antipsychotic-induced parkinsonism",
+      "Monitor for CNS effects and anticholinergic effects",
+      "Antiparkinsonism drugs should not continue indefinitely; reassess after a few months because neuroleptic-induced parkinsonism often resolves"
+    ],
+    "teaching": "Report confusion or bothersome urinary retention. Reassessment may be needed because EPS-related parkinsonism often resolves.",
+    "expected": "Decreased parkinsonism EPS; improved tremor, rigidity, or shuffling gait.",
+    "keyFact": "Used for antipsychotic-induced parkinsonism; reassess need after a few months rather than continuing forever."
+  },
+  {
+    "id": "dantrolene",
+    "name": "Dantrolene",
+    "short": "Dantrolene",
+    "route": "",
+    "phClass": "Direct-acting muscle relaxant",
+    "category": "Medications to Treat NMS",
+    "use": "Used to treat neuroleptic malignant syndrome (NMS).",
+    "moa": "Reduces rigidity and hyperthermia.",
+    "sideEffects": [
+      ""
+    ],
+    "nursing": [
+      "Use with immediate withdrawal of the antipsychotic",
+      "Use supportive measures, cooling, and hydration",
+      "NMS is rare but serious and can be fatal if not treated promptly"
+    ],
+    "teaching": "NMS is an emergency. The causative antipsychotic must be stopped immediately and supportive treatment started promptly.",
+    "expected": "Decreased rigidity and hyperthermia with NMS.",
+    "keyFact": "NMS emergency drug used alongside stopping the antipsychotic and starting aggressive supportive care."
+  },
+  {
+    "id": "bromocriptine",
+    "name": "Bromocriptine",
+    "short": "Bromocriptine",
+    "route": "",
+    "phClass": "Dopamine receptor agonist",
+    "category": "Medications to Treat NMS",
+    "use": "Used to treat neuroleptic malignant syndrome (NMS).",
+    "moa": "May relieve CNS toxicity.",
+    "sideEffects": [
+      ""
+    ],
+    "nursing": [
+      "Use with immediate withdrawal of the antipsychotic",
+      "Use supportive measures, cooling, and hydration",
+      "NMS is rare but serious and can be fatal if not treated promptly"
+    ],
+    "teaching": "NMS is an emergency. The causative antipsychotic must be stopped immediately and supportive treatment started promptly.",
+    "expected": "Decreased CNS toxicity with NMS and improvement in severe NMS findings.",
+    "keyFact": "NMS emergency support med; use with antipsychotic withdrawal, cooling, hydration, and supportive care."
+  },
+  {
+    "id": "lithium",
+    "name": "Lithium carbonate",
+    "short": "Lithium",
+    "route": "Draw level in the morning, 12 hours after the evening dose.",
+    "phClass": "Mood stabilizer",
+    "category": "Mood Stabilizers",
+    "use": "Used for bipolar disorder to control acute manic episodes and provide prophylaxis against recurrent mania and depression.",
+    "moa": "Mechanism of action is unknown; may inhibit intracellular proteins, stabilize calcium channels, decrease neuronal activity, and modulate dopamine, glutamate, and GABA neurotransmission. Neuroprotective.",
+    "sideEffects": [
+      "GI effects (nausea, vomiting, diarrhea)",
+      "Hand tremors",
+      "Thirst and polyuria",
+      "Renal toxicity",
+      "Goiter and hypothyroidism",
+      "Teratogenesis",
+      "Toxicity if level is greater than 1.5 mEq/L"
+    ],
+    "nursing": [
+      "Baseline cardiac, hematologic, electrolyte, renal, and thyroid status",
+      "Draw level in the morning, 12 hours after the evening dose",
+      "Maintain fluids and prevent dehydration",
+      "Do not reduce sodium intake",
+      "Avoid diuretics, NSAIDs, and anticholinergics",
+      "Take with meals or milk",
+      "Avoid during pregnancy"
+    ],
+    "teaching": "Take as prescribed even if feeling better. Maintain fluid intake, do not cut sodium intake, avoid NSAIDs and diuretics, and report signs of toxicity.",
+    "expected": "Control of acute manic episodes and prophylaxis against recurrent mania and depression.",
+    "keyFact": "Classic mood stabilizer with narrow therapeutic range; dehydration and sodium changes can push levels toxic."
+  },
+  {
+    "id": "divalproex",
+    "name": "Divalproex",
+    "short": "Divalproex",
+    "route": "Therapeutic trough level: 50 to 120 mcg/mL at 12 hours.",
+    "phClass": "Antiepileptic drug / mood stabilizer",
+    "category": "Mood Stabilizers",
+    "use": "Used in bipolar disorder and acute mania to control symptoms and help prevent relapse into mania.",
+    "moa": "Action same as lithium per source wording.",
+    "sideEffects": [
+      "GI effects (nausea, vomiting, diarrhea)",
+      "Thrombocytopenia",
+      "Pancreatitis",
+      "Liver failure",
+      "Teratogenicity"
+    ],
+    "nursing": [
+      "Therapeutic trough level: 50 to 120 mcg/mL at 12 hours",
+      "Monitor for thrombocytopenia, pancreatitis, and liver failure",
+      "Immediate withdrawal if toxicity occurs",
+      "Can be used alone or in combination with other drugs"
+    ],
+    "teaching": "Report abdominal pain, bruising, bleeding, or signs of liver problems. Follow lab monitoring closely.",
+    "expected": "Reduced symptoms of acute mania and prevention of relapse into mania.",
+    "keyFact": "Mood stabilizer for acute mania; major watch-outs are thrombocytopenia, pancreatitis, liver failure, and teratogenicity."
+  },
+  {
+    "id": "carbamazepine",
+    "name": "Carbamazepine",
+    "short": "Carbamazepine",
+    "route": "Monitor trough plasma level; source lists 4 to 12 mcg/mL.",
+    "phClass": "Antiepileptic drug / mood stabilizer",
+    "category": "Mood Stabilizers",
+    "use": "Used to reduce symptoms of bipolar disorder and protect against recurrence of mania.",
+    "moa": "Decreases neuronal synapse activity in the CNS by affecting sodium channels.",
+    "sideEffects": [
+      "Visual changes",
+      "Ataxia",
+      "Vertigo",
+      "Unsteadiness",
+      "Headache",
+      "Thrombocytopenia"
+    ],
+    "nursing": [
+      "Monitor trough plasma level",
+      "Source lists therapeutic level 4 to 12 mcg/mL",
+      "Decreases risperidone levels"
+    ],
+    "teaching": "Monitor for neuro side effects such as visual changes, vertigo, or ataxia and follow trough level monitoring.",
+    "expected": "Reduced bipolar disorder symptoms and protection against recurrence of mania.",
+    "keyFact": "Mood stabilizer with sodium-channel effects; important interaction in your source is lowered risperidone levels."
+  },
+  {
+    "id": "lamotrigine",
+    "name": "Lamotrigine",
+    "short": "Lamotrigine",
+    "route": "Monitor lamotrigine level: 1 to 5 mcg/L.",
+    "phClass": "Antiepileptic drug / mood stabilizer",
+    "category": "Mood Stabilizers",
+    "use": "Used for long-term maintenance of bipolar disorder and prevention of relapses; can be used with other mood stabilizers.",
+    "moa": "Stabilizes neuronal membranes by inhibiting sodium transport.",
+    "sideEffects": [
+      "Nausea and vomiting",
+      "Headache",
+      "Dizziness",
+      "Vision problems",
+      "Stevens-Johnson syndrome"
+    ],
+    "nursing": [
+      "Suicide precautions",
+      "Assess for rash",
+      "Monitor lamotrigine level: 1 to 5 mcg/L",
+      "Teratogenic",
+      "Drug interaction: anti-dysrhythmias"
+    ],
+    "teaching": "Report any rash immediately. Use suicide precautions and follow medication monitoring closely.",
+    "expected": "Prevention of relapse and maintenance of bipolar disorder.",
+    "keyFact": "Maintenance bipolar med with a major rash warning: think Stevens-Johnson syndrome."
+  },
+  {
+    "id": "clonazepam",
+    "name": "Clonazepam",
+    "short": "Clonazepam",
+    "route": "",
+    "phClass": "Benzodiazepine",
+    "category": "Anxiolytics Used to Treat Bipolar Disorder",
+    "use": "Used in bipolar disorder for mania or insomnia and anxiety.",
+    "moa": "Produces sedative effects in the CNS by stimulating inhibitory GABA receptors.",
+    "sideEffects": [
+      "Drowsiness",
+      "Ataxia",
+      "Visual changes",
+      "Difficulty urinating",
+      "Constipation",
+      "Palpitations"
+    ],
+    "nursing": [
+      "Monitor for falls",
+      "Monitor for and teach anticholinergic symptoms",
+      "Addictive drug",
+      "Drug interactions: other CNS depressants and alcohol"
+    ],
+    "teaching": "Avoid alcohol and other CNS depressants. Use caution with falls and sedation. Dependence risk exists.",
+    "expected": "Decreased mania or insomnia symptoms.",
+    "keyFact": "Benzodiazepine used for mania-related insomnia and anxiety; sedation, falls, and dependence matter."
+  },
+  {
+    "id": "lorazepam",
+    "name": "Lorazepam",
+    "short": "Lorazepam",
+    "route": "",
+    "phClass": "Benzodiazepine",
+    "category": "Anxiolytics Used to Treat Bipolar Disorder",
+    "use": "Used in bipolar disorder for mania or insomnia and anxiety.",
+    "moa": "Produces sedative effects in the CNS by stimulating inhibitory GABA receptors.",
+    "sideEffects": [
+      "Drowsiness",
+      "Ataxia",
+      "Visual changes",
+      "Difficulty urinating",
+      "Constipation",
+      "Palpitations"
+    ],
+    "nursing": [
+      "Monitor for falls",
+      "Monitor for and teach anticholinergic symptoms",
+      "Addictive drug",
+      "Drug interactions: other CNS depressants and alcohol"
+    ],
+    "teaching": "Avoid alcohol and other CNS depressants. Use caution with falls and sedation. Dependence risk exists.",
+    "expected": "Decreased mania or insomnia symptoms.",
+    "keyFact": "Benzodiazepine used for mania-related insomnia and anxiety; sedation, falls, and dependence matter."
+  }
+];
+// ══════════════════════════════════════════════════════════════════
+//  UTILITIES
+// ══════════════════════════════════════════════════════════════════
+const LETTERS=['A','B','C','D'];
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pct(c,t){return t>0?Math.round(c/t*100):0;}
+function trunc(s,n){return s&&s.length>n?s.slice(0,n)+'…':s;}
+
+// ══════════════════════════════════════════════════════════════════
+//  LOCALSTORAGE PROGRESS
+// ══════════════════════════════════════════════════════════════════
+const STORE='pp2_psychosis_antipsychotics_v1';
+function getProgress(){try{return JSON.parse(localStorage.getItem(STORE))||{};}catch{return{};}}
+function saveProgress(d){try{localStorage.setItem(STORE,JSON.stringify(d));}catch{}}
+function recordAnswer(drugId,correct){
+  const p=getProgress();
+  if(!p[drugId])p[drugId]={c:0,t:0};
+  p[drugId].t++;if(correct)p[drugId].c++;
+  saveProgress(p);updateBadge();
+}
+function updateBadge(){
+  const p=getProgress(),vals=Object.values(p);
+  if(!vals.length){document.getElementById('overall-badge').textContent='—%';return;}
+  const c=vals.reduce((s,v)=>s+v.c,0),t=vals.reduce((s,v)=>s+v.t,0);
+  document.getElementById('overall-badge').textContent=t>0?pct(c,t)+'%':'—%';
+}
+function clearProgress(){
+  if(confirm('Clear all progress data? This cannot be undone.'))
+    {localStorage.removeItem(STORE);updateBadge();renderWeakSpots();}
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  THEME
+// ══════════════════════════════════════════════════════════════════
+function toggleTheme(){
+  const dark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',dark?'light':'dark');
+  document.getElementById('theme-btn').textContent=dark?'🌙 Dark':'☀️ Light';
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  MODE SWITCHING
+// ══════════════════════════════════════════════════════════════════
+function switchMode(mode,el){
+  document.querySelectorAll('.mode-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+mode).classList.add('active');
+  el.classList.add('active');
+  if(mode==='weakspots')renderWeakSpots();
+  if(mode==='recall')initAR();
+  if(mode==='rapid')renderRapid();
+  if(mode==='matchup')initMatchUp();
+  // New games — just show their start screens (don't auto-start)
+  if(mode==='blitz'){
+    clearInterval(blitzTimerInt);
+    if(document.getElementById('blitz-active-screen').style.display==='block'){/* mid-game, leave it */}
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  FLASHCARDS
+// ══════════════════════════════════════════════════════════════════
+let fcDrugs=[...DRUGS],fcIdx=0,fcFlipped=false;
+
+function initFlashcards(){
+  const cats=[...new Set(DRUGS.map(d=>d.category))];
+  const pills=document.getElementById('fc-pills');
+  pills.innerHTML=`<button class="fc-pill active" data-cat="all" onclick="filterFC(this)">All (${DRUGS.length})</button>`
+    +cats.map(c=>`<button class="fc-pill" data-cat="${c}" onclick="filterFC(this)">${c} (${DRUGS.filter(d=>d.category===c).length})</button>`).join('');
+  renderFC();
+}
+
+function filterFC(btn){
+  document.querySelectorAll('.fc-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const cat=btn.dataset.cat;
+  fcDrugs=cat==='all'?[...DRUGS]:DRUGS.filter(d=>d.category===cat);
+  fcIdx=0;fcFlipped=false;renderFC();
+}
+
+function getCheckedFields(){
+  return [...document.querySelectorAll('.field-sel input:checked')].map(i=>i.value);
+}
+
+function renderFC(){
+  if(!fcDrugs.length)return;
+  const d=fcDrugs[fcIdx];
+  const fc=document.getElementById('flashcard');
+  fc.classList.remove('flipped');fcFlipped=false;
+  const catColor=d.category.includes('Other SGAs')?'var(--teal)':d.category.includes('Clozapine')?'var(--green)':'var(--pu)';
+  document.getElementById('fc-front').innerHTML=`
+    <span class="cat-chip" style="background:${catColor}22;color:${catColor};margin-bottom:8px">${d.category}</span>
+    <div class="fc-drug-name">${d.name}</div>
+    <div class="fc-class-badge">${d.phClass}</div>
+    ${d.route ? `<div class="fc-route">📍 ${d.route}</div>` : ''}
+    <div class="flip-hint">👆 Tap to reveal details</div>`;
+  const fieldMap={
+    use:{label:'Therapeutic Use',val:d.use},
+    moa:{label:'Mechanism of Action',val:d.moa},
+    sideEffects:{label:'Adverse Effects',val:`<ul>${d.sideEffects.map(s=>`<li>${s}</li>`).join('')}</ul>`},
+    nursing:{label:'Nursing Considerations',val:`<ul>${d.nursing.map(n=>`<li>${n}</li>`).join('')}</ul>`},
+    teaching:{label:'Patient Teaching',val:d.teaching},
+    expected:{label:'Expected Response',val:d.expected}
+  };
+  document.getElementById('fc-back').innerHTML=`
+    <div style="margin-bottom:10px">
+      <div class="fc-drug-name" style="font-size:18px">${d.name}</div>
+      <div class="fc-class-badge" style="font-size:10px">${d.phClass}</div>
+    </div>
+    ${getCheckedFields().map(f=>fieldMap[f]?`<div class="back-field"><div class="back-label">${fieldMap[f].label}</div><div class="back-value">${fieldMap[f].val}</div></div>`:'').join('')}
+    <div class="key-fact-box">${d.keyFact}</div>`;
+  document.getElementById('fc-counter').textContent=`${fcIdx+1} / ${fcDrugs.length}`;
+}
+
+function flipCard(){
+  fcFlipped=!fcFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped',fcFlipped);
+}
+function fcNav(dir){fcIdx=(fcIdx+dir+fcDrugs.length)%fcDrugs.length;renderFC();}
+function shuffleFC(){fcDrugs=shuffle(fcDrugs);fcIdx=0;renderFC();}
+function resetFC(){
+  fcDrugs=[...DRUGS];fcIdx=0;renderFC();
+  document.querySelectorAll('.fc-pill').forEach((p,i)=>p.classList.toggle('active',i===0));
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  ACTIVE RECALL
+// ══════════════════════════════════════════════════════════════════
+let arQs=[],arIdx=0,arCorrect=0;
+
+function buildARQuestions(){
+  const qs=[];
+  DRUGS.forEach(d=>{
+    qs.push({drug:d.name,id:d.id,field:'Drug Class',q:`What is the pharmacological class of ${d.name}?`,answer:d.phClass});
+    if(d.route){qs.push({drug:d.name,id:d.id,field:'Admin / Monitoring Note',q:`What administration or monitoring note is listed for ${d.name}?`,answer:d.route});}
+    qs.push({drug:d.name,id:d.id,field:'Therapeutic Use',q:`What is ${d.name} used for?`,answer:d.use});
+    qs.push({drug:d.name,id:d.id,field:'Mechanism of Action',q:`Explain the mechanism of action of ${d.name}.`,answer:d.moa});
+    qs.push({drug:d.name,id:d.id,field:'Adverse Effects',q:`List the key adverse/side effects of ${d.name}.`,answer:d.sideEffects.join('; ')});
+    qs.push({drug:d.name,id:d.id,field:'Nursing Considerations',q:`What are the nursing considerations for ${d.name}?`,answer:d.nursing.join('; ')});
+    qs.push({drug:d.name,id:d.id,field:'Expected Response',q:`What is the expected therapeutic response for ${d.name}?`,answer:d.expected});
+    qs.push({drug:d.name,id:d.id,field:'Patient Teaching',q:`What patient teaching applies to ${d.name}?`,answer:d.teaching});
+  });
+  return shuffle(qs);
+}
+
+function initAR(){
+  arQs=buildARQuestions();arIdx=0;arCorrect=0;
+  document.getElementById('ar-prog').style.width='0%';
+  document.getElementById('ar-prog-lbl').textContent=`0 of ${arQs.length}`;
+  document.getElementById('ar-score-lbl').textContent='0 correct';
+  renderAR();
+}
+
+function renderAR(){
+  if(arIdx>=arQs.length){
+    document.getElementById('ar-field').textContent='✅ Complete!';
+    document.getElementById('ar-q').textContent=`All ${arQs.length} questions done! Score: ${arCorrect}/${arQs.length}. Hit Restart to go again.`;
+    document.getElementById('ar-input').value='';document.getElementById('ar-input').style.display='none';
+    document.getElementById('ar-reveal-btn').style.display='none';
+    document.getElementById('ar-next-btn').style.display='none';
+    document.getElementById('self-grade').style.display='none';
+    document.getElementById('ar-answer').classList.remove('show');
+    return;
+  }
+  document.getElementById('ar-input').style.display='block';
+  const q=arQs[arIdx];
+  document.getElementById('ar-field').textContent=q.field+' — '+q.drug;
+  document.getElementById('ar-q').textContent=q.q;
+  document.getElementById('ar-input').value='';
+  const ans=document.getElementById('ar-answer');ans.classList.remove('show');ans.textContent='';
+  document.getElementById('self-grade').style.display='none';
+  document.getElementById('ar-reveal-btn').style.display='inline-flex';
+  document.getElementById('ar-next-btn').style.display='none';
+  const pct2=Math.round(arIdx/arQs.length*100);
+  document.getElementById('ar-prog').style.width=pct2+'%';
+  document.getElementById('ar-prog-lbl').textContent=`${arIdx} of ${arQs.length}`;
+  document.getElementById('ar-score-lbl').textContent=arCorrect+' correct';
+}
+function revealAR(){
+  const q=arQs[arIdx];
+  const ans=document.getElementById('ar-answer');
+  ans.innerHTML=`<strong>Answer:</strong> ${q.answer}`;
+  ans.classList.add('show');
+  document.getElementById('ar-reveal-btn').style.display='none';
+  document.getElementById('self-grade').style.display='flex';
+  document.getElementById('ar-next-btn').style.display='inline-flex';
+}
+function gradeAR(correct){
+  recordAnswer(arQs[arIdx].id,correct);
+  if(correct)arCorrect++;
+  document.getElementById('self-grade').style.display='none';
+  nextAR();
+}
+function nextAR(){arIdx++;renderAR();}
+
+// ══════════════════════════════════════════════════════════════════
+//  QUESTION GENERATOR
+// ══════════════════════════════════════════════════════════════════
+function getDistractors(drug,field,n=3){
+  const pool=DRUGS.filter(d=>d.id!==drug.id).map(d=>d[field]).filter(v=>v&&v!==drug[field]);
+  const uniq=[...new Set(pool)];
+  const chosen=shuffle(uniq).slice(0,n);
+  while(chosen.length<n){chosen.push('None of the above');}
+  return shuffle([drug[field],...chosen]);
+}
+
+function buildQuestions(focus='all',count=10){
+  const qs=[];
+  DRUGS.forEach(drug=>{
+    // Drug class
+    if(focus==='all'||focus==='class'){
+      qs.push({q:`What is the pharmacological class of ${drug.name}?`,
+        answer:drug.phClass,options:getDistractors(drug,'phClass'),
+        rationale:`${drug.name} is a ${drug.phClass}. ${drug.route?`Admin / monitoring note: ${drug.route}. `:``}Use: ${drug.use.split('.')[0]}.`,drugId:drug.id});
+    }
+    // MOA
+    if(focus==='all'||focus==='moa'){
+      qs.push({q:`Which statement BEST describes the mechanism of action of ${drug.name}?`,
+        answer:drug.moa,options:getDistractors(drug,'moa'),
+        rationale:`${drug.name} MOA: ${drug.moa}`,drugId:drug.id});
+    }
+    // Side effects
+    if((focus==='all'||focus==='side')&&drug.sideEffects.length>0){
+      const se=drug.sideEffects[0];
+      const wrongPool=shuffle(DRUGS.filter(d=>d.id!==drug.id).flatMap(d=>d.sideEffects));
+      const wrongs=wrongPool.filter(s=>!drug.sideEffects.includes(s)).slice(0,3);
+      if(wrongs.length>=3){
+        qs.push({q:`A patient receiving ${drug.name} is being monitored for adverse effects. Which finding is MOST associated with this medication?`,
+          answer:se,options:shuffle([se,...wrongs]),
+          rationale:`${drug.name} is associated with: ${se}. Other key SEs: ${drug.sideEffects.slice(1,4).join(', ')}.`,drugId:drug.id});
+      }
+    }
+    // Nursing
+    if((focus==='all'||focus==='nursing')&&drug.nursing.length>0){
+      const n1=drug.nursing[0];
+      const wrongPool=shuffle(DRUGS.filter(d=>d.id!==drug.id).flatMap(d=>d.nursing));
+      const wrongs=wrongPool.filter(n=>!drug.nursing.includes(n)).slice(0,3);
+      if(wrongs.length>=3){
+        qs.push({q:`A nurse is preparing to administer ${drug.name}. Which nursing action is MOST important?`,
+          answer:n1,options:shuffle([n1,...wrongs]),
+          rationale:`For ${drug.name}: ${n1}. Also: ${drug.nursing.slice(1,3).join('; ')}.`,drugId:drug.id});
+      }
+    }
+    // Reverse MOA
+    qs.push({q:`Which medication works by the following mechanism: "${drug.moa}"?`,
+      answer:drug.name,
+      options:shuffle([drug.name,...shuffle(DRUGS.filter(d=>d.id!==drug.id)).slice(0,3).map(d=>d.name)]),
+      rationale:`${drug.name} (${drug.phClass}) works by: ${drug.moa}`,drugId:drug.id});
+  });
+
+  // ── HIGH-YIELD SPECIALS ──
+  const specials=[
+    {
+        "q": "Which antipsychotic in your source has REMS plus WBC and ANC monitoring that is specific to it?",
+        "answer": "Clozapine",
+        "options": [
+            "Clozapine",
+            "Haloperidol",
+            "Risperidone",
+            "Ziprasidone"
+        ],
+        "rationale": "Your source states that REMS and WBC/ANC monitoring are specific to clozapine.",
+        "drugId": "clozapine"
+    },
+    {
+        "q": "A nurse is teaching a patient taking clozapine. Which instruction is MOST important?",
+        "answer": "Report signs of infection immediately",
+        "options": [
+            "Report signs of infection immediately",
+            "Stop the drug if mild nausea occurs",
+            "Increase sodium intake daily",
+            "Take the drug only in the morning"
+        ],
+        "rationale": "The uploaded med sheet specifically says to teach clozapine patients to report signs of infection immediately.",
+        "drugId": "clozapine"
+    },
+    {
+        "q": "Which antipsychotic class in your notes is most associated with EPS, NMS, orthostatic hypotension, sedation, and prolonged QT?",
+        "answer": "Typical antipsychotics (FGAs)",
+        "options": [
+            "Typical antipsychotics (FGAs)",
+            "Clozapine only",
+            "Mood stabilizers",
+            "Benzodiazepines"
+        ],
+        "rationale": "The FGA section for haloperidol and chlorpromazine lists EPS, NMS, orthostatic hypotension, sedation, agranulocytosis, anticholinergic effects, and prolonged QT dysrhythmias.",
+        "drugId": "haloperidol"
+    },
+    {
+        "q": "Which finding should the nurse watch for with haloperidol or chlorpromazine therapy?",
+        "answer": "Extrapyramidal symptoms",
+        "options": [
+            "Extrapyramidal symptoms",
+            "Pancreatitis",
+            "Polyuria and thirst",
+            "Stevens-Johnson syndrome as the main classic risk"
+        ],
+        "rationale": "The FGA section prominently lists EPS including acute dystonia, parkinsonism, akathisia, and tardive dyskinesia.",
+        "drugId": "chlorpromazine"
+    },
+    {
+        "q": "Which medication class is NOT recommended in older adults with dementia-related psychosis according to your antipsychotic sheet?",
+        "answer": "Both FGAs and SGAs in the antipsychotic sections",
+        "options": [
+            "Both FGAs and SGAs in the antipsychotic sections",
+            "Mood stabilizers only",
+            "Benzodiazepines only",
+            "None of the listed antipsychotics"
+        ],
+        "rationale": "Both the FGA and SGA antipsychotic sections state they are not recommended in older adults with dementia-related psychosis.",
+        "drugId": "olanzapine"
+    },
+    {
+        "q": "A patient takes risperidone and carbamazepine. What interaction from your source should the nurse remember?",
+        "answer": "Carbamazepine lowers risperidone levels",
+        "options": [
+            "Carbamazepine lowers risperidone levels",
+            "Risperidone raises carbamazepine to toxic levels",
+            "The combination causes lithium toxicity",
+            "The combination is listed as causing pancreatitis"
+        ],
+        "rationale": "Your source explicitly states that carbamazepine lowers risperidone levels.",
+        "drugId": "risperidone"
+    },
+    {
+        "q": "Which SGA is uniquely flagged in your source for rash or Stevens-Johnson syndrome in the bipolar antipsychotic section?",
+        "answer": "Ziprasidone",
+        "options": [
+            "Ziprasidone",
+            "Olanzapine",
+            "Clozapine",
+            "Aripiprazole"
+        ],
+        "rationale": "The uploaded sheet notes rash/SJS with ziprasidone in the section on antipsychotics used as sedatives to treat bipolar disorder.",
+        "drugId": "ziprasidone"
+    },
+    {
+        "q": "Which three SGAs are specifically flagged for prolonged QT in your source's bipolar antipsychotic section?",
+        "answer": "Risperidone, aripiprazole, and quetiapine",
+        "options": [
+            "Risperidone, aripiprazole, and quetiapine",
+            "Olanzapine, clozapine, and ziprasidone",
+            "Haloperidol, chlorpromazine, and clozapine",
+            "Risperidone, olanzapine, and ziprasidone"
+        ],
+        "rationale": "Your source specifically flags prolonged QT with risperidone, aripiprazole, and quetiapine in that bipolar antipsychotic section.",
+        "drugId": "quetiapine"
+    },
+    {
+        "q": "Which statement best matches the shared mechanism listed for the non-clozapine SGAs in your notes?",
+        "answer": "They block dopamine and serotonin and may also block norepinephrine, histamine, and acetylcholine receptors",
+        "options": [
+            "They block dopamine and serotonin and may also block norepinephrine, histamine, and acetylcholine receptors",
+            "They increase GABA at inhibitory synapses",
+            "They block only dopamine receptors with no serotonin effect",
+            "Their exact mechanism is unknown"
+        ],
+        "rationale": "That is the shared mechanism statement in the SGA section for olanzapine, quetiapine, risperidone, ziprasidone, and aripiprazole.",
+        "drugId": "aripiprazole"
+    },
+    {
+        "q": "A patient with bipolar mania needs an antipsychotic that your sheet lists as usable for acute control and long-term mood stabilization. Which is an example?",
+        "answer": "Olanzapine",
+        "options": [
+            "Olanzapine",
+            "Benztropine",
+            "Lithium only",
+            "Dantrolene"
+        ],
+        "rationale": "The bipolar antipsychotic section lists olanzapine, risperidone, aripiprazole, ziprasidone, and quetiapine for acute bipolar mania and long-term mood stabilization.",
+        "drugId": "olanzapine"
+    },
+    {
+        "q": "Which adverse-effect cluster is most associated with the broader SGA group in your notes?",
+        "answer": "Metabolic syndrome, sedation, EPS, orthostatic hypotension, and anticholinergic effects",
+        "options": [
+            "Metabolic syndrome, sedation, EPS, orthostatic hypotension, and anticholinergic effects",
+            "Polyuria, renal toxicity, and hypothyroidism",
+            "Pancreatitis, liver failure, and thrombocytopenia",
+            "Photophobia, urinary retention, and tachycardia only"
+        ],
+        "rationale": "That is the shared adverse-effect profile listed for the broader SGA group in your uploaded source.",
+        "drugId": "olanzapine"
+    },
+    {
+        "q": "Which antipsychotic in your notes is reserved for severe schizophrenia when safer alternatives have not worked?",
+        "answer": "Clozapine",
+        "options": [
+            "Clozapine",
+            "Haloperidol",
+            "Olanzapine",
+            "Aripiprazole"
+        ],
+        "rationale": "The source says clozapine is reserved for severe disease when safer alternatives have not worked.",
+        "drugId": "clozapine"
+    }
+];
+
+  const combined=shuffle([...qs,...specials]);
+  return combined.slice(0,count);
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  MINI QUIZ
+// ══════════════════════════════════════════════════════════════════
+let quizQs=[],quizIdx=0,quizScore=0,quizAnswered=false;
+function showQuizStart(){
+  document.getElementById('quiz-start').style.display='block';
+  document.getElementById('quiz-active').style.display='none';
+  document.getElementById('quiz-results').style.display='none';
+}
+function startQuiz(){
+  const count=parseInt(document.getElementById('quiz-count').value);
+  const focus=document.getElementById('quiz-focus').value;
+  quizQs=buildQuestions(focus,count);quizIdx=0;quizScore=0;quizAnswered=false;
+  document.getElementById('quiz-start').style.display='none';
+  document.getElementById('quiz-results').style.display='none';
+  document.getElementById('quiz-active').style.display='block';
+  renderQuizQ();
+}
+function renderQuizQ(){
+  if(quizIdx>=quizQs.length){showQuizResults();return;}
+  const q=quizQs[quizIdx];
+  document.getElementById('quiz-prog').style.width=(quizIdx/quizQs.length*100)+'%';
+  document.getElementById('quiz-qlbl').textContent=`Q ${quizIdx+1}/${quizQs.length}`;
+  document.getElementById('quiz-score').textContent=quizScore;
+  document.getElementById('quiz-q').textContent=q.q;
+  document.getElementById('quiz-opts').innerHTML=q.options.map((opt,i)=>
+    `<button class="quiz-opt" onclick="answerQuiz(${i})"><span class="opt-letter">${LETTERS[i]}</span><span>${opt}</span></button>`).join('');
+  document.getElementById('quiz-rat').classList.remove('show');
+  document.getElementById('quiz-next').style.display='none';
+  quizAnswered=false;
+}
+function answerQuiz(idx){
+  if(quizAnswered)return;quizAnswered=true;
+  const q=quizQs[quizIdx],selected=q.options[idx],correct=selected===q.answer;
+  document.querySelectorAll('#quiz-opts .quiz-opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(q.options[i]===q.answer)b.classList.add('correct');
+    else if(i===idx&&!correct)b.classList.add('incorrect');
+  });
+  if(correct)quizScore++;
+  recordAnswer(q.drugId,correct);
+  const rat=document.getElementById('quiz-rat');
+  rat.innerHTML=`<span class="rat-label">${correct?'✅ Correct!':'❌ Incorrect'} — Rationale</span>${q.rationale}`;
+  rat.classList.add('show');
+  document.getElementById('quiz-next').style.display='inline-flex';
+}
+function nextQuizQ(){quizIdx++;renderQuizQ();}
+function showQuizResults(){
+  document.getElementById('quiz-active').style.display='none';
+  document.getElementById('quiz-results').style.display='block';
+  const p=pct(quizScore,quizQs.length);
+  document.getElementById('qr-score').textContent=`${quizScore}/${quizQs.length}`;
+  document.getElementById('qr-detail').textContent=`${p}% — ${p>=80?'Exam Ready! 🏆':p>=60?'Getting there! 📖':'Keep drilling! 💪'}`;
+  document.getElementById('qr-emoji').textContent=p>=80?'🏆':p>=60?'📚':'⏱️';
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  RAPID REVIEW
+// ══════════════════════════════════════════════════════════════════
+
+function rapidCatClass(cat){
+  if(/Typical Antipsychotics/.test(cat)) return '';
+  if(/Atypical Antipsychotics/.test(cat)) return 'rcat-alz';
+  if(/EPS/.test(cat)) return 'rcat-anti';
+  if(/NMS/.test(cat)) return 'rcat-anti';
+  if(/Mood Stabilizers/.test(cat)) return '';
+  if(/Anxiolytics/.test(cat)) return 'rcat-alz';
+  return '';
+}
+function renderRapidFilters(selectedCat='all'){
+  const cats=[...new Set(DRUGS.map(d=>d.category))];
+  const wrap=document.getElementById('rapid-filters');
+  wrap.innerHTML='';
+  const allBtn=document.createElement('button');
+  allBtn.className=`btn btn-sm ${selectedCat==='all'?'btn-primary':'btn-secondary'}`;
+  allBtn.dataset.cat='all';
+  allBtn.textContent=`All (${DRUGS.length})`;
+  allBtn.onclick=()=>renderRapid('all');
+  wrap.appendChild(allBtn);
+  cats.forEach(cat=>{
+    const count=DRUGS.filter(d=>d.category===cat).length;
+    const btn=document.createElement('button');
+    btn.className=`btn btn-sm ${selectedCat===cat?'btn-primary':'btn-secondary'}`;
+    btn.dataset.cat=cat;
+    btn.textContent=`${cat} (${count})`;
+    btn.onclick=()=>renderRapid(cat);
+    wrap.appendChild(btn);
+  });
+}
+function renderRapid(cat='all'){
+  renderRapidFilters(cat);
+  const filtered=cat==='all'?DRUGS:DRUGS.filter(d=>d.category===cat);
+  document.getElementById('rapid-grid').innerHTML=filtered.map(d=>`
+    <div class="rapid-card ${rapidCatClass(d.category)}" onclick="toggleRapidDetail('${d.id}')">
+      <div class="rc-name">${d.name}</div>
+      <div class="rc-meta">${d.phClass} · ${d.category}</div>
+      <div class="rc-snippet">${d.use.split('.')[0]}</div>
+      <div class="rc-detail" id="rd-${d.id}">
+        <div class="divider"></div>
+        <div class="detail-grid">
+          ${d.route ? `<div class="detail-field"><div class="detail-lbl" style="color:var(--pu)">💊 Admin / Monitoring Note</div><div class="detail-val">${d.route}</div></div>` : ''}
+          <div class="detail-field"><div class="detail-lbl" style="color:var(--pu)">⚙️ Mechanism</div><div class="detail-val">${d.moa}</div></div>
+          <div class="detail-field"><div class="detail-lbl" style="color:var(--red)">⚠️ Adverse Effects</div><div class="detail-val"><ul>${(d.sideEffects||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div></div>
+          <div class="detail-field"><div class="detail-lbl" style="color:var(--teal)">🩺 Nursing</div><div class="detail-val"><ul>${(d.nursing||[]).map(n=>`<li>${n}</li>`).join('')}</ul></div></div>
+          <div class="detail-field" style="grid-column:1/-1"><div class="detail-lbl" style="color:var(--green)">✅ Expected Response</div><div class="detail-val">${d.expected}</div></div>
+          <div class="detail-field" style="grid-column:1/-1;background:var(--yellow-pale);border-color:var(--yellow-mid)"><div class="detail-lbl" style="color:var(--yellow-mid)">📌 Patient Teaching</div><div class="detail-val">${d.teaching}</div></div>
+          <div class="detail-field" style="grid-column:1/-1;background:var(--pu-pale)"><div class="detail-lbl" style="color:var(--pu)">⭐ Key Fact</div><div class="detail-val" style="font-weight:700">${d.keyFact}</div></div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function toggleRapidDetail(id){
+  const el=document.getElementById('rd-'+id);
+  if(el) el.classList.toggle('open');
+}
+function filterRapid(btnOrCat){
+  const cat = typeof btnOrCat === 'string' ? btnOrCat : (btnOrCat?.dataset?.cat || 'all');
+  renderRapid(cat);
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  TIMED EXAM
+// ══════════════════════════════════════════════════════════════════
+let examQs=[],examIdx=0,examScore=0,examAnswered=false,examTimer=null,examTimeLeft=45,examTimePerQ=45,examMissed=[];
+function showExamStart(){clearInterval(examTimer);document.getElementById('exam-start').style.display='block';document.getElementById('exam-active').style.display='none';document.getElementById('exam-results').style.display='none';}
+function startExam(){
+  const count=parseInt(document.getElementById('exam-count').value);
+  examTimePerQ=parseInt(document.getElementById('exam-time').value);
+  examQs=buildQuestions('all',count);examIdx=0;examScore=0;examAnswered=false;examMissed=[];
+  clearInterval(examTimer);
+  document.getElementById('exam-start').style.display='none';
+  document.getElementById('exam-results').style.display='none';
+  document.getElementById('exam-active').style.display='block';
+  renderExamQ();
+}
+function renderExamQ(){
+  if(examIdx>=examQs.length){showExamResults();return;}
+  const q=examQs[examIdx];
+  document.getElementById('exam-prog').style.width=(examIdx/examQs.length*100)+'%';
+  document.getElementById('exam-qlbl').textContent=`Q ${examIdx+1}/${examQs.length}`;
+  document.getElementById('exam-live-score').textContent=examScore;
+  document.getElementById('exam-q').textContent=q.q;
+  document.getElementById('exam-opts').innerHTML=q.options.map((opt,i)=>
+    `<button class="quiz-opt" onclick="answerExam(${i})"><span class="opt-letter">${LETTERS[i]}</span><span>${opt}</span></button>`).join('');
+  document.getElementById('exam-rat').classList.remove('show');
+  document.getElementById('exam-next').style.display='none';
+  examAnswered=false;
+  clearInterval(examTimer);examTimeLeft=examTimePerQ;updateExamTimer();
+  examTimer=setInterval(()=>{examTimeLeft--;updateExamTimer();if(examTimeLeft<=0){clearInterval(examTimer);if(!examAnswered)timeoutExam();}},1000);
+}
+function updateExamTimer(){const el=document.getElementById('exam-timer');el.textContent=examTimeLeft;el.classList.toggle('warn',examTimeLeft<=10);}
+function timeoutExam(){
+  if(examAnswered)return;examAnswered=true;
+  const q=examQs[examIdx];
+  examMissed.push({q:q.q,correct:q.answer,yours:'⏰ TIME OUT'});
+  recordAnswer(q.drugId,false);
+  document.querySelectorAll('#exam-opts .quiz-opt').forEach((b,i)=>{b.disabled=true;if(q.options[i]===q.answer)b.classList.add('correct');});
+  const rat=document.getElementById('exam-rat');
+  rat.innerHTML=`<span class="rat-label">⏰ Time's Up!</span>Correct answer: <strong>${q.answer}</strong><br><br>${q.rationale}`;
+  rat.classList.add('show');document.getElementById('exam-next').style.display='inline-flex';
+}
+function answerExam(idx){
+  if(examAnswered)return;examAnswered=true;clearInterval(examTimer);
+  const q=examQs[examIdx],selected=q.options[idx],correct=selected===q.answer;
+  document.querySelectorAll('#exam-opts .quiz-opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(q.options[i]===q.answer)b.classList.add('correct');
+    else if(i===idx&&!correct)b.classList.add('incorrect');
+  });
+  if(correct)examScore++;else examMissed.push({q:q.q,correct:q.answer,yours:selected});
+  recordAnswer(q.drugId,correct);
+  const rat=document.getElementById('exam-rat');
+  rat.innerHTML=`<span class="rat-label">${correct?'✅ Correct!':'❌ Incorrect'} — Rationale</span>${q.rationale}`;
+  rat.classList.add('show');document.getElementById('exam-next').style.display='inline-flex';
+}
+function nextExamQ(){examIdx++;renderExamQ();}
+function showExamResults(){
+  clearInterval(examTimer);
+  document.getElementById('exam-active').style.display='none';
+  document.getElementById('exam-results').style.display='block';
+  const p=pct(examScore,examQs.length);
+  document.getElementById('er-score').textContent=`${examScore}/${examQs.length}`;
+  document.getElementById('er-detail').textContent=`${p}% — ${p>=80?'Exam Ready! 🏆':p>=60?'Getting there! 📖':'Keep drilling! 💪'}`;
+  document.getElementById('er-emoji').textContent=p>=80?'🏆':p>=60?'📚':'⏱️';
+  const ml=document.getElementById('er-missed-list');
+  ml.innerHTML=examMissed.length===0?'<div style="color:var(--green);font-weight:800;text-align:center;padding:12px">🏆 Perfect! No missed questions.</div>':
+    `<div style="font-size:13px;font-weight:800;margin-bottom:10px;color:var(--red)">Review These (${examMissed.length}):</div>`+
+    examMissed.map(m=>`<div class="missed-item"><div class="missed-q">${m.q}</div><div class="missed-correct">✅ ${m.correct}</div><div class="missed-yours">Yours: ${m.yours}</div></div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  🎯 MATCH-UP GAME
+// ══════════════════════════════════════════════════════════════════
+const MU_BATCH=4; // drugs per round
+let muAllDrugs=[],muRound=0,muTotalMatched=0,muErrors=0;
+let muCurrentBatch=[],muRightItems=[];
+let muSelLeft=null,muSelRight=null;
+let muMatchedInRound=0;
+let muType='moa';
+
+const muTypeLabels={moa:'⚙️ Mechanism of Action',phClass:'🏷️ Drug Class',keyFact:'⭐ Key Fact'};
+
+function setMUType(btn){
+  document.querySelectorAll('.mu-type-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  muType=btn.dataset.type;
+  initMatchUp();
+}
+function setMUTypeAndRestart(btn){
+  muType=btn.dataset.type;
+  document.querySelectorAll('.mu-type-btn[data-type]').forEach(b=>{
+    b.classList.toggle('active',b.dataset.type===muType);
+  });
+  initMatchUp();
+}
+
+function initMatchUp(){
+  muAllDrugs=shuffle([...DRUGS]);
+  muRound=0;muTotalMatched=0;muErrors=0;
+  document.getElementById('mu-matched').textContent='0';
+  document.getElementById('mu-errors').textContent='0';
+  document.getElementById('mu-game').style.display='block';
+  document.getElementById('mu-complete').style.display='none';
+  document.getElementById('mu-right-hd').textContent=muTypeLabels[muType]||'Property';
+  loadMURound();
+}
+
+function loadMURound(){
+  const start=muRound*MU_BATCH;
+  if(start>=muAllDrugs.length){showMUComplete();return;}
+  muCurrentBatch=muAllDrugs.slice(start,Math.min(start+MU_BATCH,muAllDrugs.length));
+  muRightItems=shuffle(muCurrentBatch.map(d=>({id:d.id,val:d[muType]})));
+  muSelLeft=null;muSelRight=null;muMatchedInRound=0;
+  const totalRounds=Math.ceil(DRUGS.length/MU_BATCH);
+  document.getElementById('mu-round-badge').textContent=`Round ${muRound+1} of ${totalRounds}`;
+  renderMUGrid();
+}
+
+function renderMUGrid(){
+  document.getElementById('mu-left').innerHTML=muCurrentBatch.map(d=>
+    `<div class="mu-item" id="ml-${d.id}" onclick="selectMULeft('${d.id}')">${d.name}</div>`).join('');
+  document.getElementById('mu-right').innerHTML=muRightItems.map(r=>
+    `<div class="mu-item mu-right-item" id="mr-${r.id}" onclick="selectMURight('${r.id}')">${escapeHTML(String(r.val))}</div>`).join('');
+}
+
+function selectMULeft(id){
+  if(muSelLeft){const p=document.getElementById('ml-'+muSelLeft);if(p&&!p.classList.contains('matched'))p.classList.remove('mu-selected');}
+  muSelLeft=id;
+  const el=document.getElementById('ml-'+id);
+  if(el&&!el.classList.contains('matched'))el.classList.add('mu-selected');
+  if(muSelRight)checkMUMatch();
+}
+function selectMURight(id){
+  if(muSelRight){const p=document.getElementById('mr-'+muSelRight);if(p&&!p.classList.contains('matched'))p.classList.remove('mu-selected');}
+  muSelRight=id;
+  const el=document.getElementById('mr-'+id);
+  if(el&&!el.classList.contains('matched'))el.classList.add('mu-selected');
+  if(muSelLeft)checkMUMatch();
+}
+
+function checkMUMatch(){
+  const lId=muSelLeft,rId=muSelRight;
+  muSelLeft=null;muSelRight=null;
+  if(lId===rId){
+    // ✅ Correct
+    const lEl=document.getElementById('ml-'+lId);
+    const rEl=document.getElementById('mr-'+rId);
+    if(lEl){lEl.classList.remove('mu-selected');lEl.classList.add('matched');lEl.onclick=null;}
+    if(rEl){rEl.classList.remove('mu-selected');rEl.classList.add('matched');rEl.onclick=null;}
+    recordAnswer(lId,true);
+    muTotalMatched++;muMatchedInRound++;
+    document.getElementById('mu-matched').textContent=muTotalMatched;
+    if(muMatchedInRound>=muCurrentBatch.length){
+      setTimeout(()=>{muRound++;loadMURound();},700);
+    }
+  } else {
+    // ❌ Wrong
+    muErrors++;
+    document.getElementById('mu-errors').textContent=muErrors;
+    recordAnswer(lId,false);
+    const lEl=document.getElementById('ml-'+lId);
+    const rEl=document.getElementById('mr-'+rId);
+    if(lEl){lEl.classList.add('mu-wrong');lEl.classList.remove('mu-selected');}
+    if(rEl){rEl.classList.add('mu-wrong');rEl.classList.remove('mu-selected');}
+    setTimeout(()=>{
+      if(lEl)lEl.classList.remove('mu-wrong');
+      if(rEl)rEl.classList.remove('mu-wrong');
+    },550);
+  }
+}
+
+function showMUComplete(){
+  document.getElementById('mu-game').style.display='none';
+  document.getElementById('mu-complete').style.display='block';
+  const accuracy=DRUGS.length>0?Math.round((DRUGS.length/(DRUGS.length+muErrors))*100):0;
+  document.getElementById('mu-final-score').textContent=`${DRUGS.length}/${DRUGS.length+muErrors} correct`;
+  document.getElementById('mu-final-msg').textContent=
+    muErrors===0?'Perfect round — zero errors! You know these drugs cold! 🔥':
+    muErrors<=3?`Only ${muErrors} error${muErrors>1?'s':''}! Great work!`:
+    `${muErrors} errors. Practice with a different property type!`;
+}
+
+function restartMU(){
+  document.getElementById('mu-game').style.display='block';
+  document.getElementById('mu-complete').style.display='none';
+  initMatchUp();
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  🔍 NAME THAT DRUG GAME
+// ══════════════════════════════════════════════════════════════════
+const NTD_ROUNDS=10;
+const NTD_MAX_PTS=4;
+let ntdQueue=[],ntdRoundIdx=0,ntdTotalScore=0,ntdClueIdx=0,ntdAnswered=false;
+let ntdCurrentDrug=null,ntdOptions=[],ntdBreakdown=[];
+
+function buildNTDClues(d){
+  return [
+    {label:'Clue 1 — Drug Class',text:d.phClass},
+    ...(d.route ? [{label:'Clue 2 — Admin / Monitoring Note',text:d.route}] : []),
+    {label:'Clue 3 — Notable Side Effect',text:(d.sideEffects||[]).filter(Boolean)[0]||'See full profile'},
+    {label:'Clue 4 — Key Nursing Point',text:(d.nursing||[]).filter(Boolean)[0]||'See full profile'}
+  ];
+}
+
+function startNTD(){
+  ntdQueue=shuffle([...DRUGS]).slice(0,NTD_ROUNDS);
+  ntdRoundIdx=0;ntdTotalScore=0;ntdBreakdown=[];
+  document.getElementById('ntd-start').style.display='none';
+  document.getElementById('ntd-results').style.display='none';
+  document.getElementById('ntd-active').style.display='block';
+  loadNTDRound();
+}
+
+function loadNTDRound(){
+  if(ntdRoundIdx>=ntdQueue.length){showNTDResults();return;}
+  ntdCurrentDrug=ntdQueue[ntdRoundIdx];
+  ntdClueIdx=0;ntdAnswered=false;
+  // Build 4 options: correct drug + 3 random others
+  const others=shuffle(DRUGS.filter(d=>d.id!==ntdCurrentDrug.id)).slice(0,3);
+  ntdOptions=shuffle([ntdCurrentDrug,...others]);
+  document.getElementById('ntd-round-lbl').textContent=`Drug ${ntdRoundIdx+1} of ${NTD_ROUNDS}`;
+  document.getElementById('ntd-total-score').textContent=ntdTotalScore;
+  document.getElementById('ntd-clues-used').textContent='0';
+  document.getElementById('ntd-pts-now').textContent=NTD_MAX_PTS;
+  document.getElementById('ntd-next-clue-btn').disabled=false;
+  document.getElementById('ntd-skip-btn').disabled=false;
+  // Render clues (hidden)
+  const clues=buildNTDClues(ntdCurrentDrug);
+  document.getElementById('ntd-clues').innerHTML=clues.map((c,i)=>
+    `<div class="ntd-clue" id="ntd-clue-${i}">
+      <div class="ntd-clue-label">${c.label}</div>
+      <div class="ntd-clue-text">${c.text}</div>
+    </div>`).join('');
+  // Reveal first clue automatically
+  revealNextClue();
+  // Render options (disabled until first clue shown — but first clue auto-reveals, so enable)
+  renderNTDOpts(false);
+}
+
+function revealNextClue(){
+  if(ntdAnswered)return;
+  const clueEl=document.getElementById('ntd-clue-'+ntdClueIdx);
+  if(clueEl)clueEl.classList.add('revealed');
+  ntdClueIdx++;
+  document.getElementById('ntd-clues-used').textContent=ntdClueIdx;
+  const ptsNow=Math.max(NTD_MAX_PTS-ntdClueIdx+1,1);
+  document.getElementById('ntd-pts-now').textContent=ptsNow;
+  renderNTDOpts(false);
+  if(ntdClueIdx>=4){
+    document.getElementById('ntd-next-clue-btn').disabled=true;
+    document.getElementById('ntd-pts-now').textContent='1';
+  }
+}
+
+function renderNTDOpts(answered){
+  document.getElementById('ntd-opts').innerHTML=ntdOptions.map((d,i)=>
+    `<button class="ntd-opt" id="ntd-opt-${i}" onclick="answerNTD(${i})"${answered?' disabled':''}>
+      ${d.name}
+    </button>`).join('');
+}
+
+function answerNTD(idx){
+  if(ntdAnswered)return;
+  ntdAnswered=true;
+  document.getElementById('ntd-next-clue-btn').disabled=true;
+  document.getElementById('ntd-skip-btn').disabled=true;
+  const chosen=ntdOptions[idx];
+  const correct=chosen.id===ntdCurrentDrug.id;
+  const ptsEarned=correct?Math.max(NTD_MAX_PTS-ntdClueIdx+1,1):0;
+  ntdOptions.forEach((d,i)=>{
+    const el=document.getElementById('ntd-opt-'+i);
+    if(!el)return;
+    el.disabled=true;
+    if(d.id===ntdCurrentDrug.id)el.classList.add('ntd-correct');
+    else if(i===idx&&!correct)el.classList.add('ntd-wrong');
+  });
+  if(correct)ntdTotalScore+=ptsEarned;
+  recordAnswer(ntdCurrentDrug.id,correct);
+  ntdBreakdown.push({drug:ntdCurrentDrug.name,correct,pts:ptsEarned,cluesUsed:ntdClueIdx});
+  document.getElementById('ntd-total-score').textContent=ntdTotalScore;
+  // Auto-advance
+  setTimeout(()=>{ntdRoundIdx++;loadNTDRound();},1400);
+}
+
+function skipNTD(){
+  if(ntdAnswered)return;
+  ntdAnswered=true;
+  // Show correct answer
+  ntdOptions.forEach((d,i)=>{
+    const el=document.getElementById('ntd-opt-'+i);
+    if(el){el.disabled=true;if(d.id===ntdCurrentDrug.id)el.classList.add('ntd-correct');}
+  });
+  recordAnswer(ntdCurrentDrug.id,false);
+  ntdBreakdown.push({drug:ntdCurrentDrug.name,correct:false,pts:0,cluesUsed:ntdClueIdx});
+  document.getElementById('ntd-next-clue-btn').disabled=true;
+  document.getElementById('ntd-skip-btn').disabled=true;
+  setTimeout(()=>{ntdRoundIdx++;loadNTDRound();},1400);
+}
+
+function showNTDResults(){
+  document.getElementById('ntd-active').style.display='none';
+  document.getElementById('ntd-results').style.display='block';
+  const maxPossible=NTD_ROUNDS*NTD_MAX_PTS;
+  const p=Math.round(ntdTotalScore/maxPossible*100);
+  document.getElementById('ntdr-score').textContent=`${ntdTotalScore}/${maxPossible}`;
+  document.getElementById('ntdr-detail').textContent=`${p}% — ${p>=80?'Drug Detective! 🕵️':p>=60?'Good instincts! 🔍':'Keep studying! 📖'}`;
+  document.getElementById('ntdr-emoji').textContent=p>=80?'🏆':p>=60?'🔍':'📖';
+  document.getElementById('ntdr-breakdown').innerHTML=ntdBreakdown.map(b=>`
+    <div class="ntd-result-item">
+      <div class="ntd-ri-drug">${b.drug}</div>
+      <div class="ntd-ri-pts ${b.correct?'ntd-ri-correct':'ntd-ri-wrong'}">
+        ${b.correct?`✅ +${b.pts} pts (after ${b.cluesUsed} clue${b.cluesUsed!==1?'s':''})`:'❌ 0 pts'}
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  WEAK SPOTS
+// ══════════════════════════════════════════════════════════════════
+function renderWeakSpots(){
+  const p=getProgress();
+  const allV=Object.values(p);
+  const totQ=allV.reduce((s,v)=>s+v.t,0);
+  const totC=allV.reduce((s,v)=>s+v.c,0);
+  document.getElementById('ws-total').textContent=totQ;
+  document.getElementById('ws-correct').textContent=totC;
+  document.getElementById('ws-acc').textContent=totQ>0?pct(totC,totQ)+'%':'—';
+  const list=document.getElementById('ws-list');
+  if(!Object.keys(p).length){
+    list.innerHTML='<div class="card" style="text-align:center;color:var(--text3);padding:28px">No data yet. Complete quizzes, games, or recall drills first.</div>';
+    return;
+  }
+  const sorted=DRUGS.map(d=>{
+    const data=p[d.id]||{c:0,t:0};
+    const pc=data.t>0?pct(data.c,data.t):null;
+    return{d,data,pc};
+  }).sort((a,b)=>{if(a.pc===null)return 1;if(b.pc===null)return -1;return a.pc-b.pc;});
+  list.innerHTML=sorted.map(({d,data,pc})=>{
+    const cls=pc===null?'sc-none':pc>=80?'sc-good':pc>=60?'sc-ok':'sc-bad';
+    const lbl=pc===null?'Not tested yet':`${pc}% (${data.c}/${data.t})`;
+    const fillColor=pc===null?'var(--text3)':pc>=80?'var(--green)':pc>=60?'var(--yellow)':'var(--red)';
+    return`<div class="ws-item">
+      <div>
+        <div class="ws-name">${d.name}</div>
+        <div class="ws-class">${d.phClass} · ${d.category}</div>
+        ${data.t>0?`<div class="ws-bar"><div class="ws-bar-fill" style="width:${pc||0}%;background:${fillColor}"></div></div>`:''}
+      </div>
+      <span class="ws-score ${cls}">${lbl}</span>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  GAME: LIGHTNING BLITZ
+// ══════════════════════════════════════════════════════════════════
+let blitzQs=[], blitzIdx=0, blitzLives=3, blitzScore=0,
+    blitzStreak=0, blitzBestStreak=0, blitzCorrectCnt=0,
+    blitzAnswered=false, blitzTimerInt=null, blitzTimeLeft=10;
+
+function startBlitz(){
+  blitzQs = buildQuestions('all', 30);
+  blitzIdx=0; blitzLives=3; blitzScore=0; blitzStreak=0;
+  blitzBestStreak=0; blitzCorrectCnt=0; blitzAnswered=false;
+  document.getElementById('blitz-start-screen').style.display='none';
+  document.getElementById('blitz-active-screen').style.display='block';
+  document.getElementById('blitz-over-screen').style.display='none';
+  renderBlitzQ();
+}
+function resetBlitz(){
+  clearInterval(blitzTimerInt);
+  document.getElementById('blitz-over-screen').style.display='none';
+  document.getElementById('blitz-start-screen').style.display='block';
+}
+function renderBlitzQ(){
+  if(blitzIdx>=blitzQs.length || blitzLives<=0){ showBlitzOver(); return; }
+  const q=blitzQs[blitzIdx];
+  document.getElementById('blitz-q-counter').textContent=`Q ${blitzIdx+1} / ${blitzQs.length}`;
+  document.getElementById('blitz-q').textContent=q.q;
+  document.getElementById('blitz-feedback').textContent='';
+  document.getElementById('blitz-opts').innerHTML=q.options.map((opt,i)=>
+    `<button class="blitz-opt-btn" onclick="answerBlitz(${i})">${opt}</button>`
+  ).join('');
+  blitzAnswered=false;
+  clearInterval(blitzTimerInt);
+  blitzTimeLeft=10;
+  updateBlitzTimer();
+  blitzTimerInt=setInterval(()=>{
+    blitzTimeLeft--;
+    updateBlitzTimer();
+    if(blitzTimeLeft<=0){ clearInterval(blitzTimerInt); if(!blitzAnswered) blitzTimeout(); }
+  },1000);
+  updateBlitzHUD();
+}
+function updateBlitzTimer(){
+  const pct=(blitzTimeLeft/10)*100;
+  const fill=document.getElementById('blitz-timer-fill');
+  fill.style.width=pct+'%';
+  fill.style.background=blitzTimeLeft<=3?'var(--red)':blitzTimeLeft<=6?'var(--yellow-mid)':'var(--green-mid)';
+}
+function updateBlitzHUD(){
+  document.getElementById('blitz-lives-disp').innerHTML='❤️'.repeat(Math.max(0,blitzLives))+'🖤'.repeat(Math.max(0,3-blitzLives));
+  document.getElementById('blitz-score-disp').textContent=blitzScore;
+  const sb=document.getElementById('blitz-streak-badge');
+  if(blitzStreak>=5) sb.textContent=`🔥 ${blitzStreak}x FIRE!`;
+  else if(blitzStreak>=3) sb.textContent=`⚡ ${blitzStreak}x Combo!`;
+  else if(blitzStreak>=2) sb.textContent=`✨ ${blitzStreak} Streak`;
+  else sb.textContent='';
+}
+function answerBlitz(idx){
+  if(blitzAnswered) return;
+  blitzAnswered=true;
+  clearInterval(blitzTimerInt);
+  const q=blitzQs[blitzIdx];
+  const correct=q.options[idx]===q.answer;
+  const btns=document.querySelectorAll('.blitz-opt-btn');
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(q.options[i]===q.answer) b.classList.add('b-correct');
+    else if(i===idx&&!correct) b.classList.add('b-wrong');
+  });
+  const fb=document.getElementById('blitz-feedback');
+  if(correct){
+    blitzStreak++;
+    if(blitzStreak>blitzBestStreak) blitzBestStreak=blitzStreak;
+    blitzCorrectCnt++;
+    const timeBonus=blitzTimeLeft+1;
+    const streakMult=Math.min(blitzStreak,5);
+    const pts=timeBonus*streakMult*10;
+    blitzScore+=pts;
+    fb.style.color='var(--green)';
+    fb.textContent=blitzStreak>=3?`✅ +${pts} pts 🔥 ${blitzStreak}x Combo!`:`✅ +${pts} pts`;
+    recordAnswer(q.drugId,true);
+  } else {
+    blitzLives--;
+    blitzStreak=0;
+    fb.style.color='var(--red)';
+    fb.textContent='❌ Oops! Lost a life.';
+    recordAnswer(q.drugId,false);
+  }
+  updateBlitzHUD();
+  if(blitzLives<=0){ setTimeout(showBlitzOver, 1300); return; }
+  setTimeout(()=>{ blitzIdx++; renderBlitzQ(); }, correct?700:1300);
+}
+function blitzTimeout(){
+  if(blitzAnswered) return;
+  blitzAnswered=true;
+  blitzLives--;
+  blitzStreak=0;
+  const q=blitzQs[blitzIdx];
+  document.querySelectorAll('.blitz-opt-btn').forEach((b,i)=>{
+    b.disabled=true;
+    if(q.options[i]===q.answer) b.classList.add('b-correct');
+  });
+  const fb=document.getElementById('blitz-feedback');
+  fb.style.color='var(--red)';
+  fb.textContent='⏰ Time\'s up! Lost a life.';
+  recordAnswer(q.drugId,false);
+  updateBlitzHUD();
+  if(blitzLives<=0){ setTimeout(showBlitzOver, 1300); return; }
+  setTimeout(()=>{ blitzIdx++; renderBlitzQ(); }, 1300);
+}
+function showBlitzOver(){
+  clearInterval(blitzTimerInt);
+  document.getElementById('blitz-active-screen').style.display='none';
+  document.getElementById('blitz-over-screen').style.display='block';
+  document.getElementById('blitz-go-score').textContent=blitzScore;
+  document.getElementById('blitz-stat-correct').textContent=blitzCorrectCnt;
+  document.getElementById('blitz-stat-qs').textContent=blitzIdx;
+  document.getElementById('blitz-stat-streak').textContent=blitzBestStreak;
+  const isOut=blitzLives<=0;
+  document.getElementById('blitz-go-emoji').textContent=blitzScore>=2000?'🏆':blitzScore>=1000?'⚡':'💊';
+  document.getElementById('blitz-go-sub').textContent=isOut?'All lives lost! Study those tricky ones 💪':blitzScore>=2000?'Blazing fast — exam ready! 🏆':blitzScore>=1000?'Great speed & accuracy! 📖':'Keep drilling — you\'ll get there! 💊';
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  GAME: SORT IT OUT
+// ══════════════════════════════════════════════════════════════════
+let sortDrugs=[], sortIdx=0, sortCorrect=0, sortWrong=0,
+    sortStreak=0, sortBestStreak=0, sortLocked=false;
+
+const SORT_CAT_IDS={
+  "Typical Antipsychotics (FGA)":'sbtn-dopa',
+  "Atypical Antipsychotics - Clozapine":'sbtn-anti',
+  "Atypical Antipsychotics - Other SGAs":'sbtn-alz'
+};
+
+function initSort(){
+  sortDrugs=shuffle([...DRUGS]);
+  sortIdx=0; sortCorrect=0; sortWrong=0; sortStreak=0; sortBestStreak=0; sortLocked=false;
+  document.getElementById('sortit-start-screen').style.display='none';
+  document.getElementById('sortit-active-screen').style.display='block';
+  document.getElementById('sortit-over-screen').style.display='none';
+  renderSortCard();
+}
+function resetSort(){
+  document.getElementById('sortit-over-screen').style.display='none';
+  document.getElementById('sortit-start-screen').style.display='block';
+}
+function renderSortCard(){
+  if(sortIdx>=sortDrugs.length){ showSortOver(); return; }
+  sortLocked=false;
+  const d=sortDrugs[sortIdx];
+  document.getElementById('sort-drug-name').textContent=d.name;
+  document.getElementById('sort-drug-class').textContent=d.phClass;
+  document.getElementById('sort-prog-lbl').textContent=`${sortIdx+1} / ${sortDrugs.length}`;
+  document.getElementById('sort-prog-bar').style.width=(sortIdx/sortDrugs.length*100)+'%';
+  document.getElementById('sort-correct-cnt').textContent=sortCorrect;
+  document.getElementById('sort-wrong-cnt').textContent=sortWrong;
+  document.getElementById('sort-remaining-cnt').textContent=sortDrugs.length-sortIdx;
+  document.getElementById('sort-streak-lbl').textContent=sortStreak>=3?`🔥 ${sortStreak} streak!`:sortStreak>=2?`✨ ${sortStreak} streak`:'';
+  document.getElementById('sort-feedback').textContent='';
+  // Reset bucket styles
+  Object.values(SORT_CAT_IDS).forEach(id=>{
+    const b=document.getElementById(id);
+    b.classList.remove('flash-correct','flash-wrong','flash-reveal');
+    b.disabled=false;
+  });
+}
+function sortAnswer(category){
+  if(sortLocked) return;
+  sortLocked=true;
+  const d=sortDrugs[sortIdx];
+  const correct=d.category===category;
+  const fb=document.getElementById('sort-feedback');
+  // Disable all
+  Object.values(SORT_CAT_IDS).forEach(id=>{ document.getElementById(id).disabled=true; });
+  if(correct){
+    sortCorrect++;
+    sortStreak++;
+    if(sortStreak>sortBestStreak) sortBestStreak=sortStreak;
+    document.getElementById(SORT_CAT_IDS[category]).classList.add('flash-correct');
+    fb.style.color='var(--green)';
+    fb.textContent=sortStreak>=4?`✅ Correct! 🔥 ${sortStreak} streak!`:sortStreak>=2?`✅ Correct! ${sortStreak} in a row!`:'✅ Correct!';
+    recordAnswer(d.id,true);
+  } else {
+    sortWrong++;
+    sortStreak=0;
+    document.getElementById(SORT_CAT_IDS[category]).classList.add('flash-wrong');
+    if(SORT_CAT_IDS[d.category]) document.getElementById(SORT_CAT_IDS[d.category]).classList.add('flash-reveal');
+    fb.style.color='var(--red)';
+    fb.textContent=`❌ That's ${d.category.replace('Atypical Antipsychotics - ','')}`;
+    recordAnswer(d.id,false);
+  }
+  sortIdx++;
+  setTimeout(renderSortCard, correct?650:1400);
+}
+function showSortOver(){
+  document.getElementById('sortit-active-screen').style.display='none';
+  document.getElementById('sortit-over-screen').style.display='block';
+  const total=sortCorrect+sortWrong;
+  const acc=total>0?Math.round(sortCorrect/total*100):0;
+  document.getElementById('sort-go-emoji').textContent=acc>=90?'🏆':acc>=70?'📚':'💊';
+  document.getElementById('sort-go-score').textContent=`${acc}%`;
+  document.getElementById('sort-go-sub').textContent=acc===100?'🏆 Perfect sort! You know these categories cold!':acc>=90?'Almost perfect — check those edge cases!':acc>=70?'Good grasp! Review the ones you missed.':'Keep sorting — repetition builds memory! 💊';
+  document.getElementById('sort-go-correct').textContent=sortCorrect;
+  document.getElementById('sort-go-wrong').textContent=sortWrong;
+  document.getElementById('sort-go-acc').textContent=acc+'%';
+  document.getElementById('sort-go-streak').textContent=sortBestStreak;
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  initFlashcards();
+  renderRapid();
+  updateBadge();
+  // Field selector listeners
+  document.querySelectorAll('.field-sel input').forEach(cb=>cb.addEventListener('change',renderFC));
+});
+</script>
+</body>
+</html>
