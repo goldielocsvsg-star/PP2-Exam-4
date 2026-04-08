@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP2 Module 8 — Bipolar Disorder &amp; Medications | Slide-by-Slide Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --primary: #1e40af; --primary-light: #dbeafe; --primary-mid: #3b82f6;
+  --teal: #0f766e; --teal-light: #ccfbf1;
+  --violet: #6d28d9; --violet-light: #ede9fe;
+  --red: #dc2626; --red-light: #fee2e2;
+  --amber: #b45309; --amber-light: #fef3c7;
+  --green: #047857; --green-light: #d1fae5;
+  --rose: #be185d; --rose-light: #fce7f3;
+  --slate: #334155; --slate-light: #f1f5f9;
+  --border: #e2e8f0; --text: #1e293b; --text-muted: #64748b;
+  --bg: #f8fafc; --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 25px -5px rgba(30,64,175,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+.site-header { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #6d28d9 70%, #0f766e 100%); padding: 36px 48px 30px; position: sticky; top: 0; z-index: 200; box-shadow: 0 4px 24px rgba(30,64,175,0.35); }
+.header-inner { max-width: 1100px; margin: 0 auto; }
+.header-badge { display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 0.7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.3); }
+.site-header h1 { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: white; line-height: 1.2; margin-bottom: 6px; }
+.site-header p { color: rgba(255,255,255,0.75); font-size: 0.85rem; }
+.nav-wrap { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 190; box-shadow: var(--shadow-sm); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; padding: 10px 16px; }
+.nav-btn { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); background: none; border: none; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.18s; letter-spacing: 0.2px; white-space: nowrap; }
+.nav-btn:hover { background: var(--primary-light); color: var(--primary); }
+.nav-btn.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 36px 20px 60px; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: white; border-radius: 14px; border: 1px solid var(--border); padding: 30px 34px; margin-bottom: 24px; box-shadow: var(--shadow); }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--primary); margin-bottom: 4px; }
+.card-subtitle { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sh { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+.sh:first-child { margin-top: 4px; }
+p.body { font-size: 0.95rem; line-height: 1.75; margin-bottom: 12px; }
+strong { color: var(--slate); font-weight: 700; }
+ul.content-list { list-style: none; padding: 0; margin: 0; }
+ul.content-list li { padding: 5px 0 5px 20px; position: relative; font-size: 0.93rem; line-height: 1.65; color: var(--text); }
+ul.content-list li::before { content: '›'; position: absolute; left: 4px; color: var(--primary-mid); font-weight: 700; font-size: 1rem; top: 4px; }
+ul.content-list li + li { border-top: 1px solid #f8f8fb; }
+.callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 0.92rem; line-height: 1.65; }
+.callout-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px; }
+.callout.priority { background: var(--red-light); border-left: 4px solid var(--red); }
+.callout.priority .callout-label { color: var(--red); }
+.callout.book { background: var(--green-light); border-left: 4px solid var(--green); }
+.callout.book .callout-label { color: var(--green); }
+.callout.exam { background: var(--teal-light); border-left: 4px solid var(--teal); }
+.callout.exam .callout-label { color: var(--teal); }
+.callout.prof { background: var(--amber-light); border-left: 4px solid var(--amber); }
+.callout.prof .callout-label { color: var(--amber); }
+.callout.info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+.callout.info .callout-label { color: var(--primary); }
+.callout.emergency { background: #fff0f0; border: 2px solid var(--red); border-radius: 10px; }
+.callout.emergency .callout-label { color: var(--red); font-size: 0.72rem; }
+.qa-block { margin: 16px 0; }
+.qa-question { background: var(--amber-light); border: 1.5px solid #fcd34d; border-radius: 10px; padding: 14px 18px; font-size: 0.93rem; font-weight: 600; color: #78350f; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; user-select: none; transition: background 0.15s; }
+.qa-question:hover { background: #fde68a; }
+.qa-question .qa-icon { font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+.qa-answer { display: none; background: white; border: 1.5px solid #fcd34d; border-top: none; border-radius: 0 0 10px 10px; padding: 16px 20px; font-size: 0.91rem; line-height: 1.7; }
+.qa-answer.open { display: block; }
+.qa-answer ul { list-style: none; padding: 0; }
+.qa-answer ul li { padding: 3px 0 3px 18px; position: relative; margin-bottom: 4px; }
+.qa-answer ul li::before { content: '•'; position: absolute; left: 4px; color: var(--amber); font-weight: 700; }
+.qa-answer .answer-tag { display: inline-block; background: #059669; color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.qa-answer .wrong-tag { display: inline-block; background: var(--red); color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-right: 4px; }
+.data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 0.88rem; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.data-table th { background: linear-gradient(135deg, var(--primary), var(--teal)); color: white; padding: 11px 16px; text-align: left; font-weight: 600; font-size: 0.8rem; }
+.data-table td { padding: 10px 16px; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.data-table tr:nth-child(even) td { background: #fafafa; }
+.data-table tr:hover td { background: var(--primary-light); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+@media(max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+.mini-panel { background: var(--slate-light); border-radius: 10px; padding: 16px 18px; border-top: 3px solid var(--primary); }
+.mini-panel.green { border-top-color: var(--green); }
+.mini-panel.teal { border-top-color: var(--teal); }
+.mini-panel.red { border-top-color: var(--red); }
+.mini-panel.amber { border-top-color: var(--amber); }
+.mini-panel.violet { border-top-color: var(--violet); }
+.mini-panel h4 { font-size: 0.83rem; font-weight: 700; color: var(--slate); margin-bottom: 10px; text-transform: uppercase; }
+.mini-panel ul { list-style: none; padding: 0; }
+.mini-panel ul li { font-size: 0.88rem; padding: 3px 0 3px 14px; position: relative; line-height: 1.55; }
+.mini-panel ul li::before { content: '·'; position: absolute; left: 2px; color: var(--primary); font-weight: 900; font-size: 1.1rem; line-height: 1.3; }
+.btt { position: fixed; bottom: 28px; right: 28px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 100; }
+footer { text-align: center; padding: 32px 20px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge">PP2 — Module 8 | Dr. Naguszewski | Spring 2026</div>
+    <h1>Bipolar Disorder &amp; Medications</h1>
+    <p>Slide-by-Slide Study Guide — Lehne Chapter 36 | Professor Slides + Textbook Notes Integrated</p>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="show('p1',this)">Objectives</button>
+    <button class="nav-btn" onclick="show('p2',this)">BPD Overview</button>
+    <button class="nav-btn" onclick="show('p3',this)">Drug Therapy Overview</button>
+    <button class="nav-btn" onclick="show('p4',this)">Lithium — Levels &amp; MOA</button>
+    <button class="nav-btn" onclick="show('p5',this)">Lithium — SE &amp; Toxicity</button>
+    <button class="nav-btn" onclick="show('p6',this)">Lithium — Interactions &amp; Teaching</button>
+    <button class="nav-btn" onclick="show('p7',this)">Antiepileptic Drugs</button>
+    <button class="nav-btn" onclick="show('p8',this)">Antipsychotics &amp; Benzos</button>
+    <button class="nav-btn" onclick="show('p9',this)">NCLEX Practice Questions</button>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+<!-- ═══════ SECTION 1: OBJECTIVES ═══════ -->
+<div id="p1" class="section active">
+  <div class="card">
+    <p class="card-subtitle">Slides 1–2 | Lehne Chapter 36</p>
+    <h2 class="card-title">Course Objectives — Module 8</h2>
+
+    <div class="sh">Slide 2 — Objectives (Dr. Naguszewski)</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Explain the physiologic function/role of neurotransmitters</li>
+        <li>Differentiate among bipolar I and bipolar II disorders</li>
+        <li>Discuss/identify the generic name and drug classification for the selected key drugs as well as the adverse effects, side effects, contraindications, interactions, method of administration, patient education, and evaluation of key drugs</li>
+      </ul>
+    </div>
+
+    <div class="callout exam">
+      <span class="callout-label">⭐ How These Objectives Map to Exam Questions</span>
+      <p><strong>Objective 1</strong> (NTs) → Covered in Module 7. Key NT connections for BPD: lithium modulates dopamine, glutamate, and GABA. Understanding how NT imbalance leads to mania vs. depression underlies all the drugs in this module.</p>
+      <p style="margin-top:8px"><strong>Objective 2</strong> (BPI vs. BPII) → Know the four mood episode types and which go with which diagnosis. High-yield: hypomania does NOT include psychosis and does NOT cause marked impairment — this is the main distinguishing feature.</p>
+      <p style="margin-top:8px"><strong>Objective 3</strong> (Key drugs) → Lithium is the most heavily tested drug in this module. Know: therapeutic levels, toxic levels, timing of labs, drug interactions (diuretics, NSAIDs, ACE inhibitors), side effects at therapeutic levels, toxicity stages, and patient teaching. Also know valproate, carbamazepine, and lamotrigine at a working clinical level.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 2: BPD OVERVIEW ═══════ -->
+<div id="p2" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 3–5 | Characteristics of Bipolar Disorder</p>
+    <h2 class="card-title">Bipolar Disorder — Characteristics &amp; Types</h2>
+
+    <div class="sh">Slide 3 — Bipolar Disorder: Overview Facts</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Formerly known as <strong>manic-depressive illness</strong></li>
+        <li>Afflicts an estimated <strong>2.8% of the adult population</strong></li>
+        <li>Mainstays of therapy are <strong>lithium and valproic acid</strong></li>
+        <li>Many patients also receive an antipsychotic and antidepressants</li>
+        <li>Chronic condition that requires <strong>lifelong treatment</strong></li>
+        <li>Cause may be <strong>disruption of neuronal growth and survival</strong></li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Etiology: Beyond Neurotransmitter Imbalance</span>
+      <p>The textbook emphasizes a shift in understanding BPD etiology: In the past, BPD was thought to be primarily a neurotransmitter imbalance. Today, researchers suspect the real cause may be <strong>disruption of neuronal growth and survival</strong>. Evidence: (1) neuroimaging studies show atrophy of specific brain regions in prolonged mood disorders — especially the <strong>subgenual prefrontal cortex</strong>, an area involved in emotionality; (2) mood-stabilizing drugs (especially lithium) can prevent or reverse this neuronal atrophy.</p>
+      <p style="margin-top:8px">This is why lithium is described as <strong>neuroprotective</strong> — it protects against neuronal atrophy AND promotes neuronal growth in regions known to atrophy in BPD (prefrontal cortex, hippocampus, caudate nucleus). This neuroprotection may account for at least part of lithium's therapeutic benefit.</p>
+      <p style="margin-top:8px">BPD is a <strong>severe biologic illness</strong> — it is caused by altered brain physiology, NOT a character flaw or unstable personality. Without treatment, episodes of mania typically last a few months; major depressive episodes last at least 6 months.</p>
+    </div>
+
+    <div class="sh">Slide 4 — Bipolar Disorder: Definition and Treatment</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>BPD = cyclic disorder with recurrent fluctuations in mood</li>
+        <li>Episodes of mania and depression persist for months without treatment</li>
+        <li>Treatment: drugs + psychotherapy</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — The Cyclic Nature and Pattern Variability</span>
+      <p>Contrary to popular belief, not all BPD patients alternate repeatedly between mania and depression in a predictable cycle. Some experience repeated mania; some experience mostly depression with occasional mania. Mood may be normal between episodes, or slightly elevated (hypomania) or slightly depressed (dysphoria). On average, people with BPD experience only <strong>4 episodes in the first 10 years</strong> of illness — though some cycle much more rapidly. As time passes, episodes tend to recur more frequently without treatment.</p>
+    </div>
+
+    <div class="sh">Slide 5 — Characteristics of BPD: Types of Mood Episodes and BPI vs. BPII</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Types of mood episodes seen with BPD: (1) Pure manic episode (euphoric mania), (2) Hypomanic episode, (3) Major depressive episode, (4) Mixed episode</li>
+        <li><strong>Bipolar I:</strong> experience manic, mixed, &amp; depression</li>
+        <li><strong>Bipolar II:</strong> experience hypomania &amp; depression</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Each Mood Episode Type in Detail</span>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Episode Type</th><th>Core Features (Textbook)</th><th>Key Distinguishing Facts</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pure Manic Episode (Euphoric Mania)</strong></td><td>Persistently elevated, expansive, or irritable mood; hyperactivity; excessive enthusiasm; flight of ideas; reduced need for sleep; excessive sociability; extreme self-confidence; grandiose ideas; delusions of self-importance; high-risk behaviors (gambling, reckless driving, sexual indiscretions)</td><td>Severe cases resemble paranoid schizophrenia (hallucinations, delusions, bizarre behavior). This is why antipsychotics are used for acute manic episodes even without psychotic symptoms.</td></tr>
+        <tr><td><strong>Hypomanic Episode</strong></td><td>Similar to mania but LESS severe — mood elevated but NOT severe enough to cause marked impairment in social or occupational functioning</td><td><strong>Two critical defining features: (1) No psychotic symptoms. (2) Does NOT require hospitalization.</strong> Patients with ONLY hypomania (no full mania ever) = Bipolar II.</td></tr>
+        <tr><td><strong>Major Depressive Episode</strong></td><td>Depressed mood; loss of pleasure in nearly all activities; disrupted sleep/eating; difficulty concentrating; guilt, worthlessness, helplessness; thoughts of death and suicide</td><td>Occurs in BOTH BPI and BPII. When antidepressants are used for this phase, they must ALWAYS be combined with a mood stabilizer to prevent triggering mania.</td></tr>
+        <tr><td><strong>Mixed Episode</strong></td><td>Symptoms of mania AND depression simultaneously — agitated and irritable (mania) while feeling worthless and depressed</td><td><strong>High energy + depression = significant suicide risk.</strong> Classified under Bipolar I. Most dangerous combination of features.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout exam">
+      <span class="callout-label">⭐ BPI vs. BPII — The Key Distinction</span>
+      <div class="grid-2">
+        <div class="mini-panel red">
+          <h4>Bipolar I</h4>
+          <ul>
+            <li>Has experienced ≥1 full MANIC episode</li>
+            <li>May also have mixed episodes and depression</li>
+            <li>Full mania can include psychosis</li>
+            <li>More severe overall</li>
+          </ul>
+        </div>
+        <div class="mini-panel violet">
+          <h4>Bipolar II</h4>
+          <ul>
+            <li>Has NEVER had a full manic or mixed episode</li>
+            <li>Has HYPOMANIA + depression ONLY</li>
+            <li>Hypomania: NO psychosis; no severe impairment</li>
+            <li>Memory: II = hypo (below full mania)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 3: DRUG THERAPY OVERVIEW ═══════ -->
+<div id="p3" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 6–7 | Drug Therapy and Non-Drug Therapy</p>
+    <h2 class="card-title">Drug Therapy Overview — BPD Treatment Framework</h2>
+
+    <div class="sh">Slide 6 — Types of Drugs Employed</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li><strong>Mood stabilizers:</strong> lithium, divalproex sodium, and carbamazepine — relieve symptoms and prevent recurrence of episodes</li>
+        <li><strong>Antipsychotics:</strong> given during acute severe manic episodes or long-term</li>
+        <li><strong>Antidepressants:</strong> given during depressive episodes</li>
+        <li><strong>Benzodiazepines:</strong> acute management of insomnia, anxiety, agitation</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Drug Selection Strategy for Each Phase</span>
+      <p><strong>Acute manic episodes:</strong> Lithium OR valproate is first-line, often combined with a second-generation antipsychotic. Lithium is the drug of choice. If patient does not respond to lithium or valproate alone, the two may be combined. Benzodiazepine (lorazepam) may be added for acute insomnia/anxiety/agitation. Responses to mood stabilizers develop slowly (2+ weeks to become maximal) — antipsychotics provide faster symptom control during this waiting period.</p>
+      <p style="margin-top:8px"><strong>Depressive episodes:</strong> Mood stabilizer alone if mild; if inadequate, add antipsychotic or antidepressant. <strong>NEVER use antidepressant alone</strong> in BPD — may trigger mania or rapid cycling. Preferred antidepressants: bupropion, venlafaxine, SSRIs (fluoxetine, sertraline).</p>
+      <p style="margin-top:8px"><strong>Long-term maintenance:</strong> Continue whatever worked acutely. Options: lithium alone, valproate alone, or both combined. SGAs are increasingly used for long-term maintenance.</p>
+    </div>
+    <div class="callout priority">
+      <span class="callout-label">⚠️ Critical Safety — Antidepressants in BPD</span>
+      <p>Using antidepressants alone in BPD can trigger a manic episode or accelerate mood cycling (rapid cycling). This is why antidepressants must always be paired with a mood stabilizer in BPD. If a BPD patient is prescribed an antidepressant alone — <strong>question this order.</strong></p>
+    </div>
+
+    <div class="sh">Slide 7 — Non-Drug Therapy</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Education: patient and family</li>
+        <li>Psychotherapy: individual, group, and family</li>
+        <li>Electroconvulsive therapy (ECT): <strong>last resort</strong></li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — ECT Indications and Psychotherapy Goals</span>
+      <p>BPD should ideally be treated with a combination of drugs AND adjunctive psychotherapy — drug therapy alone is not optimal. Psychotherapy helps patients cope with the sequelae of manic episodes (strained relationships, self-confidence loss, shame regarding behavior). Certain life stressors (moving, job loss, bereavement, childbirth) can precipitate a mood change — therapy helps reduce the destabilizing impact of these events.</p>
+      <p style="margin-top:8px">Textbook self-management strategies to teach patients: maintain stable sleep pattern; maintain regular activity pattern; avoid alcohol and street drugs; enlist family/friend support; reduce work stress; <strong>keep a mood chart</strong> to monitor progress.</p>
+      <p style="margin-top:8px"><strong>ECT:</strong> Effective for severe mania, severe nonpsychotic or psychotic depression, and rapid-cycling BPD that hasn't responded to drugs. Candidates: patients with psychotic depression, severe mania, rapid-cycling BPD. NOT a first choice — reserved for cases failing drug therapy.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 4: LITHIUM — LEVELS & MOA ═══════ -->
+<div id="p4" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 8–11 | Lithium: Levels, Indications, Mechanism, Pharmacokinetics</p>
+    <h2 class="card-title">Lithium — Therapeutic Levels, MOA &amp; Pharmacokinetics</h2>
+
+    <div class="sh">Slide 8 — Mood-Stabilizing Drugs: Lithium — Key Lab Facts</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li><strong>Low therapeutic index</strong></li>
+        <li>Lithium levels must be below <strong>1.5 mEq/L</strong> — toxicity if greater than 1.5 mEq/L</li>
+        <li>Drawn in the AM, <strong>12 hours after evening dose</strong></li>
+        <li>Measure every <strong>3–6 months</strong> (maintenance)</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Complete Lithium Level Reference</span>
+      <table class="data-table" style="margin-top:6px">
+        <thead><tr><th>Parameter</th><th>Value</th><th>Clinical Significance</th></tr></thead>
+        <tbody>
+          <tr><td>Maintenance therapeutic range</td><td><strong>0.4–1.0 mEq/L</strong></td><td>Optimal: 0.6–0.8 mEq/L. Levels 0.8–1.0 are more effective but carry greater adverse effect risk.</td></tr>
+          <tr><td>Initial therapy range</td><td><strong>0.8–1.4 mEq/L</strong></td><td>Slightly higher than maintenance to achieve rapid symptom control</td></tr>
+          <tr><td>Toxic level</td><td><strong>&gt;1.5 mEq/L</strong></td><td>More serious toxicities begin; STOP medication and notify provider</td></tr>
+          <tr><td>Life-threatening level</td><td><strong>&gt;2.5 mEq/L</strong></td><td>Death can occur; generalized convulsions, oliguria, respiratory arrest</td></tr>
+          <tr><td>Draw timing</td><td><strong>Morning, 12 hours after evening dose (trough level)</strong></td><td>Ensures accurate, reproducible reading. Always verify draw timing before reporting or acting on a level.</td></tr>
+          <tr><td>Initial monitoring frequency</td><td>Every <strong>2–3 days</strong></td><td>During first weeks of therapy to establish therapeutic level and detect early toxicity</td></tr>
+          <tr><td>Maintenance monitoring frequency</td><td>Every <strong>3–6 months</strong></td><td>Once stable. Annual labs also required: CBC, electrolytes, renal function, thyroid function.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Exam Tip — Lab Draw Timing Is Testable</span>
+      <p>Questions will often describe a lithium level drawn at a non-standard time and ask if this is appropriate. The answer: levels must be drawn in the <strong>morning, exactly 12 hours after the last evening dose</strong>. A level drawn at any other time does not accurately reflect the trough level and cannot be reliably interpreted.</p>
+    </div>
+
+    <div class="sh">Slide 9 — Lithium: Therapeutic Uses</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Primary: <strong>Bipolar disorder (BPD)</strong></li>
+        <li>Other uses: alcoholism, bulimia, schizophrenia, glucocorticoid-induced psychosis</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Lithium Is the Drug of Choice for Acute Mania</span>
+      <p>Lithium is considered the <strong>drug of choice for all patients experiencing an acute manic episode</strong>, regardless of clinical presentation. In manic patients, it reduces euphoria and hyperactivity <strong>without causing sedation</strong> (unlike benzodiazepines). Onset of antimanic effects: <strong>5–7 days</strong>; full benefits may take <strong>2–3 weeks</strong>. For long-term prophylaxis, lithium is more effective than valproate at preventing relapses and is superior for <strong>suicide risk reduction</strong>.</p>
+    </div>
+
+    <div class="sh">Slide 10 — Lithium: Mechanism of Action</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Mechanism of action: <strong>Unknown</strong></li>
+        <li>Lithium may work by: (1) inhibiting intracellular proteins, (2) stabilizing calcium channels, (3) decreasing neuronal activity, (4) modulating neurotransmitters — particularly <strong>dopamine, glutamate, and GABA</strong> neurotransmission</li>
+        <li><strong>Neuroprotective</strong> — protects the brain against neuronal atrophy and/or promotes neuronal growth</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Current Research on MOA</span>
+      <p>The textbook identifies three more specific mechanisms being researched: (1) altering glutamate uptake and release; (2) blocking the binding of serotonin to its receptors; (3) inhibiting glycogen synthase kinase-3 beta (GSK-3β — a signaling molecule involved in cell survival and neuroplasticity). Despite decades of research, a definitive explanation has not been established.</p>
+      <p style="margin-top:8px">Neuroprotective evidence: animal studies show lithium at "therapeutic" doses <strong>doubled the level of neurotrophic Bcl-2 proteins</strong>. In humans on long-term lithium, the volume of the subgenual prefrontal cortex (a region that atrophies in BPD) is greater than in untreated patients. Lithium can increase total gray matter in the prefrontal cortex, hippocampus, and caudate nucleus.</p>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Exam Trap — Lithium MOA Is "Unknown"</span>
+      <p>If an exam question gives a specific single mechanism for lithium and asks if it's correct, the answer is: lithium's precise MOA is <strong>unknown</strong>. Multiple possible mechanisms are being investigated. A question that says "lithium works by [one specific mechanism]" is incorrect — recognize that as a trap. The slide explicitly states "unknown."</p>
+    </div>
+
+    <div class="sh">Slide 11 — Lithium: Pharmacokinetics</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Excretion: short half-life; <strong>excreted by the kidneys</strong></li>
+        <li><strong>Sodium levels:</strong> lithium excretion reduced when sodium level is low → monitor for toxicity</li>
+        <li>Plasma levels range from <strong>0.4 to 1 mEq/L</strong></li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — The Sodium-Lithium Relationship (Critical)</span>
+      <p>The kidney processes lithium and sodium in the <strong>same way</strong>. When sodium levels are low, the kidney "thinks" it needs to conserve sodium — and it retains lithium as well (they compete for the same reabsorption pathway). Result: lithium accumulates to potentially toxic levels.</p>
+      <p style="margin-top:8px">Clinical implications of this relationship:</p>
+      <ul class="content-list">
+        <li>Patients must maintain <strong>consistent, normal sodium intake</strong> — sodium-free diets are contraindicated</li>
+        <li><strong>Diuretics</strong> promote sodium loss → reduce lithium excretion → increase lithium levels → toxicity risk</li>
+        <li><strong>Diarrhea</strong> can cause significant sodium loss → lithium accumulation</li>
+        <li><strong>Dehydration</strong> (hot weather, illness, inadequate fluid intake) → lithium retention → toxicity</li>
+        <li>Patients must drink <strong>8–12 glasses of fluid daily</strong></li>
+        <li>Because of its short half-life AND low therapeutic index, lithium CANNOT be given as a single daily dose — typical regimen: 300 mg 3–4 times/day; or 600 mg BID with slow-release formulation only</li>
+      </ul>
+    </div>
+    <div class="callout priority">
+      <span class="callout-label">⚠️ Nursing Priority — Pre-Administration Assessment</span>
+      <p>Before administering lithium or initiating lithium therapy, assess: <strong>baseline cardiac status (ECG, BP, pulse); hematologic status (CBC with differential); serum electrolytes; renal function (serum creatinine, creatinine clearance, urinalysis); thyroid function (T3, T4, TSH).</strong> Rule out pregnancy. All of these should be reassessed <strong>at least annually</strong> during therapy. Renal function is especially critical — impaired renal function → lithium accumulates → toxicity.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 5: LITHIUM — SE & TOXICITY ═══════ -->
+<div id="p5" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 12–13 | Lithium Side Effects and Toxicity Stages</p>
+    <h2 class="card-title">Lithium — Side Effects &amp; Toxicity</h2>
+
+    <div class="sh">Slide 12 — Side Effects at Therapeutic and Excessive Levels</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Excessive lithium levels (&gt;1.5 mEq/L): monitor every 2–3 days at initiation, then q3–6 months; draw in morning 12 hours after evening dose</li>
+        <li>Side effects at <strong>therapeutic</strong> lithium levels:</li>
+        <li>Gastrointestinal effects (NVD)</li>
+        <li>Hand tremors</li>
+        <li>Thirst &amp; polyuria</li>
+        <li>Renal toxicity</li>
+        <li>Goiter and hypothyroidism</li>
+        <li>Teratogenesis</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Side Effects at Therapeutic Levels in Detail</span>
+      <div class="grid-2">
+        <div class="mini-panel">
+          <h4>GI Effects</h4>
+          <ul>
+            <li>Nausea, vomiting, diarrhea, bloating, anorexia</li>
+            <li>Common but transient early in therapy</li>
+            <li>Nursing: take with meals or milk to reduce GI upset</li>
+          </ul>
+        </div>
+        <div class="mini-panel teal">
+          <h4>Tremor</h4>
+          <ul>
+            <li>Fine hand tremor (especially fingers)</li>
+            <li>Worsened by stress, fatigue, caffeine, antidepressants, antipsychotics</li>
+            <li>Treatment: propranolol (beta blocker) or reduce peak lithium levels (reduce dose, use divided doses, switch to slow-release)</li>
+          </ul>
+        </div>
+        <div class="mini-panel amber">
+          <h4>Polyuria / Thirst</h4>
+          <ul>
+            <li>Occurs in 50–70% of chronic users</li>
+            <li>Daily urine output may exceed 3 L</li>
+            <li>Mechanism: lithium antagonizes ADH</li>
+            <li>Treatment: amiloride (K-sparing diuretic — preferred over thiazides)</li>
+            <li>Can discourage adherence — address proactively</li>
+          </ul>
+        </div>
+        <div class="mini-panel red">
+          <h4>Renal Toxicity</h4>
+          <ul>
+            <li>Chronic use → degenerative kidney changes</li>
+            <li>Use lowest effective dose</li>
+            <li>Monitor renal function before AND annually</li>
+          </ul>
+        </div>
+        <div class="mini-panel violet">
+          <h4>Goiter &amp; Hypothyroidism</h4>
+          <ul>
+            <li>Lithium inhibits thyroid hormone synthesis and secretion</li>
+            <li>Long-term: may cause goiter + hypothyroidism</li>
+            <li>Treatment: levothyroxine (SAFE with lithium) OR withdraw lithium</li>
+            <li>Monitor T3, T4, TSH annually</li>
+          </ul>
+        </div>
+        <div class="mini-panel green">
+          <h4>Teratogenesis</h4>
+          <ul>
+            <li>Avoid during FIRST TRIMESTER (cardiac malformation risk)</li>
+            <li>Use caution throughout pregnancy</li>
+            <li>Enters breast milk — discourage breastfeeding</li>
+            <li>Rule out pregnancy before initiating; counsel women of childbearing age</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Fine Tremors vs. Coarse Tremors — Critical Distinction</span>
+      <p><strong>Fine hand tremors</strong> at therapeutic lithium levels → EXPECTED side effect. Do not stop medication; teach management (propranolol, dose reduction, divided dosing).<br>
+      <strong>Coarse tremors</strong> (more severe, visible large-amplitude trembling) → sign of EARLY TOXICITY. Stop medication, check level, notify provider.</p>
+    </div>
+
+    <div class="sh">Slide 13 — Lithium Toxicity: Three-Stage Progression</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content — Three-Stage Table</span>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Stage</th><th>Level (mEq/L)</th><th>GI / GU</th><th>Neurological</th><th>Musculoskeletal</th><th>Cardiovascular</th><th>Treatment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Early</strong></td><td>Still below 1.5 (can occur at therapeutic levels)</td><td>NVD, thirst; GU: polyuria</td><td>Slurred speech</td><td>Muscle weakness</td><td>—</td><td>Stop med, check labs, re-evaluate dosage</td></tr>
+        <tr><td><strong>Advanced</strong></td><td>1.5–2.5</td><td>GI upset; GU: polyuria</td><td>Coarse hand tremor, confusion, incoordination</td><td>Muscle hyperirritability, incoordination</td><td>ECG changes, sedation</td><td>Stop med, check labs, re-evaluate dosage</td></tr>
+        <tr><td><strong>Severe</strong></td><td>&gt;2.5</td><td>GU: polyuria</td><td>Ataxia, blurred vision, tinnitus, clonic movements, SEIZURES, stupor, COMA</td><td>Clonic movements, seizures</td><td>ECG changes, severe hypotension; Resp: ARREST</td><td>NO ANTIDOTE. Hospitalize. Hemodialysis. Gastric lavage. Emetic. Urea (for low Na), mannitol (for ICP), aminophylline (respiratory).</td></tr>
+      </tbody>
+    </table>
+    <div class="callout emergency">
+      <span class="callout-label">🚨 Severe Lithium Toxicity — Emergency Response</span>
+      <p>Severe lithium toxicity has <strong>NO ANTIDOTE</strong>. Death can occur at levels &gt;2.5 mEq/L from pulmonary complications (respiratory arrest), cardiovascular collapse, or seizures. Treatment is entirely supportive:</p>
+      <ul class="content-list">
+        <li>STOP lithium immediately</li>
+        <li>Hospitalize — ICU-level care</li>
+        <li>Hemodialysis is the most effective means of lithium removal — should be considered when levels exceed 2.5 mEq/L</li>
+        <li>Gastric lavage to remove remaining drug from stomach</li>
+        <li>IV fluids for hydration and to support BP</li>
+        <li>Urea — to treat low sodium (promotes lithium excretion)</li>
+        <li>Mannitol — for elevated ICP if cerebral edema develops</li>
+        <li>Aminophylline — to support respiratory function</li>
+        <li>Monitor vital signs, mental status, urine output continuously</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Note — Most Common Cause of Lithium Accumulation</span>
+      <p>In adherent patients (those who are actually taking their medication), the <strong>most common cause of lithium accumulation is sodium depletion</strong> — typically from diuretic use, diarrhea, vomiting, or excessive sweating/dehydration. Patient education about maintaining sodium and fluid intake is therefore a primary nursing responsibility in lithium management.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 6: LITHIUM — INTERACTIONS & TEACHING ═══════ -->
+<div id="p6" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 14–16 | Lithium: Drug Interactions, Question, and Patient Teaching</p>
+    <h2 class="card-title">Lithium — Drug Interactions &amp; Patient Teaching</h2>
+
+    <div class="sh">Slide 14 — Lecture Question on Low Sodium</div>
+    <div class="qa-block">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Slide 14 Question: What is likely to occur when a patient taking lithium carbonate has low sodium levels?<br>A. Lithium toxicity &nbsp;&nbsp; B. Low serum lithium levels &nbsp;&nbsp; C. Increase in depression &nbsp;&nbsp; D. Decrease in mania</span>
+        <span class="qa-icon">▼</span>
+      </div>
+      <div class="qa-answer">
+        <span class="answer-tag">✓ Answer: A — Lithium Toxicity</span>
+        <p><strong>Rationale:</strong> The kidney processes lithium and sodium in the same way. When sodium levels fall, the kidney retains lithium (along with sodium) to compensate. This reduces lithium excretion, causing lithium levels to rise above the therapeutic range (&gt;1.5 mEq/L) — producing toxicity.</p>
+        <ul>
+          <li><span class="wrong-tag">✗ B</span> — Low sodium → INCREASED (not decreased) lithium levels</li>
+          <li><span class="wrong-tag">✗ C</span> — Low sodium has no direct relationship to depression severity</li>
+          <li><span class="wrong-tag">✗ D</span> — If lithium levels rise, we might expect less mania, but this is due to toxicity — not a therapeutic benefit</li>
+        </ul>
+        <p style="margin-top:8px"><strong>Clinical application:</strong> This is why patients on lithium must: maintain normal sodium intake, avoid sodium-restricted diets, be cautious with diuretics, maintain adequate hydration, and report illnesses with diarrhea/vomiting.</p>
+      </div>
+    </div>
+
+    <div class="sh">Slide 15 — Drug Interactions</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li><strong>Diuretics</strong> (related to loss of fluid and sodium)</li>
+        <li><strong>NSAIDs</strong> (increase lithium levels)</li>
+        <li><strong>Anticholinergic drugs</strong> (urinary hesitancy + lithium-induced polyuria = discomfort)</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Four Drug Interactions + Important Exceptions</span>
+      <table class="data-table" style="margin-top:8px">
+        <thead><tr><th>Drug Category</th><th>Specific Examples</th><th>Mechanism</th><th>Clinical Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Diuretics</strong></td><td>Furosemide (Lasix), thiazides — QUESTION these orders</td><td>Promote sodium loss → kidney retains lithium → ↑ lithium levels → toxicity</td><td>Furosemide is the classic drug to QUESTION. If polyuria treatment needed: amiloride (K-sparing diuretic) is safer because it doesn't lower sodium as much as thiazides.</td></tr>
+          <tr><td><strong>NSAIDs</strong></td><td>Ibuprofen, naproxen, indomethacin, celecoxib — CAUTION. <strong>Aspirin and sulindac are SAFE alternatives</strong> that do NOT increase lithium levels.</td><td>Suppress prostaglandin synthesis in kidney → increase renal reabsorption of lithium → levels ↑ up to 60%</td><td>If patient needs a mild analgesic: recommend aspirin or sulindac. Avoid ibuprofen, naproxen, and most other NSAIDs.</td></tr>
+          <tr><td><strong>ACE Inhibitors</strong></td><td>Lisinopril, enalapril — monitor closely</td><td>Similar to diuretics — reduce sodium and thereby reduce lithium excretion → ↑ lithium levels</td><td>If patient is started on an ACE inhibitor, monitor lithium levels closely for toxicity signs</td></tr>
+          <tr><td><strong>Anticholinergic drugs</strong></td><td>Antihistamines, phenothiazine antipsychotics, TCAs</td><td>Cause urinary hesitancy (difficulty urinating), which combined with lithium-induced polyuria produces significant urinary discomfort</td><td>Counsel patients to avoid drugs with prominent anticholinergic actions; if unavoidable, monitor for urinary retention</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Exam Tip — The Furosemide Question (Appears in Practice Slides)</span>
+      <p>A patient on lithium is prescribed furosemide [Lasix]. Which action should the nurse take? → <strong>Question this order.</strong> Diuretics promote sodium loss → reduced lithium excretion → lithium toxicity. Furosemide is a loop diuretic that is especially potent at promoting sodium loss. Notify the prescriber and request clarification or an alternative. This exact scenario appears as a practice question in your module.</p>
+    </div>
+
+    <div class="sh">Slide 16 — Patient Teaching: Lithium</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content — Teaching Points</span>
+      <ul class="content-list">
+        <li>Purpose of lithium</li>
+        <li>Adverse effects and treatments</li>
+        <li>Drug-drug interactions: diuretics, NSAIDs, anticholinergics (antihistamines, etc.)</li>
+        <li>Pregnancy considerations</li>
+        <li>Toxic effects — signs to report</li>
+        <li>Maintain fluids and prevent dehydration</li>
+        <li>Continue medication even if feeling better</li>
+        <li>How adherence prevents relapse</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Complete Lithium Patient Education</span>
+      <ul class="content-list">
+        <li><strong>How to take:</strong> Take with meals or milk to reduce GI upset. Swallow slow-release (sustained-release) tablets WHOLE — do not crush or chew. Take on a regular schedule at the same times each day.</li>
+        <li><strong>Purpose:</strong> Stabilizes mood in bipolar disorder; controls acute manic episodes; prevents future episodes of mania and depression.</li>
+        <li><strong>Adherence:</strong> "Take this medication even when you feel well — stopping it causes relapse." Encourage family members to oversee medication administration for outpatients. Lithium does NOT cause addiction or dependence.</li>
+        <li><strong>Fluids and sodium:</strong> Drink 8–12 glasses of fluid daily. Do NOT restrict sodium intake. Maintaining normal sodium intake is critical to preventing toxicity. Illness with diarrhea, vomiting, or heavy sweating can trigger toxicity — contact provider if sick.</li>
+        <li><strong>Drug interactions to avoid:</strong> NSAIDs (use aspirin or sulindac instead); diuretics; ACE inhibitors (consult provider); anticholinergics including antihistamines; always consult provider before starting any new medication (including OTC).</li>
+        <li><strong>Pregnancy:</strong> Lithium may be teratogenic (cardiac defects, especially in 1st trimester). Use effective contraception. Do not stop lithium without consulting your prescriber if you become pregnant. Do not breastfeed during lithium therapy.</li>
+        <li><strong>Signs of toxicity to report IMMEDIATELY:</strong> Worsening nausea/vomiting/diarrhea; slurred speech; increasing muscle weakness or tremors (coarse tremor is concerning); confusion or disorientation; unsteady gait or incoordination. Go to the ER for seizures, loss of consciousness, or extreme confusion.</li>
+        <li><strong>Lab monitoring:</strong> Blood levels are monitored q2–3 days initially, then q3–6 months. Always drawn in the morning, 12 hours after the evening dose. Annual labs for kidney, thyroid, and blood counts.</li>
+      </ul>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Case Study Teaching Scenario (from Slide 25–26)</span>
+      <p><strong>Patient says:</strong> "I heard I must have blood work done every day I take lithium and I don't like needles."</p>
+      <p style="margin-top:8px"><strong>Nurse's best response:</strong> Clarify that lithium levels are NOT drawn daily. Levels are monitored every 2–3 days during initial therapy, then every 3–6 months during maintenance. Therapeutic range: 0.8–1.4 mEq/L initially; 0.4–1 mEq/L maintenance. Reassure the patient that the frequency decreases significantly once a stable level is established.</p>
+      <p style="margin-top:8px"><strong>Case: "I will reduce my salt intake while taking lithium"</strong> → This requires further teaching. Low salt intake → reduced lithium excretion → toxicity. Sodium must be maintained at normal levels.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 7: ANTIEPILEPTIC DRUGS ═══════ -->
+<div id="p7" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 17–19 | Divalproex Sodium, Carbamazepine, Lamotrigine XR</p>
+    <h2 class="card-title">Antiepileptic Drugs for BPD — Valproate, Carbamazepine &amp; Lamotrigine</h2>
+
+    <div class="callout info">
+      <span class="callout-label">📘 Why Antiepileptics in BPD?</span>
+      <p>Three antiepileptic drugs — divalproex sodium, carbamazepine, and lamotrigine — can suppress mania and/or depression and stabilize mood in BPD. Their efficacy is firmly established. Divalproex sodium has become a first-line treatment — in many patients it has effectively replaced lithium as the first drug tried, due to its faster onset, higher therapeutic index, and more desirable side effect profile.</p>
+    </div>
+
+    <div class="sh">Slide 17 — Divalproex Sodium (Valproate)</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Action: same as lithium</li>
+        <li>SE: GI (NVD); <strong>thrombocytopenia, pancreatitis, liver failure</strong></li>
+        <li>NC: Monitor lab — <strong>50–120 mcg/mL is therapeutic trough level (12 hrs)</strong></li>
+        <li>Monitor toxicity: thrombocytopenia, pancreatitis, liver failure → <strong>immediate withdrawal</strong></li>
+        <li>Teratogenic</li>
+        <li>Can be used alone or in combination with other drugs</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Valproate vs. Lithium Comparison</span>
+      <table class="data-table" style="margin-top:6px">
+        <thead><tr><th>Feature</th><th>Lithium</th><th>Valproate</th></tr></thead>
+        <tbody>
+          <tr><td>Speed of onset</td><td>Slower (5–7 days initial, 2–3 weeks full)</td><td><strong>Faster onset</strong></td></tr>
+          <tr><td>Therapeutic index</td><td>Low (narrow) — toxic at slightly above therapeutic</td><td><strong>Higher</strong> (safer)</td></tr>
+          <tr><td>Side effect profile</td><td>More burdensome</td><td><strong>More desirable</strong></td></tr>
+          <tr><td>Suicide risk reduction</td><td><strong>Superior</strong></td><td>Less effective</td></tr>
+          <tr><td>Relapse prevention</td><td><strong>More effective</strong></td><td>Less effective</td></tr>
+          <tr><td>Depression treatment</td><td>More effective</td><td>Less effective for depression</td></tr>
+          <tr><td>Weight gain</td><td>Less</td><td>More — despite causing GI distress, frequently causes significant weight gain</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px"><strong>Dosing:</strong> Starting dose for acute mania: 250 mg TID OR 500 mg once daily at bedtime. Typical maintenance: 1000–2500 mg/day. Therapeutic trough: 50–120 mcg/mL.</p>
+      <p style="margin-top:8px"><strong>Important:</strong> Despite causing GI distress, valproate frequently causes <strong>weight gain</strong> — a serious, chronic complication that the slide does not mention but the textbook emphasizes.</p>
+    </div>
+    <div class="callout priority">
+      <span class="callout-label">⚠️ Nursing Priority — Immediate Withdrawal Required</span>
+      <p>The three most dangerous valproate toxicities all require <strong>immediate drug withdrawal</strong>: thrombocytopenia (monitor for unusual bleeding or bruising), pancreatitis (monitor for severe abdominal pain, nausea, elevated lipase/amylase), and liver failure (monitor for jaundice, RUQ pain, dark urine, elevated LFTs). Do not wait for symptoms to worsen. Also: teratogenic — ensure patients use effective contraception and are counseled about pregnancy risk.</p>
+    </div>
+
+    <div class="sh">Slide 18 — Carbamazepine</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Action: <strong>decrease neuronal synapse in CNS by affecting sodium channels</strong></li>
+        <li>Reduces symptoms of BPD; protects against recurrence of mania</li>
+        <li>SE: early in treatment, neurological SE: visual disturbances, ataxia, vertigo, unsteadiness, headache</li>
+        <li>Thrombocytopenia</li>
+        <li>NC: target trough plasma level: <strong>4 to 12 mcg/mL</strong></li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Carbamazepine Additional Details</span>
+      <p><strong>Indications:</strong> Approved for treatment AND prevention of manic episodes; less effective for depression. Starting dose: 200 mg twice daily, gradually increased; maximum 1600 mg/day.</p>
+      <p style="margin-top:8px"><strong>Hematologic effects (NOT on slide):</strong> Leukopenia, anemia, thrombocytopenia, and aplastic anemia are possible. Obtain CBC at baseline and periodically. Report unusual bruising or bleeding.</p>
+      <p style="margin-top:8px"><strong>CYP450 enzyme inducer (Critical drug interaction):</strong> Carbamazepine induces hepatic cytochrome P450 enzymes → accelerates its own metabolism AND the metabolism of many other drugs, including oral contraceptives (may cause contraceptive failure), warfarin, valproate, and TCAs. If a patient on carbamazepine starts using oral contraceptives, warn them that contraceptive efficacy may be reduced.</p>
+      <p style="margin-top:8px"><strong>Brand names:</strong> Carbatrol, Equetro (only one specifically approved for BPD), Epitol, Tegretol. The neurological side effects (visual, ataxia, vertigo) typically resolve with continued use despite initial persistence.</p>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Exam Trap — Carbamazepine + Risperidone</span>
+      <p>Because carbamazepine is a CYP450 inducer, it lowers plasma levels of other drugs metabolized by this system. Specifically: carbamazepine LOWERS risperidone (Risperdal) drug levels. If a patient taking risperidone for BPD is also on carbamazepine, the risperidone may be less effective. This drug interaction was highlighted in both the antipsychotic and bipolar slides.</p>
+    </div>
+
+    <div class="sh">Slide 19 — Lamotrigine XR</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Indicated for <strong>long-term maintenance</strong> of BPD — prevent relapses</li>
+        <li>Can be used with other mood stabilizers</li>
+        <li>Action: <strong>stabilizes neuronal membranes by inhibiting sodium transport</strong></li>
+        <li>SE: NV, headache, dizziness, vision problems; <strong>SJS (Stevens-Johnson Syndrome)</strong></li>
+        <li>NC: suicide precautions; assess rash; monitor lamotrigine level (1–5 mcg/L); teratogenic</li>
+        <li>Drug-drug: anti-dysrhythmias</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — SJS Risk and Dose-Dependent Safety</span>
+      <p>The most feared adverse effect of lamotrigine is <strong>Stevens-Johnson Syndrome (SJS)</strong> — a potentially life-threatening dermatologic reaction. Risk is related to the <strong>rate of dosage escalation</strong>: starting too high or increasing too fast dramatically increases SJS risk. To minimize this: start at 25–50 mg/day and increase gradually over weeks.</p>
+      <p style="margin-top:8px">Target maintenance dosages vary depending on what other drugs the patient is taking:</p>
+      <ul class="content-list">
+        <li><strong>Lamotrigine alone:</strong> 200 mg/day</li>
+        <li><strong>Lamotrigine + valproate:</strong> 100 mg/day (valproate increases lamotrigine levels — lower dose needed)</li>
+        <li><strong>Lamotrigine + carbamazepine:</strong> 400 mg/day (carbamazepine induces metabolism — higher dose needed to compensate)</li>
+      </ul>
+      <p style="margin-top:8px">Any rash during lamotrigine therapy should be assessed immediately and the drug held pending evaluation. Also: toxic epidermal necrolysis (TEN) — a more severe form of SJS — can also occur.</p>
+    </div>
+    <div class="callout priority">
+      <span class="callout-label">⚠️ Nursing Priority — Rash = STOP and Notify</span>
+      <p>Any new rash in a patient on lamotrigine requires <strong>immediate drug hold and provider notification</strong>. SJS can progress rapidly to involve mucous membranes, the eyes, and internal organs. Early identification and drug cessation are the most critical interventions. Teach patients: "If you develop any rash, skin blistering, or sores in your mouth while taking this medication, stop taking it and call your doctor immediately."</p>
+    </div>
+
+    <div class="sh">Antiepileptic Drug Comparison Table</div>
+    <table class="data-table">
+      <thead><tr><th>Drug</th><th>MOA</th><th>Indications in BPD</th><th>Therapeutic Level</th><th>Critical Safety Concerns</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Divalproex (Valproate)</strong></td><td>Similar to lithium (exact MOA unknown)</td><td>Acute mania, prevention of mania; less effective for depression</td><td>50–120 mcg/mL (trough at 12hr)</td><td>Thrombocytopenia, pancreatitis, liver failure → immediate withdrawal. Teratogenic. Weight gain.</td></tr>
+        <tr><td><strong>Carbamazepine</strong></td><td>Blocks sodium channels → decreases neuronal synapse firing</td><td>Treatment and prevention of manic episodes; less effective for depression</td><td>4–12 mcg/mL (trough)</td><td>CBC monitoring (hematologic effects including aplastic anemia). CYP450 inducer — multiple drug interactions. Neurological SE early in therapy.</td></tr>
+        <tr><td><strong>Lamotrigine XR</strong></td><td>Stabilizes neuronal membranes by inhibiting sodium transport</td><td>Long-term maintenance ONLY — prevents relapses into mania and depression</td><td>1–5 mcg/L</td><td>SJS/TEN rash — monitor closely; slow dose titration required. Teratogenic. Suicide precautions.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 8: ANTIPSYCHOTICS & BENZOS ═══════ -->
+<div id="p8" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 20–22 | Antipsychotic Drugs and Benzodiazepines in BPD</p>
+    <h2 class="card-title">Antipsychotics &amp; Benzodiazepines in Bipolar Disorder</h2>
+
+    <div class="sh">Slides 20–21 — Antipsychotic Drugs for BPD</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content (Slide 21)</span>
+      <ul class="content-list">
+        <li>Used to acutely control symptoms during manic episodes</li>
+        <li>Used long-term to help stabilize mood</li>
+        <li>Benefit patients <strong>with or without</strong> psychotic symptoms</li>
+        <li>Can be combined with mood stabilizer</li>
+        <li>Five antipsychotics approved: olanzapine, quetiapine, risperidone, aripiprazole, and ziprasidone</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — SGAs Are Preferred Over FGAs in BPD</span>
+      <p>The textbook specifies that SGAs are generally preferred over FGAs for BPD because they carry a lower risk for EPS, including tardive dyskinesia. Eight atypical antipsychotics are approved for BPD: olanzapine, quetiapine, risperidone, aripiprazole, <strong>lurasidone (Latuda)</strong>, <strong>cariprazine (Vraylar)</strong>, <strong>asenapine (Saphris)</strong>, and ziprasidone.</p>
+      <p style="margin-top:8px">Special note: Clozapine (Clozaril) is highly effective in BPD but is NOT used due to the risk for agranulocytosis.</p>
+      <p style="margin-top:8px">For long-term maintenance specifically: only three SGAs are approved — <strong>aripiprazole, olanzapine, and ziprasidone</strong>.</p>
+      <p style="margin-top:8px">Quetiapine is uniquely useful for BPD because it is approved for both acute mania AND depressive episodes in BPD — the only SGA listed in your slides with this dual indication for bipolar depression.</p>
+    </div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ Exam Tip — Why Antipsychotics in BPD Even Without Psychosis?</span>
+      <p>Students often ask: why use antipsychotics if the patient isn't psychotic? In BPD, antipsychotics are used for their mood-stabilizing properties and their ability to quickly control the hyperactivity, agitation, reduced need for sleep, and behavioral dysregulation of mania — regardless of whether hallucinations or delusions are present. Mood stabilizers (lithium/valproate) take 2+ weeks to work; antipsychotics provide faster symptom control.</p>
+    </div>
+
+    <div class="sh">Slide 22 — Benzodiazepines in BPD</div>
+    <div class="callout prof">
+      <span class="callout-label">📊 Slide Content</span>
+      <ul class="content-list">
+        <li>Examples: clonazepam, diazepam, lorazepam, alprazolam</li>
+        <li>Action: produces sedative effects in the CNS by <strong>stimulating inhibitory GABA receptors</strong></li>
+        <li>Need: BPD mania / insomnia, anxiety</li>
+        <li>AR/SE: neuro — drowsiness, ataxia; anticholinergic symptoms: visual changes, difficulty urinating, constipation, palpitations</li>
+        <li>NC: monitor for falls; monitor for and teach anticholinergic symptoms; <strong>addictive drug</strong>; Drug-Drug: other CNS depressants, alcohol</li>
+        <li>Evaluation: decreased mania/insomnia</li>
+      </ul>
+    </div>
+    <div class="callout book">
+      <span class="callout-label">📖 Textbook Expansion — Benzodiazepines Are Adjuncts, Not Mood Stabilizers</span>
+      <p>In BPD, benzodiazepines do NOT stabilize mood or prevent relapse — they are used purely as adjuncts for acute symptom management. Lorazepam (Ativan) is specifically mentioned in the textbook as the benzodiazepine of choice for acute mania management (insomnia, anxiety, agitation). Benefits: (1) provide rapid symptom relief during the 2+ week wait for mood stabilizers to work; (2) may allow a lower antipsychotic dose to be used.</p>
+      <p style="margin-top:8px">The mechanism: benzodiazepines bind to the GABA-A receptor complex at an allosteric site (distinct from the GABA binding site) → make the receptor more sensitive to GABA → increased chloride channel opening frequency → neuronal hyperpolarization → CNS depression. This explains sedative, anti-anxiety, muscle relaxant, and anticonvulsant effects.</p>
+      <p style="margin-top:8px"><strong>Addiction and dependence</strong> are real concerns with benzodiazepines — they should be used for acute management only and not continued long-term. The slide flags them as addictive. Teach patients NOT to drink alcohol while taking benzodiazepines (additive CNS depression).</p>
+    </div>
+    <div class="callout priority">
+      <span class="callout-label">⚠️ Nursing Priority — Falls Risk with Benzodiazepines</span>
+      <p>Drowsiness and ataxia are expected effects — implement fall precautions (bed in lowest position, call light within reach, non-slip footwear, ambulate with assistance). Especially important in older adults who are more sensitive to CNS depressant effects. Do NOT operate heavy machinery or drive until response is established.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 9: NCLEX PRACTICE ═══════ -->
+<div id="p9" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 23–36 | Case Studies and Practice Questions from Dr. Naguszewski's Slides</p>
+    <h2 class="card-title">NCLEX-Style Practice Questions — Module 8</h2>
+
+    <div class="callout exam">
+      <span class="callout-label">⭐ High-Yield Topics from These Questions</span>
+      <ul class="content-list">
+        <li>Lithium toxicity → low sodium = increased lithium = toxicity (Answer A)</li>
+        <li>Patient teaching error → reducing salt intake with lithium (Answer D — requires further teaching)</li>
+        <li>Priority medication to question → furosemide (Lasix) ordered for lithium patient (Answer C)</li>
+        <li>Priority assessment before lithium → renal function/creatinine clearance (Answer A)</li>
+        <li>Lithium toxicity signs → polydipsia, slurred speech, fine tremors (Answer C)</li>
+      </ul>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Q1 (Slide 29): Patient diagnosed with BPD is prescribed lithium. To monitor for toxicity, the nurse should observe for which signs?<br>A. Insomnia, increased appetite, abdominal distention &nbsp; B. Dry cough, hyperactive reflexes, hypertension &nbsp; C. Polydipsia, slurred speech, fine hand tremors &nbsp; D. Constipation, asterixis, generalized edema</span>
+        <span class="qa-icon">▼</span>
+      </div>
+      <div class="qa-answer">
+        <span class="answer-tag">✓ Answer: C</span>
+        <p><strong>Rationale:</strong> Classic early lithium toxicity signs: polydipsia (excessive thirst), slurred speech, and fine hand tremors — along with NVD, persistent GI upset, diarrhea, clonic movements, muscle hyperirritability, muscle weakness, and hypotension.</p>
+        <ul>
+          <li><span class="wrong-tag">✗ A</span> — Insomnia, increased appetite, distention are not signs of lithium toxicity</li>
+          <li><span class="wrong-tag">✗ B</span> — Dry cough and hypertension are not lithium toxicity signs</li>
+          <li><span class="wrong-tag">✗ D</span> — Asterixis is associated with hepatic encephalopathy; edema is not a lithium toxicity sign</li>
+        </ul>
+        <p style="margin-top:8px"><strong>Key distinction:</strong> Fine hand tremors at therapeutic levels are EXPECTED and not necessarily an emergency. Coarse tremors, combined with confusion and GI symptoms, indicate advancing toxicity requiring immediate action.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Q2 (Slide 31): Patient with BPD is prescribed lithium. Which statement indicates need for further teaching?<br>A. "I can take the medication with milk or a snack" &nbsp; B. "I will call my doctor if I feel hyperactive" &nbsp; C. "I should drink at least 8–10 glasses of water every day" &nbsp; D. "I will reduce my salt intake while taking this medication"</span>
+        <span class="qa-icon">▼</span>
+      </div>
+      <div class="qa-answer">
+        <span class="answer-tag">✓ Answer: D</span>
+        <p><strong>Rationale:</strong> Reducing salt intake while taking lithium is DANGEROUS. Low sodium → kidney retains lithium → lithium levels rise → toxicity. Patients must maintain NORMAL sodium intake.</p>
+        <ul>
+          <li><span class="wrong-tag">✗ A</span> — CORRECT teaching: lithium can and should be taken with food or milk to reduce GI upset</li>
+          <li><span class="wrong-tag">✗ B</span> — CORRECT teaching: feelings of hyperactivity/mania should be reported promptly; may need additional mood stabilizer</li>
+          <li><span class="wrong-tag">✗ C</span> — CORRECT teaching: 8–10 glasses of water daily because lithium causes polyuria; prevents dehydration-related toxicity</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Q3 (Slide 33): Nurse cares for patient receiving lithium. Which medication, if prescribed, should the nurse QUESTION?<br>A. Levothyroxine [Synthroid] &nbsp; B. Sulindac [Clinoril] &nbsp; C. Furosemide [Lasix] &nbsp; D. Propranolol [Inderal]</span>
+        <span class="qa-icon">▼</span>
+      </div>
+      <div class="qa-answer">
+        <span class="answer-tag">✓ Answer: C</span>
+        <p><strong>Rationale:</strong> Furosemide is a loop diuretic that promotes sodium loss → reduced lithium excretion → lithium accumulation → toxicity. This order should be questioned before administration.</p>
+        <ul>
+          <li><span class="wrong-tag">✗ A</span> — Levothyroxine (Synthroid) is SAFE with lithium — and may actually be needed because lithium can cause hypothyroidism</li>
+          <li><span class="wrong-tag">✗ B</span> — Sulindac is one of the FEW NSAIDs that does NOT increase lithium levels — it is a safe analgesic choice for patients on lithium</li>
+          <li><span class="wrong-tag">✗ D</span> — Propranolol should be used with CAUTION (both lithium toxicity and propranolol can cause hypotension — additive) but is not an absolute contraindication; it may also be used to treat lithium-induced tremor</li>
+        </ul>
+        <p style="margin-top:8px"><strong>Teaching from textbook:</strong> If a mild analgesic is needed for a lithium patient, recommend <strong>aspirin or sulindac</strong> — they do NOT increase lithium levels. Avoid ibuprofen, naproxen, indomethacin, and most other NSAIDs.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <span>Q4 (Slide 35): Nurse prepares to administer lithium to a patient. Which laboratory result should FIRST be assessed?<br>A. Urinary creatinine clearance &nbsp; B. Serum troponin I and T levels &nbsp; C. Fasting blood glucose level &nbsp; D. Serum lipid profile</span>
+        <span class="qa-icon">▼</span>
+      </div>
+      <div class="qa-answer">
+        <span class="answer-tag">✓ Answer: A</span>
+        <p><strong>Rationale:</strong> Renal function must be assessed before lithium administration because lithium is exclusively excreted by the kidneys. Patients with reduced renal function cannot clear lithium adequately → accumulation → toxicity. Creatinine clearance is the most precise measure of glomerular filtration rate (kidney function).</p>
+        <ul>
+          <li><span class="wrong-tag">✗ B</span> — Troponin levels assess cardiac muscle damage (myocardial infarction) — not the priority before lithium</li>
+          <li><span class="wrong-tag">✗ C</span> — Fasting blood glucose monitors for diabetes — relevant to SGAs/metabolic syndrome, not lithium priority</li>
+          <li><span class="wrong-tag">✗ D</span> — Lipid profile is relevant to SGA metabolic monitoring, not lithium</li>
+        </ul>
+        <p style="margin-top:8px">Annual labs for lithium patients include: CBC with differential, serum electrolytes, renal function (creatinine, creatinine clearance, urinalysis), and thyroid function (T3, T4, TSH).</p>
+      </div>
+    </div>
+
+    <div class="sh">Exam Priority Review — Module 8</div>
+    <div class="callout exam">
+      <span class="callout-label">⭐ High-Yield Concepts — Know These Cold</span>
+      <ul class="content-list">
+        <li>BPI = full mania (can include psychosis); BPII = hypomania only (NO psychosis, no severe impairment)</li>
+        <li>Mixed episode: mania + depression simultaneously = highest suicide risk</li>
+        <li>Lithium: drug of choice for acute mania; superior for suicide prevention and relapse prevention</li>
+        <li>Lithium levels: 0.4–1.0 mEq/L maintenance; 0.8–1.4 initial; TOXIC &gt;1.5; FATAL possible &gt;2.5</li>
+        <li>Lab draw: MORNING, 12 hours after evening dose; q2–3 days initially; q3–6 months maintenance</li>
+        <li>Low sodium + lithium = TOXICITY (kidney retains both together)</li>
+        <li>Question: diuretics (especially furosemide) + lithium → sodium loss → lithium retention → toxicity</li>
+        <li>NSAIDs raise lithium levels — EXCEPT aspirin and sulindac (safe alternatives)</li>
+        <li>ACE inhibitors also raise lithium levels — monitor closely</li>
+        <li>Lithium MOA = UNKNOWN (exam trap)</li>
+        <li>Lithium tremor treatment: propranolol; polyuria treatment: amiloride (NOT thiazides)</li>
+        <li>Goiter/hypothyroidism from lithium → treat with levothyroxine (safe with lithium)</li>
+        <li>Valproate: immediate withdrawal for thrombocytopenia, pancreatitis, liver failure</li>
+        <li>Carbamazepine: CYP450 inducer; lowers risperidone levels; CBC monitoring for hematologic SE</li>
+        <li>Lamotrigine: long-term maintenance only; start slow to minimize SJS risk; any rash = STOP and notify</li>
+        <li>Antidepressants in BPD: ALWAYS combine with mood stabilizer — never use alone (may trigger mania)</li>
+        <li>SGAs in BPD: benefit even without psychosis; quetiapine covers both mania AND depression</li>
+        <li>Benzodiazepines in BPD: adjuncts for acute insomnia/anxiety/agitation only; addictive; fall risk</li>
+        <li>ECT in BPD: severe mania, severe depression, rapid-cycling unresponsive to drugs — last resort</li>
+        <li>Baseline assessment before starting lithium: cardiac, hematologic, electrolytes, renal, thyroid, pregnancy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+<footer><p>PP2 — Module 8 | Bipolar Disorder &amp; Medications | Slide-by-Slide Study Guide | Spring 2026</p></footer>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function toggleQA(el){const ans=el.nextElementSibling;const icon=el.querySelector('.qa-icon');ans.classList.toggle('open');icon.textContent=ans.classList.contains('open')?'▲':'▼';}
+</script>
+</body>
+</html>
