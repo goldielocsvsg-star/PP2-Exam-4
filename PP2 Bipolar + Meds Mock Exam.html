@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PP2 Interactive Exam</title>
+<style>
+:root {
+  --bg:#f7f7fd;
+  --surface:#ffffff;
+  --surface-2:#f2f0ff;
+  --text:#1f2240;
+  --muted:#6b7194;
+  --line:#dde0f4;
+  --primary:#5b4bdb;
+  --primary-2:#8b5cf6;
+  --accent:#ec4899;
+  --good:#146c43;
+  --good-bg:#ecfdf3;
+  --bad:#991b1b;
+  --bad-bg:#fef2f2;
+  --warn:#92400e;
+  --warn-bg:#fff7ed;
+  --shadow:0 14px 40px rgba(47, 39, 122, .10);
+  --radius:22px;
+}
+body.dark {
+  --bg:#0f1324;
+  --surface:#151b2f;
+  --surface-2:#1b2340;
+  --text:#eef2ff;
+  --muted:#a6afd8;
+  --line:#2c355c;
+  --primary:#9f8cff;
+  --primary-2:#c084fc;
+  --accent:#f472b6;
+  --good:#86efac;
+  --good-bg:#11281b;
+  --bad:#fca5a5;
+  --bad-bg:#33171c;
+  --warn:#fdba74;
+  --warn-bg:#332315;
+  --shadow:0 16px 42px rgba(0,0,0,.35);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(139,92,246,.14), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(236,72,153,.10), transparent 28%),
+    linear-gradient(180deg, var(--bg), var(--bg));
+  color:var(--text);
+}
+.container {
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px 18px 56px;
+}
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.badges {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.badge {
+  padding:7px 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg, color-mix(in srgb, var(--primary) 14%, var(--surface) 86%), color-mix(in srgb, var(--accent) 10%, var(--surface) 90%));
+  border:1px solid var(--line);
+  color:var(--primary);
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+body.dark .badge { color:#ddd7ff; }
+h1 {
+  margin:0 0 8px;
+  font-size:clamp(1.8rem, 3.2vw, 2.7rem);
+  line-height:1.05;
+}
+.sub {
+  color:var(--muted);
+  line-height:1.65;
+  font-size:15px;
+  max-width:900px;
+}
+.toggle {
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--text);
+  border-radius:14px;
+  padding:11px 14px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+.card {
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.start {
+  padding:26px;
+}
+.start-grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin:18px 0 24px;
+}
+.stat {
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border-radius:18px;
+  padding:16px;
+}
+.stat .label {
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:11px;
+  margin-bottom:6px;
+  font-weight:700;
+}
+.stat .value {
+  font-size:28px;
+  font-weight:900;
+}
+.controls {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.btn {
+  border:0;
+  border-radius:15px;
+  padding:13px 18px;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn-primary {
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  color:white;
+}
+.btn-secondary {
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+.source-box {
+  margin-top:18px;
+  padding:14px 16px;
+  border-radius:18px;
+  background:var(--warn-bg);
+  border:1px solid color-mix(in srgb, var(--warn) 35%, var(--line) 65%);
+  color:var(--text);
+  line-height:1.65;
+}
+.hidden { display:none !important; }
+.exam-wrap {
+  padding:22px;
+}
+.progress-row {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.progress-label {
+  font-size:14px;
+  font-weight:700;
+  color:var(--muted);
+}
+.progress {
+  height:12px;
+  width:100%;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:18px;
+}
+.progress > div {
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--primary), var(--accent));
+  transition:width .25s ease;
+}
+.context {
+  padding:12px 14px;
+  border-radius:16px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:14px;
+}
+.stem {
+  font-size:clamp(1.15rem,2vw,1.45rem);
+  line-height:1.45;
+  font-weight:800;
+  margin-bottom:18px;
+}
+.choice-list {
+  display:grid;
+  gap:12px;
+}
+.choice {
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:15px 16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  cursor:pointer;
+  transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.choice:hover {
+  transform:translateY(-1px);
+  border-color:color-mix(in srgb, var(--primary) 40%, var(--line) 60%);
+}
+.choice input {
+  margin-top:4px;
+  accent-color:var(--primary);
+  transform:scale(1.12);
+}
+.choice-letter {
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  flex:0 0 28px;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:800;
+  background:var(--surface);
+  border:1px solid var(--line);
+  color:var(--primary);
+}
+.choice-text {
+  flex:1;
+  line-height:1.55;
+}
+.matrix-wrap {
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+.matrix-table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:680px;
+}
+.matrix-table th, .matrix-table td {
+  border-bottom:1px solid var(--line);
+  padding:14px 12px;
+  text-align:left;
+  vertical-align:top;
+}
+.matrix-table th {
+  background:var(--surface-2);
+  font-size:13px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.matrix-table tr:last-child td {
+  border-bottom:none;
+}
+.matrix-table .row-prompt {
+  width:42%;
+  font-weight:700;
+}
+.matrix-choice {
+  display:flex;
+  justify-content:center;
+}
+.feedback {
+  margin-top:18px;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid var(--line);
+}
+.feedback.good {
+  background:var(--good-bg);
+  border-color:color-mix(in srgb, var(--good) 45%, var(--line) 55%);
+}
+.feedback.bad {
+  background:var(--bad-bg);
+  border-color:color-mix(in srgb, var(--bad) 45%, var(--line) 55%);
+}
+.feedback .head {
+  font-weight:900;
+  font-size:18px;
+  margin-bottom:6px;
+}
+.feedback .micro {
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.rationale-block {
+  margin-top:14px;
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  display:grid;
+  gap:10px;
+}
+.rationale-item {
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:11px 12px;
+  background:rgba(255,255,255,.04);
+  line-height:1.6;
+}
+.rationale-item strong {
+  display:block;
+  margin-bottom:4px;
+}
+.rationale-item.correct-tag {
+  border-color:color-mix(in srgb, var(--good) 38%, var(--line) 62%);
+}
+.rationale-item.incorrect-tag {
+  border-color:color-mix(in srgb, var(--bad) 38%, var(--line) 62%);
+}
+.nav-row {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.note {
+  margin-top:14px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.results {
+  padding:26px;
+}
+.score-hero {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin:18px 0 22px;
+}
+.score-card {
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+}
+.score-card .label {
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:6px;
+  font-weight:700;
+}
+.score-card .value {
+  font-size:30px;
+  font-weight:900;
+}
+.review-list {
+  margin-top:22px;
+  display:grid;
+  gap:14px;
+}
+.review-card {
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+}
+.review-card.good {
+  border-color:color-mix(in srgb, var(--good) 35%, var(--line) 65%);
+}
+.review-card.bad {
+  border-color:color-mix(in srgb, var(--bad) 35%, var(--line) 65%);
+}
+.review-q {
+  font-weight:800;
+  margin-bottom:8px;
+  line-height:1.5;
+}
+.small {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.review-answer {
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+}
+.footer-note {
+  margin-top:18px;
+  color:var(--muted);
+  line-height:1.6;
+}
+@media (max-width:900px) {
+  .start-grid, .score-hero { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:640px) {
+  .start-grid, .score-hero { grid-template-columns:1fr; }
+  .container { padding:18px 12px 42px; }
+  .stem { font-size:1.08rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="topbar">
+    <div>
+      <div class="badges">
+        <span class="badge">PP2</span>
+        <span class="badge">Interactive exam</span>
+        <span class="badge">60 questions</span>
+      </div>
+      <h1>PP2 Modules 7 and 8 practice exam</h1>
+      <div class="sub">
+        Built to mirror the nursing question-stem patterns you uploaded and to stay grounded in your PP2 bipolar, psychosis, and medication materials. This version keeps the screens unlabeled, uses one question at a time, randomizes answer order every run, and leans into medication safety, toxicity, priority follow-up, teaching, and nuanced clinical reasoning.
+      </div>
+    </div>
+    <button class="toggle" id="themeBtn">Dark mode</button>
+  </div>
+
+  <div class="card start" id="startScreen">
+    <div class="sub">
+      This build includes 30 SATA, 15 multiple choice, and 15 horizontal matrix-style questions. The stems intentionally reuse faculty-style wording patterns like <em>effective or ineffective</em>, <em>indicated or contraindicated</em>, <em>requires follow-up</em>, and <em>which statements show understanding</em>.
+    </div>
+    <div class="start-grid">
+      <div class="stat"><div class="label">Total questions</div><div class="value">60</div></div>
+      <div class="stat"><div class="label">SATA</div><div class="value">30</div></div>
+      <div class="stat"><div class="label">Multiple choice</div><div class="value">15</div></div>
+      <div class="stat"><div class="label">Matrix</div><div class="value">15</div></div>
+    </div>
+    <div class="controls">
+      <button class="btn btn-primary" id="startBtn">Start exam</button>
+      <button class="btn btn-secondary" id="shuffleBtn">Shuffle question order too</button>
+    </div>
+    <div class="source-box">
+      Source-limited build: this exam stays tied to your uploaded bipolar study guide, bipolar drug lecture, psychosis/bipolar med sheet, and the question-stem document pattern. A few questions also pull in the study-guide textbook expansions you asked to include, especially around lithium-related clinical reasoning, antidepressant cautions in bipolar disorder, and treatment sequencing.
+    </div>
+  </div>
+
+  <div class="card exam-wrap hidden" id="examScreen">
+    <div class="progress-row">
+      <div class="progress-label" id="qCount">Question 1 of 60</div>
+      <div class="progress-label" id="scoreMini">Score: 0/0</div>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div id="contextBox" class="context hidden"></div>
+    <div class="stem" id="stem"></div>
+    <div id="answerArea"></div>
+    <div id="feedbackBox" class="hidden"></div>
+    <div class="nav-row">
+      <button class="btn btn-secondary" id="submitBtn">Submit answer</button>
+      <button class="btn btn-primary hidden" id="nextBtn">Next question</button>
+    </div>
+    <div class="note">Answer choices are reshuffled every new run. Once you submit a question, that item locks and you move forward. Missed questions can be retried at the end.</div>
+  </div>
+
+  <div class="card results hidden" id="resultsScreen">
+    <h2 style="margin:0 0 8px;">Exam results</h2>
+    <div class="sub">You can retry missed items with fresh answer randomization, or restart the full exam from the beginning.</div>
+    <div class="score-hero">
+      <div class="score-card"><div class="label">Correct</div><div class="value" id="finalCorrect">0</div></div>
+      <div class="score-card"><div class="label">Incorrect</div><div class="value" id="finalIncorrect">0</div></div>
+      <div class="score-card"><div class="label">Score</div><div class="value" id="finalPct">0%</div></div>
+      <div class="score-card"><div class="label">Missed items</div><div class="value" id="finalMissed">0</div></div>
+    </div>
+    <div class="controls">
+      <button class="btn btn-primary" id="retryMissedBtn">Retry missed questions</button>
+      <button class="btn btn-secondary" id="restartBtn">Restart full exam</button>
+    </div>
+    <div class="review-list" id="reviewList"></div>
+  </div>
+</div>
+
+<script>
+const SOURCE_QUESTIONS = [{"type": "mcq", "stem": "A client has recurrent major depressive episodes with periods of hypomania. The client has never had psychosis and has not had marked functional impairment during the elevated mood periods. Which interpretation is most consistent with the PP2 materials?", "choices": ["Bipolar I disorder", "Bipolar II disorder", "An acute schizophrenic episode", "Mixed episode with mania severe enough to classify as bipolar I"], "correct": [1], "rationales": ["Incorrect. Bipolar I requires mania, mixed episodes, or depression; the stem describes hypomania without marked impairment or psychosis.", "Correct. The materials distinguish bipolar II as hypomania plus depression. The study guide also emphasizes that hypomania does not include psychosis and does not cause marked impairment.", "Incorrect. The stem centers on mood episodes, not a chronic psychotic illness with positive and negative schizophrenia symptoms.", "Incorrect. The stem specifically says there is no psychosis and no marked impairment, which argues against mania severe enough for bipolar I."], "context": "", "id": 1}, {"type": "mcq", "stem": "A client taking lithium develops sodium depletion after several days of vomiting. Which outcome is most likely if the nurse does not recognize this change promptly?", "choices": ["Lithium excretion will increase and the level will fall", "Lithium excretion will be reduced and toxicity can occur", "The client will become resistant to lithium and need an antipsychotic only", "The client will be protected from renal effects because polyuria offsets sodium loss"], "correct": [1], "rationales": ["Incorrect. The source materials state the opposite: low sodium reduces lithium excretion.", "Correct. When sodium is low, renal excretion of lithium decreases, so lithium accumulates and toxicity risk rises.", "Incorrect. Sodium depletion changes lithium handling; it does not create lithium resistance.", "Incorrect. Polyuria does not protect the client. Dehydration and sodium loss increase toxicity risk."], "context": "", "id": 2}, {"type": "mcq", "stem": "The nurse is teaching a client how lithium levels are monitored. Which statement is most accurate based on the uploaded PP2 materials?", "choices": ["The level is drawn any time after the morning dose as long as the client has eaten", "The level is drawn in the morning, 12 hours after the evening dose", "The level is drawn immediately before the evening dose every day for life", "The level is unnecessary once the client reports mood improvement"], "correct": [1], "rationales": ["Incorrect. Timing matters because random timing makes lithium levels hard to interpret.", "Correct. The materials repeatedly state that lithium levels are drawn in the morning, 12 hours after the evening dose.", "Incorrect. Daily lifelong monitoring is not what the materials teach; frequency decreases after initiation.", "Incorrect. Clinical response matters, but lithium levels are still monitored because the drug has a low therapeutic index."], "context": "", "id": 3}, {"type": "mcq", "stem": "A 24-year-old client with bipolar disorder is newly prescribed lithium. Before administering the medication, which assessment is most important for the nurse to clarify first from the case-study teaching in the uploaded lecture?", "choices": ["Whether the client prefers tablet or liquid formulations", "Whether the client is pregnant or planning pregnancy", "Whether the client wants psychotherapy in addition to medication", "Whether the client has ever taken benzodiazepines for insomnia"], "correct": [1], "rationales": ["Incorrect. Form preference matters less than immediate safety issues identified in the case-study discussion.", "Correct. The lecture case study specifically highlights pregnancy or plans for pregnancy because lithium is avoided during the first trimester and is teratogenic.", "Incorrect. Psychotherapy is important, but it is not the first medication safety question before administration.", "Incorrect. Prior benzodiazepine use is not the key preadministration priority emphasized in the lithium case study."], "context": "", "id": 4}, {"type": "mcq", "stem": "A client taking divalproex sodium for acute mania reports severe abdominal pain and the nurse notes a new platelet decline on recent labs. Which nursing judgment is best supported by the PP2 materials?", "choices": ["This is expected early treatment discomfort and the dose should simply be taken with food", "These findings fit serious divalproex toxicity and the drug may need immediate withdrawal", "This pattern is most consistent with lithium-induced hypothyroidism", "The findings are most consistent with benzodiazepine dependence"], "correct": [1], "rationales": ["Incorrect. The uploaded materials do not treat thrombocytopenia or severe abdominal pain as minor expected effects.", "Correct. Divalproex requires monitoring for thrombocytopenia, pancreatitis, and liver failure, and the source explicitly notes immediate withdrawal if toxicity occurs.", "Incorrect. Hypothyroidism is associated with lithium, not divalproex.", "Incorrect. Benzodiazepine dependence would not explain thrombocytopenia and pancreatitis-focused toxicity monitoring."], "context": "", "id": 5}, {"type": "mcq", "stem": "The nurse is reviewing carbamazepine monitoring for a client with bipolar disorder. Which trough level target matches the uploaded PP2 medication materials?", "choices": ["1 to 5 mcg/L", "4 to 12 mcg/mL", "50 to 120 mcg/mL", "Greater than 1.5 mEq/L"], "correct": [1], "rationales": ["Incorrect. That range is used for lamotrigine in the uploaded materials.", "Correct. The carbamazepine target trough plasma level in the PP2 materials is 4 to 12 mcg/mL.", "Incorrect. That range is used for divalproex trough monitoring.", "Incorrect. This number refers to toxic lithium levels, not carbamazepine monitoring."], "context": "", "id": 6}, {"type": "mcq", "stem": "A client taking lamotrigine calls the clinic to report a new rash. Which action should the nurse expect to take first?", "choices": ["Reassure the client that rash is expected and continue the medication", "Tell the client to skip one dose and restart if the rash fades", "Hold the medication and notify the provider for immediate evaluation", "Recommend increasing fluids because the rash is probably dehydration related"], "correct": [2], "rationales": ["Incorrect. The materials identify rash as a major warning sign because of Stevens-Johnson syndrome risk.", "Incorrect. Restarting on the nurse's own authority would be unsafe because rash requires urgent evaluation.", "Correct. Any new rash on lamotrigine should be treated as a nursing priority: stop the drug and notify the provider.", "Incorrect. The concern is a potentially life-threatening dermatologic reaction, not simple dehydration."], "context": "", "id": 7}, {"type": "mcq", "stem": "A client continues to have severe schizophrenia symptoms after two monotherapy trials. Which medication is specifically justified in the psychosis source after these failures?", "choices": ["Haloperidol", "Clozapine", "Benztropine", "Diphenhydramine"], "correct": [1], "rationales": ["Incorrect. Haloperidol is an FGA, but the psychosis notes specifically identify clozapine after two monotherapy failures.", "Correct. The psychosis material states that after failure of two monotherapy trials, a clozapine trial is justified.", "Incorrect. Benztropine is used for EPS, not primary treatment-resistant schizophrenia.", "Incorrect. Diphenhydramine may treat acute dystonia or parkinsonism EPS, not refractory schizophrenia."], "context": "", "id": 8}, {"type": "mcq", "stem": "A nurse is choosing the most appropriate class focus for a client whose most persistent schizophrenia symptoms are blunted affect, social withdrawal, and lack of motivation. Which choice best matches the uploaded materials?", "choices": ["A first-generation antipsychotic because FGAs are specifically superior for negative symptoms", "A second-generation antipsychotic because SGAs can help positive, negative, and cognitive symptoms", "Benztropine because negative symptoms reflect dopamine-acetylcholine imbalance", "A benzodiazepine because negative symptoms reflect acute anxiety only"], "correct": [1], "rationales": ["Incorrect. The materials state FGAs mainly reduce positive symptoms and have little effect on negative symptoms.", "Correct. SGAs are described as helping positive, negative, and cognitive symptoms, even if improvement in negative/cognitive symptoms may be less dramatic.", "Incorrect. Benztropine treats EPS, not core negative schizophrenia symptoms.", "Incorrect. Benzodiazepines do not treat the negative-symptom pattern described in the sources."], "context": "", "id": 9}, {"type": "mcq", "stem": "The nurse notes an order for haloperidol in an older adult with dementia-related psychosis. What is the best nursing judgment based on the uploaded course materials?", "choices": ["Proceed, because typical antipsychotics are the first-line treatment for dementia-related psychosis", "Question the order, because antipsychotics are not recommended in older adults with dementia-related psychosis", "Give the drug with benztropine so the dementia warning no longer applies", "Hold the medication only if the client also has bipolar disorder"], "correct": [1], "rationales": ["Incorrect. The sources specifically warn against using antipsychotics for dementia-related psychosis in older adults.", "Correct. Both the med sheet and psychosis materials state these drugs are not recommended in older adults with dementia-related psychosis.", "Incorrect. Adding benztropine does not erase the increased-risk warning for dementia-related psychosis.", "Incorrect. The concern is dementia-related psychosis itself, not whether bipolar disorder is also present."], "context": "", "id": 10}, {"type": "mcq", "stem": "A client develops painful neck spasm and upward eye deviation shortly after starting haloperidol. Which medication is the most appropriate immediate treatment from the uploaded PP2 materials?", "choices": ["Lithium", "Benztropine", "Lamotrigine", "Valproate"], "correct": [1], "rationales": ["Incorrect. Lithium is a mood stabilizer and does not rapidly treat acute dystonia.", "Correct. Benztropine is specifically identified as treatment for acute dystonia and antipsychotic-induced parkinsonism; IM or IV may be used for intense dystonia.", "Incorrect. Lamotrigine is used for bipolar maintenance, not acute EPS reversal.", "Incorrect. Valproate treats bipolar mania; it does not reverse acute dystonia."], "context": "", "id": 11}, {"type": "mcq", "stem": "A client receiving an antipsychotic becomes rigid, hyperthermic, and unstable. The provider suspects neuroleptic malignant syndrome. Which nursing priority is most consistent with the uploaded medication sheet?", "choices": ["Continue the antipsychotic and add an NSAID for comfort", "Immediately withdraw the antipsychotic and begin supportive measures such as cooling and hydration", "Encourage the client to ambulate to reduce stiffness", "Treat first with lithium because the syndrome is caused by low mood stabilizer levels"], "correct": [1], "rationales": ["Incorrect. Continuing the offending drug would worsen NMS risk.", "Correct. The source lists immediate withdrawal of the antipsychotic plus supportive care, cooling, and hydration as core NMS management.", "Incorrect. Ambulation is not the first priority in a rare but potentially fatal emergency.", "Incorrect. NMS is linked to antipsychotics, not low lithium levels."], "context": "", "id": 12}, {"type": "mcq", "stem": "A client prescribed lorazepam for acute bipolar-related insomnia asks why the nurse keeps warning about alcohol. Which explanation best matches the uploaded PP2 materials?", "choices": ["Alcohol blocks GABA and will make lorazepam ineffective", "Alcohol and other CNS depressants can add to sedation and increase safety risk", "Alcohol prevents renal excretion of lorazepam and causes lithium toxicity", "Alcohol is only a concern if the client is also taking carbamazepine"], "correct": [1], "rationales": ["Incorrect. The materials do not teach alcohol as blocking GABA and making lorazepam ineffective.", "Correct. Benzodiazepines have additive effects with alcohol and other CNS depressants, increasing sedation and safety risk.", "Incorrect. This mixes benzodiazepines with lithium toxicity logic.", "Incorrect. The source warns broadly about alcohol and CNS depressants, not only carbamazepine combinations."], "context": "", "id": 13}, {"type": "mcq", "stem": "A family member says, 'My spouse took the first dose of risperidone yesterday, but the hallucinations are still there, so I guess it failed.' Which response by the nurse is best supported by the psychosis materials?", "choices": ["Yes, antipsychotics should work completely after the first dose", "Antipsychotics are not addictive, so the dose should just be doubled", "It usually takes about 2 to 6 weeks to become effective, with dose adjustment aimed at balancing benefit and side effects", "The medication should be stopped abruptly and restarted only if symptoms worsen"], "correct": [2], "rationales": ["Incorrect. The psychosis notes do not support full immediate effect after one dose.", "Incorrect. Doubling the dose is unsafe and not grounded in the source materials.", "Correct. The psychosis material states that antipsychotics usually take 2 to 6 weeks to become effective and require patient-specific dosage adjustment.", "Incorrect. The materials advise gradual discontinuation to avoid discontinuation syndrome, not abrupt stopping."], "context": "", "id": 14}, {"type": "mcq", "stem": "A client with bipolar disorder is prescribed an antidepressant without a mood stabilizer. Which nursing judgment is most consistent with the textbook-expanded bipolar study guide?", "choices": ["This is ideal because antidepressants alone prevent rapid cycling", "This should be questioned because antidepressants alone can trigger mania or rapid cycling in bipolar disorder", "This is safe as long as the client also takes diphenhydramine", "This is recommended only if the client previously took lithium with meals"], "correct": [1], "rationales": ["Incorrect. The study guide gives the opposite warning.", "Correct. The uploaded study guide says antidepressants should not be used alone in bipolar disorder because they can trigger mania or accelerate mood cycling.", "Incorrect. Diphenhydramine has no role in making antidepressant monotherapy safe for bipolar disorder.", "Incorrect. Taking lithium with meals is unrelated to the core safety problem in the stem."], "context": "", "id": 15}, {"type": "sata", "stem": "A client with bipolar disorder is being discharged on lithium. Which instructions should the nurse include regarding safe lithium use? Select all that apply.", "choices": ["Take the medication with meals or milk if it upsets the stomach.", "Maintain fluids and avoid dehydration.", "Reduce sodium intake to keep the drug working better.", "Continue taking the medication even when feeling better.", "Avoid NSAIDs, diuretics, and anticholinergic drugs unless the provider approves them."], "correct": [0, 1, 3, 4], "rationales": ["Correct. The lithium teaching materials say the drug may be taken with meals or milk.", "Correct. Preventing dehydration is a core lithium teaching point because dehydration raises toxicity risk.", "Incorrect. Sodium restriction can reduce lithium excretion and increase toxicity risk.", "Correct. The materials emphasize taking lithium as prescribed even when the client feels better to help prevent relapse.", "Correct. The uploaded sources repeatedly warn about diuretics, NSAIDs, and anticholinergics with lithium."], "context": "", "id": 16}, {"type": "sata", "stem": "The nurse is monitoring a client for early lithium toxicity. Which findings fit the early stage described in the uploaded study guide? Select all that apply.", "choices": ["Nausea, vomiting, or diarrhea", "Thirst and polyuria", "Slurred speech", "Coarse hand tremor with confusion", "Muscle weakness"], "correct": [0, 1, 2, 4], "rationales": ["Correct. GI upset is part of the early stage.", "Correct. Thirst and polyuria appear early in the toxicity progression.", "Correct. Slurred speech is listed in the early stage table.", "Incorrect. Coarse tremor with confusion fits more advanced toxicity.", "Correct. Muscle weakness is listed with early-stage toxicity."], "context": "", "id": 17}, {"type": "sata", "stem": "A client taking lithium is brought to the emergency department. Which findings suggest severe lithium toxicity and require emergency-level response? Select all that apply.", "choices": ["Ataxia", "Blurred vision or tinnitus", "Clonic movements or seizures", "Stupor or coma", "Mild hand tremor only"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Ataxia is listed in the severe stage of toxicity.", "Correct. Blurred vision and tinnitus are severe neurologic warning signs in the source table.", "Correct. Clonic movements and seizures fit severe toxicity.", "Correct. Stupor and coma are severe-stage findings.", "Incorrect. Mild hand tremor alone is not enough to classify the picture as severe toxicity."], "context": "", "id": 18}, {"type": "sata", "stem": "Which findings are identified in the uploaded bipolar materials as therapeutic-level side effects or adverse effects that still require ongoing lithium monitoring? Select all that apply.", "choices": ["Hand tremors", "Thirst and polyuria", "Goiter or hypothyroidism", "Renal toxicity concerns", "Stevens-Johnson syndrome"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Hand tremor is one of the key lithium effects emphasized in the slides.", "Correct. Thirst and polyuria are classic lithium side effects in the materials.", "Correct. Goiter and hypothyroidism are listed lithium concerns.", "Correct. Renal toxicity is a major lithium monitoring priority.", "Incorrect. Stevens-Johnson syndrome is associated with lamotrigine, not lithium."], "context": "", "id": 19}, {"type": "sata", "stem": "A client taking lithium calls the clinic. Which findings or situations should the nurse treat as reasons for immediate follow-up because they raise concern for lithium toxicity or accumulation? Select all that apply.", "choices": ["The client started a diuretic prescribed elsewhere", "The client has vomiting and poor fluid intake", "The client reports new confusion and incoordination", "The client takes the medication with milk", "The client intentionally cut salt out of the diet this week"], "correct": [0, 1, 2, 4], "rationales": ["Correct. Diuretics can lower sodium and raise lithium levels.", "Correct. Vomiting and poor intake can cause dehydration and sodium loss, which increase toxicity risk.", "Correct. Confusion and incoordination suggest advancing toxicity.", "Incorrect. Taking lithium with milk is appropriate teaching, not a toxicity trigger.", "Correct. Sodium restriction can increase lithium accumulation and requires follow-up."], "context": "", "id": 20}, {"type": "sata", "stem": "The nurse reviews the medication list of a client who takes lithium. Which additional medications should the nurse question or review carefully because of potential interaction concerns identified in the uploaded materials? Select all that apply.", "choices": ["Furosemide", "Ibuprofen", "Diphenhydramine", "Levothyroxine", "A strong anticholinergic antihistamine"], "correct": [0, 1, 2, 4], "rationales": ["Correct. Diuretics can promote sodium loss and increase lithium levels.", "Correct. NSAIDs can raise lithium levels.", "Correct. Diphenhydramine has anticholinergic effects, and the materials warn about anticholinergics with lithium.", "Incorrect. Levothyroxine is not flagged as the key interaction to avoid in the provided materials.", "Correct. Anticholinergic antihistamines are specifically warned about in the lithium teaching."], "context": "", "id": 21}, {"type": "sata", "stem": "Which mood episodes are identified in the uploaded bipolar lecture as part of bipolar I disorder? Select all that apply.", "choices": ["Manic episodes", "Mixed episodes", "Major depressive episodes", "Hypomanic episodes only", "No mood episodes unless psychosis is present"], "correct": [0, 1, 2], "rationales": ["Correct. Bipolar I includes mania.", "Correct. Bipolar I also includes mixed episodes.", "Correct. Depression is also included in bipolar I.", "Incorrect. Hypomania without mania is more aligned with bipolar II in the uploaded materials.", "Incorrect. Psychosis is not required for bipolar I in the sources."], "context": "", "id": 22}, {"type": "sata", "stem": "Which features are most consistent with bipolar II disorder in the uploaded study materials? Select all that apply.", "choices": ["History of hypomania", "History of depression", "Psychosis built into the definition of hypomania", "No marked impairment during the hypomanic period", "Requirement for a full manic episode"], "correct": [0, 1, 3], "rationales": ["Correct. Hypomania is part of bipolar II.", "Correct. Depression is part of bipolar II.", "Incorrect. The study guide specifically emphasizes that hypomania does not include psychosis.", "Correct. Lack of marked impairment is part of the high-yield differentiation emphasized in the study guide.", "Incorrect. A full manic episode would shift the picture toward bipolar I."], "context": "", "id": 23}, {"type": "sata", "stem": "A client is hospitalized with acute severe mania. Which medication strategies are supported by the uploaded PP2 materials? Select all that apply.", "choices": ["Use a mood stabilizer such as lithium or valproate", "Consider a second-generation antipsychotic for faster symptom control", "Add a benzodiazepine for acute insomnia, anxiety, or agitation if indicated", "Rely on antidepressant monotherapy because it works fastest in mania", "Recognize that mood stabilizer responses develop more slowly than antipsychotic calming effects"], "correct": [0, 1, 2, 4], "rationales": ["Correct. Mood stabilizers are first-line bipolar drugs in the uploaded materials.", "Correct. Antipsychotics are used during acute severe manic episodes and can calm symptoms faster.", "Correct. Benzodiazepines are described for acute management of insomnia, anxiety, and agitation.", "Incorrect. Antidepressant monotherapy is not the recommended strategy for acute mania.", "Correct. The study guide explicitly says mood stabilizer responses develop slowly while antipsychotics provide faster control."], "context": "", "id": 24}, {"type": "sata", "stem": "Which non-drug approaches are included in the uploaded bipolar lecture materials? Select all that apply.", "choices": ["Patient and family education", "Psychotherapy, including individual, group, and family work", "Electroconvulsive therapy as a last resort", "Routine abrupt stopping of mood stabilizers once counseling starts", "Teaching the importance of adherence even when the client feels better"], "correct": [0, 1, 2, 4], "rationales": ["Correct. Education is part of the non-drug plan.", "Correct. The lecture lists individual, group, and family psychotherapy.", "Correct. ECT is described as a last resort.", "Incorrect. Abruptly stopping mood stabilizers is not supported by the materials.", "Correct. Adherence teaching is emphasized repeatedly in the uploaded content."], "context": "", "id": 25}, {"type": "sata", "stem": "Which nursing concerns or teaching points about antidepressant use in bipolar disorder are supported by the uploaded bipolar study guide? Select all that apply.", "choices": ["Antidepressants are used during depressive episodes, not as a replacement for mood stabilizers", "Antidepressants should not be used alone in bipolar disorder", "Antidepressants alone may trigger mania or rapid cycling", "Any bipolar client on an antidepressant automatically no longer needs relapse prevention teaching", "The nurse should question antidepressant monotherapy in a client with bipolar disorder"], "correct": [0, 1, 2, 4], "rationales": ["Correct. The lecture says antidepressants are given during depressive episodes, not as stand-alone replacement therapy.", "Correct. The study guide warns against antidepressant monotherapy in bipolar disorder.", "Correct. The guide says antidepressants alone can trigger mania or rapid cycling.", "Incorrect. Relapse prevention teaching still matters because bipolar disorder remains chronic.", "Correct. Questioning antidepressant monotherapy is a key nursing judgment from the uploaded study guide."], "context": "", "id": 26}, {"type": "sata", "stem": "Which serious adverse effects should the nurse monitor for in a client taking divalproex sodium for bipolar disorder? Select all that apply.", "choices": ["Thrombocytopenia", "Pancreatitis", "Liver failure", "Teratogenicity concerns", "Acute dystonia"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Thrombocytopenia is specifically listed in the divalproex materials.", "Correct. Pancreatitis is a serious adverse effect to monitor for.", "Correct. Liver failure is a core toxicity concern.", "Correct. The source also flags the drug as teratogenic.", "Incorrect. Acute dystonia is an antipsychotic/EPS issue, not a divalproex adverse effect."], "context": "", "id": 27}, {"type": "sata", "stem": "A client is starting divalproex sodium. Which points should the nurse include when planning monitoring and evaluation? Select all that apply.", "choices": ["Target trough level is 50 to 120 mcg/mL about 12 hours after dosing", "The drug can be used alone or with other medications", "The nurse should watch for thrombocytopenia, pancreatitis, and liver failure", "Immediate withdrawal may be necessary if toxicity occurs", "The drug is used only for schizophrenia and not bipolar disorder"], "correct": [0, 1, 2, 3], "rationales": ["Correct. This is the therapeutic trough range provided in the PP2 materials.", "Correct. The source says divalproex can be used alone or in combination.", "Correct. These are the specific toxicities emphasized in the uploaded materials.", "Correct. Immediate withdrawal is noted if toxicity occurs.", "Incorrect. Divalproex is clearly presented as a bipolar drug for acute mania and relapse prevention."], "context": "", "id": 28}, {"type": "sata", "stem": "Which findings should the nurse recognize as early neuro side effects of carbamazepine in the uploaded PP2 materials? Select all that apply.", "choices": ["Visual changes", "Ataxia", "Vertigo", "Unsteadiness", "Hyperthyroidism"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Visual changes are listed as early neuro effects.", "Correct. Ataxia is included in the early neuro side-effect set.", "Correct. Vertigo is specifically listed.", "Correct. Unsteadiness is also listed in the source materials.", "Incorrect. Hyperthyroidism is not identified as a carbamazepine effect in the uploaded PP2 materials."], "context": "", "id": 29}, {"type": "sata", "stem": "Which monitoring points are supported by the uploaded carbamazepine materials? Select all that apply.", "choices": ["Target trough plasma level is 4 to 12 mcg/mL", "Thrombocytopenia is a concern", "Carbamazepine can lower risperidone levels", "The medication is primarily used to reverse acute dystonia", "The drug is used to reduce bipolar symptoms and help protect against recurrence of mania"], "correct": [0, 1, 2, 4], "rationales": ["Correct. The source gives 4 to 12 mcg/mL as the target trough level.", "Correct. Thrombocytopenia is listed as a concern.", "Correct. The med sheet specifically states that carbamazepine lowers risperidone levels.", "Incorrect. Acute dystonia treatment belongs to EPS medications such as benztropine or diphenhydramine.", "Correct. The uploaded bipolar material says carbamazepine reduces symptoms and protects against recurrence of mania."], "context": "", "id": 30}, {"type": "sata", "stem": "Which statements about lamotrigine are supported by the uploaded PP2 bipolar materials? Select all that apply.", "choices": ["It is indicated for long-term maintenance of bipolar disorder", "It helps prevent relapses", "It can be used with other mood stabilizers", "It stabilizes neuronal membranes by inhibiting sodium transport", "It is primarily the rescue drug for neuroleptic malignant syndrome"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Long-term maintenance is one of the main uses emphasized.", "Correct. Relapse prevention is specifically stated.", "Correct. The sources say it can be used with other mood stabilizers.", "Correct. This is the mechanism described in the uploaded lecture.", "Incorrect. NMS rescue is treated with dantrolene or bromocriptine, not lamotrigine."], "context": "", "id": 31}, {"type": "sata", "stem": "A client is receiving lamotrigine. Which nursing priorities or teaching points match the uploaded materials? Select all that apply.", "choices": ["Use suicide precautions", "Assess for rash", "Monitor the lamotrigine level of about 1 to 5 mcg/L", "Recognize teratogenic risk", "Tell the client that rash is harmless as long as there is no itching"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Suicide precautions are included in the lamotrigine teaching.", "Correct. Rash assessment is a high-priority point because of SJS risk.", "Correct. The uploaded materials list a lamotrigine lab range of 1 to 5 mcg/L.", "Correct. Teratogenicity is noted in the source materials.", "Incorrect. The guide treats rash as an urgent finding, not a harmless one."], "context": "", "id": 32}, {"type": "sata", "stem": "Which adverse effects or safety concerns are linked to the first-generation antipsychotics in the uploaded med sheet? Select all that apply.", "choices": ["Extrapyramidal symptoms", "Neuroleptic malignant syndrome", "Orthostatic hypotension", "Sedation", "Guaranteed improvement in negative symptoms"], "correct": [0, 1, 2, 3], "rationales": ["Correct. EPS are a hallmark adverse-effect concern with FGAs.", "Correct. NMS is listed as a serious adverse effect.", "Correct. Orthostatic hypotension is included in the FGA side-effect set.", "Correct. Sedation is also listed.", "Incorrect. FGAs are not presented as guaranteeing improvement in negative symptoms."], "context": "", "id": 33}, {"type": "sata", "stem": "Which findings or teaching points are associated with second-generation antipsychotics in the uploaded sources? Select all that apply.", "choices": ["Metabolic syndrome with weight gain, diabetes, and dyslipidemia", "Sedation and orthostatic hypotension", "Possible extrapyramidal symptoms", "Benefit for positive, negative, and cognitive symptoms", "No need to monitor for any serious adverse effects"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Metabolic syndrome is a major SGA teaching point.", "Correct. Sedation and orthostatic hypotension are listed side effects.", "Correct. SGAs can still cause EPS even if the risk is lower than FGAs.", "Correct. The psychosis materials say SGAs can help positive, negative, and cognitive symptoms.", "Incorrect. The sources do not say SGAs are risk-free; they require significant monitoring."], "context": "", "id": 34}, {"type": "sata", "stem": "Which findings are positive symptoms of schizophrenia in the uploaded PP2 materials? Select all that apply.", "choices": ["Hallucinations", "Delusions", "Agitation", "Paranoia", "Blunted affect"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Hallucinations are listed as positive symptoms.", "Correct. Delusions are also positive symptoms.", "Correct. Agitation is included among positive symptoms in the uploaded materials.", "Correct. Paranoia is listed as a positive symptom.", "Incorrect. Blunted affect is a negative symptom."], "context": "", "id": 35}, {"type": "sata", "stem": "Which findings are negative symptoms of schizophrenia according to the uploaded PP2 materials? Select all that apply.", "choices": ["Lack of motivation", "Poverty of speech", "Poor self-care", "Social withdrawal", "Auditory hallucinations"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Lack of motivation is a negative symptom.", "Correct. Poverty of speech is a negative symptom.", "Correct. Poor self-care is listed with negative or residual deficits.", "Correct. Social withdrawal is a classic negative symptom.", "Incorrect. Auditory hallucinations are positive symptoms."], "context": "", "id": 36}, {"type": "sata", "stem": "Which teaching points about antipsychotic treatment are supported by the psychosis source? Select all that apply.", "choices": ["Antipsychotics usually take about 2 to 6 weeks to become effective", "Monotherapy is recommended before combining antipsychotics", "Abrupt discontinuation is encouraged because the drugs are not addictive", "Gradual discontinuation is used to reduce discontinuation syndrome", "All antipsychotics are free of fall-risk concerns"], "correct": [0, 1, 3], "rationales": ["Correct. The psychosis notes say antipsychotics usually take 2 to 6 weeks to become effective.", "Correct. Monotherapy is recommended in the source before moving to more complex regimens.", "Incorrect. The materials advise gradual, not abrupt, discontinuation.", "Correct. The notes describe a discontinuation syndrome and recommend gradual tapering.", "Incorrect. The source warns about fall risk from orthostatic hypotension, sedation, and gait impairment."], "context": "", "id": 37}, {"type": "sata", "stem": "Which nursing priorities are specific to clozapine in the uploaded materials? Select all that apply.", "choices": ["REMS participation", "WBC and ANC monitoring", "Teaching the client to report signs of infection immediately", "Use only after safer alternatives have not worked in severe disease", "Treating clozapine as the preferred dementia-psychosis drug in older adults"], "correct": [0, 1, 2, 3], "rationales": ["Correct. REMS is specifically linked to clozapine.", "Correct. WBC and ANC monitoring are clozapine-specific in the source materials.", "Correct. Infection-reporting teaching is emphasized because of agranulocytosis risk.", "Correct. The materials reserve clozapine for severe disease when safer options fail.", "Incorrect. The sources warn against antipsychotic use in older adults with dementia-related psychosis."], "context": "", "id": 38}, {"type": "sata", "stem": "A client is prescribed clonazepam for acute bipolar-related insomnia. Which teaching points should the nurse include based on the uploaded PP2 materials? Select all that apply.", "choices": ["The drug can cause drowsiness and ataxia", "Avoid alcohol and other CNS depressants", "Monitor for fall risk", "Recognize that the drug can be addictive", "Expect the medication to correct schizophrenia negative symptoms"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Drowsiness and ataxia are listed benzodiazepine effects.", "Correct. The materials warn about alcohol and other CNS depressants.", "Correct. Fall monitoring is a nursing priority with benzodiazepines.", "Correct. The uploaded materials state that benzodiazepines are addictive drugs.", "Incorrect. Benzodiazepines are not presented as treatment for negative schizophrenia symptoms."], "context": "", "id": 39}, {"type": "sata", "stem": "Which teaching points about benztropine fit the uploaded PP2 materials? Select all that apply.", "choices": ["It can be used IM or IV for intense dystonia", "Dry mouth and constipation can occur", "Use caution in glaucoma", "Older adults may develop confusion or disorientation", "It is the preferred long-term therapy for bipolar maintenance"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Intense dystonia may be treated with IM or IV benztropine.", "Correct. Anticholinergic effects such as dry mouth and constipation are listed.", "Correct. The source says to use caution in glaucoma.", "Correct. Confusion and disorientation in older adults are explicitly warned about.", "Incorrect. Benztropine treats EPS; it is not a bipolar maintenance drug."], "context": "", "id": 40}, {"type": "sata", "stem": "Which statements about trihexyphenidyl are supported by the uploaded medication sheet? Select all that apply.", "choices": ["It is used for antipsychotic-induced parkinsonism", "It is an anticholinergic agent", "Use caution in glaucoma", "It commonly causes urinary retention and constipation", "It is the rescue drug for severe lithium toxicity"], "correct": [0, 1, 2, 3], "rationales": ["Correct. The source identifies trihexyphenidyl for antipsychotic-induced parkinsonism.", "Correct. It is grouped as an anticholinergic agent.", "Correct. Glaucoma caution is specifically noted.", "Correct. These anticholinergic side effects are listed for the drug.", "Incorrect. Severe lithium toxicity is managed supportively; trihexyphenidyl is not part of that treatment."], "context": "", "id": 41}, {"type": "sata", "stem": "A nurse is giving diphenhydramine for acute dystonia. Which points match the uploaded PP2 materials? Select all that apply.", "choices": ["IM or IV administration may be used for intense dystonia", "Drowsiness can occur", "Anticholinergic effects can worsen confusion in older adults", "Use caution with glaucoma or urinary retention", "The drug works by increasing lithium clearance"], "correct": [0, 1, 2, 3], "rationales": ["Correct. IM or IV use is described for intense dystonia.", "Correct. Drowsiness and sedation are common effects.", "Correct. The source warns that anticholinergic effects can worsen cognition in older adults.", "Correct. Glaucoma and urinary retention are listed cautions.", "Incorrect. Diphenhydramine does not work by changing lithium clearance."], "context": "", "id": 42}, {"type": "sata", "stem": "Which points about amantadine for antipsychotic-induced parkinsonism are supported by the uploaded med sheet? Select all that apply.", "choices": ["It promotes dopamine release and blocks dopamine reuptake", "Confusion and light-headedness can occur", "Reassess after a few months because neuroleptic-induced parkinsonism often resolves", "It is used to treat clozapine-related agranulocytosis", "It may improve tremor, rigidity, or shuffling gait"], "correct": [0, 1, 2, 4], "rationales": ["Correct. This is the mechanism described in the uploaded med sheet.", "Correct. Confusion and light-headedness are listed adverse effects.", "Correct. The source says antiparkinsonism drugs should not continue indefinitely without reassessment.", "Incorrect. Agranulocytosis is not treated with amantadine.", "Correct. Improvement in tremor, rigidity, or shuffling gait is an expected response."], "context": "", "id": 43}, {"type": "sata", "stem": "A client on an antipsychotic is suspected of having neuroleptic malignant syndrome. Which management steps are supported by the uploaded PP2 medication sheet? Select all that apply.", "choices": ["Immediately withdraw the antipsychotic", "Provide supportive measures", "Use cooling and hydration", "Consider dantrolene or bromocriptine", "Continue the same antipsychotic dose if psychosis is still present"], "correct": [0, 1, 2, 3], "rationales": ["Correct. Immediate withdrawal of the antipsychotic is central to management.", "Correct. Supportive care is specifically stated.", "Correct. Cooling and hydration are listed measures.", "Correct. The med sheet names dantrolene and bromocriptine for NMS treatment.", "Incorrect. Continuing the offending antipsychotic contradicts the uploaded treatment guidance."], "context": "", "id": 44}, {"type": "sata", "stem": "Which findings or outcomes indicate that antipsychotic therapy is having the intended therapeutic effect based on the uploaded materials? Select all that apply.", "choices": ["Decreased positive symptoms of schizophrenia", "Suppression of acute psychotic episodes", "Prevention of acute exacerbations", "Maintenance of the highest possible level of functioning", "Guaranteed elimination of every residual symptom after the first dose"], "correct": [0, 1, 2, 3], "rationales": ["Correct. These outcomes are listed under expected response to evaluate.", "Correct. Suppression of acute episodes is part of the expected antipsychotic response.", "Correct. Prevention of exacerbations is included in the med sheet.", "Correct. Maintaining the highest possible level of functioning is part of treatment evaluation.", "Incorrect. The sources do not promise complete symptom elimination after the first dose."], "context": "", "id": 45}, {"type": "matrix", "stem": "After providing discharge teaching for a client prescribed lithium, the nurse evaluates the client's understanding. For each statement, indicate whether the teaching was Effective or Ineffective.", "columns": ["Effective", "Ineffective"], "rows": [{"prompt": "\"I will keep my fluid intake steady and try to avoid dehydration.\"", "correct": 0, "rationale": "Effective. Preventing dehydration is a core lithium safety teaching point."}, {"prompt": "\"I should sharply reduce my salt intake so the lithium will work better.\"", "correct": 1, "rationale": "Ineffective. Sodium restriction can reduce lithium excretion and increase toxicity."}, {"prompt": "\"I need to keep taking the medication even if I start feeling better.\"", "correct": 0, "rationale": "Effective. Adherence helps prevent relapse and is emphasized in the uploaded materials."}, {"prompt": "\"I can take ibuprofen freely because it does not affect lithium.\"", "correct": 1, "rationale": "Ineffective. NSAIDs can raise lithium levels."}], "context": "", "id": 46}, {"type": "matrix", "stem": "The nurse is preparing to administer lithium. For each finding or medication history item, indicate whether it is Indicated to proceed routinely or Contraindicated / Requires follow-up before administration.", "columns": ["Indicated", "Contraindicated / Requires follow-up"], "rows": [{"prompt": "Client is newly taking a diuretic prescribed by another provider", "correct": 1, "rationale": "Contraindicated / Requires follow-up. Diuretics can increase lithium levels by promoting sodium loss."}, {"prompt": "Client reports taking lithium with milk because it upsets the stomach", "correct": 0, "rationale": "Indicated. Taking lithium with milk or food is appropriate teaching."}, {"prompt": "Client reports vomiting with poor oral intake for 2 days", "correct": 1, "rationale": "Contraindicated / Requires follow-up. Dehydration and sodium loss raise toxicity risk."}, {"prompt": "Client understands the need for morning level draws 12 hours after the evening dose", "correct": 0, "rationale": "Indicated. This matches correct lithium monitoring teaching."}], "context": "", "id": 47}, {"type": "matrix", "stem": "The nurse is reviewing lithium toxicity progression with a student nurse. For each finding, indicate whether it is most consistent with Early, Advanced, or Severe lithium toxicity.", "columns": ["Early", "Advanced", "Severe"], "rows": [{"prompt": "Slurred speech with thirst and polyuria", "correct": 0, "rationale": "Early. Slurred speech, thirst, and polyuria are early toxicity findings."}, {"prompt": "Coarse hand tremor with confusion and incoordination", "correct": 1, "rationale": "Advanced. These neurologic changes fit the advanced stage."}, {"prompt": "Ataxia with blurred vision and tinnitus", "correct": 2, "rationale": "Severe. These findings are listed in the severe stage."}, {"prompt": "Stupor, coma, or seizures", "correct": 2, "rationale": "Severe. Seizures, stupor, and coma indicate severe toxicity."}], "context": "", "id": 48}, {"type": "matrix", "stem": "The nurse is comparing mood episode patterns. For each client description, indicate whether the pattern is more consistent with Bipolar I or Bipolar II disorder based on the uploaded PP2 materials.", "columns": ["Bipolar I", "Bipolar II"], "rows": [{"prompt": "History of full mania, mixed episodes, and depression", "correct": 0, "rationale": "Bipolar I. The uploaded lecture ties mania, mixed episodes, and depression to bipolar I."}, {"prompt": "History of hypomania and depression without marked impairment during elevated mood", "correct": 1, "rationale": "Bipolar II. Hypomania plus depression fits bipolar II."}, {"prompt": "A manic-level episode is present", "correct": 0, "rationale": "Bipolar I. A full manic episode points to bipolar I."}, {"prompt": "Elevated mood periods do not include psychosis", "correct": 1, "rationale": "Bipolar II. The study guide emphasizes that hypomania does not include psychosis."}], "context": "", "id": 49}, {"type": "matrix", "stem": "The nurse is reviewing the plan of care for acute severe mania. For each intervention or medication plan, indicate whether it is Indicated or Contraindicated for the client at this time.", "columns": ["Indicated", "Contraindicated"], "rows": [{"prompt": "Start lithium or valproate as part of mood stabilization", "correct": 0, "rationale": "Indicated. Mood stabilizers are core bipolar drugs for symptom control and relapse prevention."}, {"prompt": "Use a second-generation antipsychotic for faster symptom control while mood stabilizer response develops", "correct": 0, "rationale": "Indicated. The uploaded study guide states that antipsychotics provide faster calming during acute mania."}, {"prompt": "Use antidepressant monotherapy as the primary acute mania treatment", "correct": 1, "rationale": "Contraindicated. Antidepressant monotherapy in bipolar disorder can trigger mania or rapid cycling."}, {"prompt": "Consider a benzodiazepine for acute insomnia, anxiety, or agitation when clinically appropriate", "correct": 0, "rationale": "Indicated. Benzodiazepines are listed for acute management of insomnia, anxiety, and agitation."}], "context": "", "id": 50}, {"type": "matrix", "stem": "The nurse is evaluating client education for divalproex, carbamazepine, and lamotrigine. For each statement, indicate whether the teaching was Effective or Ineffective.", "columns": ["Effective", "Ineffective"], "rows": [{"prompt": "\"If I am taking divalproex, severe abdominal pain is something I should report because pancreatitis is a concern.\"", "correct": 0, "rationale": "Effective. Pancreatitis is a serious divalproex toxicity concern."}, {"prompt": "\"If I take carbamazepine, I do not need any trough level monitoring.\"", "correct": 1, "rationale": "Ineffective. Carbamazepine monitoring includes a target trough level of 4 to 12 mcg/mL."}, {"prompt": "\"If I develop a rash while on lamotrigine, I need prompt evaluation.\"", "correct": 0, "rationale": "Effective. Rash is a major safety concern with lamotrigine."}, {"prompt": "\"Divalproex toxicity should be managed by just waiting to see if it gets better.\"", "correct": 1, "rationale": "Ineffective. The materials say immediate withdrawal may be necessary if toxicity occurs."}], "context": "", "id": 51}, {"type": "matrix", "stem": "The nurse is reviewing schizophrenia symptoms with a client care team. For each finding, indicate whether it is a Positive symptom or a Negative symptom based on the uploaded PP2 materials.", "columns": ["Positive symptom", "Negative symptom"], "rows": [{"prompt": "Hallucinations", "correct": 0, "rationale": "Positive symptom. Hallucinations are an exaggeration or distortion of normal function."}, {"prompt": "Blunted affect", "correct": 1, "rationale": "Negative symptom. Blunted affect reflects loss or diminution of normal function."}, {"prompt": "Paranoia", "correct": 0, "rationale": "Positive symptom. Paranoia is listed with positive symptoms."}, {"prompt": "Poor self-care", "correct": 1, "rationale": "Negative symptom. Poor self-care is a negative or residual deficit."}], "context": "", "id": 52}, {"type": "matrix", "stem": "The nurse is comparing antipsychotic classes. For each feature, indicate whether it is more consistent with a First-generation antipsychotic (FGA) or a Second-generation antipsychotic (SGA) based on the uploaded materials.", "columns": ["FGA", "SGA"], "rows": [{"prompt": "Primarily reduces positive symptoms and has high EPS concern", "correct": 0, "rationale": "FGA. FGAs are strongly linked to EPS and mainly reduce positive symptoms."}, {"prompt": "Greater emphasis on metabolic syndrome risk", "correct": 1, "rationale": "SGA. The sources highlight weight gain, diabetes, and dyslipidemia with SGAs."}, {"prompt": "May help positive, negative, and cognitive symptoms", "correct": 1, "rationale": "SGA. SGAs are described as helping across all three symptom groups."}, {"prompt": "Prototype high-potency example is haloperidol", "correct": 0, "rationale": "FGA. Haloperidol is the prototype high-potency first-generation antipsychotic."}], "context": "", "id": 53}, {"type": "matrix", "stem": "The nurse is caring for a client prescribed clozapine. For each nursing action, indicate whether the action is Indicated or Contraindicated for this client.", "columns": ["Indicated", "Contraindicated"], "rows": [{"prompt": "Review WBC and ANC monitoring requirements", "correct": 0, "rationale": "Indicated. WBC and ANC monitoring are central clozapine safety requirements."}, {"prompt": "Tell the client to ignore sore throat or fever unless symptoms become severe", "correct": 1, "rationale": "Contraindicated. The client should report infection signs immediately."}, {"prompt": "Recognize that clozapine is reserved for severe disease when safer options have failed", "correct": 0, "rationale": "Indicated. This matches the uploaded psychosis and med-sheet content."}, {"prompt": "Use clozapine as the preferred medication for dementia-related psychosis in older adults", "correct": 1, "rationale": "Contraindicated. Antipsychotics are not recommended for dementia-related psychosis in older adults."}], "context": "", "id": 54}, {"type": "matrix", "stem": "The nurse is choosing medications for antipsychotic adverse effects. For each scenario, indicate whether the response is Indicated or Contraindicated based on the uploaded PP2 materials.", "columns": ["Indicated", "Contraindicated"], "rows": [{"prompt": "Use benztropine IM or IV for intense acute dystonia", "correct": 0, "rationale": "Indicated. The med sheet specifically supports this use."}, {"prompt": "Expect trihexyphenidyl to help antipsychotic-induced parkinsonism", "correct": 0, "rationale": "Indicated. Trihexyphenidyl is listed for antipsychotic-induced parkinsonism."}, {"prompt": "Use diphenhydramine cautiously in an older adult with confusion because anticholinergic effects can worsen cognition", "correct": 0, "rationale": "Indicated. This caution is directly stated in the med sheet."}, {"prompt": "Continue antiparkinsonism drugs indefinitely without reassessment because EPS never resolve", "correct": 1, "rationale": "Contraindicated. The source says to reassess after a few months because neuroleptic-induced parkinsonism often resolves."}], "context": "", "id": 55}, {"type": "matrix", "stem": "After benzodiazepine teaching for acute bipolar-related insomnia and agitation, the nurse evaluates the client's understanding. For each statement, indicate whether it is Effective or Ineffective teaching.", "columns": ["Effective", "Ineffective"], "rows": [{"prompt": "\"I need to be careful with alcohol and other CNS depressants.\"", "correct": 0, "rationale": "Effective. Additive sedation is a key benzodiazepine warning."}, {"prompt": "\"Because this medication is not addictive, I can stop and restart it however I want.\"", "correct": 1, "rationale": "Ineffective. The uploaded materials identify benzodiazepines as addictive drugs."}, {"prompt": "\"I should use caution because the medication can cause drowsiness and make falls more likely.\"", "correct": 0, "rationale": "Effective. Drowsiness and fall risk are specifically noted."}, {"prompt": "\"If I get ataxia, that is impossible to be from this medication.\"", "correct": 1, "rationale": "Ineffective. Ataxia is listed among benzodiazepine adverse effects."}], "context": "", "id": 56}, {"type": "matrix", "stem": "The nurse is reviewing bipolar medication roles. For each drug or class, indicate whether it is used mainly for Acute mania control, Long-term maintenance / relapse prevention, or EPS / NMS management in the uploaded materials.", "columns": ["Acute mania control", "Long-term maintenance / relapse prevention", "EPS / NMS management"], "rows": [{"prompt": "Lithium", "correct": 1, "rationale": "Long-term maintenance / relapse prevention. Lithium controls acute mania too, but the source heavily emphasizes prophylaxis against recurrent mania and depression."}, {"prompt": "Lamotrigine", "correct": 1, "rationale": "Long-term maintenance / relapse prevention. Lamotrigine is presented for maintenance and relapse prevention."}, {"prompt": "Benztropine", "correct": 2, "rationale": "EPS / NMS management. Benztropine treats acute dystonia and parkinsonism EPS."}, {"prompt": "A second-generation antipsychotic used during severe manic episodes", "correct": 0, "rationale": "Acute mania control. SGAs are used acutely to control manic symptoms and can also support long-term stabilization."}], "context": "", "id": 57}, {"type": "matrix", "stem": "The nurse has implemented the plan of care for a client with schizophrenia who started antipsychotic therapy. For each finding, indicate whether it suggests the treatment is Improving or Deteriorating / Requires follow-up.", "columns": ["Improving", "Deteriorating / Requires follow-up"], "rows": [{"prompt": "Fewer hallucinations and better participation in daily care", "correct": 0, "rationale": "Improving. Reduced positive symptoms and better functioning indicate therapeutic effect."}, {"prompt": "New drooling with choking concern after sedation", "correct": 1, "rationale": "Deteriorating / Requires follow-up. The psychosis notes warn that dopamine blockade or sedation can impair swallowing."}, {"prompt": "Less suspiciousness and more engagement with care", "correct": 0, "rationale": "Improving. Reduced suspiciousness and better engagement suggest benefit."}, {"prompt": "Dizziness with orthostatic symptoms and fall risk", "correct": 1, "rationale": "Deteriorating / Requires follow-up. Orthostatic hypotension and falls are important antipsychotic concerns."}], "context": "", "id": 58}, {"type": "matrix", "stem": "The nurse is caring for older adults receiving anticholinergic medications for EPS. For each nursing action, indicate whether it is Indicated or Contraindicated.", "columns": ["Indicated", "Contraindicated"], "rows": [{"prompt": "Assess for confusion, disorientation, agitation, and psychotic-like symptoms", "correct": 0, "rationale": "Indicated. This is directly recommended in the uploaded med sheet."}, {"prompt": "Ignore urinary retention because it is unrelated to anticholinergic drugs", "correct": 1, "rationale": "Contraindicated. Urinary retention is a known anticholinergic effect."}, {"prompt": "Use caution if the client has glaucoma", "correct": 0, "rationale": "Indicated. Glaucoma caution is repeatedly noted for these agents."}, {"prompt": "Assume constipation is unrelated and does not need teaching", "correct": 1, "rationale": "Contraindicated. Constipation is a listed adverse effect that requires monitoring and teaching."}], "context": "", "id": 59}, {"type": "matrix", "stem": "The nurse is reviewing several medication-related reports. For each situation, indicate whether the medication should be Given as ordered, or Held / Requires provider notification based on the uploaded PP2 materials.", "columns": ["Give as ordered", "Hold / Requires provider notification"], "rows": [{"prompt": "Client on lamotrigine reports a new rash", "correct": 1, "rationale": "Hold / Requires provider notification. Rash may signal Stevens-Johnson syndrome."}, {"prompt": "Client on lithium takes the dose with milk because of mild stomach upset", "correct": 0, "rationale": "Give as ordered. Taking lithium with milk or food is appropriate teaching."}, {"prompt": "Client on clozapine reports fever and sore throat", "correct": 1, "rationale": "Hold / Requires provider notification. These may signal infection or agranulocytosis-related complications."}, {"prompt": "Client on divalproex has no symptoms and the trough is within the therapeutic range given in the source materials", "correct": 0, "rationale": "Give as ordered. Therapeutic monitoring supports continued use when no toxicity signs are present."}], "context": "", "id": 60}];
+
+const themeBtn = document.getElementById('themeBtn');
+const startBtn = document.getElementById('startBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const startScreen = document.getElementById('startScreen');
+const examScreen = document.getElementById('examScreen');
+const resultsScreen = document.getElementById('resultsScreen');
+const qCount = document.getElementById('qCount');
+const scoreMini = document.getElementById('scoreMini');
+const progressBar = document.getElementById('progressBar');
+const contextBox = document.getElementById('contextBox');
+const stem = document.getElementById('stem');
+const answerArea = document.getElementById('answerArea');
+const feedbackBox = document.getElementById('feedbackBox');
+const submitBtn = document.getElementById('submitBtn');
+const nextBtn = document.getElementById('nextBtn');
+const finalCorrect = document.getElementById('finalCorrect');
+const finalIncorrect = document.getElementById('finalIncorrect');
+const finalPct = document.getElementById('finalPct');
+const finalMissed = document.getElementById('finalMissed');
+const reviewList = document.getElementById('reviewList');
+const retryMissedBtn = document.getElementById('retryMissedBtn');
+const restartBtn = document.getElementById('restartBtn');
+
+const PRAISE = [
+  "Nice catch. You separated the real safety issue from the close options.",
+  "Yep — that was sharp nursing judgment.",
+  "Correct. That is exactly the kind of detail these stems try to trip people up on.",
+  "You got it. Good read of the wording.",
+  "Correct. That was a clean priority judgment."
+];
+
+let questionBank = [];
+let currentIndex = 0;
+let answered = 0;
+let correctCount = 0;
+let submitted = false;
+let results = [];
+let shuffleQuestionsToo = false;
+
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function prepareQuestions(raw, idsFilter = null) {
+  let list = deepClone(raw);
+  if (idsFilter) {
+    list = list.filter(q => idsFilter.includes(q.id));
+  }
+  list.forEach(q => {
+    if (q.type === 'mcq' || q.type === 'sata') {
+      const zipped = q.choices.map((choice, idx) => ({
+        choice,
+        rationale: q.rationales[idx],
+        isCorrect: q.correct.includes(idx)
+      }));
+      shuffleArray(zipped);
+      q.choices = zipped.map(x => x.choice);
+      q.rationales = zipped.map(x => x.rationale);
+      q.correct = zipped.map((x, idx) => x.isCorrect ? idx : null).filter(x => x !== null);
+    } else if (q.type === 'matrix') {
+      shuffleArray(q.rows);
+    }
+  });
+  if (shuffleQuestionsToo) shuffleArray(list);
+  return list;
+}
+
+function resetState() {
+  currentIndex = 0;
+  answered = 0;
+  correctCount = 0;
+  submitted = false;
+  results = [];
+  feedbackBox.className = 'hidden';
+  feedbackBox.innerHTML = '';
+  nextBtn.classList.add('hidden');
+  submitBtn.classList.remove('hidden');
+}
+
+function startExam(idsFilter = null) {
+  questionBank = prepareQuestions(SOURCE_QUESTIONS, idsFilter);
+  resetState();
+  startScreen.classList.add('hidden');
+  resultsScreen.classList.add('hidden');
+  examScreen.classList.remove('hidden');
+  renderQuestion();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderQuestion() {
+  submitted = false;
+  feedbackBox.className = 'hidden';
+  feedbackBox.innerHTML = '';
+  nextBtn.classList.add('hidden');
+  submitBtn.classList.remove('hidden');
+
+  const q = questionBank[currentIndex];
+  qCount.textContent = `Question ${currentIndex + 1} of ${questionBank.length}`;
+  scoreMini.textContent = `Score: ${correctCount} / ${answered}`;
+  progressBar.style.width = `${(currentIndex / questionBank.length) * 100}%`;
+
+  if (q.context) {
+    contextBox.classList.remove('hidden');
+    contextBox.textContent = q.context;
+  } else {
+    contextBox.classList.add('hidden');
+    contextBox.textContent = '';
+  }
+
+  stem.textContent = q.stem;
+  answerArea.innerHTML = '';
+
+  if (q.type === 'mcq' || q.type === 'sata') {
+    const list = document.createElement('div');
+    list.className = 'choice-list';
+    q.choices.forEach((choice, idx) => {
+      const label = document.createElement('label');
+      label.className = 'choice';
+      const input = document.createElement('input');
+      input.type = q.type === 'mcq' ? 'radio' : 'checkbox';
+      input.name = `question-${q.id}`;
+      input.value = idx;
+      const bubble = document.createElement('div');
+      bubble.className = 'choice-letter';
+      bubble.textContent = String.fromCharCode(65 + idx);
+      const text = document.createElement('div');
+      text.className = 'choice-text';
+      text.textContent = choice;
+      label.appendChild(input);
+      label.appendChild(bubble);
+      label.appendChild(text);
+      list.appendChild(label);
+    });
+    answerArea.appendChild(list);
+  } else if (q.type === 'matrix') {
+    const wrap = document.createElement('div');
+    wrap.className = 'matrix-wrap';
+    const table = document.createElement('table');
+    table.className = 'matrix-table';
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    const thPrompt = document.createElement('th');
+    thPrompt.textContent = 'Finding / statement';
+    headRow.appendChild(thPrompt);
+    q.columns.forEach(col => {
+      const th = document.createElement('th');
+      th.textContent = col;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    q.rows.forEach((row, rIdx) => {
+      const tr = document.createElement('tr');
+      const tdPrompt = document.createElement('td');
+      tdPrompt.className = 'row-prompt';
+      tdPrompt.textContent = row.prompt;
+      tr.appendChild(tdPrompt);
+      q.columns.forEach((col, cIdx) => {
+        const td = document.createElement('td');
+        const wrapChoice = document.createElement('div');
+        wrapChoice.className = 'matrix-choice';
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `matrix-${q.id}-${rIdx}`;
+        input.value = cIdx;
+        input.setAttribute('aria-label', col);
+        wrapChoice.appendChild(input);
+        td.appendChild(wrapChoice);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    answerArea.appendChild(wrap);
+  }
+}
+
+function getUserAnswer(q) {
+  if (q.type === 'mcq' || q.type === 'sata') {
+    const selected = [...answerArea.querySelectorAll('input:checked')].map(el => Number(el.value)).sort((a,b)=>a-b);
+    return selected;
+  }
+  const selected = q.rows.map((row, rIdx) => {
+    const checked = answerArea.querySelector(`input[name="matrix-${q.id}-${rIdx}"]:checked`);
+    return checked ? Number(checked.value) : null;
+  });
+  return selected;
+}
+
+function arraysEqual(a,b) {
+  if (a.length !== b.length) return false;
+  for (let i=0;i<a.length;i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+
+function isCompleteAnswer(q, userAnswer) {
+  if (q.type === 'mcq') return userAnswer.length === 1;
+  if (q.type === 'sata') return userAnswer.length > 0;
+  return userAnswer.every(v => v !== null);
+}
+
+function buildFeedback(q, userAnswer, isCorrect) {
+  const card = document.createElement('div');
+  card.className = `feedback ${isCorrect ? 'good' : 'bad'}`;
+  const head = document.createElement('div');
+  head.className = 'head';
+  head.textContent = isCorrect ? 'Correct' : 'Not this one';
+  const micro = document.createElement('div');
+  micro.className = 'micro';
+  micro.textContent = isCorrect ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : 'Look closely at the wording. The rationale below shows why the best answer fits better than the other options.';
+  card.appendChild(head);
+  card.appendChild(micro);
+
+  if (q.type === 'mcq' || q.type === 'sata') {
+    const answerSummary = document.createElement('div');
+    answerSummary.className = 'review-answer';
+    const chosenLetters = userAnswer.length ? userAnswer.map(i => String.fromCharCode(65+i)).join(', ') : 'No selection';
+    const correctLetters = q.correct.map(i => String.fromCharCode(65+i)).join(', ');
+    answerSummary.innerHTML = `<strong>Your answer:</strong> ${chosenLetters}<br><strong>Correct answer:</strong> ${correctLetters}`;
+    card.appendChild(answerSummary);
+
+    const block = document.createElement('div');
+    block.className = 'rationale-block';
+    q.choices.forEach((choice, idx) => {
+      const item = document.createElement('div');
+      const isRightChoice = q.correct.includes(idx);
+      item.className = `rationale-item ${isRightChoice ? 'correct-tag' : 'incorrect-tag'}`;
+      item.innerHTML = `<strong>${String.fromCharCode(65+idx)}. ${escapeHtml(choice)}</strong>${escapeHtml(q.rationales[idx])}`;
+      block.appendChild(item);
+    });
+    card.appendChild(block);
+  } else {
+    const answerSummary = document.createElement('div');
+    answerSummary.className = 'review-answer';
+    answerSummary.innerHTML = '<strong>Row-by-row review</strong>';
+    card.appendChild(answerSummary);
+
+    const block = document.createElement('div');
+    block.className = 'rationale-block';
+    q.rows.forEach((row, idx) => {
+      const userVal = userAnswer[idx];
+      const userText = userVal === null ? 'No selection' : q.columns[userVal];
+      const correctText = q.columns[row.correct];
+      const item = document.createElement('div');
+      item.className = `rationale-item ${userVal === row.correct ? 'correct-tag' : 'incorrect-tag'}`;
+      item.innerHTML = `<strong>${escapeHtml(row.prompt)}</strong><div><strong>Your answer:</strong> ${escapeHtml(userText)}<br><strong>Correct:</strong> ${escapeHtml(correctText)}</div><div style="margin-top:6px;">${escapeHtml(row.rationale)}</div>`;
+      block.appendChild(item);
+    });
+    card.appendChild(block);
+  }
+
+  return card;
+}
+
+function gradeCurrent() {
+  const q = questionBank[currentIndex];
+  const userAnswer = getUserAnswer(q);
+  if (!isCompleteAnswer(q, userAnswer)) {
+    alert('Pick an answer before submitting.');
+    return;
+  }
+
+  let isCorrect = false;
+  if (q.type === 'mcq' || q.type === 'sata') {
+    isCorrect = arraysEqual(userAnswer, [...q.correct].sort((a,b)=>a-b));
+  } else {
+    isCorrect = userAnswer.every((val, idx) => val === q.rows[idx].correct);
+  }
+
+  answered += 1;
+  if (isCorrect) correctCount += 1;
+  scoreMini.textContent = `Score: ${correctCount} / ${answered}`;
+  progressBar.style.width = `${((currentIndex + 1) / questionBank.length) * 100}%`;
+
+  [...answerArea.querySelectorAll('input')].forEach(el => el.disabled = true);
+  const fb = buildFeedback(q, userAnswer, isCorrect);
+  feedbackBox.className = '';
+  feedbackBox.innerHTML = '';
+  feedbackBox.appendChild(fb);
+  submitBtn.classList.add('hidden');
+  nextBtn.classList.remove('hidden');
+
+  results.push({
+    id:q.id,
+    type:q.type,
+    stem:q.stem,
+    isCorrect,
+    userAnswer,
+    question:q
+  });
+}
+
+function nextQuestion() {
+  currentIndex += 1;
+  if (currentIndex >= questionBank.length) {
+    showResults();
+    return;
+  }
+  renderQuestion();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderReviewCard(result) {
+  const card = document.createElement('div');
+  card.className = `review-card ${result.isCorrect ? 'good' : 'bad'}`;
+  const q = result.question;
+  const title = document.createElement('div');
+  title.className = 'review-q';
+  title.textContent = q.stem;
+  card.appendChild(title);
+
+  const status = document.createElement('div');
+  status.className = 'small';
+  status.textContent = result.isCorrect ? 'Answered correctly' : 'Missed';
+  card.appendChild(status);
+
+  const block = document.createElement('div');
+  block.className = 'rationale-block';
+
+  if (q.type === 'mcq' || q.type === 'sata') {
+    const chosenLetters = result.userAnswer.length ? result.userAnswer.map(i => String.fromCharCode(65+i)).join(', ') : 'No selection';
+    const correctLetters = q.correct.map(i => String.fromCharCode(65+i)).join(', ');
+    const ans = document.createElement('div');
+    ans.className = 'review-answer';
+    ans.innerHTML = `<strong>Your answer:</strong> ${chosenLetters}<br><strong>Correct answer:</strong> ${correctLetters}`;
+    card.appendChild(ans);
+
+    q.choices.forEach((choice, idx) => {
+      const item = document.createElement('div');
+      item.className = `rationale-item ${q.correct.includes(idx) ? 'correct-tag' : 'incorrect-tag'}`;
+      item.innerHTML = `<strong>${String.fromCharCode(65+idx)}. ${escapeHtml(choice)}</strong>${escapeHtml(q.rationales[idx])}`;
+      block.appendChild(item);
+    });
+  } else {
+    q.rows.forEach((row, idx) => {
+      const item = document.createElement('div');
+      item.className = `rationale-item ${result.userAnswer[idx] === row.correct ? 'correct-tag' : 'incorrect-tag'}`;
+      const userText = result.userAnswer[idx] === null ? 'No selection' : q.columns[result.userAnswer[idx]];
+      const correctText = q.columns[row.correct];
+      item.innerHTML = `<strong>${escapeHtml(row.prompt)}</strong><div><strong>Your answer:</strong> ${escapeHtml(userText)}<br><strong>Correct:</strong> ${escapeHtml(correctText)}</div><div style="margin-top:6px;">${escapeHtml(row.rationale)}</div>`;
+      block.appendChild(item);
+    });
+  }
+
+  card.appendChild(block);
+  return card;
+}
+
+function showResults() {
+  examScreen.classList.add('hidden');
+  resultsScreen.classList.remove('hidden');
+
+  const missed = results.filter(r => !r.isCorrect);
+  finalCorrect.textContent = String(correctCount);
+  finalIncorrect.textContent = String(results.length - correctCount);
+  finalMissed.textContent = String(missed.length);
+  finalPct.textContent = `${Math.round((correctCount / results.length) * 100)}%`;
+
+  reviewList.innerHTML = '';
+  results.forEach(r => reviewList.appendChild(renderReviewCard(r)));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+startBtn.addEventListener('click', () => {
+  startExam();
+});
+
+shuffleBtn.addEventListener('click', () => {
+  shuffleQuestionsToo = !shuffleQuestionsToo;
+  shuffleBtn.textContent = shuffleQuestionsToo ? 'Question order will be shuffled' : 'Shuffle question order too';
+});
+
+submitBtn.addEventListener('click', gradeCurrent);
+nextBtn.addEventListener('click', nextQuestion);
+
+retryMissedBtn.addEventListener('click', () => {
+  const missedIds = results.filter(r => !r.isCorrect).map(r => r.id);
+  if (!missedIds.length) {
+    alert('You did not miss any questions this round.');
+    return;
+  }
+  startExam(missedIds);
+});
+
+restartBtn.addEventListener('click', () => {
+  shuffleQuestionsToo = false;
+  shuffleBtn.textContent = 'Shuffle question order too';
+  startScreen.classList.remove('hidden');
+  resultsScreen.classList.add('hidden');
+  examScreen.classList.add('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+const savedTheme = localStorage.getItem('pp2_exam_theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  themeBtn.textContent = 'Light mode';
+}
+
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const dark = document.body.classList.contains('dark');
+  themeBtn.textContent = dark ? 'Light mode' : 'Dark mode';
+  localStorage.setItem('pp2_exam_theme', dark ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>

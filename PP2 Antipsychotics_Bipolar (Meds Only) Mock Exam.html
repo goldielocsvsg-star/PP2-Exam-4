@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PP2 | 60-Question Pharmacology Exam</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#ff69b4;--hpk:#ff1493;--lpk:#ffb6c1;--ppk:#fff0f7;
+  --pu:#9333ea;--lpu:#c084fc;--ppu:#f3e8ff;--lav:#ede9fe;
+  --mint:#bbf7d0;--ylw:#fef9c3;
+  --bg:#fdf0f8;--white:#fff;
+  --dk:#3b0764;--tx:#4c1d95;
+  --ok:#16a34a;--er:#dc2626;--warn:#d97706;
+  --sh:0 4px 24px rgba(147,51,234,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#fdf0f8 0%,#f3e8ff 50%,#ffe4f4 100%);min-height:100vh;color:var(--tx)}
+.hdr{background:linear-gradient(135deg,#ff69b4,#9333ea,#c084fc);padding:26px 20px 20px;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:'✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦';position:absolute;top:7px;left:0;right:0;text-align:center;color:rgba(255,255,255,.4);font-size:10px;letter-spacing:3px}
+.hdr::after{content:'✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦';position:absolute;bottom:7px;left:0;right:0;text-align:center;color:rgba(255,255,255,.4);font-size:10px;letter-spacing:3px}
+.hdr h1{font-family:'Pacifico',cursive;font-size:clamp(1.3rem,4vw,2rem);color:#fff;text-shadow:2px 3px 10px rgba(0,0,0,.25);margin-bottom:5px}
+.hdr p{color:rgba(255,255,255,.92);font-size:.85rem;font-weight:700}
+.main{max-width:860px;margin:0 auto;padding:14px}
+.prog-wrap{margin-bottom:14px}
+.prog-top{display:flex;justify-content:space-between;font-size:.77rem;font-weight:800;color:var(--pu);margin-bottom:5px}
+.prog-track{background:rgba(255,255,255,.6);border-radius:99px;height:10px;overflow:hidden;border:2px solid var(--lpu)}
+.prog-fill{height:100%;background:linear-gradient(90deg,#ff69b4,#9333ea);border-radius:99px;transition:width .4s ease}
+.card{background:#fff;border-radius:20px;padding:26px 24px;box-shadow:var(--sh);border:2.5px solid var(--lpu);margin-bottom:12px;animation:slideUp .3s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--lpu),var(--lpk));color:var(--dk);font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:1.2px;padding:3px 11px;border-radius:99px;margin-bottom:12px}
+.qnum{font-size:.75rem;font-weight:800;color:var(--lpu);margin-bottom:3px}
+.stem{font-size:.96rem;font-weight:700;line-height:1.65;color:var(--dk);margin-bottom:16px}
+.inst{font-size:.82rem;font-weight:700;color:var(--pu);font-style:italic;background:var(--lav);padding:7px 13px;border-radius:9px;margin-bottom:14px}
+/* Options */
+.opts{list-style:none;display:flex;flex-direction:column;gap:8px}
+.opt-item{cursor:pointer}
+.opt-lbl{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:13px;border:2.5px solid #e9d5ff;background:#faf5ff;cursor:pointer;transition:all .18s;font-size:.9rem;font-weight:700;line-height:1.5}
+.opt-lbl:hover:not(.locked){border-color:var(--pu);background:var(--ppu)}
+.opt-dot{width:25px;height:25px;min-width:25px;border-radius:50%;border:2.5px solid var(--lpu);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;color:var(--pu);transition:all .18s}
+.sata-card .opt-dot{border-radius:6px}
+input[type=radio],input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
+input[type=radio]:checked+.opt-lbl,.opt-lbl.sel{border-color:var(--pu);background:var(--ppu)}
+input[type=radio]:checked+.opt-lbl .opt-dot,.opt-lbl.sel .opt-dot{background:var(--pu);border-color:var(--pu);color:#fff}
+.opt-lbl.iscorrect{border-color:var(--ok)!important;background:#f0fdf4!important}
+.opt-lbl.iscorrect .opt-dot{background:var(--ok)!important;border-color:var(--ok)!important;color:#fff!important}
+.opt-lbl.iswrong{border-color:var(--er)!important;background:#fff1f2!important}
+.opt-lbl.iswrong .opt-dot{background:var(--er)!important;border-color:var(--er)!important;color:#fff!important}
+.opt-lbl.ismissed{border-color:var(--warn)!important;background:#fffbeb!important}
+.opt-lbl.ismissed .opt-dot{background:var(--warn)!important;border-color:var(--warn)!important;color:#fff!important}
+.opt-lbl.locked{cursor:default}
+/* Matrix */
+.mtx-wrap{overflow-x:auto;border-radius:13px;overflow:hidden;border:2px solid var(--lpu);margin-top:4px}
+.mtx{width:100%;border-collapse:collapse;font-size:.84rem}
+.mtx thead tr{background:linear-gradient(135deg,var(--pu),var(--lpu))}
+.mtx th{color:#fff;font-weight:900;padding:9px 11px;text-align:center;font-size:.76rem;white-space:nowrap}
+.mtx th:first-child{text-align:left;min-width:190px;white-space:normal}
+.mtx td{padding:9px 10px;border-bottom:1px solid #f0e8ff;vertical-align:middle}
+.mtx tr:nth-child(even) td{background:#fdf5ff}
+.mtx tr:last-child td{border-bottom:none}
+.mtx td:first-child{font-weight:700;color:var(--dk);line-height:1.4;font-size:.84rem}
+.mtx td:not(:first-child){text-align:center}
+.mrl-input{display:none}
+.mrl{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--lpu);background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .18s;font-size:.65rem;font-weight:900;color:transparent}
+.mrl:hover{border-color:var(--pu);background:var(--ppu)}
+.mrl-input:checked+.mrl{background:var(--pu);border-color:var(--pu);color:#fff}
+.mrl-input:checked+.mrl::after{content:'●'}
+td.cell-ok .mrl{background:var(--ok)!important;border-color:var(--ok)!important;color:#fff!important}
+td.cell-ok .mrl::after{content:'✓'!important}
+td.cell-er .mrl{background:var(--er)!important;border-color:var(--er)!important;color:#fff!important}
+td.cell-er .mrl::after{content:'✗'!important}
+td.cell-ms .mrl{background:var(--warn)!important;border-color:var(--warn)!important;color:#fff!important}
+td.cell-ms .mrl::after{content:'!'!important}
+/* Bowtie */
+.bt-wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-top:4px}
+.bt-panel{background:#faf5ff;border:2.5px solid var(--lpu);border-radius:14px;padding:12px 13px}
+.bt-panel-center{background:linear-gradient(160deg,#fdf0ff,#f0f0ff);border:2.5px solid var(--pu);border-radius:14px;padding:12px 13px;position:relative;z-index:2}
+.bt-arrows{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:0 5px}
+.bt-arrow-l,.bt-arrow-r{font-size:1.4rem;color:var(--lpu);font-weight:900;line-height:1}
+.bt-plabel{font-size:.7rem;font-weight:900;color:var(--pu);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;text-align:center;border-bottom:2px dashed var(--lpu);padding-bottom:5px}
+.bt-plabel-c{color:var(--dk)}
+.bt-note{font-size:.68rem;font-weight:700;color:var(--lpu);text-align:center;margin-top:4px;font-style:italic}
+.bt-opt-item{margin-bottom:6px}
+.bt-lbl{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:10px;border:2px solid #e9d5ff;background:#fff;cursor:pointer;transition:all .15s;font-size:.82rem;font-weight:700;line-height:1.45}
+.bt-lbl:hover:not(.locked){border-color:var(--pu);background:var(--ppu)}
+.bt-lbl.sel{border-color:var(--pu);background:var(--ppu)}
+.bt-lbl.sel .bt-dot{background:var(--pu);border-color:var(--pu);color:#fff}
+.bt-dot{width:22px;height:22px;min-width:22px;border-radius:50%;border:2px solid var(--lpu);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:900;color:var(--pu);transition:all .15s}
+.bt-chk .bt-dot{border-radius:5px}
+.bt-lbl.iscorrect{border-color:var(--ok)!important;background:#f0fdf4!important}
+.bt-lbl.iscorrect .bt-dot{background:var(--ok)!important;border-color:var(--ok)!important;color:#fff!important}
+.bt-lbl.iswrong{border-color:var(--er)!important;background:#fff1f2!important}
+.bt-lbl.iswrong .bt-dot{background:var(--er)!important;border-color:var(--er)!important;color:#fff!important}
+.bt-lbl.ismissed{border-color:var(--warn)!important;background:#fffbeb!important}
+.bt-lbl.ismissed .bt-dot{background:var(--warn)!important;border-color:var(--warn)!important;color:#fff!important}
+.bt-lbl.locked{cursor:default}
+/* Buttons */
+.btn-sub{display:block;width:100%;margin-top:18px;padding:13px;background:linear-gradient(135deg,#ff69b4,#9333ea);color:#fff;font-family:'Nunito',sans-serif;font-size:.97rem;font-weight:900;border:none;border-radius:13px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(147,51,234,.3)}
+.btn-sub:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 18px rgba(147,51,234,.42)}
+.btn-nxt{display:none;width:100%;margin-top:9px;padding:13px;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;font-family:'Nunito',sans-serif;font-size:.97rem;font-weight:900;border:none;border-radius:13px;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(34,197,94,.28)}
+.btn-nxt:hover{transform:translateY(-2px)}
+/* Rationale */
+.rat-box{display:none;margin-top:16px;padding:15px 17px;background:linear-gradient(135deg,#fdf4ff,#fff0fb);border:2px solid var(--lpu);border-radius:13px;font-size:.86rem;line-height:1.65}
+.rat-head{font-weight:900;color:var(--pu);font-size:.88rem;margin-bottom:7px}
+.rat-result{font-weight:900;font-size:.93rem;margin-bottom:9px}
+.rat-result.ok{color:var(--ok)}.rat-result.er{color:var(--er)}.rat-result.pt{color:var(--warn)}
+.rat-text{color:var(--tx)}.rat-text strong{color:var(--dk)}
+/* Score */
+.score-scr{display:none;text-align:center;padding:30px 14px}
+.sparkle{text-align:center;font-size:1rem;letter-spacing:8px;color:var(--pk);margin:10px 0}
+.score-ring{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#ff69b4,#9333ea);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 8px 36px rgba(147,51,234,.4)}
+.s-pct{font-family:'Pacifico',cursive;font-size:2.4rem;color:#fff}
+.s-lbl{font-size:.76rem;color:rgba(255,255,255,.92);font-weight:800}
+.s-msg{font-family:'Pacifico',cursive;font-size:1.6rem;color:var(--pu);margin-bottom:5px}
+.s-sub{color:var(--tx);font-size:.9rem;font-weight:700;margin-bottom:20px}
+.s-tiles{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+.s-tile{background:#fff;border-radius:13px;padding:11px 16px;border:2px solid var(--lpu);min-width:88px}
+.s-tile .tn{font-family:'Pacifico',cursive;font-size:1.4rem;color:var(--pu)}
+.s-tile .tl{font-size:.65rem;font-weight:800;color:var(--tx);text-transform:uppercase}
+.btn-restart{display:inline-block;padding:13px 32px;background:linear-gradient(135deg,#ff69b4,#9333ea);color:#fff;font-family:'Nunito',sans-serif;font-size:.97rem;font-weight:900;border:none;border-radius:13px;cursor:pointer;box-shadow:0 4px 14px rgba(147,51,234,.3);transition:all .2s}
+.btn-restart:hover{transform:translateY(-2px)}
+@media(max-width:640px){
+  .bt-wrap{grid-template-columns:1fr;grid-template-rows:auto auto auto}
+  .bt-arrows{flex-direction:row;padding:4px 0}
+  .bt-arrow-l,.bt-arrow-r{transform:rotate(90deg)}
+  .card{padding:16px 13px}
+  .stem{font-size:.9rem}
+  .opt-lbl,.bt-lbl{font-size:.83rem}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>💊 PP2 Pharmacology Exam</h1>
+  <p>Psychosis &amp; Bipolar Medications · 60 Questions · MC · SATA · Matrix · Bowtie</p>
+</div>
+<div class="main">
+  <div id="progSection" class="prog-wrap">
+    <div class="prog-top"><span id="progTxt">Question 1 of 60</span><span id="scoreTxt">Score: 0 / 0</span></div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div id="qArea"></div>
+  <div class="score-scr" id="scoreScr">
+    <div class="sparkle">✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
+    <div class="score-ring"><div class="s-pct" id="sPct">0%</div><div class="s-lbl">Final Score</div></div>
+    <div class="s-msg" id="sMsg"></div>
+    <div class="s-sub" id="sSub"></div>
+    <div class="s-tiles" id="sTiles"></div>
+    <button class="btn-restart" onclick="restart()">✦ Retake Exam ✦</button>
+    <div class="sparkle" style="margin-top:16px">✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
+  </div>
+</div>
+<script>
+const BANK=[
+// ══════════════════════════════════════
+// MULTIPLE CHOICE  (15)
+// ══════════════════════════════════════
+{t:'mc',
+stem:'A client has been on lithium carbonate for six weeks and a serum trough level is drawn 12 hours after the last evening dose. The result returns as 1.6 mEq/L. The client reports nausea, vomiting, and coarse hand tremors. Which nursing action is the priority?',
+opts:[
+{l:'A',x:'Document the findings and continue the medication; levels between 1.5 and 2.0 mEq/L are considered upper therapeutic for acute mania'},
+{l:'B',x:'Hold the next dose and notify the provider immediately, as this level and symptoms indicate lithium toxicity'},
+{l:'C',x:'Administer the next scheduled dose with a full glass of water and encourage increased fluid intake'},
+{l:'D',x:'Reassess in two hours and hold only if the level exceeds 2.0 mEq/L and symptoms worsen'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Lithium toxicity occurs at serum levels above 1.5 mEq/L. A level of 1.6 mEq/L accompanied by nausea, vomiting, and coarse hand tremors (not the fine tremor seen within therapeutic range) are clinical signs of early toxicity. The nurse must hold the dose immediately and notify the provider. <strong>A is incorrect</strong> — stating that 1.5–2.0 mEq/L is "upper therapeutic" is a dangerous distractor; toxicity begins at >1.5 mEq/L and this client\'s symptoms confirm it is not simply a high-normal result. <strong>C is incorrect</strong> — administering the next dose would compound the toxicity, which is already clinically evident. <strong>D is incorrect</strong> — waiting until 2.0 mEq/L to act delays critical intervention; toxicity begins at 1.5 mEq/L and the clinical presentation here mandates immediate action, not watchful waiting.'
+},
+{t:'mc',
+stem:'A client receiving clozapine for treatment-resistant schizophrenia has a WBC of 2,800/mm³ and an ANC of 1,400/mm³. Which action should the nurse take?',
+opts:[
+{l:'A',x:'Continue clozapine and recheck the CBC in one week per routine REMS monitoring schedule'},
+{l:'B',x:'Withhold clozapine immediately, notify the provider, and do not rechallenge the client with clozapine'},
+{l:'C',x:'Hold clozapine, notify the provider, and monitor for clinical signs of infection while awaiting provider guidance on rechallenging'},
+{l:'D',x:'Administer the next dose as scheduled but place the client on neutropenic precautions until counts recover'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> Per the clozapine REMS protocol, a WBC of 2,800/mm³ (below 3,000) and ANC of 1,400/mm³ (below 1,500) indicate moderate agranulocytosis. The nurse holds the medication, notifies the provider, and monitors for infection. Whether to rechallenge depends on the clinical trajectory and provider decision — a decision that does not belong to the nurse. <strong>A is incorrect</strong> — these values fall below the REMS threshold requiring action; continuing without intervention is a patient safety violation. <strong>B is incorrect</strong> — permanent discontinuation and no rechallenge applies when ANC falls below 500/mm³ (severe agranulocytosis); at this level the provider determines whether rechallenging is appropriate. <strong>D is incorrect</strong> — administering the next dose when counts are already below threshold actively worsens agranulocytosis; neutropenic precautions alone are insufficient.'
+},
+{t:'mc',
+stem:'A client has been on haloperidol for 14 months. During a routine assessment, the nurse observes the client making repetitive lip-smacking movements, protruding the tongue, and performing slow writhing movements of the fingers. The client is unaware of these movements. Which condition does the nurse recognize?',
+opts:[
+{l:'A',x:'Acute dystonia, which requires immediate IM administration of benztropine mesylate'},
+{l:'B',x:'Tardive dyskinesia, a late-onset EPS complication that may be irreversible and should be reported to the provider'},
+{l:'C',x:'Akathisia, a subjective restlessness disorder that responds to beta-blocker therapy'},
+{l:'D',x:'Drug-induced parkinsonism, characterized by pill-rolling tremor and shuffling gait, which often resolves with dose reduction'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Tardive dyskinesia (TD) is a late-onset EPS that develops after prolonged antipsychotic use, characterized by involuntary, repetitive, abnormal movements of the face (lip-smacking, tongue protrusion, grimacing) and extremities (choreiform or athetoid movements). It is often irreversible and must be reported to the provider for medication reassessment. <strong>A is incorrect</strong> — acute dystonia presents dramatically with sudden involuntary muscle spasms and abnormal posturing (neck twisting, eye deviation), typically early in therapy, not after 14 months. <strong>C is incorrect</strong> — akathisia is subjective inner restlessness with motor inability to stay still; it does not produce involuntary oro-facial or finger movements. <strong>D is incorrect</strong> — drug-induced parkinsonism features bradykinesia, pill-rolling tremor, rigidity, and shuffling gait; it does not produce lip-smacking or choreiform hand movements, and the key differentiator here is the timing (14 months) and the specific movement pattern.'
+},
+{t:'mc',
+stem:'A client newly admitted to an inpatient psychiatric unit is prescribed haloperidol for acute psychosis. Four hours after the first dose, the client calls out in distress and the nurse finds the client with the head forcibly rotated to one side, sustained jaw deviation, and extreme difficulty speaking. Which intervention does the nurse prepare for first?',
+opts:[
+{l:'A',x:'Administer oral trihexyphenidyl as soon as the client is able to swallow'},
+{l:'B',x:'Administer IM or IV benztropine mesylate immediately for rapid relief of acute dystonia'},
+{l:'C',x:'Obtain a STAT ECG to rule out QT prolongation from the haloperidol'},
+{l:'D',x:'Document the findings and notify the provider; the symptoms will likely resolve on their own within 24 hours'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> The presentation — sudden forcible head rotation, jaw deviation, and inability to speak — describes severe oculogyric or cervical acute dystonia, a type of EPS occurring within hours to days of initiating FGA therapy. Benztropine mesylate (Cogentin) administered IM or IV provides rapid relief, often within minutes. <strong>A is incorrect</strong> — trihexyphenidyl is an oral anticholinergic used for antipsychotic-induced parkinsonism (not acute severe dystonia), and oral administration is inappropriate when the client cannot swallow due to jaw deviation. <strong>C is incorrect</strong> — while QT monitoring is important with haloperidol, it takes priority after addressing the acute, distressing, and potentially airway-compromising dystonic crisis in front of the nurse. <strong>D is incorrect</strong> — acute dystonia is painful, frightening, and can compromise the airway; waiting 24 hours for spontaneous resolution while the client is in distress is clinically unacceptable.'
+},
+{t:'mc',
+stem:'A client with a new diagnosis of bipolar I disorder is being discharged on lithium carbonate 300 mg TID. Which client statement indicates the nurse must provide further teaching before discharge?',
+opts:[
+{l:'A',x:'"I will take my lithium with a snack or a glass of milk to help with stomach upset."'},
+{l:'B',x:'"I need to go to the lab every week while my levels are being established."'},
+{l:'C',x:'"When I start feeling normal and stable, it\'ll be safe to stop the lithium and see how I do."'},
+{l:'D',x:'"I should avoid ibuprofen and use acetaminophen instead for pain relief."'}
+],
+ans:['C'],
+rat:'<strong>C requires correction.</strong> Stopping lithium when the client "feels better" is dangerous — lithium must be maintained even during periods of mood stability to prevent relapse into manic or depressive episodes. Abrupt discontinuation significantly increases the risk of rebound mania. <strong>A is correct understanding</strong> — taking lithium with food or milk reduces GI side effects (nausea, vomiting) and is an accurate teaching point. <strong>B is correct understanding</strong> — weekly lithium levels are standard at initiation until therapeutic levels are established. <strong>D is correct understanding</strong> — NSAIDs like ibuprofen reduce renal lithium clearance, raising serum levels to potentially toxic ranges; acetaminophen is the safe analgesic choice.'
+},
+{t:'mc',
+stem:'A client receiving risperidone over the past 48 hours suddenly develops a temperature of 103.6°F, generalized severe muscle rigidity, profound diaphoresis, and is described by staff as "staring blankly and not responsive to questions." Which condition does the nurse recognize as the priority concern?',
+opts:[
+{l:'A',x:'Serotonin syndrome from an unrecognized interaction between risperidone and a concurrent SSRI'},
+{l:'B',x:'Acute dystonia causing rigidity and hyperthermia from dopamine pathway disruption'},
+{l:'C',x:'Neuroleptic malignant syndrome, a rare but life-threatening emergency requiring immediate antipsychotic withdrawal'},
+{l:'D',x:'An acute infectious process causing sepsis with secondary neurological involvement'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> NMS presents with the classic tetrad: hyperthermia, severe generalized muscle rigidity, diaphoresis, and altered mental status — exactly what is described here. It is a rare but potentially fatal complication of antipsychotic therapy, requiring immediate medication discontinuation and emergency supportive care. <strong>A is incorrect</strong> — serotonin syndrome also causes hyperthermia and altered mental status, but it is characterized by neuromuscular hyperactivity (clonus, hyperreflexia, myoclonus), NOT the lead-pipe rigidity of NMS. Serotonin syndrome also progresses faster. Without a documented serotonergic co-medication, NMS is the primary diagnosis. <strong>B is incorrect</strong> — acute dystonia causes painful involuntary muscle spasms (cervical, facial, truncal) but does not cause the full tetrad of hyperthermia, global rigidity, profuse diaphoresis, and altered consciousness. <strong>D is incorrect</strong> — while sepsis should remain on the differential, the direct temporal relationship with risperidone initiation, combined with the characteristic tetrad, makes NMS the priority clinical concern and the one requiring the most urgent specific action (drug withdrawal).'
+},
+{t:'mc',
+stem:'A nurse is monitoring a client on divalproex sodium for bipolar disorder. A 12-hour trough level returns at 52 mcg/mL. The client\'s mood is still unstable and the provider asks the nurse for a clinical summary before adjusting the dose. Which interpretation is most accurate?',
+opts:[
+{l:'A',x:'The level is subtherapeutic; the therapeutic range is 75–125 mcg/mL for bipolar disorder'},
+{l:'B',x:'The level is within the therapeutic range of 50–120 mcg/mL but at the lower end, which may explain the inadequate mood stabilization'},
+{l:'C',x:'The level is dangerously supratherapeutic and the provider should be informed that the dose must be reduced immediately'},
+{l:'D',x:'The level is therapeutic and adequate; the mood instability indicates divalproex is not the right medication and should be discontinued'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> The therapeutic trough range for divalproex is 50–120 mcg/mL (drawn 12 hours after the last dose). A level of 52 mcg/mL is technically within range but at the low end, which may clinically correlate with insufficient mood stabilization. This is the accurate and clinically useful summary for the provider. <strong>A is incorrect</strong> — the stated range of 75–125 mcg/mL is not the standard documented therapeutic range for divalproex; 50–120 mcg/mL is correct. Using an inaccurate range would lead to inappropriate dose escalation. <strong>C is incorrect</strong> — 52 mcg/mL is within range, not supratherapeutic; advising dose reduction would risk under-treating the client. <strong>D is incorrect</strong> — a low-therapeutic level, not medication failure, is the most likely explanation for continued mood instability; the appropriate clinical response is dose optimization, not discontinuation.'
+},
+{t:'mc',
+stem:'A nurse is initiating discharge teaching for a client prescribed lamotrigine (Lamictal) for bipolar maintenance. Which teaching point is the highest priority for client safety?',
+opts:[
+{l:'A',x:'"Take lamotrigine only in the morning because taking it at night causes insomnia."'},
+{l:'B',x:'"You will need monthly fasting glucose and lipid panels while on this medication."'},
+{l:'C',x:'"Report any new skin rash to your provider immediately, even if it appears minor, as it may be the first sign of a life-threatening reaction."'},
+{l:'D',x:'"Maintain a consistent daily sodium intake to prevent the medication level from rising."'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> Lamotrigine carries a risk of Stevens-Johnson syndrome (SJS), a severe, potentially life-threatening mucocutaneous reaction. Any new rash — even one that appears mild — must be reported to the provider immediately, as SJS can progress rapidly. This is the unambiguous highest-priority safety teaching for lamotrigine. <strong>A is incorrect</strong> — there is no documented clinical requirement to restrict lamotrigine administration to morning only; this is not a documented course material teaching point. <strong>B is incorrect</strong> — fasting glucose and lipid monitoring are the metabolic monitoring parameters associated with atypical antipsychotics (SGAs), not lamotrigine. Applying SGA metabolic monitoring to lamotrigine reflects a medication knowledge error. <strong>D is incorrect</strong> — consistent sodium intake is critical for lithium therapy, where sodium balance directly affects renal lithium clearance. Sodium has no documented role in lamotrigine pharmacokinetics; this is a deliberate cross-drug exam trap.'
+},
+{t:'mc',
+stem:'A client asks the nurse how aripiprazole (Abilify) is different from older antipsychotics. Which response by the nurse best describes aripiprazole\'s mechanism of action?',
+opts:[
+{l:'A',x:'"Aripiprazole fully blocks all dopamine D2 receptors, which provides stronger antipsychotic coverage than older medications."'},
+{l:'B',x:'"Aripiprazole is a partial agonist at dopamine D2 receptors, meaning it stabilizes dopamine activity rather than fully blocking it."'},
+{l:'C',x:'"Aripiprazole works exclusively on serotonin receptors and has no effect on dopamine pathways."'},
+{l:'D',x:'"Aripiprazole fully stimulates dopamine receptors, which is why it causes fewer side effects than full dopamine antagonists."'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Aripiprazole is classified as a dopamine system stabilizer and is a partial agonist at D2 receptors. In conditions of dopamine excess (mesolimbic pathway), it dampens activity; in conditions of dopamine deficiency (mesocortical pathway), it provides some stimulation. This dual action distinguishes it from FGAs and most SGAs that are full D2 antagonists. <strong>A is incorrect</strong> — full D2 blockade describes first-generation antipsychotics (FGAs) and most SGAs; aripiprazole\'s partial agonism is specifically what differentiates it from this mechanism. <strong>C is incorrect</strong> — aripiprazole does affect dopamine pathways (partial D2 agonism); stating it works "exclusively" on serotonin is factually incorrect. <strong>D is incorrect</strong> — full dopamine receptor stimulation would worsen psychosis, not treat it. Aripiprazole\'s partial agonism provides neither full stimulation nor full blockade.'
+},
+{t:'mc',
+stem:'Before administering the first dose of ziprasidone (Geodon), which assessment is most critical for the nurse to complete?',
+opts:[
+{l:'A',x:'Obtain a fasting blood glucose and weight to establish a metabolic syndrome baseline'},
+{l:'B',x:'Review cardiac history and obtain a baseline ECG, as ziprasidone prolongs the QT interval'},
+{l:'C',x:'Assess for symptoms of tardive dyskinesia using a baseline AIMS scale score'},
+{l:'D',x:'Confirm the client\'s sodium level is within normal limits before starting therapy'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Ziprasidone is associated with a higher risk of QT interval prolongation compared to other SGAs. This can lead to life-threatening dysrhythmias including torsades de pointes. Reviewing cardiac history and obtaining a baseline ECG is the most critical pre-administration assessment. <strong>A is incorrect</strong> — while metabolic monitoring is appropriate for all SGAs, ziprasidone has the lowest metabolic syndrome risk among the atypicals and is not the highest priority for a first-dose assessment. <strong>C is incorrect</strong> — an AIMS baseline is relevant for long-term tardive dyskinesia surveillance, not a first-dose priority assessment. <strong>D is incorrect</strong> — sodium monitoring is specifically critical for lithium carbonate; it is not a documented priority first-dose assessment for ziprasidone.'
+},
+{t:'mc',
+stem:'The nurse is reviewing a client\'s medication list prior to administering a new prescription for lithium carbonate. Which co-prescribed medication should the nurse prioritize discussing with the provider before giving the first dose?',
+opts:[
+{l:'A',x:'Metformin 500 mg twice daily for type 2 diabetes'},
+{l:'B',x:'Atorvastatin 40 mg daily for hypercholesterolemia'},
+{l:'C',x:'Ibuprofen 400 mg PRN for headache relief'},
+{l:'D',x:'Levothyroxine 0.05 mg daily for hypothyroidism'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> NSAIDs — including ibuprofen — inhibit prostaglandin synthesis in the kidney, which reduces renal blood flow and decreases lithium excretion. The result is a significant increase in serum lithium levels, risking toxicity. This is the most critical interaction the nurse must flag before the first dose. <strong>A is incorrect</strong> — there is no clinically significant pharmacokinetic interaction between metformin and lithium documented in the course material; these agents work through entirely different pathways. <strong>B is incorrect</strong> — atorvastatin does not affect lithium levels or lithium renal clearance; there is no documented interaction. <strong>D is incorrect</strong> — while lithium can cause thyroid suppression over time and hypothyroidism can complicate bipolar management, the presence of levothyroxine for pre-existing hypothyroidism does not represent an acute first-dose interaction risk in the same way NSAID coadministration does.'
+},
+{t:'mc',
+stem:'A client with bipolar disorder prescribed carbamazepine is also started on risperidone for residual psychosis. Which monitoring priority should the nurse implement?',
+opts:[
+{l:'A',x:'Monitor for elevated carbamazepine levels, as risperidone inhibits carbamazepine metabolism through CYP3A4'},
+{l:'B',x:'Monitor for subtherapeutic risperidone levels, as carbamazepine is a CYP450 enzyme inducer that decreases risperidone plasma levels'},
+{l:'C',x:'Monitor for combined EPS toxicity, as both agents block dopamine D2 receptors synergistically'},
+{l:'D',x:'Monitor for additive QT prolongation, as this combination is the most significant cardiac concern'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Carbamazepine induces CYP450 enzymes. When co-administered with risperidone, it accelerates risperidone metabolism, reducing its plasma levels. This can lead to subtherapeutic antipsychotic levels and return of psychotic symptoms. The course materials specifically identify this interaction. <strong>A is incorrect</strong> — the documented interaction is unidirectional: carbamazepine reduces risperidone levels, not the reverse. Risperidone does not significantly inhibit carbamazepine metabolism. <strong>C is incorrect</strong> — while both agents have EPS risk, the course material specifically identifies the pharmacokinetic drug level interaction as the priority monitoring concern with this combination. <strong>D is incorrect</strong> — while QT effects exist for some antipsychotics, the documented and course-material-specific priority concern with this particular combination is the CYP450-driven reduction in risperidone levels, not QT synergy.'
+},
+{t:'mc',
+stem:'An 82-year-old client with Alzheimer\'s disease is becoming increasingly agitated and restless in the evenings. The family asks about using an antipsychotic for behavioral management. Which nursing response is most appropriate?',
+opts:[
+{l:'A',x:'"Antipsychotics like haloperidol are specifically approved and recommended for dementia-related behavioral symptoms in elderly patients."'},
+{l:'B',x:'"Both first- and second-generation antipsychotics carry a black box warning for increased risk of death when used in elderly patients with dementia-related psychosis."'},
+{l:'C',x:'"Only second-generation antipsychotics are safe for elderly patients with dementia; first-generation agents should be avoided entirely."'},
+{l:'D',x:'"Antipsychotics are safe for short-term use in elderly patients with dementia as long as the dose is reduced by half."'}
+],
+ans:['B'],
+rat:'<strong>B is correct.</strong> Both first-generation (typical) and second-generation (atypical) antipsychotics carry an FDA black box warning for increased risk of death in elderly patients with dementia-related psychosis. Elderly patients have a higher risk of stroke, aspiration pneumonia, and cardiac events with antipsychotic use. This warning applies to the entire drug class. <strong>A is incorrect</strong> — the opposite is true; antipsychotics are not specifically approved for dementia-related behavioral symptoms, and the black box warning explicitly discourages this use. <strong>C is incorrect</strong> — the black box warning applies equally to both first- and second-generation antipsychotics; neither class is considered "safe" in this population. <strong>D is incorrect</strong> — a dose reduction does not eliminate the increased mortality risk described in the black box warning; no dose threshold makes antipsychotics safe for this population.'
+},
+{t:'mc',
+stem:'A client prescribed quetiapine for bipolar depression asks why they need fasting blood work done regularly. Which explanation by the nurse is most accurate?',
+opts:[
+{l:'A',x:'"Quetiapine requires monitoring for renal function because it is primarily eliminated through the kidneys and can accumulate."'},
+{l:'B',x:'"Quetiapine affects dopamine in the nigrostriatal pathway, so we monitor liver enzymes to detect early hepatotoxicity."'},
+{l:'C',x:'"Quetiapine, like many atypical antipsychotics, can cause metabolic syndrome — including weight gain, hyperglycemia, and dyslipidemia — which requires regular monitoring."'},
+{l:'D',x:'"Fasting labs are required to monitor your quetiapine blood levels and ensure they remain within the therapeutic range."'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> Quetiapine is a second-generation antipsychotic that, like most atypical antipsychotics, is associated with metabolic syndrome — characterized by weight gain, new-onset hyperglycemia, and dyslipidemia. Fasting glucose and lipid panels are standard monitoring parameters for this drug class. <strong>A is incorrect</strong> — renal accumulation and renal function monitoring are not the documented basis for metabolic lab monitoring with quetiapine; this surveillance is for metabolic syndrome. <strong>B is incorrect</strong> — hepatotoxicity monitoring with liver enzymes is the documented concern for divalproex, not quetiapine; attributing liver monitoring to dopamine pathway effects is mechanistically inaccurate. <strong>D is incorrect</strong> — unlike lithium or divalproex, quetiapine does not have a standard therapeutic serum drug level range that guides clinical dosing decisions; the fasting labs are for metabolic monitoring, not drug levels.'
+},
+{t:'mc',
+stem:'A client with schizophrenia who has been stable on fluphenazine for three years is evaluated at a routine visit. The nurse notes mild involuntary movements of the jaw and slight choreiform movements of the left hand. The client is not distressed and denies pain. Which priority action should the nurse take?',
+opts:[
+{l:'A',x:'Administer benztropine mesylate IM immediately to treat this acute EPS reaction'},
+{l:'B',x:'Document the findings, notify the prescriber, and prepare to administer diphenhydramine for akathisia'},
+{l:'C',x:'Document the findings and notify the prescriber; these movements are consistent with tardive dyskinesia and should be formally assessed using the AIMS scale'},
+{l:'D',x:'Reassure the client that mild jaw movements are an expected finding with long-term antipsychotic therapy and do not require follow-up'}
+],
+ans:['C'],
+rat:'<strong>C is correct.</strong> Tardive dyskinesia (TD) — involuntary repetitive movements of the face, jaw, and extremities — develops after prolonged antipsychotic use. The appropriate response is to document, notify the prescriber, and perform a formal AIMS (Abnormal Involuntary Movement Scale) assessment. The provider will determine whether dose reduction, medication change, or discontinuation is warranted. <strong>A is incorrect</strong> — benztropine IM is used for acute dystonia. Tardive dyskinesia does not respond to anticholinergic agents; in fact, anticholinergics may worsen TD. <strong>B is incorrect</strong> — akathisia is subjective restlessness with motor agitation, not involuntary jaw or hand movements; diphenhydramine is not the correct treatment for TD. <strong>D is incorrect</strong> — these movements are NOT expected findings to dismiss; tardive dyskinesia is a recognized complication that may be irreversible and requires clinical documentation and evaluation.'
+},
+// ══════════════════════════════════════
+// SATA  (22)
+// ══════════════════════════════════════
+{t:'sata',
+stem:'A nurse is developing a medication teaching plan for a client newly prescribed haloperidol. Which adverse effects should be included?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Orthostatic hypotension with risk for falls, especially on position change'},
+{l:'B',x:'Extrapyramidal symptoms including acute dystonia, parkinsonism, and akathisia'},
+{l:'C',x:'QT prolongation with potential for life-threatening ventricular dysrhythmia'},
+{l:'D',x:'Significant weight gain and new-onset hyperglycemia as part of metabolic syndrome'},
+{l:'E',x:'Dry mouth, urinary hesitancy, and constipation from anticholinergic activity'},
+{l:'F',x:'Polydipsia and polyuria as the most common early adverse effects'}
+],
+ans:['A','B','C','E'],
+rat:'<strong>A, B, C, and E are correct.</strong> Documented haloperidol adverse effects include orthostatic hypotension (alpha-adrenergic blockade), EPS (nigrostriatal D2 blockade: dystonia, parkinsonism, akathisia), QT prolongation (risk for V-fib), and anticholinergic effects (dry mouth, urinary hesitancy, constipation). <strong>D is incorrect</strong> — significant metabolic syndrome (weight gain, hyperglycemia, dyslipidemia) is primarily associated with second-generation antipsychotics (especially clozapine, olanzapine, quetiapine), not haloperidol, which has minimal metabolic impact. <strong>F is incorrect</strong> — polydipsia and polyuria are the classic early adverse effects of lithium carbonate, not haloperidol; this is a deliberate cross-drug distractor designed to test whether students correctly match adverse effects to drug class.'
+},
+{t:'sata',
+stem:'A client with treatment-resistant schizophrenia is enrolled in the clozapine REMS program. Which nursing responsibilities are required under this program?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Verify current WBC and ANC results fall within the required thresholds before each medication dispensing'},
+{l:'B',x:'Instruct the client to report fever, sore throat, mouth sores, or any other signs of infection immediately'},
+{l:'C',x:'Administer clozapine concurrently with another antipsychotic to ensure adequate coverage during titration'},
+{l:'D',x:'Monitor blood glucose and weight at baseline and periodically throughout treatment for metabolic syndrome'},
+{l:'E',x:'Document all monitoring results in the REMS registry as required by the program'},
+{l:'F',x:'Initiate clozapine promptly in newly diagnosed schizophrenia clients before trying other antipsychotic options'}
+],
+ans:['A','B','D','E'],
+rat:'<strong>A, B, D, and E are correct.</strong> REMS requirements include mandatory WBC/ANC threshold verification before each dispensing, client education on reporting infection signs (agranulocytosis risk), metabolic monitoring (SGA class effect), and registry documentation of all monitoring results. <strong>C is incorrect</strong> — concurrent antipsychotic use with clozapine is not a standard REMS requirement; combining antipsychotics increases adverse effect risk without an established safety protocol benefit. <strong>F is incorrect</strong> — clozapine is exclusively reserved for treatment-resistant schizophrenia when two or more adequate antipsychotic trials have failed; initiating it in newly diagnosed clients before other options is explicitly contraindicated by the risk profile and REMS program design.'
+},
+{t:'sata',
+stem:'Before initiating lithium carbonate therapy, the nurse completes a baseline assessment. Which findings should be documented and communicated to the provider?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Baseline renal function including BUN and serum creatinine'},
+{l:'B',x:'Thyroid function studies including TSH'},
+{l:'C',x:'Baseline cardiac assessment and ECG when clinically indicated'},
+{l:'D',x:'Serum electrolytes including sodium'},
+{l:'E',x:'Hematologic status including CBC'},
+{l:'F',x:'Fasting lipid panel and HbA1c for metabolic baseline screening'}
+],
+ans:['A','B','C','D','E'],
+rat:'<strong>A, B, C, D, and E are correct.</strong> The course material specifies that renal function, thyroid function, cardiac status, electrolytes (sodium is critical for lithium clearance), and hematologic status must all be established as baseline before initiating lithium. Each represents a body system lithium affects over time. <strong>F is incorrect</strong> — fasting lipid panel and HbA1c for metabolic baseline are documented as pre-therapy requirements for atypical antipsychotics due to their metabolic syndrome risk profile; this monitoring is not a documented lithium initiation requirement. Applying SGA metabolic screening to lithium is a cross-class exam trap.'
+},
+{t:'sata',
+stem:'A client with antipsychotic-induced parkinsonism is prescribed benztropine mesylate (Cogentin). Which adverse effects should the nurse include in client teaching?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Dry mouth'},
+{l:'B',x:'Urinary retention'},
+{l:'C',x:'Constipation'},
+{l:'D',x:'Blurred vision and photophobia'},
+{l:'E',x:'Tachycardia'},
+{l:'F',x:'Hypersalivation and excessive drooling'}
+],
+ans:['A','B','C','D','E'],
+rat:'<strong>A, B, C, D, and E are correct.</strong> Benztropine is an anticholinergic agent. Its adverse effects reflect muscarinic acetylcholine blockade: dry mouth, urinary retention, constipation (decreased GI motility), blurred vision with photophobia (reduced miosis/accommodation), and tachycardia (vagal blockade). All are classic and documented adverse effects. <strong>F is incorrect</strong> — hypersalivation and drooling are manifestations of the drug-induced parkinsonism being treated (excess cholinergic tone causing sialorrhea), not an adverse effect of benztropine. Since benztropine blocks acetylcholine, it reduces secretions — producing dry mouth, the literal opposite of hypersalivation. This distractor tests whether students understand the mechanism, not just the side effect list.'
+},
+{t:'sata',
+stem:'A nurse is reviewing the medication reconciliation of a client admitted with lithium toxicity. Which co-medications are most likely to have contributed to the elevated lithium level?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Ibuprofen 400 mg PRN (taken daily for the past week for knee pain)'},
+{l:'B',x:'Hydrochlorothiazide 25 mg daily (thiazide diuretic for hypertension)'},
+{l:'C',x:'Metoprolol 25 mg twice daily (beta blocker for hypertension)'},
+{l:'D',x:'Naproxen sodium 220 mg PRN (taken every 12 hours for two days)'},
+{l:'E',x:'Furosemide 40 mg daily (loop diuretic for heart failure)'},
+{l:'F',x:'Atorvastatin 20 mg daily (statin for hypercholesterolemia)'}
+],
+ans:['A','B','D','E'],
+rat:'<strong>A, B, D, and E are correct.</strong> NSAIDs (ibuprofen, naproxen) inhibit prostaglandin synthesis in the kidney, reducing renal blood flow and lithium clearance — raising serum lithium levels. Thiazide diuretics (hydrochlorothiazide) and loop diuretics (furosemide) increase sodium and water excretion, triggering compensatory renal lithium reabsorption and raising levels. All four are documented in the course material as lithium interactions to avoid. <strong>C is incorrect</strong> — metoprolol, a beta-adrenergic blocker, is not documented as significantly affecting renal lithium clearance; it is not a recognized lithium-level-raising interaction. <strong>F is incorrect</strong> — atorvastatin does not affect renal lithium clearance or lithium metabolism; there is no documented pharmacokinetic interaction between statins and lithium.'
+},
+{t:'sata',
+stem:'A client receiving olanzapine for bipolar disorder is seen for a three-month follow-up. Which assessments are most important for the nurse to complete at this visit?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Weight and BMI compared to baseline'},
+{l:'B',x:'Fasting blood glucose'},
+{l:'C',x:'Fasting lipid panel'},
+{l:'D',x:'Assessment for extrapyramidal symptoms using the AIMS scale'},
+{l:'E',x:'Serum olanzapine trough level to verify therapeutic range'},
+{l:'F',x:'Blood pressure in multiple positions to assess for orthostatic hypotension'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> Metabolic syndrome monitoring (weight, glucose, lipids) is mandatory for all atypical antipsychotics including olanzapine. EPS assessment using the AIMS scale is appropriate for long-term antipsychotic monitoring. Orthostatic blood pressure assessment is indicated because atypical antipsychotics cause alpha-adrenergic blockade leading to orthostatic hypotension. <strong>E is incorrect</strong> — olanzapine does not have a standard serum therapeutic level range used to guide clinical dosing the way lithium or divalproex does; routine serum drug level monitoring is not a documented standard-of-care monitoring parameter for olanzapine. This distractor tests whether students correctly differentiate drugs that require level monitoring from those that do not.'
+},
+{t:'sata',
+stem:'A client with bipolar disorder is being initiated on divalproex sodium. Which laboratory tests should the nurse ensure are ordered at baseline and during ongoing monitoring?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Divalproex serum trough level (therapeutic range 50–120 mcg/mL)'},
+{l:'B',x:'Liver function tests (ALT, AST, bilirubin) for hepatotoxicity'},
+{l:'C',x:'Platelet count for thrombocytopenia'},
+{l:'D',x:'Serum amylase and lipase for pancreatitis'},
+{l:'E',x:'Thyroid function studies (TSH, T3, T4) for hypothyroidism'},
+{l:'F',x:'Serum lithium level to monitor for drug interaction'}
+],
+ans:['A','B','C','D'],
+rat:'<strong>A, B, C, and D are correct.</strong> Documented divalproex monitoring includes: therapeutic trough level (50–120 mcg/mL), liver function tests (hepatotoxicity is a serious risk), platelet count (thrombocytopenia), and amylase/lipase (pancreatitis). <strong>E is incorrect</strong> — thyroid function monitoring (TSH, T3, T4) is specifically a lithium monitoring requirement, as lithium suppresses thyroid function. Divalproex does not carry this documented endocrine effect; applying lithium\'s monitoring parameters to divalproex is a cross-drug knowledge trap. <strong>F is incorrect</strong> — this client is not prescribed lithium; ordering a serum lithium level would represent a medication mix-up. Divalproex and lithium are different drugs with separate monitoring protocols.'
+},
+{t:'sata',
+stem:'A nurse is caring for a client recently diagnosed with schizophrenia and newly started on risperidone. Which adverse effects should the nurse include in the client and family teaching?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Orthostatic hypotension with fall risk'},
+{l:'B',x:'Drowsiness and sedation, especially early in therapy'},
+{l:'C',x:'Weight gain and metabolic changes including hyperglycemia'},
+{l:'D',x:'Extrapyramidal symptoms at a lower incidence than first-generation antipsychotics'},
+{l:'E',x:'Agranulocytosis requiring mandatory REMS enrollment and weekly blood draws'},
+{l:'F',x:'Sexual dysfunction from prolactin elevation'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> Risperidone adverse effects include orthostatic hypotension, sedation, metabolic syndrome (weight, glucose, lipids), EPS at a lower rate than FGAs (still possible due to D2 blockade), and sexual dysfunction/galactorrhea from hyperprolactinemia (risperidone significantly elevates prolactin). <strong>E is incorrect</strong> — mandatory REMS enrollment and the agranulocytosis risk requiring structured WBC monitoring is specific to clozapine. Risperidone does not carry the same agranulocytosis profile and does not have a REMS program. Confusing REMS requirements with any SGA rather than specifically clozapine is a classic and dangerous examination error.'
+},
+{t:'sata',
+stem:'A nurse is providing discharge teaching for a client prescribed carbamazepine (Tegretol) for bipolar disorder. Which information should be included?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Report dizziness, visual changes, or ataxia to the provider, especially during the first weeks of therapy'},
+{l:'B',x:'Carbamazepine induces its own metabolism over time, which may require dose adjustments'},
+{l:'C',x:'Take carbamazepine at the same time each day; do not double up if a dose is missed'},
+{l:'D',x:'Maintain adequate sodium intake daily, as sodium depletion can raise carbamazepine levels to toxic ranges'},
+{l:'E',x:'Report any signs of infection, unusual bruising, or bleeding, which may indicate a hematologic adverse effect'},
+{l:'F',x:'Avoid grapefruit juice, as it inhibits CYP3A4 and may significantly increase carbamazepine levels'}
+],
+ans:['A','B','C','E'],
+rat:'<strong>A, B, C, and E are correct.</strong> Early neurological effects (dizziness, visual changes, ataxia) are documented adverse effects of carbamazepine that clients should watch for. Carbamazepine autoinduction means its own metabolism increases over weeks, potentially requiring dose increases. Consistent dosing is important for any anticonvulsant/mood stabilizer. Hematologic adverse effects (leukopenia, thrombocytopenia, aplastic anemia) are serious and documented, requiring client education. <strong>D is incorrect</strong> — sodium management instructions apply specifically to lithium carbonate, where sodium depletion causes compensatory renal lithium reabsorption. Carbamazepine levels are not affected by sodium intake in the same documented clinical way; applying lithium sodium precautions to carbamazepine is a deliberate cross-drug distractor. <strong>F is incorrect</strong> — while grapefruit-CYP3A4 interactions are documented for some medications, the primary documented CYP450 concern with carbamazepine is that it is a powerful inducer, not a substrate being inhibited by grapefruit. This is not a documented course material teaching point for carbamazepine.'
+},
+{t:'sata',
+stem:'The nurse identifies that a client receiving haloperidol is developing neuroleptic malignant syndrome. Which nursing interventions are appropriate?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Stop haloperidol immediately'},
+{l:'B',x:'Prepare to administer dantrolene for severe muscle rigidity and hyperthermia'},
+{l:'C',x:'Apply cooling blankets and ensure IV access for aggressive hydration'},
+{l:'D',x:'Administer bromocriptine as a dopamine agonist to address CNS toxicity'},
+{l:'E',x:'Reduce the haloperidol dose by 50% and add an anticholinergic agent to manage symptoms'},
+{l:'F',x:'Obtain a STAT ECG and serum CK level as part of the emergency workup'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> NMS management requires: immediate antipsychotic discontinuation, dantrolene (direct-acting muscle relaxant for rigidity and hyperthermia), cooling and IV hydration (supportive care), bromocriptine (dopamine agonist for CNS toxicity reversal), and emergency evaluation including ECG and serum CK (rhabdomyolysis indicator and cardiac arrhythmia risk). <strong>E is incorrect</strong> — dose reduction is wholly inadequate for NMS. Haloperidol must be stopped entirely; any continued dose perpetuates the syndrome and worsens the risk of fatal outcome. Adding an anticholinergic is also inappropriate; anticholinergics are used for EPS (dystonia, parkinsonism), not NMS, and could worsen the hyperthermia.'
+},
+{t:'sata',
+stem:'A client is being discharged on clonazepam (Klonopin) as an adjunct for acute mania management. Which teaching points should the nurse include?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Avoid alcohol and all CNS depressants while taking clonazepam'},
+{l:'B',x:'This medication has potential for dependence and addiction'},
+{l:'C',x:'Do not stop clonazepam abruptly; taper as directed by the provider to avoid withdrawal'},
+{l:'D',x:'Monitor for and report excessive drowsiness, ataxia, and falls'},
+{l:'E',x:'Clonazepam has no interaction with opioid analgesics and may be safely combined at home'},
+{l:'F',x:'Report any worsening depression or new suicidal thoughts while taking this medication'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> Clonazepam (benzodiazepine) teaching per course material includes: avoiding CNS depressants and alcohol (additive CNS/respiratory depression), acknowledging addiction potential, never stopping abruptly due to benzodiazepine withdrawal risk, monitoring for sedation and fall precautions, and reporting worsening mood or suicidal ideation (a class-wide warning for psychotropic agents). <strong>E is incorrect</strong> — combining benzodiazepines with opioids produces dangerous additive CNS and respiratory depression, which can be fatal. Teaching a client this combination is "safe at home" is a serious medication safety error. This distractor is designed to test careful reading and knowledge of high-risk drug interactions.'
+},
+{t:'sata',
+stem:'A client is receiving amantadine for antipsychotic-induced parkinsonism. Which nursing considerations are documented for this medication?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Amantadine promotes dopamine release and blocks dopamine reuptake, increasing dopaminergic activity'},
+{l:'B',x:'Monitor for CNS adverse effects including confusion, dizziness, and light-headedness'},
+{l:'C',x:'Monitor for anticholinergic adverse effects including dry mouth and urinary retention'},
+{l:'D',x:'Reassess the continued need for amantadine after a few months, as neuroleptic-induced parkinsonism often resolves'},
+{l:'E',x:'Amantadine should be continued indefinitely as a preventive measure against all future EPS'},
+{l:'F',x:'Instruct the client to report vivid dreams, hallucinations, or confusion while taking amantadine'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> Amantadine mechanism is dopamine release promotion and reuptake blockade. Adverse effects include CNS effects (confusion, light-headedness, dizziness) and anticholinergic effects (dry mouth, urinary retention). The need for continued use must be reassessed periodically because neuroleptic-induced parkinsonism often resolves over time. Psychiatric adverse effects including vivid dreams, hallucinations, and confusion are documented and require reporting. <strong>E is incorrect</strong> — the course material explicitly states antiparkinsonism drugs should NOT be used indefinitely. Prolonged use without reassessment carries continued adverse effect exposure with no defined benefit once the underlying EPS has resolved.'
+},
+{t:'sata',
+stem:'A nurse is assessing a client with bipolar disorder who was recently prescribed lithium. Which findings are consistent with early lithium toxicity?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Coarse hand tremor (distinct from the fine tremor seen at therapeutic levels)'},
+{l:'B',x:'Persistent nausea, vomiting, and diarrhea'},
+{l:'C',x:'Drowsiness, confusion, and slurred speech'},
+{l:'D',x:'Severe muscle rigidity, fever, and diaphoresis'},
+{l:'E',x:'Ataxia and unsteady gait'},
+{l:'F',x:'Polyuria and polydipsia'}
+],
+ans:['A','B','C','E'],
+rat:'<strong>A, B, C, and E are correct.</strong> Early lithium toxicity (levels 1.5–2.0 mEq/L) presents with: coarse hand tremors (distinguishable from the fine tremors of therapeutic therapy), nausea/vomiting/diarrhea, CNS effects (drowsiness, confusion, slurred speech), and ataxia/unsteady gait. These represent the early-to-moderate toxicity cluster. <strong>D is incorrect</strong> — severe muscle rigidity, fever, and profuse diaphoresis are the hallmark findings of neuroleptic malignant syndrome, not lithium toxicity. This is a high-priority distractor testing the ability to differentiate NMS (antipsychotic-related) from lithium toxicity (different drug, different mechanism). <strong>F is incorrect</strong> — polyuria and polydipsia are documented expected (not toxic) adverse effects of lithium at therapeutic levels, related to lithium\'s effect on ADH. While they should be reported if severe, they represent a normal lithium side effect rather than a sign of toxicity.'
+},
+{t:'sata',
+stem:'Which findings should the nurse monitor for in a client who has been on clozapine for three months?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'New-onset weight gain and fasting blood glucose elevation'},
+{l:'B',x:'Somnolence and excessive sedation'},
+{l:'C',x:'Signs of agranulocytosis including fever, sore throat, and mouth ulcers'},
+{l:'D',x:'Seizure activity, especially with rapid dose escalation'},
+{l:'E',x:'Elevated blood pressure and hypertensive urgency'},
+{l:'F',x:'Orthostatic hypotension and dizziness on position change'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> Documented clozapine adverse effects include: metabolic syndrome (weight gain, hyperglycemia), sedation/somnolence, agranulocytosis (the most dangerous adverse effect requiring REMS), dose-dependent seizure risk, and orthostatic hypotension. <strong>E is incorrect</strong> — clozapine causes hypOtension, not hypertension. Orthostatic hypotension is a documented effect due to alpha-adrenergic blockade. Sustained hypertension is not a documented clozapine adverse effect and would suggest an unrelated etiology. This distractor tests knowledge of the direction of blood pressure change with antipsychotics.'
+},
+{t:'sata',
+stem:'A client with a first episode of schizophrenia asks what differences to expect between the older antipsychotics and the newer ones. Which comparisons between first-generation antipsychotics (FGAs) and second-generation antipsychotics (SGAs) are accurate?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'FGAs primarily block dopamine D2 receptors; SGAs block both dopamine and serotonin receptors'},
+{l:'B',x:'SGAs are more likely than FGAs to cause metabolic syndrome including weight gain and hyperglycemia'},
+{l:'C',x:'FGAs have higher EPS risk than SGAs due to stronger nigrostriatal dopamine blockade'},
+{l:'D',x:'SGAs improve positive, negative, and cognitive symptoms; FGAs primarily improve positive symptoms'},
+{l:'E',x:'Both FGAs and SGAs carry a black box warning for use in elderly patients with dementia-related psychosis'},
+{l:'F',x:'SGAs are completely free of EPS risk because they do not block dopamine receptors at all'}
+],
+ans:['A','B','C','D','E'],
+rat:'<strong>A, B, C, D, and E are correct.</strong> All five represent accurate, course material-supported comparisons: FGAs are primarily D2 antagonists while SGAs also block serotonin; metabolic syndrome is an SGA class effect; EPS risk is higher with FGAs due to stronger nigrostriatal D2 blockade; SGAs provide broader symptom coverage; and the black box warning for dementia-related psychosis applies to both classes. <strong>F is incorrect</strong> — SGAs still have some D2 blocking activity; the statement that they are "completely free of EPS risk" and "do not block dopamine at all" is false. EPS risk is lower with SGAs but not zero. Clozapine (lowest EPS risk SGA) still has some EPS potential; saying SGAs have no dopamine activity is a mechanistic factual error.'
+},
+{t:'sata',
+stem:'The nurse is reviewing a new order for haloperidol. Which client conditions or concurrent medications require the nurse to consult the provider before administering the first dose?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Documented history of narrow-angle glaucoma'},
+{l:'B',x:'Current prescription for an anticholinergic agent for bladder overactivity'},
+{l:'C',x:'Recently prescribed antihypertensive for newly diagnosed hypertension'},
+{l:'D',x:'Current diagnosis of Parkinson\'s disease being managed with levodopa'},
+{l:'E',x:'Current prescription for metformin for type 2 diabetes'},
+{l:'F',x:'History of prolonged QT interval on a prior ECG'}
+],
+ans:['A','B','C','D','F'],
+rat:'<strong>A, B, C, D, and F are correct.</strong> All are documented pre-administration concerns per the course material: glaucoma (anticholinergic activity worsens intraocular pressure), concurrent anticholinergics (additive anticholinergic toxicity), antihypertensives (additive hypotension from alpha-adrenergic blockade), Parkinson\'s disease (worsens parkinsonism and conflicts with dopaminergic therapy), and prolonged QT history (additive risk for V-fib). <strong>E is incorrect</strong> — metformin for type 2 diabetes does not present a documented pharmacokinetic or pharmacodynamic interaction with haloperidol; it is not identified as a pre-administration concern in the course material for this drug. While metabolic monitoring is important for SGAs, haloperidol (FGA) has minimal metabolic effects and metformin does not interact with haloperidol specifically.'
+},
+{t:'sata',
+stem:'A nurse is comparing mood stabilizers approved for bipolar disorder. Which medications are included in the mood stabilizer category per course materials?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Lithium carbonate'},
+{l:'B',x:'Divalproex sodium (valproate)'},
+{l:'C',x:'Carbamazepine (Tegretol)'},
+{l:'D',x:'Lamotrigine (Lamictal)'},
+{l:'E',x:'Haloperidol (Haldol)'},
+{l:'F',x:'Clonazepam (Klonopin)'}
+],
+ans:['A','B','C','D'],
+rat:'<strong>A, B, C, and D are correct.</strong> The course materials classify lithium carbonate, divalproex sodium, carbamazepine, and lamotrigine as mood stabilizers used in the management of bipolar disorder. <strong>E is incorrect</strong> — haloperidol is a first-generation antipsychotic; while it may be used adjunctively for acute mania or psychotic features of bipolar disorder, it is not classified as a mood stabilizer in the course material. <strong>F is incorrect</strong> — clonazepam is a benzodiazepine used for acute symptom management (anxiety, agitation, acute mania adjunct) but is not classified as a mood stabilizer. This distinction is important for understanding the mechanism and long-term role of each medication class in bipolar management.'
+},
+{t:'sata',
+stem:'A client on long-term haloperidol therapy is being evaluated by the nurse. Which findings are consistent with extrapyramidal symptoms and should be documented and reported?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Sudden, painful spasm of the sternocleidomastoid muscle with involuntary head rotation'},
+{l:'B',x:'Client pacing constantly, crossing and uncrossing legs while seated, stating "I just cannot sit still"'},
+{l:'C',x:'Pill-rolling tremor, rigid arm swing, and shuffling small-step gait'},
+{l:'D',x:'Repetitive involuntary tongue protrusion and bilateral choreiform finger movements after 18 months of therapy'},
+{l:'E',x:'Temperature of 104.2°F, lead-pipe muscle rigidity, and altered level of consciousness'},
+{l:'F',x:'Bilateral fine hand tremor that is present at rest and with movement, appearing three days after dose increase'}
+],
+ans:['A','B','C','D'],
+rat:'<strong>A, B, C, and D are correct.</strong> The four EPS categories: acute dystonia (sudden muscle spasm/abnormal posturing — A), akathisia (subjective restlessness with motor agitation — B), drug-induced parkinsonism (pill-rolling tremor, rigidity, bradykinesia, shuffling gait — C), and tardive dyskinesia (delayed involuntary repetitive oro-facial and limb movements — D). <strong>E is incorrect</strong> — hyperthermia, severe generalized rigidity, and altered consciousness describe NMS, which is a separate, more dangerous adverse drug reaction; NMS is not classified as EPS. <strong>F is incorrect</strong> — bilateral fine hand tremor is an expected, documented adverse effect of lithium at therapeutic levels; it does not represent EPS from haloperidol. This distractor tests whether students can distinguish lithium-related tremor from antipsychotic EPS.'
+},
+{t:'sata',
+stem:'A nurse is providing medication education to a client beginning lithium therapy. Which statements by the nurse are clinically accurate?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'"Your lithium level will be drawn in the morning, 12 hours after your last evening dose."'},
+{l:'B',x:'"Maintaining a consistent salt intake in your diet is very important while taking lithium."'},
+{l:'C',x:'"Fine hand tremors, increased thirst, and frequent urination are common effects you may experience."'},
+{l:'D',x:'"You should reduce your fluid intake to help concentrate the medication for better effectiveness."'},
+{l:'E',x:'"Avoid ibuprofen, naproxen, and other NSAIDs — use acetaminophen instead for pain relief."'},
+{l:'F',x:'"You can safely drink alcohol in moderation because lithium does not affect the CNS."'}
+],
+ans:['A','B','C','E'],
+rat:'<strong>A, B, C, and E are correct.</strong> Accurate lithium teaching: trough level drawn 12 hours after last evening dose; consistent sodium intake prevents lithium reabsorption and toxicity; fine tremor, polydipsia, and polyuria are expected early effects; NSAIDs are contraindicated and acetaminophen is the safe alternative. <strong>D is incorrect</strong> — reducing fluid intake increases lithium concentration by reducing total body water, promoting toxicity. The opposite is true: adequate hydration must be maintained. <strong>F is incorrect</strong> — lithium is a CNS active agent and alcohol consumption is not considered safe; alcohol can affect fluid balance and judgment about medication adherence, and can interact with CNS effects. Teaching that alcohol is safe with lithium is inaccurate.'
+},
+{t:'sata',
+stem:'A client with bipolar I disorder is prescribed carbamazepine. Which precautions and monitoring parameters should the nurse implement?',
+inst:'Select all that apply.',
+opts:[
+{l:'A',x:'Monitor a complete blood count periodically for bone marrow suppression (agranulocytosis, aplastic anemia)'},
+{l:'B',x:'Monitor liver function tests, as hepatotoxicity is a documented adverse effect'},
+{l:'C',x:'Counsel the client that carbamazepine reduces the effectiveness of oral contraceptives'},
+{l:'D',x:'Monitor carbamazepine serum trough levels to guide therapeutic dosing'},
+{l:'E',x:'Monitor for hyponatremia, as carbamazepine has documented syndrome of inappropriate antidiuretic hormone (SIADH) activity'},
+{l:'F',x:'Restrict sodium intake to less than 1,500 mg/day to prevent carbamazepine toxicity'}
+],
+ans:['A','B','C','D','E'],
+rat:'<strong>A, B, C, D, and E are correct.</strong> Carbamazepine monitoring includes: CBC for bone marrow suppression (a documented serious adverse effect), LFTs for hepatotoxicity, drug interaction counseling about oral contraceptive failure (CYP450 induction reduces contraceptive efficacy), serum trough level monitoring, and monitoring for SIADH/hyponatremia (carbamazepine stimulates ADH release). <strong>F is incorrect</strong> — sodium restriction is a lithium-specific safety precaution. Restricting sodium while taking carbamazepine has no documented therapeutic basis and is not a course material recommendation. This is a cross-drug exam trap designed to test whether students distinguish lithium\'s sodium requirements from carbamazepine\'s.'
+},
+// ══════════════════════════════════════
+// MATRIX  (15)
+// ══════════════════════════════════════
+{t:'matrix',
+stem:'A client is newly prescribed lithium carbonate. For each nursing action, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Draw serum trough level 12 hours after the evening dose',ans:0},
+{x:'Advise the client to follow a low-sodium diet to reduce fluid retention',ans:1},
+{x:'Instruct the client to take lithium with food or milk to reduce GI upset',ans:0},
+{x:'Administer ibuprofen PRN for mild headaches while on lithium',ans:1},
+{x:'Counsel the client to avoid pregnancy while taking lithium due to teratogenic risk',ans:0},
+{x:'Monitor fasting glucose and lipid panel monthly for metabolic syndrome',ans:2}
+],
+rat:'<strong>Draw trough 12 hrs after evening dose — Indicated.</strong> Standard lithium monitoring protocol. <strong>Low-sodium diet — Contraindicated.</strong> Sodium restriction causes compensatory renal lithium reabsorption, raising levels dangerously. <strong>Take with food — Indicated.</strong> Reduces nausea/GI adverse effects. <strong>Ibuprofen PRN — Contraindicated.</strong> NSAIDs reduce renal lithium clearance, elevating serum levels to toxic ranges. <strong>Avoid pregnancy — Indicated.</strong> Lithium is teratogenic; reproductive counseling is documented. <strong>Monthly fasting glucose/lipid panel — Not Indicated.</strong> Metabolic monitoring is a documented requirement for atypical antipsychotics due to metabolic syndrome risk, not for lithium carbonate.'
+},
+{t:'matrix',
+stem:'A client with treatment-resistant schizophrenia is being initiated on clozapine. For each action, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Verify WBC and ANC results meet REMS thresholds before dispensing each supply',ans:0},
+{x:'Initiate clozapine as the preferred first-line agent in newly diagnosed schizophrenia',ans:1},
+{x:'Educate the client to immediately report fever, sore throat, or oral ulcers',ans:0},
+{x:'Administer clozapine to an 84-year-old with dementia-related behavioral agitation',ans:1},
+{x:'Monitor for metabolic syndrome including weight gain and blood glucose changes',ans:0},
+{x:'Monitor serum clozapine levels weekly to guide dose titration using the therapeutic range',ans:2}
+],
+rat:'<strong>REMS WBC/ANC verification — Indicated.</strong> Mandatory per REMS; clozapine cannot be dispensed without current qualifying lab values. <strong>First-line for new schizophrenia — Contraindicated.</strong> Clozapine is reserved for treatment-resistant schizophrenia after failure of at least two other antipsychotics. <strong>Report infection signs — Indicated.</strong> Agranulocytosis risk mandates immediate reporting. <strong>Administer to elderly with dementia — Contraindicated.</strong> Black box warning applies to all antipsychotics including clozapine in elderly dementia patients. <strong>Metabolic monitoring — Indicated.</strong> Weight gain, hyperglycemia, and dyslipidemia are SGA class effects. <strong>Weekly serum level monitoring — Not Indicated.</strong> Clozapine does not have a standard serum therapeutic level protocol guiding routine dosing the same way lithium does; this is not a documented clozapine monitoring standard in the course material.'
+},
+{t:'matrix',
+stem:'A client receiving haloperidol develops a temperature of 104°F, severe generalized muscle rigidity, diaphoresis, and acute confusion. The nurse suspects NMS. For each intervention, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Discontinue haloperidol immediately',ans:0},
+{x:'Administer dantrolene to reduce rigidity and hyperthermia',ans:0},
+{x:'Apply cooling measures and administer IV fluids',ans:0},
+{x:'Administer bromocriptine to reverse CNS dopaminergic toxicity',ans:0},
+{x:'Reduce the haloperidol dose by 50% and observe over 24 hours for improvement',ans:1},
+{x:'Administer benztropine mesylate as the primary pharmacologic treatment for NMS',ans:2}
+],
+rat:'<strong>Stop haloperidol — Indicated.</strong> Most critical first action; the causative agent must be discontinued immediately. <strong>Dantrolene — Indicated.</strong> Direct-acting muscle relaxant that reduces severe rigidity and hyperthermia in NMS. <strong>Cooling and IV fluids — Indicated.</strong> Supportive care to manage hyperthermia and prevent dehydration/rhabdomyolysis. <strong>Bromocriptine — Indicated.</strong> Dopamine agonist addressing the CNS component of NMS. <strong>Reduce dose 50% and observe — Contraindicated.</strong> NMS is life-threatening; any continued antipsychotic dose is dangerous and potentially fatal. <strong>Benztropine for NMS — Not Indicated.</strong> Benztropine treats EPS (acute dystonia, parkinsonism), not NMS. These are categorically different conditions; using an EPS treatment for NMS reflects a critical clinical knowledge error.'
+},
+{t:'matrix',
+stem:'The nurse is evaluating a client on risperidone. For each assessment finding, indicate whether it represents a Therapeutic Effect, an Adverse Effect to Monitor, or an Emergency Requiring Immediate Action.',
+cols:['Therapeutic','Monitor','Immediate Action'],
+rows:[
+{x:'Client reports a significant reduction in auditory hallucinations and improved concentration',ans:0},
+{x:'Fasting blood glucose increased from 88 to 136 mg/dL since starting therapy',ans:1},
+{x:'Temperature 103.8°F, severe generalized rigidity, profuse diaphoresis, acute confusion',ans:2},
+{x:'Client is drowsy and sedated during the first two weeks of therapy',ans:1},
+{x:'Blood pressure drops from 128/78 to 92/60 on standing; client reports dizziness',ans:1},
+{x:'Involuntary repetitive lip-smacking and tongue protrusion after 16 months of therapy',ans:1}
+],
+rat:'<strong>Fewer hallucinations — Therapeutic.</strong> Reduction in positive symptoms is the intended therapeutic outcome of antipsychotic therapy. <strong>Elevated fasting glucose — Monitor.</strong> New hyperglycemia signals metabolic syndrome (SGA class effect); requires monitoring and provider notification but not an emergency. <strong>Fever, rigidity, diaphoresis, confusion — Immediate Action.</strong> Classic NMS tetrad; life-threatening emergency requiring immediate drug discontinuation and emergency intervention. <strong>Drowsiness first weeks — Monitor.</strong> Expected early SGA side effect; monitor for fall risk. <strong>Orthostatic BP drop — Monitor.</strong> Alpha-adrenergic blockade effect; requires fall precautions and provider notification. <strong>Tardive dyskinesia signs — Monitor.</strong> Late-onset EPS requiring AIMS documentation, provider notification, and possible medication adjustment.'
+},
+{t:'matrix',
+stem:'A client is being discharged on haloperidol and demonstrates knowledge during discharge teaching. For each statement, indicate whether it shows Correct Understanding, Requires Correction, or Is Not Related to haloperidol.',
+cols:['Correct','Needs Correction','Not Related'],
+rows:[
+{x:'"I will not drive or operate machinery if I feel dizzy or lightheaded."',ans:0},
+{x:'"I can drink alcohol in moderation because haloperidol is not a sedative."',ans:1},
+{x:'"I should keep my sodium intake consistent so my blood level stays in range."',ans:2},
+{x:'"I will call my provider right away if my muscles start cramping or my neck twists."',ans:0},
+{x:'"Once I feel stable and back to normal, I can stop the medication."',ans:1},
+{x:'"If I get constipated, I can try drinking more water and eating more fiber."',ans:0}
+],
+rat:'<strong>No driving if dizzy — Correct.</strong> Orthostatic hypotension and sedation are haloperidol adverse effects; avoiding driving is appropriate safety behavior. <strong>Alcohol safe — Needs Correction.</strong> Alcohol is explicitly contraindicated with haloperidol due to additive CNS depression. <strong>Consistent sodium intake — Not Related.</strong> Sodium management is a lithium requirement; it does not apply to haloperidol. <strong>Report muscle cramps/neck twisting — Correct.</strong> Describes acute dystonia (EPS); prompt reporting demonstrates correct safety awareness. <strong>Stop when stable — Needs Correction.</strong> Haloperidol must not be discontinued without provider guidance; abrupt stopping risks acute psychotic relapse. <strong>Constipation management — Correct.</strong> Fluids, dietary fiber, and stool softeners are the documented management for anticholinergic-induced constipation from haloperidol.'
+},
+{t:'matrix',
+stem:'A client on long-term lithium carbonate therapy presents for a routine clinic visit. For each finding, indicate whether it represents a Therapeutic Response, an Expected Adverse Effect to Monitor, or Possible Toxicity Requiring Action.',
+cols:['Therapeutic','Expected Adverse Effect','Possible Toxicity'],
+rows:[
+{x:'Lithium level 0.9 mEq/L; client reports stable mood for 6 weeks',ans:0},
+{x:'Lithium level 1.6 mEq/L; client reports coarse tremors, nausea, and vomiting',ans:2},
+{x:'Fine hand tremor noted at rest; lithium level 0.8 mEq/L',ans:1},
+{x:'Client reports increased thirst and urinating more frequently than before lithium',ans:1},
+{x:'Lithium level 1.1 mEq/L; client reports ataxia, confusion, and slurred speech',ans:2},
+{x:'TSH elevated at 5.8 mIU/L after 18 months of lithium therapy',ans:2}
+],
+rat:'<strong>Level 0.9 + stable mood — Therapeutic.</strong> Within the maintenance range (0.6–1.2 mEq/L) with mood stabilization; represents treatment success. <strong>Level 1.6 + coarse tremor, nausea, vomiting — Toxicity.</strong> Level exceeds 1.5 mEq/L with clinical toxicity symptoms; requires immediate hold and provider notification. <strong>Fine tremor at 0.8 — Expected Adverse Effect.</strong> Fine hand tremor at therapeutic levels is a documented expected (not toxic) adverse effect of lithium. <strong>Polydipsia/polyuria — Expected Adverse Effect.</strong> These are documented expected early adverse effects of lithium from its effect on ADH; not signs of toxicity at therapeutic levels. <strong>Level 1.1 + ataxia, confusion, slurred speech — Toxicity.</strong> Even at 1.1 mEq/L, neurological symptoms (ataxia, confusion, slurred speech) constitute clinical toxicity; hold and notify provider. <strong>Elevated TSH — Toxicity-related adverse effect.</strong> Lithium suppresses thyroid function; elevated TSH after 18 months of therapy indicates lithium-induced hypothyroidism requiring evaluation and possible thyroid replacement.'
+},
+{t:'matrix',
+stem:'The nurse is reviewing care for a client with a divalproex level of 148 mcg/mL. For each nursing action, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Hold the next scheduled divalproex dose and notify the provider',ans:0},
+{x:'Administer the next scheduled dose as written and monitor the client',ans:1},
+{x:'Assess for bleeding, bruising, or petechiae related to thrombocytopenia risk',ans:0},
+{x:'Assess for abdominal pain, nausea, and vomiting as possible signs of pancreatitis',ans:0},
+{x:'Begin monitoring lithium serum trough levels concurrently',ans:2},
+{x:'Prepare for possible dose reduction or temporary discontinuation',ans:0}
+],
+rat:'<strong>Hold and notify — Indicated.</strong> 148 mcg/mL exceeds the therapeutic ceiling of 120 mcg/mL; immediate hold and provider notification are required. <strong>Administer as written — Contraindicated.</strong> Giving the next dose compounds supratherapeutic levels, worsening toxicity risk (hepatotoxicity, thrombocytopenia, pancreatitis). <strong>Assess for thrombocytopenia — Indicated.</strong> Divalproex causes thrombocytopenia; supratherapeutic levels increase this risk. <strong>Assess for pancreatitis — Indicated.</strong> Pancreatitis is a serious documented divalproex adverse effect with increased risk at elevated levels. <strong>Monitor lithium levels — Not Indicated.</strong> This client takes divalproex, not lithium; ordering lithium levels is a medication mix-up with no clinical basis. <strong>Prepare for dose adjustment — Indicated.</strong> Supratherapeutic levels require provider-directed dose modification; nursing must anticipate and prepare for this.'
+},
+{t:'matrix',
+stem:'A nurse is reviewing care planning for a client on lamotrigine for bipolar maintenance. For each nursing action, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Assess for any new skin rash at every clinical encounter',ans:0},
+{x:'Implement fall/injury precautions and assess for suicidal ideation per FDA antiepileptic warning',ans:0},
+{x:'Monitor lamotrigine serum trough levels (therapeutic range 1–5 mcg/L)',ans:0},
+{x:'Instruct the client to increase daily sodium intake to prevent lamotrigine toxicity',ans:2},
+{x:'Hold the medication and notify the provider immediately if any new rash appears',ans:0},
+{x:'Counsel about teratogenic risk and discuss contraception with clients of childbearing age',ans:0}
+],
+rat:'<strong>Rash assessment every visit — Indicated.</strong> Critical safety priority; any rash may signal Stevens-Johnson syndrome. <strong>Fall precautions and suicidal ideation assessment — Indicated.</strong> Class-wide FDA warning on antiepileptic drugs for suicidality. <strong>Trough level monitoring — Indicated.</strong> Standard monitoring with therapeutic range 1–5 mcg/L. <strong>Increase sodium — Not Indicated.</strong> Sodium management is specific to lithium carbonate; it has no documented role in lamotrigine pharmacokinetics. Applying this instruction to lamotrigine is factually incorrect. <strong>Hold if rash appears — Indicated.</strong> Given SJS risk, this is the correct and mandatory clinical response to any new rash. <strong>Teratogenicity counseling — Indicated.</strong> Lamotrigine is teratogenic; reproductive counseling is a documented nursing responsibility.'
+},
+{t:'matrix',
+stem:'The nurse is evaluating a client receiving clozapine. For each assessment finding, indicate whether it represents a Therapeutic Effect, an Adverse Effect to Monitor, or an Emergency Requiring Immediate Action.',
+cols:['Therapeutic','Monitor','Immediate Action'],
+rows:[
+{x:'Client and family report significant improvement in daily functioning and social interaction',ans:0},
+{x:'WBC 2,400/mm³ and ANC 900/mm³; client reports a new sore throat and fever',ans:2},
+{x:'Client has gained 14 lbs since starting clozapine; fasting glucose is 118 mg/dL',ans:1},
+{x:'Client fell asleep twice during group therapy during the first month of therapy',ans:1},
+{x:'Client reports a new-onset seizure; no prior seizure history',ans:2},
+{x:'Client no longer experiences distressing auditory hallucinations that were previously treatment-resistant',ans:0}
+],
+rat:'<strong>Improved functioning and social interaction — Therapeutic.</strong> Improvement in negative and cognitive symptoms reflects clozapine\'s broader antipsychotic efficacy. <strong>WBC 2,400 + ANC 900 + fever and sore throat — Immediate Action.</strong> Values below REMS thresholds combined with infection symptoms indicate severe agranulocytosis; clozapine must be held immediately and the provider notified for emergency evaluation. <strong>Weight gain + elevated glucose — Monitor.</strong> Metabolic syndrome from SGA therapy; requires ongoing surveillance and provider notification for intervention. <strong>Somnolence during first month — Monitor.</strong> Sedation is an expected early adverse effect; requires safety monitoring (fall risk). <strong>New-onset seizure — Immediate Action.</strong> Clozapine has a dose-dependent seizure risk; a new seizure is an emergency requiring immediate provider notification, clozapine hold, and emergency evaluation. <strong>Resolution of treatment-resistant hallucinations — Therapeutic.</strong> This is the specific indication for clozapine; resolution of treatment-resistant positive symptoms is the primary therapeutic goal.'
+},
+{t:'matrix',
+stem:'The nurse is comparing care for clients on different mood stabilizers. For each monitoring parameter, indicate which drug it primarily applies to: Lithium, Divalproex, or Lamotrigine.',
+cols:['Lithium','Divalproex','Lamotrigine'],
+rows:[
+{x:'Monitor for thrombocytopenia and hepatotoxicity at elevated serum levels',ans:1},
+{x:'Monitor for Stevens-Johnson syndrome; hold medication if any rash develops',ans:2},
+{x:'Monitor thyroid function (TSH) for drug-induced hypothyroidism',ans:0},
+{x:'Monitor serum trough level; therapeutic range 50–120 mcg/mL',ans:1},
+{x:'Monitor serum trough level; therapeutic range 0.6–1.2 mEq/L (maintenance)',ans:0},
+{x:'Monitor for bone marrow suppression with concurrent sodium intake education',ans:0}
+],
+rat:'<strong>Thrombocytopenia/hepatotoxicity — Divalproex.</strong> Documented serious adverse effects specific to divalproex. <strong>SJS/rash hold — Lamotrigine.</strong> Stevens-Johnson syndrome is the signature serious adverse effect of lamotrigine; any rash requires immediate hold. <strong>TSH monitoring for hypothyroidism — Lithium.</strong> Lithium suppresses thyroid function; TSH monitoring is a documented lithium requirement. <strong>Trough 50–120 mcg/mL — Divalproex.</strong> Standard divalproex therapeutic trough range drawn 12 hours post-dose. <strong>Trough 0.6–1.2 mEq/L — Lithium.</strong> Standard lithium maintenance range. <strong>Bone marrow suppression + sodium education — Lithium.</strong> While bone marrow monitoring is minor for lithium, the distinguishing combination here is sodium education, which is exclusively a lithium management requirement; this combination points to lithium.'
+},
+{t:'matrix',
+stem:'A nurse reviews discharge instructions with a client prescribed lithium who had a recent near-toxic level of 1.4 mEq/L. For each instruction, indicate whether it is Indicated, Contraindicated, or Not Indicated.',
+cols:['Indicated','Contraindicated','Not Indicated'],
+rows:[
+{x:'Resume ibuprofen PRN for arthritis pain as needed',ans:1},
+{x:'Return for a repeat serum level within 5–7 days of discharge',ans:0},
+{x:'Maintain consistent daily fluid intake; do not significantly restrict fluids',ans:0},
+{x:'Follow a very low sodium, heart-healthy diet to protect kidney function',ans:1},
+{x:'Contact the provider if experiencing nausea, coarse tremor, or confusion',ans:0},
+{x:'Reduce the lithium dose by half independently if feeling side effects',ans:1}
+],
+rat:'<strong>Resume ibuprofen PRN — Contraindicated.</strong> NSAIDs reduce renal lithium clearance and were likely a contributing factor to the near-toxic level; this is absolutely contraindicated. <strong>Repeat level within 5–7 days — Indicated.</strong> After a near-toxic episode, close follow-up monitoring is required to confirm return to therapeutic range. <strong>Maintain consistent fluid intake — Indicated.</strong> Adequate hydration prevents lithium concentration from rising; consistent (not restricted) fluid intake is critical. <strong>Very low sodium diet — Contraindicated.</strong> Sodium restriction is the most common dietary cause of lithium toxicity; a low-sodium diet is explicitly contraindicated with lithium. <strong>Report nausea, coarse tremor, confusion — Indicated.</strong> These are early toxicity signs; recognizing and reporting them is essential safety education. <strong>Reduce dose independently — Contraindicated.</strong> Self-adjusting lithium doses is dangerous; dose changes must be provider-directed after monitoring serum levels.'
+},
+{t:'matrix',
+stem:'The nurse is completing a physical assessment for a client receiving haloperidol 5 mg daily for one year. For each finding, indicate whether it is an EPS Effect, a Non-EPS Adverse Effect, or Requires Immediate Emergency Action.',
+cols:['EPS Effect','Non-EPS Adverse Effect','Immediate Action'],
+rows:[
+{x:'Pill-rolling tremor of the right hand, increased muscle tone, and slow shuffling gait',ans:0},
+{x:'Orthostatic blood pressure drop of 42 mmHg systolic with position change',ans:1},
+{x:'Repetitive lip-pursing, tongue protrusion, and bilateral choreiform hand movements',ans:0},
+{x:'Temperature 104.4°F, generalized lead-pipe rigidity, diaphoresis, and acute delirium',ans:2},
+{x:'Client reports dry mouth and documented urinary hesitancy',ans:1},
+{x:'Client pacing the hallway constantly, stating "I need to keep moving, I cannot stop"',ans:0}
+],
+rat:'<strong>Pill-rolling tremor, increased tone, shuffling gait — EPS (drug-induced parkinsonism).</strong> Classic nigrostriatal dopamine blockade EPS features. <strong>Orthostatic hypotension — Non-EPS.</strong> Alpha-adrenergic blockade effect; distinct mechanism from EPS. <strong>Repetitive lip/tongue/hand movements — EPS (tardive dyskinesia).</strong> Late-onset involuntary movements from nigrostriatal D2 blockade. <strong>High temp, rigid, diaphoretic, delirious — Immediate Action (NMS).</strong> NMS is NOT an EPS; it is a separate, life-threatening emergency. <strong>Dry mouth, urinary hesitancy — Non-EPS.</strong> Anticholinergic adverse effects; distinct from dopamine-mediated EPS. <strong>Constant pacing, cannot stop — EPS (akathisia).</strong> Subjective and motor restlessness; akathisia is a defined EPS category.'
+},
+{t:'matrix',
+stem:'A client prescribed olanzapine for bipolar disorder returns for a 6-month follow-up. For each clinical finding, indicate whether it represents a Therapeutic Effect, an Adverse Effect to Monitor, or an Emergency Requiring Immediate Action.',
+cols:['Therapeutic','Monitor','Immediate Action'],
+rows:[
+{x:'Mood episodes have decreased in frequency; client reports improved sleep and energy stability',ans:0},
+{x:'Fasting blood glucose elevated to 174 mg/dL; client has gained 22 lbs over 6 months',ans:1},
+{x:'Involuntary jaw movements and tongue protrusion noted on examination',ans:1},
+{x:'Temperature 103°F, marked generalized muscle rigidity, confusion, diaphoresis',ans:2},
+{x:'Client reports difficulty getting up from chairs quickly due to lightheadedness',ans:1},
+{x:'Client states previous intrusive paranoid thoughts have resolved',ans:0}
+],
+rat:'<strong>Fewer mood episodes — Therapeutic.</strong> Reduction in episode frequency and mood stabilization is the primary therapeutic outcome for olanzapine in bipolar disorder. <strong>Elevated glucose + weight gain — Monitor.</strong> Significant metabolic syndrome requiring provider notification, dietary counseling, and possible pharmacologic management. <strong>Involuntary jaw/tongue movements — Monitor.</strong> Tardive dyskinesia signs require AIMS assessment, documentation, and provider communication. <strong>Fever, rigidity, confusion, diaphoresis — Immediate Action.</strong> NMS requires emergency response. <strong>Lightheadedness on position change — Monitor.</strong> Orthostatic hypotension from alpha-adrenergic blockade; fall precautions and provider notification. <strong>Resolution of paranoid thoughts — Therapeutic.</strong> Reduction in positive symptoms (paranoia) represents antipsychotic efficacy.'
+},
+{t:'matrix',
+stem:'The nurse is reviewing a client\'s medication list alongside a new prescription for haloperidol. For each co-prescribed medication, indicate whether it is Safe to Administer Together, Requires Caution and Monitoring, or Is Contraindicated and Requires Provider Consultation.',
+cols:['Safe','Caution/Monitor','Contraindicate/Consult'],
+rows:[
+{x:'Lisinopril 10 mg daily for hypertension',ans:1},
+{x:'Oxybutynin (Ditropan) for overactive bladder',ans:2},
+{x:'Atorvastatin 40 mg daily for hypercholesterolemia',ans:0},
+{x:'Carbidopa-levodopa for Parkinson\'s disease',ans:2},
+{x:'Amiodarone 200 mg daily (antidysrhythmic)',ans:2},
+{x:'Sertraline 50 mg daily for depression',ans:1}
+],
+rat:'<strong>Lisinopril — Caution.</strong> Antihypertensives combined with haloperidol\'s alpha-adrenergic blockade create additive hypotension; requires monitoring but not absolute contraindication. <strong>Oxybutynin — Contraindicate/Consult.</strong> Combining two anticholinergic agents (haloperidol + oxybutynin) risks serious additive anticholinergic toxicity (severe urinary retention, confusion, ileus). <strong>Atorvastatin — Safe.</strong> No documented pharmacokinetic or pharmacodynamic interaction between haloperidol and statins. <strong>Carbidopa-levodopa — Contraindicate/Consult.</strong> Dopamine antagonists (haloperidol) directly counteract dopamine replacement therapy used in Parkinson\'s; the combination is therapeutically antagonistic and worsens parkinsonism. <strong>Amiodarone — Contraindicate/Consult.</strong> Both haloperidol and amiodarone prolong the QT interval; combination creates unacceptable additive risk for torsades de pointes. <strong>Sertraline — Caution.</strong> Some pharmacodynamic interaction possible (CNS effects); monitoring is appropriate but this combination is not absolutely contraindicated.'
+},
+// ══════════════════════════════════════
+// BOWTIE  (8)
+// ══════════════════════════════════════
+{t:'bowtie',
+stem:'The nurse is caring for a client who has been receiving haloperidol 5 mg IM every 4 hours for three days. The client develops a temperature of 104.2°F, severe generalized muscle rigidity described as "lead-pipe," profuse diaphoresis, blood pressure of 168/102 mmHg, and an acute change in mental status. The client is unresponsive to commands.',
+lLabel:'Which 2 assessment findings most strongly support the suspected diagnosis? (Select 2)',
+lOpts:[{l:'A',x:'Temperature of 104.2°F and severe generalized muscle rigidity'},{l:'B',x:'Blood pressure of 168/102 mmHg suggesting medication-induced hypertension'},{l:'C',x:'History of haloperidol administration in preceding days'},{l:'D',x:'Fine hand tremor noted during medication administration two days ago'},{l:'E',x:'Client reports feeling "restless" and unable to sit still'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Administer benztropine mesylate IM to treat EPS immediately'},{l:'2',x:'Immediately discontinue haloperidol and notify the provider for emergency management'},{l:'3',x:'Reduce the haloperidol dose by 50% and add a cooling blanket'},{l:'4',x:'Administer acetaminophen for fever and reassess in one hour'},{l:'5',x:'Apply bilateral soft wrist restraints to prevent injury from rigidity'}],
+cAns:'2',
+rLabel:'Which 2 medications or interventions should the nurse anticipate the provider ordering? (Select 2)',
+rOpts:[{l:'W',x:'Benztropine mesylate (Cogentin) IM to treat EPS-related muscle rigidity'},{l:'X',x:'Dantrolene sodium to reduce severe muscle rigidity and hyperthermia'},{l:'Y',x:'Bromocriptine to address dopaminergic CNS toxicity of NMS'},{l:'Z',x:'Oral lithium carbonate to stabilize the client\'s mood during the crisis'},{l:'V',x:'Haloperidol decanoate IM as a depot alternative to oral therapy'}],
+rAns:['X','Y'],
+rat:'<strong>Left — A and C:</strong> The classic NMS tetrad is hyperthermia + severe generalized rigidity + diaphoresis + altered mental status. Options A (fever + rigidity) and C (recent haloperidol — the causative agent) directly support the NMS diagnosis. Option B (hypertension) is a finding in NMS but is less diagnostically specific than the tetrad findings. Options D (fine tremor) and E (restlessness) describe EPS (parkinsonism and akathisia respectively), not NMS. <strong>Center — #2:</strong> Immediate discontinuation of haloperidol is the single most critical first action in NMS. The causative agent must be stopped before any other intervention. <strong>Right — X and Y:</strong> Dantrolene (direct-acting muscle relaxant) and bromocriptine (dopamine agonist for CNS toxicity) are the two pharmacologic agents specifically used in NMS management per course materials. Benztropine (W) treats EPS, not NMS — a critical distinction. Lithium (Z) and haloperidol depot (V) have no role in NMS emergency management.'
+},
+{t:'bowtie',
+stem:'A client admitted with acute mania is receiving lithium carbonate 600 mg three times daily. On day four, the client reports "I feel horrible — I\'m sick to my stomach, my hands are shaking badly, and I feel like I\'m drunk." Assessment reveals a coarse bilateral hand tremor, ataxic gait, slurred speech, and confusion. The morning serum level drawn 12 hours post-last-dose returns at 1.8 mEq/L.',
+lLabel:'Which 2 findings most strongly support the suspected complication? (Select 2)',
+lOpts:[{l:'A',x:'Coarse hand tremor, slurred speech, and confusion consistent with CNS toxicity'},{l:'B',x:'Fine bilateral tremor noted since day one of therapy — expected at therapeutic levels'},{l:'C',x:'Serum lithium level of 1.8 mEq/L exceeding the 1.5 mEq/L toxicity threshold'},{l:'D',x:'Client\'s subjective report of nausea, reported during medication initiation as a minor GI effect'},{l:'E',x:'Client is receiving lithium three times daily — the dose frequency alone explains the symptoms'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Administer the next scheduled lithium dose with a full glass of water and encourage oral fluids'},{l:'2',x:'Hold the lithium dose, notify the provider immediately, and prepare for possible IV hydration and supportive care'},{l:'3',x:'Reduce the lithium dose by half and recheck the level in 48 hours'},{l:'4',x:'Continue lithium at current dose and administer an antiemetic for the nausea'},{l:'5',x:'Administer sodium bicarbonate to alkalinize the urine and accelerate lithium excretion'}],
+cAns:'2',
+rLabel:'Which 2 interventions should the nurse anticipate after the provider is notified? (Select 2)',
+rOpts:[{l:'W',x:'Provide IV normal saline hydration to promote lithium excretion and restore sodium balance'},{l:'X',x:'Prepare client for possible hemodialysis if toxicity is severe or does not respond to supportive care'},{l:'Y',x:'Initiate a low-sodium diet to reduce fluid retention during the acute episode'},{l:'Z',x:'Administer furosemide IV to increase urine output and accelerate lithium clearance'},{l:'V',x:'Administer ibuprofen to treat the headache and joint discomfort from lithium toxicity'}],
+rAns:['W','X'],
+rat:'<strong>Left — A and C:</strong> CNS signs of toxicity (coarse tremor, slurred speech, ataxia, confusion) combined with a supratherapeutic level (1.8 > 1.5 mEq/L) are the two most direct and compelling indicators of lithium toxicity. Fine tremor (B) is expected at therapeutic levels, not a toxicity marker. Nausea on day one (D) and TID dosing (E) alone do not constitute clinical toxicity indicators. <strong>Center — #2:</strong> The immediate priority is holding lithium, notifying the provider, and preparing for supportive care. Giving the next dose (1 and 4) would compound toxicity. Sodium bicarbonate (5) is not the documented course-material intervention for lithium toxicity. <strong>Right — W and X:</strong> IV normal saline promotes lithium renal clearance by restoring sodium balance, and hemodialysis is the intervention for severe or unresponsive lithium toxicity. Low-sodium diet (Y) is contraindicated — it would worsen toxicity. Furosemide (Z) causes sodium loss, triggering compensatory lithium reabsorption and worsening toxicity. Ibuprofen (V) reduces renal lithium clearance and is absolutely contraindicated.'
+},
+{t:'bowtie',
+stem:'A client admitted to an inpatient unit is given haloperidol 5 mg IM for agitation. Forty-five minutes later, the client calls out for help. The nurse finds the client with the eyes forcibly deviated upward and to the right (oculogyric crisis), the head twisted to the right, sustained jaw and neck spasms, and extreme difficulty swallowing. The client is conscious and terrified.',
+lLabel:'Which 2 findings most support the priority nursing diagnosis? (Select 2)',
+lOpts:[{l:'A',x:'Forced upward and lateral eye deviation (oculogyric crisis) and sustained cervical muscle spasm'},{l:'B',x:'Subjective restlessness and pacing behavior since the haloperidol injection'},{l:'C',x:'Onset within 45 minutes of the first IM dose of haloperidol'},{l:'D',x:'Pill-rolling tremor and shuffling gait developing over the last three days'},{l:'E',x:'Temperature of 103.8°F and diffuse muscle rigidity with diaphoresis'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s immediate priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Administer oral trihexyphenidyl for antipsychotic-induced parkinsonism'},{l:'2',x:'Administer benztropine mesylate (Cogentin) IM or IV for rapid relief of acute dystonia'},{l:'3',x:'Stop all antipsychotic therapy permanently and document the allergy'},{l:'4',x:'Apply soft restraints and call for assistance while monitoring the airway'},{l:'5',x:'Administer diphenhydramine (Benadryl) orally and monitor for improvement over 30 minutes'}],
+cAns:'2',
+rLabel:'Which 2 parameters should the nurse monitor after the intervention? (Select 2)',
+rOpts:[{l:'W',x:'Symptom resolution within minutes following IM/IV administration'},{l:'X',x:'Level of consciousness and ability to swallow, given the risk of airway compromise from jaw/throat spasm'},{l:'Y',x:'Serum haloperidol level to determine whether the dose caused toxicity'},{l:'Z',x:'Serum lithium level to rule out lithium toxicity as a contributing factor'},{l:'V',x:'Blood glucose for hyperglycemia related to dystonia-induced metabolic stress'}],
+rAns:['W','X'],
+rat:'<strong>Left — A and C:</strong> Oculogyric crisis and cervical muscle spasm are hallmark features of acute dystonia. Early onset (within 45 minutes to days of FGA initiation) is diagnostically characteristic. Pacing/restlessness (B) describes akathisia. Pill-rolling tremor/shuffling gait (D) describes drug-induced parkinsonism. Fever and rigidity (E) describe NMS — a different, more serious condition. <strong>Center — #2:</strong> Severe acute dystonia with oculogyric crisis requires IM or IV benztropine mesylate for rapid effect (symptom relief within minutes). Oral trihexyphenidyl (1) is for parkinsonism, not acute severe dystonia, and oral administration is unsafe when swallowing is impaired. Diphenhydramine orally (5) is oral — same problem with swallowing; parenteral is required for acute severe dystonia. Permanently labeling as an allergy (3) is incorrect; EPS is a predictable drug effect, not an allergy. <strong>Right — W and X:</strong> After IM benztropine, the nurse monitors for rapid symptom resolution (documented effect) and for airway safety/swallowing ability given the jaw and throat involvement. Haloperidol level (Y), lithium level (Z), and blood glucose (V) are not relevant monitoring parameters for acute dystonia management.'
+},
+{t:'bowtie',
+stem:'A client enrolled in the clozapine REMS program calls the clinic, reporting: "I\'ve had a fever of 101.4°F for two days, my throat is sore, and I have small sores in my mouth. I\'ve been taking my clozapine every day." Last REMS-mandated CBC was drawn five days ago and showed WBC 3,200/mm³.',
+lLabel:'Which 2 factors most support the suspected urgent complication? (Select 2)',
+lOpts:[{l:'A',x:'Fever, sore throat, and oral ulcers in a client on clozapine'},{l:'B',x:'Sedation and weight gain reported since starting clozapine six weeks ago'},{l:'C',x:'WBC 3,200/mm³ on most recent draw — borderline low and declining toward the REMS threshold'},{l:'D',x:'Client is taking clozapine daily without missed doses'},{l:'E',x:'Client reports increased appetite and difficulty sleeping since starting the medication'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Advise the client to continue clozapine and take acetaminophen for fever and throat pain'},{l:'2',x:'Instruct the client to hold clozapine, go to the emergency department immediately, and have CBC with ANC drawn urgently'},{l:'3',x:'Schedule the client for a routine follow-up appointment in one week for repeat CBC'},{l:'4',x:'Advise the client to reduce the clozapine dose by half until symptoms resolve'},{l:'5',x:'Recommend the client gargle with warm salt water and monitor symptoms for 48 hours before calling back'}],
+cAns:'2',
+rLabel:'Which 2 parameters should the nurse instruct the client to have monitored at the emergency department? (Select 2)',
+rOpts:[{l:'W',x:'WBC count and absolute neutrophil count (ANC) for comparison to REMS threshold values'},{l:'X',x:'Serum clozapine trough level to confirm supratherapeutic toxicity as the cause of symptoms'},{l:'Y',x:'Throat culture and sensitivity to identify the bacterial organism causing the throat infection'},{l:'Z',x:'Serum lithium level to rule out concomitant drug toxicity as the etiology'},{l:'V',x:'Complete metabolic panel to assess for hepatic and renal function changes from agranulocytosis'}],
+rAns:['W','V'],
+rat:'<strong>Left — A and C:</strong> Fever, sore throat, and oral ulcers are the classic warning signs of clozapine-induced agranulocytosis. A borderline WBC of 3,200/mm³ (approaching the REMS hold threshold of 3,000/mm³) adds objective hematologic support for urgent evaluation. Sedation and weight gain (B) are expected adverse effects, not indicators of agranulocytosis. Adherence without missed doses (D) is a neutral finding. Increased appetite and insomnia (E) are non-specific adverse effects unrelated to this emergency. <strong>Center — #2:</strong> Clozapine must be held immediately and the client sent to the emergency department for urgent CBC/ANC. Waiting (1, 3, 5) or dose-reducing (4) in the setting of possible agranulocytosis is a serious patient safety failure. <strong>Right — W and V:</strong> WBC and ANC are the primary laboratory values that will determine severity and REMS decision. A complete metabolic panel assesses hepatic and renal function, which can be compromised during severe infection/agranulocytosis. Serum clozapine level (X) is not routinely used clinically in the same standardized way as lithium levels. A throat culture (Y) may be done but is not the priority — the primary question is whether agranulocytosis is present, not which bacteria is present. Lithium level (Z) is irrelevant — this client takes clozapine, not lithium.'
+},
+{t:'bowtie',
+stem:'A client receiving aripiprazole for schizophrenia develops a new complaint: "I feel like I absolutely cannot stop moving — my legs are always restless, I keep pacing, and I can\'t sit still even when I want to." The client appears distressed and is observed repeatedly standing up, shifting, and sitting back down.',
+lLabel:'Which 2 findings best support the suspected EPS complication? (Select 2)',
+lOpts:[{l:'A',x:'Subjective inability to remain still combined with repetitive motor restlessness'},{l:'B',x:'Sustained jaw spasm and involuntary head rotation'},{l:'C',x:'Temporal relationship between aripiprazole initiation and symptom onset'},{l:'D',x:'Pill-rolling tremor and cogwheel rigidity of both wrists'},{l:'E',x:'Repetitive lip-smacking and tongue protrusion lasting for several months'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Administer benztropine mesylate IM for rapid pharmacologic relief'},{l:'2',x:'Notify the provider; document findings and discuss dose reduction or a beta-blocker (e.g., propranolol) for akathisia management'},{l:'3',x:'Reassure the client this is expected; all antipsychotics cause permanent restlessness'},{l:'4',x:'Instruct the client to engage in vigorous exercise twice daily to reduce the restless sensation'},{l:'5',x:'Stop all antipsychotic therapy and discharge the client from the program'}],
+cAns:'2',
+rLabel:'Which 2 interventions or assessments should the nurse prioritize? (Select 2)',
+rOpts:[{l:'W',x:'Document the onset, severity, and impact on daily function using a standardized EPS assessment tool'},{l:'X',x:'Obtain a STAT ECG to rule out QT prolongation as the cause of the motor symptoms'},{l:'Y',x:'Administer benztropine mesylate orally as first-line treatment per protocol'},{l:'Z',x:'Review any recent dose changes to aripiprazole that may correlate with onset'},{l:'V',x:'Draw serum CK level to rule out NMS as the underlying cause of motor symptoms'}],
+rAns:['W','Z'],
+rat:'<strong>Left — A and C:</strong> Akathisia is defined by subjective inner restlessness with motor manifestations (inability to remain still, pacing, shifting). Combined with a clear temporal relationship to aripiprazole initiation, these two findings specifically support akathisia. Sustained jaw spasm/head rotation (B) describes acute dystonia. Pill-rolling tremor/cogwheel rigidity (D) describes drug-induced parkinsonism. Lip-smacking/tongue protrusion over months (E) describes tardive dyskinesia. <strong>Center — #2:</strong> Akathisia management involves notifying the provider and considering dose reduction or a beta-blocker (propranolol). Benztropine IM (1) is specifically for acute dystonia, not akathisia — this is a critical distinction. Reassuring as expected (3) is dismissive. Exercise (4) and stopping all therapy (5) are inappropriate responses. <strong>Right — W and Z:</strong> Standardized EPS documentation establishes a baseline for treatment response evaluation. Recent dose changes are a common precipitant of akathisia and must be reviewed. ECG (X) addresses cardiac arrhythmia, not the cause of akathisia. Oral benztropine (Y) is not the first-line choice for akathisia (beta-blockers are preferred over anticholinergics for this EPS subtype). Serum CK (V) would help rule out NMS but the presentation lacks NMS features (hyperthermia, global rigidity, altered consciousness).'
+},
+{t:'bowtie',
+stem:'A client with bipolar I disorder has been admitted to the inpatient unit. Current medications include divalproex 1,000 mg twice daily, started 10 days ago. The client reports right upper quadrant abdominal pain (rated 7/10), nausea, vomiting for two days, and appears jaundiced. A complete metabolic panel is resulted showing AST 428 units/L, ALT 512 units/L, and a divalproex trough level of 141 mcg/mL.',
+lLabel:'Which 2 findings most support the suspected complication? (Select 2)',
+lOpts:[{l:'A',x:'RUQ abdominal pain, jaundice, and markedly elevated liver enzymes (AST 428, ALT 512)'},{l:'B',x:'Nausea and vomiting, which are expected early GI adverse effects of divalproex'},{l:'C',x:'Divalproex trough level of 141 mcg/mL — above the therapeutic ceiling of 120 mcg/mL'},{l:'D',x:'Client\'s bipolar I diagnosis, which is associated with elevated liver enzymes at baseline'},{l:'E',x:'Client is taking 1,000 mg twice daily, which is within a standard dosing range'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s immediate priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Continue divalproex as scheduled; elevated LFTs during the first two weeks are an expected initiation effect'},{l:'2',x:'Hold divalproex and notify the provider immediately for evaluation of hepatotoxicity'},{l:'3',x:'Reduce the divalproex dose by 50% and recheck liver enzymes in one week'},{l:'4',x:'Administer acetylcysteine IV as an antidote for divalproex hepatotoxicity'},{l:'5',x:'Obtain a hepatitis viral panel before making any medication changes'}],
+cAns:'2',
+rLabel:'Which 2 assessments or interventions should the nurse prioritize next? (Select 2)',
+rOpts:[{l:'W',x:'Assess for bruising, petechiae, and prolonged bleeding time indicating concurrent thrombocytopenia'},{l:'X',x:'Assess for new skin rash to rule out concurrent Stevens-Johnson syndrome from divalproex'},{l:'Y',x:'Draw a serum ammonia level to assess for hyperammonemic encephalopathy from valproate toxicity'},{l:'Z',x:'Administer dantrolene to reduce the hepatic inflammation and enzyme elevation'},{l:'V',x:'Draw a serum lithium level to rule out lithium contributing to the hepatic changes'}],
+rAns:['W','Y'],
+rat:'<strong>Left — A and C:</strong> RUQ pain, jaundice, and dramatically elevated LFTs (AST/ALT five to ten times the upper normal limit) are the direct clinical indicators of hepatotoxicity. A supratherapeutic level (141 > 120 mcg/mL) explains the mechanism. Nausea/vomiting (B) can be early GI effects, but in the context of jaundice and elevated enzymes, they represent hepatotoxicity symptoms rather than an isolated GI effect. Bipolar diagnosis (D) does not cause elevated LFTs. Standard dosing (E) is a neutral factor when a level exists. <strong>Center — #2:</strong> Divalproex must be held immediately and the provider notified for hepatotoxicity evaluation. Continuing (1) worsens hepatocellular damage. Dose reduction (3) is insufficient for documented hepatotoxicity with jaundice. Acetylcysteine (4) is used for acetaminophen hepatotoxicity, not divalproex. Waiting for a hepatitis panel (5) delays critical drug withdrawal. <strong>Right — W and Y:</strong> Concurrent thrombocytopenia is a documented co-adverse effect of divalproex and must be assessed when hepatotoxicity is suspected. Hyperammonemic encephalopathy (elevated ammonia) is a specific and serious CNS complication of valproate toxicity. SJS (X) is lamotrigine\'s signature risk, not divalproex. Dantrolene (Z) treats NMS/malignant hyperthermia — not hepatic inflammation. Lithium level (V) is irrelevant; this client is not prescribed lithium.'
+},
+{t:'bowtie',
+stem:'A client with schizophrenia has been receiving chlorpromazine for 22 months. During a medication reconciliation visit, the nurse observes continuous rhythmic tongue movements, bilateral lip-pursing movements, choreoathetoid movements of both hands and fingers, and slow twisting movements of the trunk. The client reports being unaware of these movements until the nurse pointed them out.',
+lLabel:'Which 2 findings most strongly support the suspected condition? (Select 2)',
+lOpts:[{l:'A',x:'Duration of antipsychotic therapy (22 months) consistent with late-onset EPS development'},{l:'B',x:'Repetitive involuntary tongue, lip, and choreiform hand/trunk movements the client is unaware of'},{l:'C',x:'Sudden onset of neck spasm and jaw deviation requiring immediate IM anticholinergic treatment'},{l:'D',x:'Subjective inner restlessness with repeated leg crossing and inability to remain seated'},{l:'E',x:'Fever, muscle rigidity, and diaphoresis noted at the beginning of the visit'}],
+lAns:['A','B'],
+cLabel:'The nurse\'s priority action is: (Select 1)',
+cOpts:[{l:'1',x:'Administer benztropine mesylate IM immediately — anticholinergics resolve all forms of EPS'},{l:'2',x:'Document findings, notify the prescriber, and complete a formal AIMS assessment'},{l:'3',x:'Reassure the client and family that these movements are temporary and will self-resolve'},{l:'4',x:'Increase the chlorpromazine dose to suppress the involuntary movements'},{l:'5',x:'Label this as an allergic reaction to chlorpromazine and begin an antihistamine taper'}],
+cAns:'2',
+rLabel:'Which 2 nursing responsibilities are most appropriate after notifying the provider? (Select 2)',
+rOpts:[{l:'W',x:'Conduct an AIMS (Abnormal Involuntary Movement Scale) assessment to quantify severity and establish a documented baseline'},{l:'X',x:'Administer an anticholinergic agent — tardive dyskinesia responds well to benztropine'},{l:'Y',x:'Educate the client and family that these movements may be irreversible and the provider may consider reducing or changing the antipsychotic'},{l:'Z',x:'Begin oral haloperidol as a replacement since it has a lower TD risk than chlorpromazine at equivalent doses'},{l:'V',x:'Initiate seizure precautions, as choreiform movements may represent subcortical seizure activity'}],
+rAns:['W','Y'],
+rat:'<strong>Left — A and B:</strong> Tardive dyskinesia classically develops after prolonged antipsychotic therapy (months to years — 22 months supports this) and presents with involuntary repetitive abnormal movements (tongue, lips, choreiform/athetoid extremity, truncal movements) that the client is typically unaware of. Neck spasm + jaw deviation (C) describes acute dystonia. Subjective restlessness (D) describes akathisia. Fever/rigidity/diaphoresis (E) describes NMS. <strong>Center — #2:</strong> Tardive dyskinesia requires documentation, provider notification, and formal AIMS assessment. Benztropine IM (1) is for acute dystonia; anticholinergics do not treat TD and may worsen it. Reassuring as temporary (3) is inaccurate — TD may be permanent. Increasing the dose (4) may worsen TD. Labeling as allergy (5) is clinically incorrect. <strong>Right — W and Y:</strong> AIMS assessment is the standard clinical tool for documenting and quantifying TD. Client and family education about potential irreversibility and medication reassessment is an essential nursing responsibility. Anticholinergics (X) are not appropriate for TD and may worsen it — this is a critical trap. Switching to haloperidol (Z) may not improve TD and is not the nurse\'s decision. Seizure precautions (V) are not indicated — choreiform movements from TD are involuntary movement disorders, not seizures.'
+},
+{t:'bowtie',
+stem:'A client with bipolar II disorder who has been stable on lithium for eight months calls the nurse triage line. The client recently moved and has been hiking daily in hot weather. They report: "I\'ve been sweating a lot and I forgot to eat much the past two days. I have bad diarrhea and my hands are shaking like crazy — worse than before. I feel really confused and I almost fell down the stairs."',
+lLabel:'Which 2 factors most likely precipitated this client\'s current condition? (Select 2)',
+lOpts:[{l:'A',x:'Excessive sweating and inadequate food intake over two days causing sodium and fluid depletion'},{l:'B',x:'New exercise routine involving daily hiking, which therapeutically stabilizes mood and increases lithium tolerance'},{l:'C',x:'Diarrhea causing additional sodium and fluid losses that reduce lithium renal excretion'},{l:'D',x:'Change in geographic location causing a stress response that increases lithium metabolism'},{l:'E',x:'Coarse hand tremor, which is a normal and expected finding at all lithium levels'}],
+lAns:['A','C'],
+cLabel:'The nurse\'s priority instruction to the client is: (Select 1)',
+cOpts:[{l:'1',x:'Drink two large glasses of water and rest; these symptoms are expected during exercise-induced dehydration'},{l:'2',x:'Do not take the next lithium dose; go to the emergency department or call 911 immediately'},{l:'3',x:'Take the next lithium dose with a salty snack and eat a full meal as soon as possible'},{l:'4',x:'Reduce the lithium dose by half and recheck symptoms in four hours before deciding on emergency care'},{l:'5',x:'Take ibuprofen for the discomfort and rest until the confusion resolves on its own'}],
+cAns:'2',
+rLabel:'Which 2 interventions should the nurse anticipate will be needed at the emergency department? (Select 2)',
+rOpts:[{l:'W',x:'IV normal saline infusion to restore sodium balance and promote renal lithium excretion'},{l:'X',x:'Stat serum lithium level to confirm toxicity and guide management decisions'},{l:'Y',x:'Administration of furosemide to increase urinary output and accelerate lithium elimination'},{l:'Z',x:'Administration of ibuprofen IM for pain and anti-inflammatory support during the crisis'},{l:'V',x:'Initiation of a low-sodium diet during hospitalization to prevent future fluctuations'}],
+rAns:['W','X'],
+rat:'<strong>Left — A and C:</strong> The two specific precipitating mechanisms for lithium toxicity are (A) sodium/fluid depletion from sweating and poor oral intake (the kidney compensatorily reabsorbs more lithium in the setting of sodium depletion) and (C) diarrhea causing additional sodium and fluid losses with the same renal compensatory lithium reabsorption. Both mechanisms are documented in the course material as precipitants of lithium toxicity. Geographic change (D) and increased exercise (B) are not documented pharmacokinetic precipitants of lithium toxicity. Coarse tremor (E) in this context is a toxicity sign, not a "normal expected finding." <strong>Center — #2:</strong> The presentation — confusion, near-fall, coarse tremor, and multiple precipitating factors — indicates lithium toxicity. The client must not take the next dose and needs emergency evaluation. Self-managing with fluids (1), reducing dose independently (4), or taking ibuprofen (5) are all dangerous. Taking lithium with a salty snack (3) would add more lithium when toxicity is already suspected. <strong>Right — W and X:</strong> IV normal saline replenishes sodium, restores fluid balance, and promotes renal lithium excretion. A stat serum lithium level is essential to confirm toxicity and guide treatment decisions. Furosemide (Y) causes sodium and fluid loss, worsening lithium reabsorption and toxicity — it is absolutely contraindicated. Ibuprofen (Z) reduces renal lithium clearance, compounding toxicity. Low-sodium diet during hospitalization (V) would dramatically worsen toxicity — sodium restriction during lithium therapy is contraindicated.'
+}
+];
+
+// ═══════════════════════════════════════════════════════
+//  UTILITIES
+// ═══════════════════════════════════════════════════════
+function shuffle(a){
+  const arr=[...a];
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  return arr;
+}
+function relabel(opts){
+  const labs='ABCDEFGHI'.split('');
+  opts.forEach((o,i)=>o.l=labs[i]);
+}
+function shuffleAndRelabel(q){
+  if(q.t==='mc'||q.t==='sata'){
+    const correctTexts=q.ans.map(a=>q.opts.find(o=>o.l===a).x);
+    q.opts=shuffle(q.opts);
+    relabel(q.opts);
+    q.ans=q.opts.filter(o=>correctTexts.includes(o.x)).map(o=>o.l);
+  }
+  if(q.t==='bowtie'){
+    const lcx=q.lAns.map(a=>q.lOpts.find(o=>o.l===a).x);
+    const rcx=q.rAns.map(a=>q.rOpts.find(o=>o.l===a).x);
+    const ccx=q.cOpts.find(o=>o.l===q.cAns).x;
+    q.lOpts=shuffle(q.lOpts); relabel(q.lOpts);
+    q.cOpts=shuffle(q.cOpts);
+    const numLabs='12345678'.split('');
+    q.cOpts.forEach((o,i)=>o.l=numLabs[i]);
+    q.rOpts=shuffle(q.rOpts); relabel(q.rOpts);
+    q.lAns=q.lOpts.filter(o=>lcx.includes(o.x)).map(o=>o.l);
+    q.cAns=q.cOpts.find(o=>o.x===ccx).l;
+    q.rAns=q.rOpts.filter(o=>rcx.includes(o.x)).map(o=>o.l);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+let SQ=[],ci=0,ep=0,maxPts=0;
+const typeMap={mc:'◉ Multiple Choice',sata:'☑ Select All That Apply',matrix:'⊞ Clinical Matrix',bowtie:'⬡ Bowtie / Clinical Judgment'};
+
+function init(){
+  SQ=shuffle(BANK.map(q=>JSON.parse(JSON.stringify(q))));
+  SQ.forEach(q=>shuffleAndRelabel(q));
+  ci=0; ep=0; maxPts=0;
+  // Calculate max points
+  SQ.forEach(q=>{
+    if(q.t==='mc') maxPts+=1;
+    else if(q.t==='sata') maxPts+=1;
+    else if(q.t==='matrix') maxPts+=1;
+    else if(q.t==='bowtie') maxPts+=3;
+  });
+  document.getElementById('scoreScr').style.display='none';
+  document.getElementById('progSection').style.display='block';
+  document.getElementById('qArea').style.display='block';
+  render();
+}
+
+// ═══════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════
+function render(){
+  const q=SQ[ci];
+  const tot=SQ.length;
+  document.getElementById('progTxt').textContent=`Question ${ci+1} of ${tot}`;
+  document.getElementById('scoreTxt').textContent=`Score: ${ep.toFixed(1)} / ${maxPts}`;
+  document.getElementById('progFill').style.width=`${(ci/tot)*100}%`;
+  let html='';
+  if(q.t==='mc') html=renderMC(q);
+  else if(q.t==='sata') html=renderSATA(q);
+  else if(q.t==='matrix') html=renderMatrix(q);
+  else if(q.t==='bowtie') html=renderBowtie(q);
+  document.getElementById('qArea').innerHTML=html;
+}
+function cardOpen(type,q){
+  return `<div class="card${type==='sata'?' sata-card':''}" id="qCard">
+    <div class="badge">${typeMap[type]}</div>
+    <div class="qnum">Question ${ci+1} of ${SQ.length}</div>
+    <div class="stem">${q.stem}</div>`;
+}
+function cardClose(fn){
+  return `<button class="btn-sub" id="subBtn" onclick="${fn}">Submit Answer</button>
+  <button class="btn-nxt" id="nxtBtn" onclick="nextQ()">Next Question →</button>
+  <div class="rat-box" id="ratBox"></div></div>`;
+}
+function renderMC(q){
+  const opts=q.opts.map((o,i)=>`<li class="opt-item">
+    <input type="radio" name="qr" id="o${i}" value="${o.l}">
+    <label class="opt-lbl" for="o${i}"><span class="opt-dot">${o.l}</span><span>${o.x}</span></label></li>`).join('');
+  return cardOpen('mc',q)+`<ul class="opts" id="oList">${opts}</ul>`+cardClose('submitMC()');
+}
+function renderSATA(q){
+  const opts=q.opts.map((o,i)=>`<li class="opt-item">
+    <input type="checkbox" name="qr" id="o${i}" value="${o.l}">
+    <label class="opt-lbl" for="o${i}"><span class="opt-dot">${o.l}</span><span>${o.x}</span></label></li>`).join('');
+  return cardOpen('sata',q)+`<div class="inst">Select all that apply.</div><ul class="opts" id="oList">${opts}</ul>`+cardClose('submitSATA()');
+}
+function renderMatrix(q){
+  const th=q.cols.map(c=>`<th>${c}</th>`).join('');
+  const rows=q.rows.map((r,ri)=>{
+    const cells=q.cols.map((_,ci2)=>`<td id="mc_${ri}_${ci2}">
+      <span><input class="mrl-input" type="radio" name="mr${ri}" id="mr${ri}_${ci2}" value="${ci2}">
+      <label class="mrl" for="mr${ri}_${ci2}"></label></span></td>`).join('');
+    return `<tr><td>${r.x}</td>${cells}</tr>`;
+  }).join('');
+  return cardOpen('matrix',q)+`<div class="mtx-wrap"><table class="mtx">
+    <thead><tr><th>Nursing Action / Finding</th>${th}</tr></thead>
+    <tbody>${rows}</tbody></table></div>`+cardClose('submitMatrix()');
+}
+function renderBowtie(q){
+  const lOpts=q.lOpts.map((o,i)=>`<div class="bt-opt-item bt-chk">
+    <input type="checkbox" id="lo${i}" name="bt_l" value="${o.l}">
+    <label class="bt-lbl" for="lo${i}"><span class="bt-dot">${o.l}</span><span>${o.x}</span></label></div>`).join('');
+  const cOpts=q.cOpts.map((o,i)=>`<div class="bt-opt-item">
+    <input type="radio" id="co${i}" name="bt_c" value="${o.l}">
+    <label class="bt-lbl" for="co${i}"><span class="bt-dot">${o.l}</span><span>${o.x}</span></label></div>`).join('');
+  const rOpts=q.rOpts.map((o,i)=>`<div class="bt-opt-item bt-chk">
+    <input type="checkbox" id="ro${i}" name="bt_r" value="${o.l}">
+    <label class="bt-lbl" for="ro${i}"><span class="bt-dot">${o.l}</span><span>${o.x}</span></label></div>`).join('');
+  const btBody=`<div class="bt-wrap">
+    <div class="bt-panel"><div class="bt-plabel">${q.lLabel}</div>${lOpts}<div class="bt-note">(Select 2)</div></div>
+    <div class="bt-arrows"><div class="bt-arrow-l">▶</div><div style="font-size:.55rem;color:var(--lpu);font-weight:900;writing-mode:vertical-rl;text-align:center;letter-spacing:1px">LEADS TO</div><div class="bt-arrow-r">▶</div></div>
+    <div class="bt-panel-center"><div class="bt-plabel bt-plabel-c">${q.cLabel}</div>${cOpts}<div class="bt-note">(Select 1)</div></div>
+    <div class="bt-arrows"><div class="bt-arrow-l">▶</div><div style="font-size:.55rem;color:var(--lpu);font-weight:900;writing-mode:vertical-rl;text-align:center;letter-spacing:1px">THEN DO</div><div class="bt-arrow-r">▶</div></div>
+    <div class="bt-panel"><div class="bt-plabel">${q.rLabel}</div>${rOpts}<div class="bt-note">(Select 2)</div></div>
+  </div>`;
+  return cardOpen('bowtie',q)+btBody+cardClose('submitBowtie()');
+}
+
+// ═══════════════════════════════════════════════════════
+//  SUBMIT
+// ═══════════════════════════════════════════════════════
+function submitMC(){
+  const q=SQ[ci];
+  const sel=document.querySelector('input[name="qr"]:checked');
+  if(!sel){alert('Please select an answer.');return;}
+  const v=sel.value; const ok=q.ans.includes(v);
+  if(ok) ep++;
+  document.querySelectorAll('input[name="qr"]').forEach(i=>i.disabled=true);
+  q.opts.forEach((o,i)=>{
+    const lbl=document.querySelectorAll('.opt-lbl')[i]; lbl.classList.add('locked');
+    if(q.ans.includes(o.l)){lbl.classList.add('iscorrect');lbl.querySelector('.opt-dot').textContent='✓';}
+    if(o.l===v&&!q.ans.includes(o.l)){lbl.classList.add('iswrong');lbl.querySelector('.opt-dot').textContent='✗';}
+  });
+  showRat(ok?'ok':'er',q.rat); finish();
+}
+function submitSATA(){
+  const q=SQ[ci];
+  const sels=Array.from(document.querySelectorAll('input[name="qr"]:checked')).map(i=>i.value);
+  if(!sels.length){alert('Please select at least one answer.');return;}
+  const correct=q.ans;
+  const full=sels.length===correct.length&&correct.every(c=>sels.includes(c));
+  const partial=!full&&correct.some(c=>sels.includes(c));
+  if(full) ep+=1; else if(partial) ep+=0.5;
+  document.querySelectorAll('input[name="qr"]').forEach(i=>i.disabled=true);
+  q.opts.forEach((o,i)=>{
+    const lbl=document.querySelectorAll('.opt-lbl')[i]; lbl.classList.add('locked');
+    const isC=correct.includes(o.l); const wasSel=sels.includes(o.l);
+    if(isC&&wasSel){lbl.classList.add('iscorrect');lbl.querySelector('.opt-dot').textContent='✓';}
+    else if(isC&&!wasSel){lbl.classList.add('ismissed');lbl.querySelector('.opt-dot').textContent='!';}
+    else if(!isC&&wasSel){lbl.classList.add('iswrong');lbl.querySelector('.opt-dot').textContent='✗';}
+  });
+  showRat(full?'ok':partial?'pt':'er',q.rat,full,partial); finish();
+}
+function submitMatrix(){
+  const q=SQ[ci]; let cc=0;
+  q.rows.forEach((row,ri)=>{
+    const sel=document.querySelector(`input[name="mr${ri}"]:checked`);
+    const sv=sel?parseInt(sel.value):-1; const isOk=sv===row.ans;
+    if(isOk) cc++;
+    q.cols.forEach((_,ci2)=>{
+      const td=document.getElementById(`mc_${ri}_${ci2}`);
+      const inp=td.querySelector('.mrl-input'); inp.disabled=true;
+      if(ci2===row.ans&&ci2===sv) td.classList.add('cell-ok');
+      else if(ci2===sv&&ci2!==row.ans) td.classList.add('cell-er');
+      else if(ci2===row.ans&&ci2!==sv) td.classList.add('cell-ms');
+    });
+  });
+  ep+=cc/q.rows.length;
+  const full=cc===q.rows.length; const partial=!full&&cc>0;
+  showRat(full?'ok':partial?'pt':'er',q.rat,full,partial,cc,q.rows.length); finish();
+}
+function submitBowtie(){
+  const q=SQ[ci];
+  const lSels=Array.from(document.querySelectorAll('input[name="bt_l"]:checked')).map(i=>i.value);
+  const cSel=document.querySelector('input[name="bt_c"]:checked');
+  const rSels=Array.from(document.querySelectorAll('input[name="bt_r"]:checked')).map(i=>i.value);
+  if(!lSels.length&&!cSel&&!rSels.length){alert('Please make at least one selection in each section.');return;}
+  // Score
+  const lFull=lSels.length===q.lAns.length&&q.lAns.every(a=>lSels.includes(a));
+  const cOk=cSel&&cSel.value===q.cAns;
+  const rFull=rSels.length===q.rAns.length&&q.rAns.every(a=>rSels.includes(a));
+  let pts=0;
+  if(lFull) pts+=1; else if(q.lAns.some(a=>lSels.includes(a))) pts+=0.5;
+  if(cOk) pts+=1;
+  if(rFull) pts+=1; else if(q.rAns.some(a=>rSels.includes(a))) pts+=0.5;
+  ep+=pts;
+  // Reveal left
+  document.querySelectorAll('input[name="bt_l"]').forEach(i=>{i.disabled=true;});
+  q.lOpts.forEach((o,i)=>{
+    const lbl=document.querySelectorAll('.bt-opt-item.bt-chk .bt-lbl')[i];
+    if(!lbl) return; lbl.classList.add('locked');
+    const isC=q.lAns.includes(o.l); const wasSel=lSels.includes(o.l);
+    if(isC&&wasSel){lbl.classList.add('iscorrect');lbl.querySelector('.bt-dot').textContent='✓';}
+    else if(isC&&!wasSel){lbl.classList.add('ismissed');lbl.querySelector('.bt-dot').textContent='!';}
+    else if(!isC&&wasSel){lbl.classList.add('iswrong');lbl.querySelector('.bt-dot').textContent='✗';}
+  });
+  // Reveal center
+  document.querySelectorAll('input[name="bt_c"]').forEach(i=>i.disabled=true);
+  q.cOpts.forEach((o,i)=>{
+    const allLbls=Array.from(document.querySelectorAll('.bt-panel-center .bt-lbl'));
+    const lbl=allLbls[i]; if(!lbl) return; lbl.classList.add('locked');
+    if(o.l===q.cAns) lbl.classList.add('iscorrect');
+    if(cSel&&cSel.value===o.l&&o.l!==q.cAns) lbl.classList.add('iswrong');
+  });
+  // Reveal right - select right panel bt-chk elements after left ones
+  const allChkLbls=Array.from(document.querySelectorAll('.bt-opt-item.bt-chk .bt-lbl'));
+  const rStartIdx=q.lOpts.length;
+  q.rOpts.forEach((o,i)=>{
+    const lbl=allChkLbls[rStartIdx+i]; if(!lbl) return; lbl.classList.add('locked');
+    const isC=q.rAns.includes(o.l); const wasSel=rSels.includes(o.l);
+    if(isC&&wasSel){lbl.classList.add('iscorrect');lbl.querySelector('.bt-dot').textContent='✓';}
+    else if(isC&&!wasSel){lbl.classList.add('ismissed');lbl.querySelector('.bt-dot').textContent='!';}
+    else if(!isC&&wasSel){lbl.classList.add('iswrong');lbl.querySelector('.bt-dot').textContent='✗';}
+  });
+  const totPoss=3; const pct=pts/totPoss;
+  const type=pts>=2.5?'ok':pts>=1?'pt':'er';
+  let rslt='';
+  if(type==='ok') rslt=`<div class="rat-result ok">✦ Excellent! All 3 components correct (${pts.toFixed(1)}/3 pts)</div>`;
+  else if(type==='pt') rslt=`<div class="rat-result pt">◑ Partially Correct (${pts.toFixed(1)}/3 pts)</div>`;
+  else rslt=`<div class="rat-result er">✗ Incorrect — Review All Three Sections</div>`;
+  const box=document.getElementById('ratBox');
+  box.innerHTML=`<div class="rat-head">📖 Rationale</div>${rslt}<div class="rat-text">${q.rat}</div>`;
+  box.style.display='block'; box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  finish();
+}
+function showRat(type,text,full,partial,cc,tot){
+  const box=document.getElementById('ratBox');
+  let res='';
+  if(type==='ok') res=`<div class="rat-result ok">✦ Correct!</div>`;
+  else if(type==='pt'){const lbl=tot?` (${cc}/${tot} correct)`:' — partially correct';res=`<div class="rat-result pt">◑ Partially Correct${lbl}</div>`;}
+  else res=`<div class="rat-result er">✗ Incorrect — Review Rationale</div>`;
+  box.innerHTML=`<div class="rat-head">📖 Rationale</div>${res}<div class="rat-text">${text}</div>`;
+  box.style.display='block'; box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function finish(){
+  document.getElementById('subBtn').style.display='none';
+  document.getElementById('nxtBtn').style.display='block';
+  document.getElementById('scoreTxt').textContent=`Score: ${ep.toFixed(1)} / ${maxPts}`;
+}
+function nextQ(){
+  ci++;
+  if(ci>=SQ.length) showScore();
+  else{render(); window.scrollTo({top:0,behavior:'smooth'});}
+}
+
+// ═══════════════════════════════════════════════════════
+//  SCORE SCREEN
+// ═══════════════════════════════════════════════════════
+function showScore(){
+  document.getElementById('progSection').style.display='none';
+  document.getElementById('qArea').style.display='none';
+  const scr=document.getElementById('scoreScr'); scr.style.display='block';
+  const pct=Math.round((ep/maxPts)*100);
+  document.getElementById('sPct').textContent=pct+'%';
+  let msg='',sub='';
+  if(pct>=90){msg='🌟 Outstanding!';sub='You absolutely crushed this exam, Sophia! Clinical queen behavior fr fr ✨';}
+  else if(pct>=80){msg='✨ Great Work!';sub='Really strong performance! Review your missed rationales and you\'re golden.';}
+  else if(pct>=70){msg='💪 Good Effort!';sub='You\'re getting there! Focus on those tricky distractors and retake for a higher score.';}
+  else{msg='📚 Keep Studying!';sub='Review drug cards and rationales carefully, then try again — you\'ve got this!';}
+  document.getElementById('sMsg').textContent=msg;
+  document.getElementById('sSub').innerHTML=sub+`<br><small style="color:var(--lpu);display:block;margin-top:4px">Raw score: ${ep.toFixed(1)} / ${maxPts} pts</small>`;
+  document.getElementById('sTiles').innerHTML=`
+    <div class="s-tile"><div class="tn">${pct}%</div><div class="tl">Overall</div></div>
+    <div class="s-tile"><div class="tn">${ep.toFixed(1)}</div><div class="tl">Points Earned</div></div>
+    <div class="s-tile"><div class="tn">${maxPts}</div><div class="tl">Points Possible</div></div>
+    <div class="s-tile"><div class="tn">60</div><div class="tl">Questions</div></div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restart(){init(); window.scrollTo({top:0,behavior:'smooth'});}
+window.onload=init;
+</script>
+</body>
+</html>
