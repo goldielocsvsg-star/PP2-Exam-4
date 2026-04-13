@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antidepressants — Nursing Exam 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8ff;
+  --white: #ffffff;
+  --ink: #12003a;
+  --ink2: #3d2670;
+  --ink3: #6b5a9e;
+  --border: #e4ddf5;
+  --border2: #cec2f0;
+
+  --violet: #6c35de;
+  --violet-l: #f0ebff;
+  --violet-m: #c4aaff;
+
+  --pink: #e8006e;
+  --pink-l: #fff0f7;
+  --pink-m: #ffaacc;
+
+  --teal: #00a89d;
+  --teal-l: #e8faf9;
+  --teal-m: #80d4cf;
+
+  --orange: #ff5c00;
+  --orange-l: #fff3ec;
+  --orange-m: #ffb38a;
+
+  --yellow: #f5c800;
+  --yellow-l: #fffbe6;
+  --yellow-m: #ffe066;
+
+  --blue: #0066ff;
+  --blue-l: #e8f0ff;
+  --blue-m: #80b0ff;
+
+  --lime: #52c41a;
+  --lime-l: #f0fff0;
+  --lime-m: #aae688;
+
+  --text: #12003a;
+  --text2: #4a3880;
+  --muted: #9980cc;
+
+  --sh1: 0 2px 12px rgba(108,53,222,0.08);
+  --sh2: 0 6px 24px rgba(108,53,222,0.12);
+  --sh3: 0 12px 40px rgba(108,53,222,0.16);
+  --sh4: 0 20px 60px rgba(108,53,222,0.2);
+
+  --font-h: 'Syne', sans-serif;
+  --font-b: 'Plus Jakarta Sans', sans-serif;
+  --font-m: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 14.5px;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Colorful background blobs */
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle 500px at 5% 10%, rgba(108,53,222,0.07), transparent),
+    radial-gradient(circle 400px at 95% 20%, rgba(232,0,110,0.06), transparent),
+    radial-gradient(circle 600px at 50% 100%, rgba(0,168,157,0.05), transparent),
+    radial-gradient(circle 300px at 80% 60%, rgba(245,200,0,0.06), transparent);
+}
+
+/* ═══ LAYOUT ═══ */
+#app { display:flex; min-height:100vh; position:relative; z-index:2; }
+
+/* ═══ SIDEBAR ═══ */
+#sidebar {
+  width:262px; min-width:262px;
+  background: var(--white);
+  border-right: 2px solid var(--border);
+  position:fixed; top:0; left:0; bottom:0;
+  overflow-y:auto; z-index:200;
+  display:flex; flex-direction:column;
+  box-shadow: 4px 0 30px rgba(108,53,222,0.07);
+}
+#sidebar::-webkit-scrollbar { width:4px; }
+#sidebar::-webkit-scrollbar-thumb { background:var(--violet-m); border-radius:4px; }
+
+/* Colorful top stripe */
+#sidebar::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg, var(--violet), var(--pink), var(--orange), var(--yellow), var(--teal), var(--blue));
+}
+
+.sb-brand {
+  padding:30px 22px 18px;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(135deg, #fff 60%, var(--violet-l));
+}
+.sb-logo {
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+}
+.sb-icon {
+  width:40px; height:40px; border-radius:12px;
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; box-shadow: 0 4px 16px rgba(108,53,222,0.3);
+}
+.sb-title { font-family:var(--font-h); font-size:16px; font-weight:800; color:var(--ink); line-height:1.2; }
+.sb-sub { font-size:9.5px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+/* Progress */
+.sb-progress {
+  padding:16px 22px; border-bottom:2px solid var(--border);
+  display:flex; align-items:center; gap:14px;
+}
+.progress-ring-wrap { position:relative; width:48px; height:48px; flex-shrink:0; }
+.progress-ring-wrap svg { transform:rotate(-90deg); }
+.ring-bg   { fill:none; stroke:var(--border); stroke-width:4; }
+.ring-fill {
+  fill:none; stroke:url(#ringGrad); stroke-width:4; stroke-linecap:round;
+  stroke-dasharray:113; stroke-dashoffset:113;
+  transition:stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.ring-pct { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--violet); font-family:var(--font-m); }
+.progress-label { font-size:9px; text-transform:uppercase; letter-spacing:2px; color:var(--muted); font-weight:700; }
+.progress-text { font-size:12px; color:var(--text2); margin-top:2px; font-weight:600; }
+
+/* Nav */
+.nav-group {
+  padding:16px 22px 5px;
+  font-size:9px; text-transform:uppercase; letter-spacing:2.5px;
+  color:var(--muted); font-weight:700;
+  display:flex; align-items:center; gap:8px;
+}
+.nav-group::after { content:''; flex:1; height:1.5px; background:var(--border); }
+
+.nav-item {
+  display:flex; align-items:center; gap:10px; padding:9px 22px;
+  cursor:pointer; font-size:13px; color:var(--text2); font-weight:500;
+  transition:all 0.18s; border-left:3px solid transparent; position:relative;
+}
+.nav-item:hover { background:var(--violet-l); color:var(--violet); border-left-color:var(--violet-m); }
+.nav-item.active { background:var(--violet-l); color:var(--violet); border-left-color:var(--violet); font-weight:700; }
+
+.nav-chip {
+  width:22px; height:22px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; flex-shrink:0;
+  background:var(--border); transition:all 0.18s;
+}
+.nav-item.active .nav-chip  { background:var(--violet); }
+.nav-item:hover .nav-chip   { background:var(--violet-m); }
+
+/* ═══ MAIN ═══ */
+#main { margin-left:262px; flex:1; min-width:0; }
+
+.topbar {
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px; height:62px;
+  background:rgba(255,255,255,0.92);
+  border-bottom:2px solid var(--border);
+  backdrop-filter:blur(18px);
+  box-shadow:var(--sh1);
+}
+.tb-left { display:flex; align-items:center; gap:12px; }
+.tb-crumb { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; font-weight:700; }
+.tb-sep { color:var(--border2); }
+.tb-title { font-family:var(--font-h); font-size:18px; color:var(--ink); font-weight:800; }
+.tb-badge {
+  font-size:11px; font-weight:800; letter-spacing:1px; padding:5px 14px;
+  border-radius:50px; background:linear-gradient(135deg, var(--violet), var(--pink));
+  color:white; box-shadow:0 4px 14px rgba(108,53,222,0.3);
+}
+
+/* Panels */
+.panel { display:none; padding:48px 50px 100px; animation:panIn 0.3s cubic-bezier(0.4,0,0.2,1); }
+.panel.active { display:block; }
+@keyframes panIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══ TYPOGRAPHY ═══ */
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px;
+  color:var(--violet); margin-bottom:14px;
+  background:var(--violet-l); padding:5px 14px; border-radius:50px;
+  border:1.5px solid var(--violet-m);
+}
+
+.page-title {
+  font-family:var(--font-h);
+  font-size:54px; font-weight:800; line-height:1.0;
+  letter-spacing:-2px; color:var(--ink); margin-bottom:10px;
+}
+.page-title .c1 { color:var(--violet); }
+.page-title .c2 { color:var(--pink); }
+.page-title .c3 { color:var(--teal); }
+.page-title .c4 { color:var(--orange); }
+
+.page-lead {
+  font-size:15px; color:var(--text2);
+  max-width:580px; line-height:1.7; margin-bottom:36px;
+}
+
+.sec-head {
+  font-family:var(--font-h);
+  font-size:24px; font-weight:800; color:var(--ink);
+  margin:44px 0 18px; letter-spacing:-0.5px;
+  display:flex; align-items:center; gap:12px;
+}
+.sec-head::after {
+  content:''; flex:1; height:2px; max-width:200px;
+  background:linear-gradient(90deg, var(--border2), transparent);
+}
+
+/* ═══ COLORFUL CARDS ═══ */
+.card {
+  background:var(--white); border:2px solid var(--border);
+  border-radius:20px; padding:24px;
+  box-shadow:var(--sh1); transition:all 0.22s;
+  position:relative; overflow:hidden;
+}
+.card:hover { box-shadow:var(--sh3); transform:translateY(-2px); }
+
+/* Colored top stripe on each card */
+.card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+}
+.cv::before { background:linear-gradient(90deg, var(--violet), var(--pink)); }
+.cp::before { background:linear-gradient(90deg, var(--pink), var(--orange)); }
+.ct::before { background:linear-gradient(90deg, var(--teal), #00c8be); }
+.co::before { background:linear-gradient(90deg, var(--orange), var(--yellow)); }
+.cy::before { background:linear-gradient(90deg, var(--yellow), var(--lime)); }
+.cb::before { background:linear-gradient(90deg, var(--blue), var(--teal)); }
+.cl::before { background:linear-gradient(90deg, var(--lime), var(--teal)); }
+.cpi::before { background:linear-gradient(90deg, var(--pink), var(--violet)); }
+
+.card h4 {
+  font-family:var(--font-h); font-size:17px; font-weight:800;
+  color:var(--ink); margin-bottom:12px;
+  display:flex; align-items:center; gap:8px;
+}
+
+/* ═══ GRIDS ═══ */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.g4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:14px; }
+
+/* ═══ STAT TILES ═══ */
+.stat-tile {
+  border-radius:20px; padding:28px 18px; text-align:center;
+  position:relative; overflow:hidden;
+  border:2px solid transparent;
+  box-shadow:var(--sh2);
+}
+.stat-tile .stat-num {
+  font-family:var(--font-h); font-size:50px; font-weight:800; line-height:1;
+  margin-bottom:8px; letter-spacing:-2px;
+}
+.stat-tile .stat-label { font-size:12px; font-weight:600; opacity:0.8; line-height:1.4; }
+
+.st1 { background:linear-gradient(135deg, #ffe8f5, #ffd0e8); border-color:#ffb8d6; }
+.st1 .stat-num { color:var(--pink); }
+.st2 { background:linear-gradient(135deg, #e8f0ff, #d0dfff); border-color:#a0bcff; }
+.st2 .stat-num { color:var(--blue); }
+.st3 { background:linear-gradient(135deg, #fff8cc, #fff3aa); border-color:#ffe066; }
+.st3 .stat-num { color:#b89000; }
+.st4 { background:linear-gradient(135deg, #e8fff8, #ccfff0); border-color:#80e8cc; }
+.st4 .stat-num { color:var(--teal); }
+
+/* ═══ ALERTS ═══ */
+.alert {
+  border-radius:14px; padding:16px 20px; margin:14px 0;
+  font-size:13.5px; line-height:1.65; border:2px solid;
+}
+.alert strong { display:block; font-size:10px; text-transform:uppercase; letter-spacing:2px; font-weight:800; margin-bottom:6px; }
+
+.av  { background:var(--violet-l); border-color:var(--violet-m); }
+.av strong { color:var(--violet); }
+.ap  { background:var(--pink-l); border-color:var(--pink-m); }
+.ap strong { color:var(--pink); }
+.at  { background:var(--teal-l); border-color:var(--teal-m); }
+.at strong { color:var(--teal); }
+.ao  { background:var(--orange-l); border-color:var(--orange-m); }
+.ao strong { color:var(--orange); }
+.ay  { background:var(--yellow-l); border-color:var(--yellow-m); }
+.ay strong { color:#a07800; }
+.ab  { background:var(--blue-l); border-color:var(--blue-m); }
+.ab strong { color:var(--blue); }
+.al  { background:var(--lime-l); border-color:var(--lime-m); }
+.al strong { color:var(--lime); }
+
+/* ═══ DRUG CARDS ═══ */
+.drug-card {
+  border-radius:18px; border:2px solid var(--border);
+  overflow:hidden; background:var(--white);
+  box-shadow:var(--sh1); transition:all 0.22s;
+}
+.drug-card:hover { box-shadow:var(--sh3); transform:translateY(-3px); }
+.drug-head {
+  padding:16px 20px 12px;
+  border-bottom:2px solid var(--border);
+}
+.drug-nm { font-family:var(--font-m); font-size:16px; font-weight:700; }
+.drug-br { font-size:11px; color:var(--muted); margin-top:2px; }
+.drug-bd { padding:4px 0; }
+.drug-r  {
+  display:flex; gap:12px; padding:9px 20px;
+  border-bottom:1.5px solid var(--border);
+  font-size:12.5px; align-items:flex-start;
+}
+.drug-r:last-child { border-bottom:none; }
+.dr-k { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); min-width:88px; margin-top:2px; flex-shrink:0; }
+.dr-v { color:var(--text2); line-height:1.5; }
+
+/* ═══ TABLES ═══ */
+.tbl-outer { border-radius:16px; overflow:hidden; border:2px solid var(--border); margin:16px 0; box-shadow:var(--sh1); }
+table { width:100%; border-collapse:collapse; font-size:13px; background:var(--white); }
+thead tr { background:linear-gradient(90deg, var(--violet-l), var(--pink-l)); }
+th { padding:13px 16px; text-align:left; font-size:9.5px; text-transform:uppercase; letter-spacing:2px; font-weight:800; color:var(--ink2); border-bottom:2px solid var(--border); }
+td { padding:12px 16px; border-bottom:1.5px solid var(--border); vertical-align:top; color:var(--text2); line-height:1.55; }
+tr:last-child td { border-bottom:none; }
+tbody tr { transition:background 0.15s; }
+tbody tr:hover td { background:var(--violet-l); color:var(--ink); }
+
+/* ═══ FLIP CARDS ═══ */
+.flip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:16px 0; }
+.flip-card { height:165px; perspective:1000px; cursor:pointer; }
+.flip-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+.flip-card.flipped .flip-inner { transform:rotateY(180deg); }
+
+.flip-front, .flip-back {
+  position:absolute; inset:0; backface-visibility:hidden;
+  border-radius:18px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:18px; text-align:center;
+}
+.flip-front {
+  background:var(--white); border:2px solid var(--border); box-shadow:var(--sh1);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(108,53,222,0.02) 10px, rgba(108,53,222,0.02) 20px);
+}
+.flip-front::after {
+  content:'TAP TO FLIP ↺';
+  position:absolute; bottom:10px;
+  font-size:8px; font-weight:800; letter-spacing:2px; color:var(--muted);
+}
+.flip-back { transform:rotateY(180deg); color:white; }
+.flip-back.bv { background:linear-gradient(135deg, var(--violet), #9b60ff); border:2px solid var(--violet); }
+.flip-back.bp { background:linear-gradient(135deg, var(--pink), #ff5599); border:2px solid var(--pink); }
+.flip-back.bt { background:linear-gradient(135deg, var(--teal), #00d4c8); border:2px solid var(--teal); }
+.flip-back.bo { background:linear-gradient(135deg, var(--orange), #ff8833); border:2px solid var(--orange); }
+.flip-q { font-size:13px; font-weight:700; color:var(--ink); line-height:1.45; }
+.flip-a { font-size:13px; font-weight:600; line-height:1.5; }
+.flip-tag { font-size:9px; text-transform:uppercase; letter-spacing:1.5px; opacity:0.75; margin-top:8px; font-weight:700; }
+
+/* ═══ FEYNMAN ═══ */
+.feynman {
+  border-radius:20px; padding:28px;
+  margin:20px 0; position:relative;
+  background: linear-gradient(135deg, var(--yellow-l), #fffef5);
+  border:2px solid var(--yellow-m);
+  box-shadow:var(--sh1);
+}
+.feynman::before {
+  content:'🎙 FEYNMAN TECHNIQUE';
+  position:absolute; top:-14px; left:22px;
+  font-size:9px; font-weight:800; letter-spacing:2px;
+  padding:4px 14px; background:var(--yellow);
+  color:var(--ink); border-radius:50px;
+  box-shadow:0 2px 10px rgba(245,200,0,0.4);
+}
+.feynman-q {
+  font-family:var(--font-h); font-size:19px; font-weight:800;
+  color:var(--ink); line-height:1.4; margin:12px 0 16px; letter-spacing:-0.5px;
+}
+.feynman-a { display:none; font-size:14px; line-height:1.8; color:var(--text2); border-top:2px solid var(--yellow-m); padding-top:14px; margin-top:6px; }
+.feynman-a.show { display:block; }
+.fey-btn {
+  font-family:var(--font-b); font-size:11px; font-weight:800; letter-spacing:1.5px;
+  text-transform:uppercase; padding:10px 22px; border-radius:50px;
+  border:2px solid var(--yellow-m); background:var(--white);
+  color:#a07800; cursor:pointer; transition:all 0.2s;
+  box-shadow:var(--sh1);
+}
+.fey-btn:hover { background:var(--yellow); border-color:var(--yellow); color:var(--ink); box-shadow:0 4px 16px rgba(245,200,0,0.4); }
+
+/* ═══ MNEMONIC ═══ */
+.mnemonic {
+  border-radius:20px; padding:26px;
+  background: linear-gradient(135deg, #fce8ff, #f0e0ff);
+  border:2px solid #d8b0f0; margin:16px 0;
+  box-shadow:var(--sh1);
+}
+.mnem-head { font-size:9.5px; text-transform:uppercase; letter-spacing:3px; color:var(--violet); font-weight:800; margin-bottom:18px; }
+.mnem-row { display:flex; gap:14px; margin-bottom:10px; align-items:flex-start; }
+.mnem-L { font-family:var(--font-h); font-size:30px; font-weight:800; color:var(--violet); min-width:36px; line-height:1; }
+.mnem-C .mw { font-weight:800; font-size:15px; color:var(--ink); }
+.mnem-C .md { font-size:13px; color:var(--text2); }
+
+/* ═══ NCLEX QUESTIONS ═══ */
+.q-wrap {
+  background:var(--white); border:2px solid var(--border);
+  border-radius:22px; overflow:hidden; margin-bottom:28px;
+  box-shadow:var(--sh1); transition:all 0.2s;
+}
+.q-wrap:hover { box-shadow:var(--sh3); }
+
+.q-top {
+  padding:20px 26px 16px; border-bottom:2px solid var(--border);
+  background:linear-gradient(135deg, var(--violet-l), #ffeef7);
+  display:flex; gap:14px; align-items:flex-start;
+}
+.q-num {
+  font-family:var(--font-h); font-size:12px; font-weight:800;
+  padding:5px 12px; border-radius:50px;
+  background:linear-gradient(135deg, var(--violet), var(--pink));
+  color:white; box-shadow:0 4px 14px rgba(108,53,222,0.3);
+  white-space:nowrap; margin-top:1px;
+}
+.q-type {
+  font-size:9px; text-transform:uppercase; letter-spacing:2px;
+  font-weight:800; padding:5px 12px; border-radius:50px;
+  border:2px solid var(--border); background:var(--white);
+  color:var(--muted); white-space:nowrap; margin-top:1px;
+}
+.q-stem { font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.65; flex:1; }
+
+.q-opts { padding:18px 26px 0; }
+.q-opt {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:13px 16px; border-radius:12px;
+  border:2px solid var(--border); background:var(--bg);
+  margin-bottom:8px; cursor:pointer;
+  font-size:13.5px; color:var(--text2); transition:all 0.18s;
+}
+.q-opt:hover { border-color:var(--violet-m); background:var(--violet-l); color:var(--ink); transform:translateX(3px); }
+.opt-dot {
+  width:28px; height:28px; border-radius:50%;
+  border:2px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; min-width:28px; color:var(--muted);
+  transition:all 0.18s;
+}
+.q-opt.correct { border-color:var(--lime-m); background:var(--lime-l); color:var(--ink); }
+.q-opt.correct .opt-dot { background:var(--lime); border-color:var(--lime); color:white; }
+.q-opt.incorrect { border-color:var(--pink-m); background:var(--pink-l); }
+.q-opt.incorrect .opt-dot { background:var(--pink); border-color:var(--pink); color:white; }
+
+.q-foot { padding:16px 26px 22px; }
+.rev-btn {
+  font-family:var(--font-b); font-size:11px; font-weight:800;
+  letter-spacing:1.5px; text-transform:uppercase; padding:11px 24px;
+  border-radius:50px; cursor:pointer; transition:all 0.2s;
+  border:2px solid var(--lime-m); background:var(--lime-l); color:var(--lime);
+  box-shadow:var(--sh1);
+}
+.rev-btn:hover { background:var(--lime); border-color:var(--lime); color:white; box-shadow:0 6px 20px rgba(82,196,26,0.35); }
+.rationale {
+  display:none; margin-top:14px; padding:18px;
+  border-radius:12px; background:var(--lime-l);
+  border:2px solid var(--lime-m);
+  font-size:13.5px; line-height:1.75; color:var(--text2);
+}
+.rationale.show { display:block; }
+.rationale strong { color:var(--lime); }
+
+/* ═══ TRAPS ═══ */
+.trap {
+  display:flex; gap:14px; padding:16px 20px;
+  border-radius:14px; border:2px solid var(--pink-m);
+  background:var(--pink-l); margin-bottom:12px;
+  box-shadow:var(--sh1);
+}
+.trap-i { font-size:20px; flex-shrink:0; margin-top:2px; }
+.trap-b { font-size:13.5px; color:var(--text2); line-height:1.65; }
+.trap-b strong { color:var(--pink); display:block; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; font-weight:800; margin-bottom:4px; }
+
+/* ═══ PATHWAY ═══ */
+.pathway { display:flex; align-items:center; gap:0; margin:16px 0; flex-wrap:wrap; }
+.p-nd {
+  flex:1; min-width:100px;
+  background:var(--white); border:2px solid var(--border);
+  border-radius:12px; padding:12px 14px;
+  font-size:12.5px; font-weight:700; text-align:center;
+  line-height:1.4; box-shadow:var(--sh1);
+}
+.p-ar { padding:0 6px; color:var(--muted); font-size:20px; flex-shrink:0; }
+
+/* ═══ SPECTRUM BAR ═══ */
+.spec-bar { display:flex; border-radius:12px; overflow:hidden; height:40px; margin:12px 0; border:2px solid var(--border); box-shadow:var(--sh1); }
+.spec-seg { flex:1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; text-align:center; padding:4px; line-height:1.3; color:white; }
+
+/* ═══ COMPARE TILES ═══ */
+.cmp-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:16px 0; }
+.cmp-tile { border-radius:16px; overflow:hidden; border:2px solid var(--border); background:var(--white); box-shadow:var(--sh1); transition:all 0.22s; }
+.cmp-tile:hover { transform:translateY(-5px); box-shadow:var(--sh4); }
+.cmp-head { padding:14px 12px 10px; font-size:13px; font-weight:800; text-align:center; line-height:1.3; border-bottom:2px solid var(--border); font-family:var(--font-h); }
+.cmp-r { padding:9px 12px; font-size:12px; border-bottom:1.5px solid var(--border); color:var(--text2); text-align:center; line-height:1.5; }
+.cmp-r:last-child { border-bottom:none; }
+.cmp-k { font-size:8.5px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:800; display:block; }
+
+/* ═══ SR BADGES ═══ */
+.sr { display:inline-flex; align-items:center; gap:4px; font-size:9px; font-weight:800; padding:3px 10px; border-radius:50px; text-transform:uppercase; letter-spacing:1px; margin-left:8px; }
+.sr-h { background:var(--pink-l); color:var(--pink); border:2px solid var(--pink-m); }
+.sr-w { background:var(--yellow-l); color:#a07800; border:2px solid var(--yellow-m); }
+.sr-c { background:var(--teal-l); color:var(--teal); border:2px solid var(--teal-m); }
+
+/* ═══ UTILITIES ═══ */
+.chk { list-style:none; padding:0; }
+.chk li { padding:5px 0 5px 22px; position:relative; font-size:13.5px; color:var(--text2); line-height:1.6; }
+.chk li::before { content:'✦'; position:absolute; left:0; color:var(--violet); font-size:10px; top:8px; }
+
+.hv { color:var(--violet); font-weight:800; }
+.hp { color:var(--pink); font-weight:800; }
+.ht { color:var(--teal); font-weight:800; }
+.ho { color:var(--orange); font-weight:800; }
+.hy { color:#a07800; font-weight:800; }
+.hb { color:var(--blue); font-weight:800; }
+.hl { color:var(--lime); font-weight:800; }
+
+.divider { height:2px; background:linear-gradient(90deg, var(--violet-m), var(--pink-m), transparent); margin:32px 0; border-radius:2px; }
+
+.tl-bar { height:8px; border-radius:10px; background:linear-gradient(90deg, var(--teal), var(--blue), var(--violet), var(--pink), var(--orange)); margin-bottom:14px; box-shadow:0 4px 12px rgba(108,53,222,0.2); }
+.tl-m { display:flex; justify-content:space-between; font-size:11.5px; font-weight:800; color:var(--text2); }
+.tl-e { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:4px; text-align:center; }
+
+.sr-sched { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+.sr-step {
+  display:flex; gap:14px; align-items:flex-start; padding:14px 18px;
+  border-radius:14px; border:2px solid var(--border); background:var(--white);
+  font-size:13.5px; color:var(--text2); box-shadow:var(--sh1);
+}
+.sr-n {
+  width:30px; height:30px; border-radius:10px;
+  background:linear-gradient(135deg, var(--violet), var(--pink));
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; color:white; min-width:30px;
+  box-shadow:0 4px 12px rgba(108,53,222,0.3);
+}
+
+p { margin-bottom:10px; }
+ul,ol { padding-left:20px; }
+li { margin-bottom:5px; }
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="sidebar">
+  <svg style="width:0;height:0;position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#6c35de"/>
+        <stop offset="50%" stop-color="#e8006e"/>
+        <stop offset="100%" stop-color="#00a89d"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <div class="sb-icon">🧠</div>
+      <div>
+        <div class="sb-title">Depression &<br>Antidepressants</div>
+      </div>
+    </div>
+    <div class="sb-sub">Nursing Exam 4 · PP2 / HCC II</div>
+  </div>
+
+  <div class="sb-progress">
+    <div class="progress-ring-wrap">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <circle class="ring-bg" cx="24" cy="24" r="18"/>
+        <circle class="ring-fill" id="ringFill" cx="24" cy="24" r="18"/>
+      </svg>
+      <div class="ring-pct" id="ringPct">0%</div>
+    </div>
+    <div>
+      <div class="progress-label">Study Progress</div>
+      <div class="progress-text" id="progressText">0 of 12 sections</div>
+    </div>
+  </div>
+
+  <div class="nav-group">Core Content</div>
+  <div class="nav-item active" onclick="show('overview')"><span class="nav-chip">🧠</span>Depression Overview</div>
+  <div class="nav-item" onclick="show('pathophys')"><span class="nav-chip">🔬</span>Pathophysiology</div>
+  <div class="nav-item" onclick="show('symptoms')"><span class="nav-chip">📋</span>Clinical Features</div>
+  <div class="nav-item" onclick="show('treatment')"><span class="nav-chip">⚡</span>Treatment Modalities</div>
+
+  <div class="nav-group">Drug Classes</div>
+  <div class="nav-item" onclick="show('ssri')"><span class="nav-chip">💊</span>SSRIs — First Line</div>
+  <div class="nav-item" onclick="show('snri')"><span class="nav-chip">🔵</span>SNRIs</div>
+  <div class="nav-item" onclick="show('tca')"><span class="nav-chip">⚠️</span>TCAs — Dangerous</div>
+  <div class="nav-item" onclick="show('maoi')"><span class="nav-chip">🚨</span>MAOIs — Last Resort</div>
+  <div class="nav-item" onclick="show('atypical')"><span class="nav-chip">🌿</span>Atypical Antidepressants</div>
+
+  <div class="nav-group">Exam Prep</div>
+  <div class="nav-item" onclick="show('compare')"><span class="nav-chip">📊</span>Master Comparison</div>
+  <div class="nav-item" onclick="show('traps')"><span class="nav-chip">🪤</span>NCLEX Traps</div>
+  <div class="nav-item" onclick="show('nclex')"><span class="nav-chip">❓</span>Practice Questions</div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div id="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <span class="tb-crumb">Exam 4</span>
+      <span class="tb-sep">›</span>
+      <span class="tb-title" id="topTitle">Depression Overview</span>
+    </div>
+    <span class="tb-badge">Spring 2026 ✨</span>
+  </div>
+
+<!-- ════════ OVERVIEW ════════ -->
+<div class="panel active" id="panel-overview">
+  <span class="eyebrow">💜 Chapter One</span>
+  <div class="page-title">Depression &<br>the <span class="c1">Monoamine</span><br><span class="c2">Disorder</span></div>
+  <div class="page-lead">The most common psychiatric disorder. Master the definition, epidemiology, and diagnostic criteria before everything else.</div>
+
+  <div class="g4">
+    <div class="stat-tile st1"><div class="stat-num">30%</div><div class="stat-label">Lifetime risk in the general population</div></div>
+    <div class="stat-tile st2"><div class="stat-num">1 in 8</div><div class="stat-label">Adults currently affected</div></div>
+    <div class="stat-tile st3"><div class="stat-num">2×</div><div class="stat-label">More prevalent in women than men</div></div>
+    <div class="stat-tile st4"><div class="stat-num">HIGH</div><div class="stat-label">Suicide risk — always assess first</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="g2">
+    <div class="card cv">
+      <h4>🔑 Diagnostic Requirements</h4>
+      <ul class="chk">
+        <li>Symptoms present <span class="hv">≥ 2 weeks</span></li>
+        <li><span class="hv">Most of the day, nearly every day</span></li>
+        <li>Significant distress OR functional impairment</li>
+        <li>Not caused by substances or medical condition</li>
+        <li>Must include <strong>depressed mood</strong> OR <strong>anhedonia</strong></li>
+      </ul>
+    </div>
+    <div>
+      <div class="alert ap"><strong>🚨 Priority #1 — Always</strong>Suicidal ideation is the most critical finding. Assess safety before ANY other intervention, every single visit.</div>
+      <div class="alert av"><strong>📊 Most Common Psychiatric Disorder</strong>Nurses encounter depression in every setting — med-surg, OB, geriatrics, peds, and psych alike.</div>
+    </div>
+  </div>
+
+  <div class="sec-head">Active Recall — Flip to Test Yourself</div>
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">How long must symptoms persist for an MDD diagnosis?</div></div><div class="flip-back bv"><div class="flip-a">≥ 2 weeks, most of the day, nearly every day</div><div class="flip-tag">Duration Criteria</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">What is the #1 priority nursing assessment for any depressed patient?</div></div><div class="flip-back bp"><div class="flip-a">Assess for suicidal ideation — safety always comes first</div><div class="flip-tag">Safety Priority</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which group has 2× the prevalence of depression?</div></div><div class="flip-back bt"><div class="flip-a">Women — twice as prevalent as in men</div><div class="flip-tag">Epidemiology</div></div></div></div>
+  </div>
+
+  <div class="sec-head">Lifespan Considerations <span class="sr sr-h">🔥 Tested</span></div>
+  <div class="tbl-outer"><table><thead><tr><th>Population</th><th>Key Concern</th><th>Nursing Action</th></tr></thead><tbody>
+    <tr><td>Infants (neonatal)</td><td>Neonatal abstinence syndrome from maternal SSRI use</td><td>Monitor neonate: jitteriness, poor feeding, irritability</td></tr>
+    <tr><td><strong style="color:var(--pink)">Children &amp; Adolescents</strong></td><td style="color:var(--pink);font-weight:700">↑ Suicide risk with antidepressant initiation</td><td>Black box monitoring; restrict supply to small quantities</td></tr>
+    <tr><td>Pregnancy</td><td>PPHN (Persistent Pulmonary Hypertension of Newborn)</td><td>Risk vs. benefit counseling; monitor neonate at delivery</td></tr>
+    <tr><td>Elderly</td><td>Polypharmacy, falls, hyponatremia</td><td>SSRIs safest; start low, go slow; monitor sodium</td></tr>
+  </tbody></table></div>
+
+  <div class="feynman">
+    <div class="feynman-q">If a classmate had never heard of depression, how would you explain what makes it a "disorder" — not just sadness — in 3 sentences?</div>
+    <button class="fey-btn" onclick="toggleF(this)">Show Model Answer</button>
+    <div class="feynman-a">Depression is more than sadness — it is a <strong>biological illness</strong> where specific neurotransmitters are depleted, causing changes that persist for <strong>≥ 2 weeks, most of the day</strong>. Unlike normal grief or a bad day, MDD <strong>impairs function</strong> — work, relationships, and self-care all suffer. It also carries high suicide risk, making it a true medical emergency requiring treatment, not willpower.</div>
+  </div>
+</div>
+
+<!-- ════════ PATHOPHYSIOLOGY ════════ -->
+<div class="panel" id="panel-pathophys">
+  <span class="eyebrow">🔬 Chapter Two</span>
+  <div class="page-title">The <span class="c1">Monoamine</span><br><span class="c3">Hypothesis</span></div>
+  <div class="page-lead">Depression arises from insufficient neurotransmitter activity. Every drug class targets one or more deficits.</div>
+
+  <div class="alert av"><strong>🧠 Core Concept</strong>Depression = <strong>↓ Serotonin + ↓ Norepinephrine + ↓ Dopamine</strong>. Every antidepressant class targets one or more of these deficits.</div>
+
+  <div class="sec-head">The Deficient Pathway</div>
+  <div class="pathway">
+    <div class="p-nd" style="border-color:var(--teal-m);color:var(--teal)">Normal Brain<br><small style="font-weight:400;color:var(--muted)">↑ 5-HT, NE, DA</small></div>
+    <div class="p-ar">→</div>
+    <div class="p-nd" style="border-color:var(--yellow-m);color:#a07800">Biological stressor<br><small style="font-weight:400;color:var(--muted)">NT levels depleted</small></div>
+    <div class="p-ar">→</div>
+    <div class="p-nd" style="border-color:var(--blue-m);color:var(--blue)">↓ Neurotransmitters<br><small style="font-weight:400;color:var(--muted)">in the synapse</small></div>
+    <div class="p-ar">→</div>
+    <div class="p-nd" style="border-color:var(--pink-m);background:var(--pink-l);color:var(--pink)">MDD symptoms<br><small style="font-weight:400;color:var(--muted)">mood, energy, cognition</small></div>
+  </div>
+
+  <div class="g3" style="margin-top:20px">
+    <div class="card cp"><h4 style="color:var(--pink)">🔴 Serotonin (5-HT)</h4><ul class="chk"><li>Regulates <strong>mood, sleep, appetite</strong></li><li>↓ = depression + anxiety</li><li>SSRIs specifically target this</li><li>GI motility → explains GI side effects</li></ul></div>
+    <div class="card cb"><h4 style="color:var(--blue)">🔵 Norepinephrine (NE)</h4><ul class="chk"><li>Regulates <strong>energy, alertness, focus</strong></li><li>↓ = fatigue, poor concentration</li><li>Targeted by SNRIs and TCAs</li><li>Also modulates pain pathways</li></ul></div>
+    <div class="card co"><h4 style="color:var(--orange)">🟡 Dopamine (DA)</h4><ul class="chk"><li>Regulates <strong>motivation, pleasure, reward</strong></li><li>↓ = anhedonia (key symptom)</li><li>Primarily targeted by bupropion</li><li>Role in psychomotor activity</li></ul></div>
+  </div>
+
+  <div class="sec-head">Drug → NT Map <span class="sr sr-h">🔥 Core Knowledge</span></div>
+  <div class="tbl-outer"><table><thead><tr><th>Drug Class</th><th>Serotonin ↑</th><th>NE ↑</th><th>Dopamine ↑</th><th>Mechanism</th></tr></thead><tbody>
+    <tr><td><strong class="ht">SSRIs</strong></td><td>✅ Primary</td><td>—</td><td>—</td><td>Block serotonin reuptake pump</td></tr>
+    <tr><td><strong class="hb">SNRIs</strong></td><td>✅</td><td>✅</td><td>—</td><td>Block both 5-HT and NE reuptake</td></tr>
+    <tr><td><strong class="hy">TCAs</strong></td><td>✅</td><td>✅</td><td>—</td><td>Non-selective reuptake block + extra receptor effects</td></tr>
+    <tr><td><strong class="hp">MAOIs</strong></td><td>✅</td><td>✅</td><td>✅</td><td>Inhibit MAO enzyme → prevent breakdown of ALL monoamines</td></tr>
+    <tr><td><strong class="hv">Bupropion</strong></td><td>—</td><td>✅</td><td>✅</td><td>Block NE + DA reuptake — NO serotonin = NO sexual SE</td></tr>
+  </tbody></table></div>
+
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which NT is specifically targeted by SSRIs?</div></div><div class="flip-back bv"><div class="flip-a">Serotonin (5-HT) — SSRIs block its reuptake pump → more serotonin in synapse</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which drug targets DA + NE but NOT serotonin? Why does that matter?</div></div><div class="flip-back bt"><div class="flip-a">Bupropion — no serotonin = no sexual dysfunction side effects</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which class inhibits the enzyme breaking down ALL monoamines?</div></div><div class="flip-back bo"><div class="flip-a">MAOIs — inhibit monoamine oxidase → ↑ serotonin, NE, AND dopamine simultaneously</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SYMPTOMS ════════ -->
+<div class="panel" id="panel-symptoms">
+  <span class="eyebrow">📋 Chapter Three</span>
+  <div class="page-title">Clinical <span class="c2">Features</span><br>of Depression</div>
+  <div class="alert ap"><strong>🚨 Always Assess First</strong>Suicidal ideation or behavior = #1 priority. Safety before all other assessment or intervention.</div>
+  <div class="g3">
+    <div class="card cp"><h4>💔 Emotional</h4><ul class="chk"><li><strong>Depressed mood</strong> (core symptom)</li><li><strong>Anhedonia</strong> — loss of interest</li><li>Hopelessness, helplessness</li><li>Worthlessness, excessive guilt</li><li>Irritability (especially teens)</li></ul></div>
+    <div class="card cb"><h4>🧠 Cognitive</h4><ul class="chk"><li>Poor concentration, indecisiveness</li><li>Negative distorted thinking</li><li>Memory impairment</li><li><strong class="hp">Suicidal ideation or plan</strong></li></ul></div>
+    <div class="card co"><h4>🛌 Physical (Neurovegetative)</h4><ul class="chk"><li>Sleep: <strong>insomnia OR hypersomnia</strong></li><li>Appetite: <strong>anorexia OR hyperphagia</strong></li><li>Psychomotor agitation or retardation</li><li>Fatigue, loss of energy</li></ul></div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnem-head">🔮 SIG E CAPS — DSM Criteria Mnemonic (need ≥5 for ≥2 weeks)</div>
+    <div class="mnem-row"><div class="mnem-L">S</div><div class="mnem-C"><span class="mw">Sleep</span> <span class="md">— insomnia or hypersomnia</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">I</div><div class="mnem-C"><span class="mw">Interest</span> <span class="md">— loss of interest / anhedonia</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">G</div><div class="mnem-C"><span class="mw">Guilt</span> <span class="md">— excessive guilt or worthlessness</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">E</div><div class="mnem-C"><span class="mw">Energy</span> <span class="md">— fatigue, loss of energy</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">C</div><div class="mnem-C"><span class="mw">Concentration</span> <span class="md">— poor focus, indecisiveness</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">A</div><div class="mnem-C"><span class="mw">Appetite</span> <span class="md">— decreased OR increased</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">P</div><div class="mnem-C"><span class="mw">Psychomotor</span> <span class="md">— agitation or retardation</span></div></div>
+    <div class="mnem-row"><div class="mnem-L">S</div><div class="mnem-C"><span class="mw">Suicidality</span> <span class="md">— thoughts of death or suicide ← ALWAYS assess</span></div></div>
+  </div>
+
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">What does "anhedonia" mean exactly?</div></div><div class="flip-back bv"><div class="flip-a">Loss of interest or pleasure in previously enjoyable activities — a core diagnostic symptom of MDD</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Name 2 ways depression affects SLEEP and 2 ways it affects APPETITE</div></div><div class="flip-back bp"><div class="flip-a">Sleep: insomnia OR hypersomnia<br>Appetite: anorexia (↓) OR hyperphagia (↑) — both go either direction!</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">What are the 2 "must-have" symptoms for MDD?</div></div><div class="flip-back bt"><div class="flip-a">At least ONE of: (1) Depressed mood OR (2) Anhedonia</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ TREATMENT ════════ -->
+<div class="panel" id="panel-treatment">
+  <span class="eyebrow">⚡ Chapter Four</span>
+  <div class="page-title">Treatment<br><span class="c3">Modalities</span></div>
+  <div class="g3">
+    <div class="card cl"><h4>🧠 Psychotherapy (First Line)</h4><ul class="chk"><li>CBT — gold standard</li><li>Interpersonal Therapy (IPT)</li><li>Behavioral Activation</li><li>Often combined with medication</li></ul></div>
+    <div class="card cv"><h4>💊 Pharmacotherapy</h4><ul class="chk"><li>SSRIs — first line</li><li>SNRIs — first line</li><li>Atypicals (bupropion, mirtazapine)</li><li>TCAs / MAOIs — last resort</li></ul></div>
+    <div class="card cp"><h4>⚡ ECT — Fastest Acting</h4><ul class="chk"><li>Severe / refractory depression</li><li>Actively suicidal patients</li><li>Elderly not eating</li><li>Side effect: memory loss (temporary)</li></ul></div>
+  </div>
+
+  <div class="sec-head">Onset Timeline <span class="sr sr-h">🔥 Most Tested Fact</span></div>
+  <div class="card cv">
+    <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--violet);margin-bottom:12px">Response Timeline</div>
+    <div class="tl-bar"></div>
+    <div class="tl-m"><span>Week 1–2</span><span>Week 2–4</span><span>Week 4–6</span><span>Week 8–12</span></div>
+    <div class="tl-e">
+      <span style="color:var(--teal)">Sleep &amp; energy<br>may improve</span>
+      <span style="color:var(--blue)">Mood slowly<br>begins lifting</span>
+      <span style="color:var(--violet)">Good therapeutic<br>response</span>
+      <span style="color:var(--pink)">Full effect<br>(up to 12 wks)</span>
+    </div>
+    <div class="alert ap" style="margin-top:18px"><strong>⚠️ Critical Safety Window — Weeks 1–3</strong>Energy returns BEFORE mood lifts. Patient now has energy to act on suicidal thoughts. This is the HIGHEST-RISK period. Monitor most closely here. No improvement at 4 weeks → reassess.</div>
+  </div>
+
+  <div class="g2">
+    <div class="card cp"><h4>🚨 Black Box Warning</h4><ul class="chk"><li><strong>Highest risk: patients under 25</strong></li><li>Monitor mood and behavior changes</li><li>Watch for worsening depression or agitation</li><li>Prescribe <strong>small quantities</strong> — limit lethal means</li></ul></div>
+    <div class="card cb"><h4>⚡ ECT Key Facts</h4><ul class="chk"><li><span class="hv">Fastest-acting treatment for depression</span></li><li>Performed under general anesthesia</li><li>Does NOT permanently damage brain tissue</li><li>Typical course: 6–12 sessions</li><li>Also: TMS, vagus nerve stimulation, light therapy</li></ul></div>
+  </div>
+</div>
+
+<!-- ════════ SSRIs ════════ -->
+<div class="panel" id="panel-ssri">
+  <span class="eyebrow">💊 Drug Class · First Line</span>
+  <div class="page-title"><span class="c3">SSRIs</span><br>Safest &amp; First Line</div>
+  <div class="alert al"><strong>✅ First-Line Choice</strong>Safest class · Best tolerability · Broadest use: anxiety, depression, OCD, PTSD, panic, bulimia</div>
+
+  <div class="sec-head">Drug Gallery <span class="sr sr-h">🔥 Know Every Drug</span></div>
+  <div class="g3">
+    <div class="drug-card"><div class="drug-head" style="background:var(--teal-l);border-bottom-color:var(--teal-m)"><div class="drug-nm" style="color:var(--teal)">Fluoxetine</div><div class="drug-br">Prozac</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v"><strong>Longest half-life</strong> — weeks; least withdrawal risk</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">Depression, OCD, Bulimia, Panic</span></div><div class="drug-r"><span class="dr-k">MAOI wait</span><span class="dr-v" style="color:var(--pink);font-weight:700">5 weeks (long half-life!)</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--blue-l);border-bottom-color:var(--blue-m)"><div class="drug-nm" style="color:var(--blue)">Sertraline</div><div class="drug-br">Zoloft</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v">Minimal seizure effect; well-tolerated</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v"><strong>PTSD (FDA-approved)</strong>, OCD, Panic, Depression</span></div><div class="drug-r"><span class="dr-k">Note</span><span class="dr-v">Often first choice; fewest interactions</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--violet-l);border-bottom-color:var(--violet-m)"><div class="drug-nm" style="color:var(--violet)">Paroxetine</div><div class="drug-br">Paxil</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v">Most anticholinergic SSRI</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">Depression, GAD, OCD, Panic, PTSD, Social</span></div><div class="drug-r"><span class="dr-k">Watch</span><span class="dr-v" style="color:var(--pink);font-weight:700">Weight gain, sedation, hardest to D/C</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--yellow-l);border-bottom-color:var(--yellow-m)"><div class="drug-nm" style="color:#a07800">Citalopram</div><div class="drug-br">Celexa</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v">Fewest drug interactions</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">Depression</span></div><div class="drug-r"><span class="dr-k">Watch</span><span class="dr-v" style="color:var(--pink);font-weight:700">QT prolongation — cardiac risk</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--orange-l);border-bottom-color:var(--orange-m)"><div class="drug-nm" style="color:var(--orange)">Escitalopram</div><div class="drug-br">Lexapro</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v">Better-tolerated version of citalopram</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">Depression, GAD</span></div><div class="drug-r"><span class="dr-k">Note</span><span class="dr-v">Good first choice; clean side effect profile</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--pink-l);border-bottom-color:var(--pink-m)"><div class="drug-nm" style="color:var(--pink)">Fluvoxamine</div><div class="drug-br">Luvox</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique</span><span class="dr-v">Primarily indicated for OCD</span></div><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">OCD (main use), Social anxiety</span></div><div class="drug-r"><span class="dr-k">Watch</span><span class="dr-v" style="color:var(--pink);font-weight:700">Many CYP drug interactions</span></div></div></div>
+  </div>
+
+  <div class="sec-head">Critical Safety Points</div>
+  <div class="g2">
+    <div>
+      <div class="alert ap"><strong>⭐ Sexual Dysfunction — #1 Reason Patients Stop</strong>Decreased libido, delayed orgasm, erectile dysfunction. Educate BEFORE starting — most common reason for silent non-compliance.</div>
+      <div class="alert av"><strong>⏳ Onset — Most Tested Fact</strong>Initial: ~1–2 weeks (sleep/energy). Full mood benefit: 4–6 weeks. Black box: suicidal ideation in patients under 25.</div>
+    </div>
+    <div class="card cp">
+      <h4>🔥 Serotonin Syndrome <span class="sr sr-h">🔥 Critical</span></h4>
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--pink);margin-bottom:8px">Onset: 2–72 hrs after drug addition/change</div>
+      <div style="background:var(--pink-l);border-radius:10px;padding:14px;border:2px solid var(--pink-m);font-size:13px">
+        <div style="margin-bottom:6px">1. <strong style="color:var(--pink)">Mental status changes</strong> — agitation, confusion</div>
+        <div style="margin-bottom:6px">2. <strong style="color:var(--pink)">Neuromuscular</strong> — hyperreflexia, clonus, tremor</div>
+        <div>3. <strong style="color:var(--pink)">Autonomic</strong> — hyperthermia, diaphoresis, tachycardia</div>
+      </div>
+      <div class="alert ap" style="margin:12px 0 0"><strong>Action</strong>STOP the drug · Supportive care · Cyproheptadine (antidote)</div>
+    </div>
+  </div>
+
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which SSRI treats Bulimia AND has the longest half-life?</div></div><div class="flip-back bt"><div class="flip-a">Fluoxetine (Prozac) — 5-week washout required before starting an MAOI</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Name the 3-symptom triad of Serotonin Syndrome</div></div><div class="flip-back bp"><div class="flip-a">1. Altered mental status 2. Neuromuscular excitability (hyperreflexia/clonus) 3. Autonomic instability (fever/diaphoresis)</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which SSRI has QT prolongation risk? What to monitor?</div></div><div class="flip-back bv"><div class="flip-a">Citalopram (Celexa) — monitor ECG in cardiac patients; maximum dose restrictions apply</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SNRIs ════════ -->
+<div class="panel" id="panel-snri">
+  <span class="eyebrow">🔵 Drug Class · First Line</span>
+  <div class="page-title"><span class="c1">SNRIs</span><br>Dual-Action</div>
+  <div class="g3">
+    <div class="drug-card"><div class="drug-head" style="background:var(--blue-l);border-bottom-color:var(--blue-m)"><div class="drug-nm" style="color:var(--blue)">Venlafaxine</div><div class="drug-br">Effexor</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Uses</span><span class="dr-v">Depression, GAD, Panic, PTSD, Social</span></div><div class="drug-r"><span class="dr-k">Key Risk</span><span class="dr-v" style="color:var(--pink);font-weight:700">↑ Blood pressure (dose-dependent)</span></div><div class="drug-r"><span class="dr-k">Also Watch</span><span class="dr-v">Hyponatremia in elderly</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--teal-l);border-bottom-color:var(--teal-m)"><div class="drug-nm" style="color:var(--teal)">Duloxetine</div><div class="drug-br">Cymbalta</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Unique Use</span><span class="dr-v">Depression + <strong>Diabetic neuropathy pain</strong></span></div><div class="drug-r"><span class="dr-k">Critical Risk</span><span class="dr-v" style="color:var(--pink);font-weight:700">LIVER TOXICITY — avoid alcohol</span></div><div class="drug-r"><span class="dr-k">Also For</span><span class="dr-v">Fibromyalgia, chronic pain</span></div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--violet-l);border-bottom-color:var(--violet-m)"><div class="drug-nm" style="color:var(--violet)">Desvenlafaxine</div><div class="drug-br">Pristiq</div></div><div class="drug-bd"><div class="drug-r"><span class="dr-k">Relation</span><span class="dr-v">Active metabolite of venlafaxine</span></div><div class="drug-r"><span class="dr-k">Advantage</span><span class="dr-v">Fewer drug interactions than venlafaxine</span></div><div class="drug-r"><span class="dr-k">Key Risk</span><span class="dr-v" style="color:var(--pink);font-weight:700">↑ Blood pressure</span></div></div></div>
+  </div>
+  <div class="alert ap" style="margin-top:20px"><strong>🩺 SNRI Nursing Priority — Monitor BP!</strong>SNRIs increase norepinephrine → can raise blood pressure. Check BP before initiating, then regularly throughout therapy. Most-tested SNRI nursing action on NCLEX.</div>
+  <div class="tbl-outer"><table><thead><tr><th>Feature</th><th>SSRIs</th><th>SNRIs</th></tr></thead><tbody>
+    <tr><td>Neurotransmitters</td><td>Serotonin only</td><td>Serotonin + Norepinephrine</td></tr>
+    <tr><td>Unique side effect</td><td>Sexual dysfunction</td><td style="color:var(--pink);font-weight:700">Hypertension — monitor BP!</td></tr>
+    <tr><td>Pain management</td><td>Limited</td><td>Yes — duloxetine especially</td></tr>
+    <tr><td>Liver concern</td><td>Minimal</td><td>Duloxetine → hepatotoxicity</td></tr>
+    <tr><td>Routine BP monitoring</td><td>Not required</td><td style="font-weight:800">Required throughout therapy</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ════════ TCAs ════════ -->
+<div class="panel" id="panel-tca">
+  <span class="eyebrow">⚠️ Drug Class · Last Line</span>
+  <div class="page-title"><span class="c4">TCAs</span><br>Handle With Care</div>
+  <div class="alert ap"><strong>⚠️ High-Risk Class</strong>Rarely first-line due to lethal overdose potential and heavy side effect burden. Use only when SSRIs/SNRIs fail.</div>
+  <div class="g2">
+    <div class="card co"><h4>💊 Examples</h4><ul class="chk"><li><strong>Imipramine</strong> — prototype</li><li>Amitriptyline (Elavil)</li><li>Clomipramine (OCD — second line)</li><li>Nortriptyline</li></ul></div>
+    <div class="card cy"><h4>🔬 Why So Many Side Effects?</h4><p style="font-size:13.5px;color:var(--text2)">TCAs block NE + serotonin reuptake, but ALSO block:</p><ul class="chk" style="margin-top:8px"><li>Muscarinic receptors → anticholinergic effects</li><li>Alpha-1 adrenergic → orthostatic hypotension</li><li>Histamine receptors → sedation</li></ul></div>
+  </div>
+  <div class="sec-head">Side Effects by System</div>
+  <div class="g3">
+    <div class="card cv"><h4>🧠 Anticholinergic</h4><ul class="chk"><li>Dry mouth</li><li>Constipation</li><li>Urinary retention</li><li>Blurred vision</li><li>Confusion (elderly!)</li></ul></div>
+    <div class="card cp"><h4>❤️ Cardiovascular</h4><ul class="chk"><li>Orthostatic hypotension</li><li>Dysrhythmias</li><li>QT prolongation</li><li>Tachycardia</li></ul></div>
+    <div class="card cb"><h4>💊 CNS</h4><ul class="chk"><li>Sedation (significant)</li><li>Confusion</li><li>Seizures at toxic levels</li></ul></div>
+  </div>
+  <div class="alert ap"><strong>💀 TCA Overdose — Life-Threatening</strong>Tachycardia · Dysrhythmias · Ventricular fibrillation · Wide QRS (classic ECG sign) · Seizures<br><strong>Treatment: Activated charcoal + Sodium bicarbonate · ICU monitoring</strong><br>Nursing: Give 1-week supply ONLY. High lethality = limit lethal means in depressed patients.</div>
+  <div class="feynman">
+    <div class="feynman-q">A patient asks: "Why can't I get 3 months of TCAs refilled at once like my blood pressure medication?" How do you explain this?</div>
+    <button class="fey-btn" onclick="toggleF(this)">Show Model Answer</button>
+    <div class="feynman-a">"That's a really good question. Unlike blood pressure medications, this medication can cause serious heart rhythm problems if too much is taken at once. That makes a large supply risky — not because we don't trust you, but because depression can sometimes change a person's thinking in ways that put them at risk. Keeping the supply small is a safety measure we use for everyone on this medication."</div>
+  </div>
+</div>
+
+<!-- ════════ MAOIs ════════ -->
+<div class="panel" id="panel-maoi">
+  <span class="eyebrow">🚨 Drug Class · Last Resort</span>
+  <div class="page-title"><span class="c2">MAOIs</span><br>Strict Restrictions</div>
+  <div class="alert ap"><strong>🚨 Last Resort Class</strong>Reserved for refractory/atypical depression. One wrong meal or drug combination = medical emergency.</div>
+  <div class="g3">
+    <div class="drug-card"><div class="drug-head" style="background:var(--pink-l);border-bottom-color:var(--pink-m)"><div class="drug-nm" style="color:var(--pink)">Phenelzine</div><div class="drug-br">Nardil — irreversible, non-selective</div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--yellow-l);border-bottom-color:var(--yellow-m)"><div class="drug-nm" style="color:#a07800">Isocarboxazid</div><div class="drug-br">Marplan — irreversible, non-selective</div></div></div>
+    <div class="drug-card"><div class="drug-head" style="background:var(--violet-l);border-bottom-color:var(--violet-m)"><div class="drug-nm" style="color:var(--violet)">Tranylcypromine</div><div class="drug-br">Parnate — irreversible, non-selective</div></div></div>
+  </div>
+  <div class="sec-head">The Tyramine Reaction <span class="sr sr-h">🔥 #1 MAOI Danger</span></div>
+  <div class="pathway">
+    <div class="p-nd" style="border-color:var(--yellow-m);color:#a07800">Tyramine-rich food eaten</div>
+    <div class="p-ar">→</div>
+    <div class="p-nd" style="border-color:var(--orange-m);color:var(--orange)">MAO blocked — can't break down tyramine</div>
+    <div class="p-ar">→</div>
+    <div class="p-nd" style="border-color:var(--pink-m);background:var(--pink-l);color:var(--pink)">Tyramine ↑ → massive NE release → ↑↑ BP → <strong>Hypertensive Crisis</strong></div>
+  </div>
+  <div class="g3" style="margin-top:16px">
+    <div class="card cp"><h4>🧀 Aged &amp; Fermented</h4><ul class="chk"><li>Aged cheeses (cheddar, brie, blue)</li><li>Cured / smoked meats</li><li>Smoked fish</li><li>Soy sauce, miso, tofu, tempeh</li></ul></div>
+    <div class="card co"><h4>🍷 Beverages</h4><ul class="chk"><li>Red wine</li><li>Beer (especially tap/draft)</li><li>Champagne</li></ul></div>
+    <div class="card cb"><h4>🥑 Other</h4><ul class="chk"><li>Overripe bananas / avocados</li><li>Fava beans</li><li>Yeast extracts (Marmite)</li></ul></div>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="alert ap"><strong>🚨 Hypertensive Crisis Signs</strong>Severe throbbing headache · Severe HTN · Diaphoresis · Stiff neck · Palpitations · Risk of stroke/death<br><strong>Tx:</strong> Phentolamine · Nitroprusside · Labetalol</div>
+    <div class="alert av"><strong>💀 Drug Interactions</strong>SSRI + MAOI → fatal serotonin syndrome<br>Meperidine (Demerol) + MAOI → hyperpyrexia, death<br>St. John's Wort + MAOI → serotonin syndrome<br>Wait: <strong>14 days</strong> after SSRI; <strong>5 weeks</strong> after fluoxetine</div>
+  </div>
+  <div class="flip-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Name 3 tyramine-rich foods to avoid on a MAOI</div></div><div class="flip-back bp"><div class="flip-a">Aged cheese · Cured/smoked meats · Red wine (+ many more — strict lifelong diet required)</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">How long to wait after stopping an SSRI before starting a MAOI?</div></div><div class="flip-back bo"><div class="flip-a">14 days (2 weeks) for most SSRIs — 5 WEEKS for fluoxetine (longest half-life)</div></div></div></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front"><div class="flip-q">Which opioid is absolutely contraindicated with MAOIs?</div></div><div class="flip-back bv"><div class="flip-a">Meperidine (Demerol) → fatal hyperpyrexia + serotonin syndrome. Absolutely contraindicated.</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ ATYPICALS ════════ -->
+<div class="panel" id="panel-atypical">
+  <span class="eyebrow">🌿 Drug Class · Alternative</span>
+  <div class="page-title"><span class="c1">Atypical</span><br>Antidepressants</div>
+  <div class="sec-head">Bupropion — The Different One <span class="sr sr-h">🔥 High Yield</span></div>
+  <div class="drug-card" style="max-width:600px;margin-bottom:20px">
+    <div class="drug-head" style="background:linear-gradient(135deg,var(--violet-l),var(--pink-l));border-bottom-color:var(--violet-m)"><div class="drug-nm" style="color:var(--violet)">Bupropion</div><div class="drug-br">Wellbutrin / Zyban (smoking cessation)</div></div>
+    <div class="drug-bd">
+      <div class="drug-r"><span class="dr-k">Mechanism</span><span class="dr-v">Blocks <strong>Dopamine + NE</strong> — NO serotonin effect</span></div>
+      <div class="drug-r"><span class="dr-k">✅ Advantages</span><span class="dr-v" style="color:var(--teal);font-weight:700">NO sexual dysfunction · Weight loss · Energizing · Smoking cessation</span></div>
+      <div class="drug-r"><span class="dr-k">🚨 Risk</span><span class="dr-v" style="color:var(--pink);font-weight:700">SEIZURES (dose-dependent) — most important risk</span></div>
+      <div class="drug-r"><span class="dr-k">Nursing</span><span class="dr-v">Give in <strong>morning</strong> (activating → insomnia if PM dose)</span></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="alert ap"><strong>🚨 Absolute Contraindications</strong><ul style="margin-top:6px;padding-left:16px;color:var(--text2)"><li>Seizure disorder or history of seizures</li><li>Head trauma / brain injury</li><li>Eating disorders (anorexia, bulimia)</li><li>Abrupt alcohol or benzo withdrawal</li></ul></div>
+    <div class="card cv"><h4>Other Atypicals</h4><div class="drug-r" style="padding:8px 0"><span class="dr-k">Mirtazapine</span><span class="dr-v">Sedation + appetite ↑ — great for depression with insomnia/weight loss</span></div><div class="drug-r" style="padding:8px 0"><span class="dr-k">Trazodone</span><span class="dr-v">Sedation — used for sleep; watch for priapism (rare)</span></div><div class="drug-r" style="padding:8px 0"><span class="dr-k">St. John's Wort</span><span class="dr-v" style="color:var(--pink);font-weight:700">Many interactions — serotonin syndrome risk</span></div></div>
+  </div>
+  <div class="feynman">
+    <div class="feynman-q">A patient says: "I stopped my Zoloft because I couldn't tolerate the sexual side effects." How would you explain bupropion as an alternative?</div>
+    <button class="fey-btn" onclick="toggleF(this)">Show Model Answer</button>
+    <div class="feynman-a">"That's actually one of the most common reasons people switch. There's another antidepressant called bupropion (Wellbutrin) that works on completely different brain chemicals — dopamine and norepinephrine rather than serotonin. Because of this, sexual dysfunction is much less likely, and some patients actually notice improved energy and libido. Some people also lose a little weight rather than gain. The main thing we'd need to check is whether you have any history of seizures, head injury, or eating disorders, because those would rule it out."</div>
+  </div>
+</div>
+
+<!-- ════════ COMPARE ════════ -->
+<div class="panel" id="panel-compare">
+  <span class="eyebrow">📊 Master Reference</span>
+  <div class="page-title">All Classes<br><span class="c1">Side by Side</span></div>
+  <div class="sec-head">Safety Spectrum</div>
+  <div class="spec-bar">
+    <div class="spec-seg" style="background:var(--teal)">SSRIs<br><small style="font-weight:500;opacity:0.85">Safest</small></div>
+    <div class="spec-seg" style="background:var(--blue)">SNRIs<br><small style="font-weight:500;opacity:0.85">Safe</small></div>
+    <div class="spec-seg" style="background:var(--violet)">Bupropion<br><small style="font-weight:500;opacity:0.85">Moderate</small></div>
+    <div class="spec-seg" style="background:var(--orange)">TCAs<br><small style="font-weight:500;opacity:0.85">Dangerous</small></div>
+    <div class="spec-seg" style="background:var(--pink)">MAOIs<br><small style="font-weight:500;opacity:0.85">Most Dangerous</small></div>
+  </div>
+  <div class="cmp-row">
+    <div class="cmp-tile"><div class="cmp-head" style="background:var(--teal-l);color:var(--teal)">SSRIs<br><small style="font-weight:500;font-size:10px">First Line</small></div><div class="cmp-r"><span class="cmp-k">Safety</span>Safest</div><div class="cmp-r"><span class="cmp-k">Key Risk</span>Sexual dysfunction</div><div class="cmp-r"><span class="cmp-k">Onset</span>4–6 weeks</div><div class="cmp-r"><span class="cmp-k">Uses</span>Depression, anxiety, OCD, PTSD, Bulimia</div><div class="cmp-r"><span class="cmp-k">Overdose</span>Relatively safe</div></div>
+    <div class="cmp-tile"><div class="cmp-head" style="background:var(--blue-l);color:var(--blue)">SNRIs<br><small style="font-weight:500;font-size:10px">First Line</small></div><div class="cmp-r"><span class="cmp-k">Safety</span>Safe</div><div class="cmp-r"><span class="cmp-k">Key Risk</span>Hypertension</div><div class="cmp-r"><span class="cmp-k">Onset</span>4–6 weeks</div><div class="cmp-r"><span class="cmp-k">Uses</span>Depression, pain, anxiety</div><div class="cmp-r"><span class="cmp-k">Overdose</span>Relatively safe</div></div>
+    <div class="cmp-tile"><div class="cmp-head" style="background:var(--violet-l);color:var(--violet)">Bupropion<br><small style="font-weight:500;font-size:10px">Alternative</small></div><div class="cmp-r"><span class="cmp-k">Safety</span>Moderate</div><div class="cmp-r"><span class="cmp-k">Key Risk</span>Seizures</div><div class="cmp-r"><span class="cmp-k">Onset</span>2–4 weeks</div><div class="cmp-r"><span class="cmp-k">Uses</span>Depression, smoking cessation</div><div class="cmp-r"><span class="cmp-k">Overdose</span>Seizure risk</div></div>
+    <div class="cmp-tile"><div class="cmp-head" style="background:var(--orange-l);color:var(--orange)">TCAs<br><small style="font-weight:500;font-size:10px">Last Line</small></div><div class="cmp-r"><span class="cmp-k">Safety</span>Dangerous</div><div class="cmp-r"><span class="cmp-k">Key Risk</span>Cardiotoxicity</div><div class="cmp-r"><span class="cmp-k">Onset</span>2–6 weeks</div><div class="cmp-r"><span class="cmp-k">Uses</span>Refractory depression</div><div class="cmp-r"><span class="cmp-k">Overdose</span><span style="color:var(--pink);font-weight:700">LETHAL — V-fib</span></div></div>
+    <div class="cmp-tile"><div class="cmp-head" style="background:var(--pink-l);color:var(--pink)">MAOIs<br><small style="font-weight:500;font-size:10px">Last Resort</small></div><div class="cmp-r"><span class="cmp-k">Safety</span>Most Dangerous</div><div class="cmp-r"><span class="cmp-k">Key Risk</span>HTN Crisis</div><div class="cmp-r"><span class="cmp-k">Onset</span>2–4 weeks</div><div class="cmp-r"><span class="cmp-k">Uses</span>Refractory/atypical</div><div class="cmp-r"><span class="cmp-k">Overdose</span><span style="color:var(--pink);font-weight:700">Fatal + strict diet</span></div></div>
+  </div>
+
+  <div class="sec-head">Spaced Repetition Study Plan 📅</div>
+  <div class="sr-sched">
+    <div class="sr-step"><div class="sr-n">1</div><div><strong>Today:</strong> Read all panels. Complete every flip card set. Do 5 NCLEX questions.</div></div>
+    <div class="sr-step"><div class="sr-n">2</div><div><strong>Tomorrow:</strong> Redo all flip cards from memory — no notes. Focus on weak panels.</div></div>
+    <div class="sr-step"><div class="sr-n">3</div><div><strong>Day 3:</strong> Close the guide. Write the comparison table from memory, then verify.</div></div>
+    <div class="sr-step"><div class="sr-n">4</div><div><strong>Day 4–5:</strong> Teach someone using the Feynman prompts. No notes allowed.</div></div>
+    <div class="sr-step"><div class="sr-n">5</div><div><strong>Night before exam:</strong> Review only NCLEX Traps + MAOI tyramine foods + TCA overdose treatment.</div></div>
+  </div>
+
+  <div class="sec-head">Full Drug Reference</div>
+  <div class="tbl-outer"><table><thead><tr><th>Drug</th><th>Class</th><th>Key Indication</th><th>Unique Feature/Risk</th><th>Nursing Priority</th></tr></thead><tbody>
+    <tr><td><strong>Fluoxetine</strong> (Prozac)</td><td>SSRI</td><td>Depression, OCD, Bulimia</td><td>Longest half-life — least withdrawal</td><td>5-wk MAOI washout</td></tr>
+    <tr><td><strong>Sertraline</strong> (Zoloft)</td><td>SSRI</td><td>PTSD, Depression, OCD</td><td>FDA-approved PTSD; well-tolerated</td><td>Monitor mood/suicidality</td></tr>
+    <tr><td><strong>Paroxetine</strong> (Paxil)</td><td>SSRI</td><td>GAD, Panic, OCD, PTSD</td><td>Most anticholinergic; hardest to D/C</td><td>Never stop abruptly</td></tr>
+    <tr><td><strong>Citalopram</strong> (Celexa)</td><td>SSRI</td><td>Depression</td><td>QT prolongation risk</td><td>Monitor ECG in cardiac pts</td></tr>
+    <tr><td><strong>Escitalopram</strong> (Lexapro)</td><td>SSRI</td><td>Depression, GAD</td><td>Best-tolerated SSRI</td><td>Standard SSRI monitoring</td></tr>
+    <tr><td><strong>Venlafaxine</strong> (Effexor)</td><td>SNRI</td><td>Depression, GAD, PTSD</td><td>↑ BP (dose-dependent)</td><td>Monitor BP regularly</td></tr>
+    <tr><td><strong>Duloxetine</strong> (Cymbalta)</td><td>SNRI</td><td>Depression, pain syndromes</td><td>Liver toxicity — avoid alcohol</td><td>Monitor LFTs; no alcohol</td></tr>
+    <tr><td><strong>Imipramine</strong></td><td>TCA</td><td>Refractory depression</td><td>Cardiotoxic — lethal in OD</td><td>1-week supply; ECG monitoring</td></tr>
+    <tr><td><strong>Phenelzine</strong> (Nardil)</td><td>MAOI</td><td>Refractory/atypical depression</td><td>Tyramine → hypertensive crisis</td><td>Strict diet; 14-day washout</td></tr>
+    <tr><td><strong>Bupropion</strong> (Wellbutrin)</td><td>Atypical</td><td>Depression, smoking cessation</td><td>No sexual SE; seizure risk</td><td>CI in seizure disorder; give AM</td></tr>
+    <tr><td><strong>Mirtazapine</strong> (Remeron)</td><td>Atypical</td><td>Depression + insomnia/weight loss</td><td>Sedation + appetite stimulation</td><td>Give at bedtime; monitor weight</td></tr>
+    <tr><td><strong>Trazodone</strong></td><td>Atypical</td><td>Depression, insomnia</td><td>Priapism (rare but serious)</td><td>Teach to report prolonged erection</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ════════ TRAPS ════════ -->
+<div class="panel" id="panel-traps">
+  <span class="eyebrow">🪤 Exam Prep</span>
+  <div class="page-title">NCLEX <span class="c2">Traps</span><br>&amp; Pitfalls</div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #1 — "Medication works within days"</strong>WRONG for all antidepressants. Initial effects at 1–2 weeks (sleep, energy). Full mood benefit: 4–6 weeks. Correct teaching: "It may take 3–4 weeks to notice mood improvement."</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #2 — MAOI + SSRI with "a few days" between</strong>DEADLY. Must wait 14 days after stopping most SSRIs, and 5 WEEKS after stopping fluoxetine. This combination causes fatal serotonin syndrome.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #3 — "Any fresh food is fine on a MAOI"</strong>WRONG. Even some "fresh" foods (overripe banana, avocado, fava beans) contain tyramine. Aged, fermented, cured, and smoked = always off limits.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #4 — Stopping antidepressants abruptly is fine</strong>WRONG. Discontinuation syndrome: flu-like symptoms, "brain zaps," dizziness, irritability. Always taper. Applies to SSRIs, SNRIs, and TCAs.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #5 — Bupropion safe in seizure/eating disorder history</strong>WRONG. Absolute contraindication. Seizure disorder, head injury, anorexia, and bulimia all lower seizure threshold — combined with bupropion is dangerous.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #6 — Energy returning = less monitoring needed</strong>OPPOSITE. The early energy return before mood lifts is the HIGHEST risk window for suicide. Increase monitoring, not decrease.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #7 — Diphenhydramine (Benadryl) is safe with TCAs</strong>WRONG. Both highly anticholinergic → additive toxicity: urinary retention, confusion, delirium, blurred vision — dangerous especially in elderly.</div></div>
+  <div class="trap"><div class="trap-i">❌</div><div class="trap-b"><strong>Trap #8 — "Serotonin syndrome is just feeling jittery"</strong>WRONG. It's a triad: altered mental status + neuromuscular excitability + autonomic instability. Can be FATAL. Stop the drug immediately.</div></div>
+
+  <div class="sec-head">Quick Decision Reference</div>
+  <div class="tbl-outer"><table><thead><tr><th>NCLEX Asks...</th><th>Correct Answer</th></tr></thead><tbody>
+    <tr><td>First-line antidepressant</td><td><strong class="ht">SSRI or SNRI</strong></td></tr>
+    <tr><td>Fastest treatment for depression</td><td><strong class="hp">ECT</strong></td></tr>
+    <tr><td>No sexual dysfunction antidepressant</td><td><strong class="hv">Bupropion</strong></td></tr>
+    <tr><td>Most dangerous antidepressant class</td><td><strong class="hp">MAOIs</strong></td></tr>
+    <tr><td>MAOI + what food = crisis</td><td><strong class="hy">Tyramine-rich foods (aged cheese, cured meats)</strong></td></tr>
+    <tr><td>TCA overdose treatment</td><td><strong class="hb">Activated charcoal + Sodium bicarbonate</strong></td></tr>
+    <tr><td>Highest suicide monitoring period</td><td><strong class="hp">Weeks 1–3 especially in under-25</strong></td></tr>
+    <tr><td>Bupropion absolute contraindication</td><td><strong class="hp">Seizure disorder, head injury, eating disorders</strong></td></tr>
+    <tr><td>SNRI unique side effect</td><td><strong class="hb">Hypertension — monitor BP throughout therapy</strong></td></tr>
+    <tr><td>Which SSRI treats Bulimia?</td><td><strong class="ht">Fluoxetine (Prozac)</strong></td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ════════ NCLEX ════════ -->
+<div class="panel" id="panel-nclex">
+  <span class="eyebrow">❓ Exam Prep</span>
+  <div class="page-title">Practice<br><span class="c1">Questions</span></div>
+  <p style="color:var(--text2);margin-bottom:32px;font-size:15px">Select All That Apply · Expected/Unexpected · Appropriate/Not Appropriate · Priority</p>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q1</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Select All That Apply</span></div><div class="q-stem">A nurse is discharging a patient newly prescribed sertraline for MDD. Which teaching points should be included? Select all that apply.</div></div></div><div class="q-opts"><div class="q-opt" id="q1a" onclick="tS(this)"><span class="opt-dot">A</span><span>"Sleep and energy may improve in 1–2 weeks, but full mood benefit takes 4–6 weeks."</span></div><div class="q-opt" id="q1b" onclick="tS(this)"><span class="opt-dot">B</span><span>"If you feel no different after 3 days, stop the medication — it isn't working."</span></div><div class="q-opt" id="q1c" onclick="tS(this)"><span class="opt-dot">C</span><span>"Report any new or worsening thoughts of self-harm to your provider immediately."</span></div><div class="q-opt" id="q1d" onclick="tS(this)"><span class="opt-dot">D</span><span>"Do not stop this medication abruptly — always consult your provider first."</span></div><div class="q-opt" id="q1e" onclick="tS(this)"><span class="opt-dot">E</span><span>"Sexual side effects such as decreased libido are possible — let your provider know."</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rS('r1',['q1a','q1c','q1d','q1e'])">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r1"><strong>✅ Correct: A, C, D, E</strong><br><br><strong>A —</strong> Accurate onset timeline: sleep/energy 1–2 weeks, full mood benefit 4–6 weeks.<br><br><strong>C —</strong> Black box warning — suicidal ideation risk especially under-25. Must report immediately.<br><br><strong>D —</strong> Abrupt discontinuation = discontinuation syndrome. Always taper.<br><br><strong>E —</strong> Sexual dysfunction is the most common reason patients stop SSRIs. Proactive education prevents silent non-compliance.<br><br><strong>B — WRONG:</strong> Never stop after 3 days. SSRIs require weeks. Abrupt stops cause discontinuation syndrome.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q2</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Expected / Unexpected</span></div><div class="q-stem">A patient on phenelzine (Nardil) calls after a dinner party reporting a severe throbbing headache, stiff neck, and racing heart. The nurse MOST correctly identifies this as:</div></div></div><div class="q-opts"><div class="q-opt" id="q2a" onclick="sQ('q2',this,'wrong')"><span class="opt-dot">A</span><span>An expected MAOI side effect manageable with acetaminophen.</span></div><div class="q-opt" id="q2b" onclick="sQ('q2',this,'correct')"><span class="opt-dot">B</span><span>An UNEXPECTED, dangerous sign of hypertensive crisis from tyramine ingestion — emergency evaluation needed.</span></div><div class="q-opt" id="q2c" onclick="sQ('q2',this,'wrong')"><span class="opt-dot">C</span><span>Expected discontinuation syndrome symptoms.</span></div><div class="q-opt" id="q2d" onclick="sQ('q2',this,'wrong')"><span class="opt-dot">D</span><span>An expected antidepressant initiation reaction that will resolve in 2 weeks.</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rA('r2','q2b')">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r2"><strong>✅ Correct: B</strong><br><br>Classic tyramine reaction after a dinner party. Severe throbbing headache + stiff neck + cardiovascular symptoms = MAOI hypertensive crisis. This is a medical emergency. Treatment: phentolamine, nitroprusside, or labetalol. NOT a normal side effect.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q3</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Appropriate / Not Appropriate</span></div><div class="q-stem">A 21-year-old started fluoxetine 10 days ago. His mother calls: "He has more energy now and is up making plans, but still says everything is hopeless." Which nursing response is MOST appropriate?</div></div></div><div class="q-opts"><div class="q-opt" id="q3a" onclick="sQ('q3',this,'wrong')"><span class="opt-dot">A</span><span>"The returning energy is great — the medication is working. Call back in 2 weeks."</span></div><div class="q-opt" id="q3b" onclick="sQ('q3',this,'correct')"><span class="opt-dot">B</span><span>"This is the critical safety window. Energy returns before mood lifts, raising suicide risk. Bring him in today — do not leave him alone."</span></div><div class="q-opt" id="q3c" onclick="sQ('q3',this,'wrong')"><span class="opt-dot">C</span><span>"Since he still feels hopeless, stop the medication and try a different one."</span></div><div class="q-opt" id="q3d" onclick="sQ('q3',this,'wrong')"><span class="opt-dot">D</span><span>"The medication takes 4–6 weeks — have him rest more to reduce the energy surge."</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rA('r3','q3b')">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r3"><strong>✅ Correct: B</strong><br><br>The energy-before-mood window is the most dangerous period of SSRI therapy. The patient has renewed energy but unresolved hopelessness — the highest-risk scenario for suicidal action. Same-day evaluation required. This is a safety emergency.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q4</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Select All That Apply</span></div><div class="q-stem">A patient is being evaluated for bupropion. Which findings should the nurse report as contraindications? Select all that apply.</div></div></div><div class="q-opts"><div class="q-opt" id="q4a" onclick="tS(this)"><span class="opt-dot">A</span><span>History of generalized tonic-clonic seizures, last episode 2 years ago.</span></div><div class="q-opt" id="q4b" onclick="tS(this)"><span class="opt-dot">B</span><span>Daily exercise, BMI of 24, no significant PMH.</span></div><div class="q-opt" id="q4c" onclick="tS(this)"><span class="opt-dot">C</span><span>Past history of bulimia nervosa, currently in remission.</span></div><div class="q-opt" id="q4d" onclick="tS(this)"><span class="opt-dot">D</span><span>Moderate TBI from a car accident 3 years ago.</span></div><div class="q-opt" id="q4e" onclick="tS(this)"><span class="opt-dot">E</span><span>Difficulty sleeping and low energy (current depression symptoms).</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rS('r4',['q4a','q4c','q4d'])">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r4"><strong>✅ Correct — Contraindications: A, C, D</strong><br><br><strong>A —</strong> Seizure history = absolute contraindication.<br><strong>C —</strong> Bulimia/anorexia history lowers seizure threshold further.<br><strong>D —</strong> TBI increases seizure susceptibility.<br><strong>B —</strong> Healthy BMI and exercise = not a concern.<br><strong>E —</strong> Insomnia and low energy are depression symptoms bupropion treats — give AM dose.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q5</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Appropriate Response</span></div><div class="q-stem">A patient with severe treatment-resistant depression is prescribed ECT. The daughter asks: "Why are they doing shock therapy — isn't that dangerous?" Which response is MOST appropriate?</div></div></div><div class="q-opts"><div class="q-opt" id="q5a" onclick="sQ('q5',this,'wrong')"><span class="opt-dot">A</span><span>"ECT is experimental and has many dangerous long-term side effects."</span></div><div class="q-opt" id="q5b" onclick="sQ('q5',this,'correct')"><span class="opt-dot">B</span><span>"ECT is safe and effective — it's the fastest-acting treatment for severe depression, done under anesthesia, with temporary memory changes as the main side effect."</span></div><div class="q-opt" id="q5c" onclick="sQ('q5',this,'wrong')"><span class="opt-dot">C</span><span>"ECT permanently damages brain tissue but is the only option left."</span></div><div class="q-opt" id="q5d" onclick="sQ('q5',this,'wrong')"><span class="opt-dot">D</span><span>"I can't discuss this — you'll need to speak with the doctor."</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rA('r5','q5b')">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r5"><strong>✅ Correct: B</strong><br><br>ECT is legitimate, evidence-based, and fastest-acting for severe/refractory depression. Performed under anesthesia, does NOT permanently damage brain tissue, main side effect is temporary memory loss. Nurses can and should provide factual education to family members.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q6</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Select All That Apply</span></div><div class="q-stem">A patient taking sertraline is started on tramadol by another provider. Four hours later: agitation, confusion, muscle twitching, temp 103.4°F. Which nursing actions are appropriate? Select all that apply.</div></div></div><div class="q-opts"><div class="q-opt" id="q6a" onclick="tS(this)"><span class="opt-dot">A</span><span>Recognize this as likely serotonin syndrome and notify the provider immediately.</span></div><div class="q-opt" id="q6b" onclick="tS(this)"><span class="opt-dot">B</span><span>Reassure the patient this is a normal adjustment reaction.</span></div><div class="q-opt" id="q6c" onclick="tS(this)"><span class="opt-dot">C</span><span>Prepare to hold serotonergic medications per provider order.</span></div><div class="q-opt" id="q6d" onclick="tS(this)"><span class="opt-dot">D</span><span>Monitor vitals, temperature, and neurological status closely.</span></div><div class="q-opt" id="q6e" onclick="tS(this)"><span class="opt-dot">E</span><span>Encourage rest and fluids — the fever will likely resolve on its own.</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rS('r6',['q6a','q6c','q6d'])">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r6"><strong>✅ Correct: A, C, D</strong><br><br>Classic serotonin syndrome: SSRI + tramadol. <strong>A —</strong> Recognize and escalate — potentially fatal. <strong>C —</strong> Stop causative agents. <strong>D —</strong> Emergency monitoring. <strong>B — Wrong:</strong> Not a normal reaction. <strong>E — Wrong:</strong> 103.4°F + neuro changes = emergency, not "rest and fluids."</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q7</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Understanding Check</span></div><div class="q-stem">A patient prescribed phenelzine is being discharged. Which statement indicates BEST understanding of dietary teaching?</div></div></div><div class="q-opts"><div class="q-opt" id="q7a" onclick="sQ('q7',this,'wrong')"><span class="opt-dot">A</span><span>"A small glass of red wine with dinner is fine in moderation."</span></div><div class="q-opt" id="q7b" onclick="sQ('q7',this,'wrong')"><span class="opt-dot">B</span><span>"I should avoid all fresh fruits and vegetables since they contain tyramine."</span></div><div class="q-opt" id="q7c" onclick="sQ('q7',this,'correct')"><span class="opt-dot">C</span><span>"I will avoid aged cheeses, cured meats, smoked fish, and red wine because they could cause a dangerous blood pressure spike."</span></div><div class="q-opt" id="q7d" onclick="sQ('q7',this,'wrong')"><span class="opt-dot">D</span><span>"Diet restrictions only apply for the first 2 weeks — then I can eat normally."</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rA('r7','q7c')">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r7"><strong>✅ Correct: C</strong><br><br>Patient correctly identifies the major tyramine sources AND the consequence (dangerous hypertension). <strong>A — Wrong:</strong> Red wine contains tyramine. <strong>B — Wrong:</strong> Fresh fruits/vegetables are safe. <strong>D — Wrong:</strong> Restrictions apply the ENTIRE duration of MAOI therapy.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q8</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Select All That Apply — TCA</span></div><div class="q-stem">A patient is prescribed imipramine (TCA). Which nursing assessments are MOST important? Select all that apply.</div></div></div><div class="q-opts"><div class="q-opt" id="q8a" onclick="tS(this)"><span class="opt-dot">A</span><span>Monitor heart rate and ECG for dysrhythmias.</span></div><div class="q-opt" id="q8b" onclick="tS(this)"><span class="opt-dot">B</span><span>Assess for urinary retention and constipation (anticholinergic effects).</span></div><div class="q-opt" id="q8c" onclick="tS(this)"><span class="opt-dot">C</span><span>Monitor blood pressure, especially with position changes.</span></div><div class="q-opt" id="q8d" onclick="tS(this)"><span class="opt-dot">D</span><span>Ensure a 90-day supply is dispensed to promote adherence.</span></div><div class="q-opt" id="q8e" onclick="tS(this)"><span class="opt-dot">E</span><span>Assess suicidal ideation and restrict quantity dispensed at each visit.</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rS('r8',['q8a','q8b','q8c','q8e'])">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r8"><strong>✅ Correct: A, B, C, E</strong><br><br><strong>A —</strong> TCAs are cardiotoxic — ECG monitoring required. <strong>B —</strong> Anticholinergic SE monitoring essential. <strong>C —</strong> Orthostatic hypotension — assess lying/sitting/standing BP. <strong>E —</strong> 1-week supply ONLY — lethal in OD.<br><br><strong>D — WRONG:</strong> A 90-day supply of TCAs to a depressed patient is dangerous and potentially lethal.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q9</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Therapeutic Communication</span></div><div class="q-stem">A depressed patient says: "I've been on this antidepressant a week and feel no different. It's pointless to keep taking it. Nothing ever helps me." Which response is MOST appropriate?</div></div></div><div class="q-opts"><div class="q-opt" id="q9a" onclick="sQ('q9',this,'wrong')"><span class="opt-dot">A</span><span>"You've only been on it a week — just be patient. It'll work eventually."</span></div><div class="q-opt" id="q9b" onclick="sQ('q9',this,'correct')"><span class="opt-dot">B</span><span>"It sounds like you're feeling really discouraged. I want to hear more — and are you having any thoughts of hurting yourself? Antidepressants typically take 4–6 weeks to work."</span></div><div class="q-opt" id="q9c" onclick="sQ('q9',this,'wrong')"><span class="opt-dot">C</span><span>"One week isn't enough data. Let's wait 6 months and see what happens."</span></div><div class="q-opt" id="q9d" onclick="sQ('q9',this,'wrong')"><span class="opt-dot">D</span><span>"These thoughts mean the medication is causing negative thinking — stop taking it immediately."</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rA('r9','q9b')">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r9"><strong>✅ Correct: B</strong><br><br>Validates feelings + assesses suicidal ideation (hidden in "nothing ever helps me, pointless") + provides accurate onset education. <strong>A —</strong> Dismissive, misses safety assessment. <strong>C —</strong> "6 months" incorrect. <strong>D —</strong> Never tell a patient to stop an antidepressant abruptly.</div></div></div>
+
+  <div class="q-wrap"><div class="q-top"><div><div class="q-num">Q10</div></div><div style="flex:1"><div style="display:flex;gap:8px;margin-bottom:8px"><span class="q-type">Select All That Apply — Lifespan</span></div><div class="q-stem">Which statements accurately reflect antidepressant use across the lifespan? Select all that apply.</div></div></div><div class="q-opts"><div class="q-opt" id="q10a" onclick="tS(this)"><span class="opt-dot">A</span><span>SSRIs are generally the safest antidepressant class for elderly patients.</span></div><div class="q-opt" id="q10b" onclick="tS(this)"><span class="opt-dot">B</span><span>Children and adolescents on antidepressants have increased suicide risk per FDA black box.</span></div><div class="q-opt" id="q10c" onclick="tS(this)"><span class="opt-dot">C</span><span>Maternal SSRI use near delivery may cause neonatal abstinence syndrome.</span></div><div class="q-opt" id="q10d" onclick="tS(this)"><span class="opt-dot">D</span><span>MAOIs are the safest choice for elderly patients on multiple medications.</span></div><div class="q-opt" id="q10e" onclick="tS(this)"><span class="opt-dot">E</span><span>SSRI use in late pregnancy is associated with PPHN risk in the newborn.</span></div></div><div class="q-foot"><button class="rev-btn" onclick="rS('r10',['q10a','q10b','q10c','q10e'])">Reveal Answer &amp; Rationale ✓</button><div class="rationale" id="r10"><strong>✅ Correct: A, B, C, E</strong><br><br><strong>A —</strong> SSRIs: best safety profile for elderly; start low, go slow; monitor for hyponatremia and falls. <strong>B —</strong> FDA black box for all antidepressants in patients under 25. <strong>C —</strong> Neonatal abstinence syndrome in exposed neonates. <strong>E —</strong> Late-pregnancy SSRI use associated with PPHN.<br><br><strong>D — WRONG:</strong> MAOIs are the MOST dangerous class — especially in elderly with polypharmacy. Never a first choice.</div></div></div>
+
+</div><!-- /panel-nclex -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+const T = {'overview':'Depression Overview','pathophys':'Pathophysiology','symptoms':'Clinical Features','treatment':'Treatment Modalities','ssri':'SSRIs — First Line','snri':'SNRIs','tca':'TCAs — Dangerous','maoi':'MAOIs — Last Resort','atypical':'Atypical Antidepressants','compare':'Master Comparison','traps':'NCLEX Traps','nclex':'Practice Questions'};
+let V = new Set(['overview']);
+const TOT = Object.keys(T).length;
+
+function show(id) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+id+"'"))n.classList.add('active');});
+  document.getElementById('topTitle').textContent=T[id]||id;
+  V.add(id); upP(); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function upP() {
+  const p=Math.round((V.size/TOT)*100);
+  document.getElementById('ringFill').style.strokeDashoffset=113-(p/100)*113;
+  document.getElementById('ringPct').textContent=p+'%';
+  document.getElementById('progressText').textContent=V.size+' of '+TOT+' sections';
+}
+
+function toggleF(btn) {
+  const a=btn.nextElementSibling;
+  a.classList.toggle('show');
+  btn.textContent=a.classList.contains('show')?'Hide Answer ↑':'Show Model Answer ↓';
+}
+
+function tS(el) {
+  el.classList.toggle('sel');
+  if(el.classList.contains('sel')){
+    el.style.borderColor='var(--violet-m)'; el.style.background='var(--violet-l)';
+    const c=el.querySelector('.opt-dot');
+    c.style.background='var(--violet)'; c.style.borderColor='var(--violet)'; c.style.color='white';
+  } else {
+    el.style.borderColor=el.style.background='';
+    const c=el.querySelector('.opt-dot');
+    c.style.background=c.style.borderColor=c.style.color='';
+  }
+}
+
+function rS(rId,cIds){
+  const r=document.getElementById(rId);
+  r.classList.toggle('show');
+  if(!r.classList.contains('show'))return;
+  const qn=rId.replace('r','');
+  document.querySelectorAll('[id^="q'+qn+'"]').forEach(o=>{
+    if(cIds.includes(o.id)){o.classList.add('correct');const c=o.querySelector('.opt-dot');c.style.background='var(--lime)';c.style.borderColor='var(--lime)';c.style.color='white';}
+    else{o.classList.add('incorrect');const c=o.querySelector('.opt-dot');c.style.background='var(--pink)';c.style.borderColor='var(--pink)';c.style.color='white';}
+  });
+}
+
+function sQ(qp,el,type){
+  document.querySelectorAll('[id^="'+qp+'"]').forEach(o=>{o.style.borderColor=o.style.background='';const c=o.querySelector('.opt-dot');c.style.background=c.style.borderColor=c.style.color='';});
+  if(type==='correct'){el.style.borderColor='var(--lime-m)';el.style.background='var(--lime-l)';const c=el.querySelector('.opt-dot');c.style.background='var(--lime)';c.style.borderColor='var(--lime)';c.style.color='white';}
+  else{el.style.borderColor='var(--pink-m)';el.style.background='var(--pink-l)';const c=el.querySelector('.opt-dot');c.style.background='var(--pink)';c.style.borderColor='var(--pink)';c.style.color='white';}
+}
+
+function rA(rId,cId){
+  const r=document.getElementById(rId);
+  r.classList.toggle('show');
+  if(!r.classList.contains('show'))return;
+  const qn=rId.replace('r','');
+  document.querySelectorAll('[id^="q'+qn+'"]').forEach(o=>{
+    if(o.id===cId){o.classList.add('correct');const c=o.querySelector('.opt-dot');c.style.background='var(--lime)';c.style.borderColor='var(--lime)';c.style.color='white';}
+    else{o.classList.add('incorrect');const c=o.querySelector('.opt-dot');c.style.background='var(--pink)';c.style.borderColor='var(--pink)';c.style.color='white';}
+  });
+}
+
+upP();
+</script>
+</body>
+</html>

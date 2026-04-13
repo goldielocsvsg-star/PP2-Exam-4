@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anxiety Disorders — Nursing Exam 4 Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --surface2: #1c2030;
+    --surface3: #232840;
+    --border: #2a3050;
+    --text: #e8eaf2;
+    --muted: #8a91b0;
+    --accent-teal: #00d4b8;
+    --accent-coral: #ff6b6b;
+    --accent-gold: #ffc247;
+    --accent-lavender: #a78bfa;
+    --accent-sky: #38bdf8;
+    --accent-rose: #fb7185;
+    --accent-mint: #6ee7b7;
+    --accent-amber: #fbbf24;
+    --glow-teal: rgba(0,212,184,0.15);
+    --glow-coral: rgba(255,107,107,0.15);
+    --glow-gold: rgba(255,194,71,0.12);
+    --glow-lavender: rgba(167,139,250,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ─── SIDEBAR ─── */
+  #sidebar {
+    width: 270px;
+    min-width: 270px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px;
+    transition: transform 0.3s;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-track { background: transparent; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .sidebar-header {
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .sidebar-header .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--accent-teal);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+
+  .sidebar-header .sub {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    padding: 14px 20px 6px;
+    font-weight: 600;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: all 0.2s;
+    font-size: 13.5px;
+    color: var(--muted);
+    font-weight: 400;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: var(--surface2); color: var(--text); border-left-color: var(--accent-teal); }
+  .nav-item .nav-icon { font-size: 16px; min-width: 20px; text-align: center; }
+
+  /* ─── MAIN CONTENT ─── */
+  #main {
+    margin-left: 270px;
+    flex: 1;
+    max-width: calc(100vw - 270px);
+  }
+
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .topbar-badge {
+    background: linear-gradient(135deg, var(--accent-coral), #ff4757);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .content-panel {
+    display: none;
+    padding: 48px 48px 80px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .content-panel.active { display: block; }
+
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-hero {
+    margin-bottom: 40px;
+  }
+
+  .section-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+
+  .section-hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 640px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin: 36px 0 16px;
+    color: var(--text);
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 24px 0 12px;
+    color: var(--accent-teal);
+  }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card-teal { border-left: 4px solid var(--accent-teal); background: linear-gradient(135deg, var(--surface), rgba(0,212,184,0.04)); }
+  .card-coral { border-left: 4px solid var(--accent-coral); background: linear-gradient(135deg, var(--surface), rgba(255,107,107,0.04)); }
+  .card-gold { border-left: 4px solid var(--accent-gold); background: linear-gradient(135deg, var(--surface), rgba(255,194,71,0.04)); }
+  .card-lavender { border-left: 4px solid var(--accent-lavender); background: linear-gradient(135deg, var(--surface), rgba(167,139,250,0.04)); }
+  .card-sky { border-left: 4px solid var(--accent-sky); background: linear-gradient(135deg, var(--surface), rgba(56,189,248,0.04)); }
+  .card-mint { border-left: 4px solid var(--accent-mint); background: linear-gradient(135deg, var(--surface), rgba(110,231,183,0.04)); }
+  .card-rose { border-left: 4px solid var(--accent-rose); background: linear-gradient(135deg, var(--surface), rgba(251,113,133,0.04)); }
+
+  .card h4 {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ─── GRID ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+
+  /* ─── TABLES ─── */
+  .table-wrap { overflow-x: auto; border-radius: 10px; margin: 16px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  thead tr { background: var(--surface3); }
+
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ─── BADGES / PILLS ─── */
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .pill-teal { background: rgba(0,212,184,0.15); color: var(--accent-teal); }
+  .pill-coral { background: rgba(255,107,107,0.15); color: var(--accent-coral); }
+  .pill-gold { background: rgba(255,194,71,0.15); color: var(--accent-gold); }
+  .pill-lavender { background: rgba(167,139,250,0.15); color: var(--accent-lavender); }
+  .pill-sky { background: rgba(56,189,248,0.15); color: var(--accent-sky); }
+  .pill-mint { background: rgba(110,231,183,0.15); color: var(--accent-mint); }
+  .pill-rose { background: rgba(251,113,133,0.15); color: var(--accent-rose); }
+
+  /* ─── ALERT BOXES ─── */
+  .alert {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .alert-danger { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); }
+  .alert-warn { background: rgba(255,194,71,0.1); border: 1px solid rgba(255,194,71,0.3); }
+  .alert-info { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); }
+  .alert-success { background: rgba(110,231,183,0.1); border: 1px solid rgba(110,231,183,0.3); }
+  .alert-lavender { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); }
+
+  .alert strong { display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .alert-danger strong { color: var(--accent-coral); }
+  .alert-warn strong { color: var(--accent-gold); }
+  .alert-info strong { color: var(--accent-sky); }
+  .alert-success strong { color: var(--accent-mint); }
+  .alert-lavender strong { color: var(--accent-lavender); }
+
+  /* ─── DRUG CARDS ─── */
+  .drug-card {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .drug-card:hover { border-color: var(--accent-teal); }
+
+  .drug-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .drug-generic {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .drug-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .drug-label { color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; min-width: 100px; }
+
+  /* ─── MNEMONIC BOX ─── */
+  .mnemonic-box {
+    background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(167,139,250,0.02));
+    border: 1px solid rgba(167,139,250,0.3);
+    border-radius: 12px;
+    padding: 22px;
+    margin: 16px 0;
+  }
+  .mnemonic-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-lavender);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .mnemonic-letter {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .mnemonic-letter .letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--accent-lavender);
+    min-width: 30px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .mnemonic-letter .meaning { font-size: 14px; }
+  .mnemonic-letter .meaning strong { color: var(--text); }
+  .mnemonic-letter .meaning span { color: var(--muted); font-size: 13px; }
+
+  /* ─── NCLEX QUESTIONS ─── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .q-header {
+    padding: 18px 24px;
+    background: var(--surface2);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-number {
+    background: var(--accent-teal);
+    color: var(--bg);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 6px;
+    min-width: fit-content;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+  }
+
+  .q-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    background: var(--surface3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 3px;
+  }
+
+  .q-text {
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .q-body { padding: 20px 24px; }
+
+  .q-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    background: var(--surface2);
+  }
+
+  .q-option:hover { border-color: var(--accent-teal); background: rgba(0,212,184,0.04); }
+
+  .q-option .opt-letter {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--surface3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 24px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .q-option.correct { border-color: var(--accent-mint); background: rgba(110,231,183,0.07); }
+  .q-option.correct .opt-letter { background: var(--accent-mint); color: var(--bg); }
+  .q-option.incorrect { border-color: var(--accent-coral); background: rgba(255,107,107,0.07); }
+  .q-option.incorrect .opt-letter { background: var(--accent-coral); color: white; }
+
+  .reveal-btn {
+    background: linear-gradient(135deg, var(--accent-teal), #00b89f);
+    color: var(--bg);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: opacity 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .reveal-btn:hover { opacity: 0.9; }
+
+  .rationale {
+    display: none;
+    margin-top: 16px;
+    padding: 18px;
+    background: rgba(0,212,184,0.06);
+    border: 1px solid rgba(0,212,184,0.2);
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .rationale.show { display: block; }
+  .rationale strong { color: var(--accent-teal); }
+
+  /* ─── SYMPTOM TAGS ─── */
+  .sym-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .sym-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ─── COMPARISON TABLE ─── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .compare-col {
+    background: var(--surface2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .compare-header {
+    padding: 14px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+  .compare-row {
+    padding: 10px 14px;
+    font-size: 12.5px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .compare-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ─── TRIAD VISUAL ─── */
+  .triad-box {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .triad-item {
+    flex: 1;
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .triad-icon { font-size: 32px; margin-bottom: 8px; }
+  .triad-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .triad-desc { font-size: 12px; color: var(--muted); }
+
+  /* ─── PROGRESS DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-teal), transparent);
+    margin: 32px 0;
+    opacity: 0.4;
+  }
+
+  /* ─── CHECKBOX LIST ─── */
+  .check-list { list-style: none; }
+  .check-list li {
+    padding: 5px 0;
+    padding-left: 22px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .check-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-teal);
+    font-weight: 700;
+  }
+
+  /* ─── NCLEX TRAP CARDS ─── */
+  .trap-card {
+    background: rgba(255,107,107,0.06);
+    border: 1px solid rgba(255,107,107,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .trap-icon { font-size: 20px; min-width: 24px; }
+  .trap-text { font-size: 13.5px; }
+  .trap-text strong { color: var(--accent-coral); display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ─── SCROLLBAR MAIN ─── */
+  #main::-webkit-scrollbar { width: 6px; }
+  #main::-webkit-scrollbar-track { background: transparent; }
+  #main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ─── PROGRESS TRACKER ─── */
+  .progress-bar-wrap {
+    background: var(--surface2);
+    border-radius: 8px;
+    height: 6px;
+    margin: 8px 0 20px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-teal), var(--accent-lavender));
+    border-radius: 8px;
+    transition: width 0.5s ease;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #sidebar { transform: translateX(-270px); }
+    #main { margin-left: 0; max-width: 100vw; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+    .content-panel { padding: 28px 20px 60px; }
+  }
+
+  ul, ol { padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  p { margin-bottom: 10px; }
+
+  .highlight { color: var(--accent-teal); font-weight: 700; }
+  .highlight-gold { color: var(--accent-gold); font-weight: 700; }
+  .highlight-coral { color: var(--accent-coral); font-weight: 700; }
+  .highlight-lavender { color: var(--accent-lavender); font-weight: 700; }
+
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--surface3); padding: 2px 8px; border-radius: 4px; }
+
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent-gold); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="brand">🧠 Anxiety Disorders</div>
+    <div class="sub">Nursing Exam 4 · HCC II</div>
+  </div>
+
+  <div class="nav-section-label">Core Content</div>
+  <div class="nav-item active" onclick="show('overview')"><span class="nav-icon">📌</span> Overview & Pathophysiology</div>
+  <div class="nav-item" onclick="show('gad')"><span class="nav-icon">😰</span> GAD — Generalized Anxiety</div>
+  <div class="nav-item" onclick="show('panic')"><span class="nav-icon">😱</span> Panic Disorder</div>
+  <div class="nav-item" onclick="show('ptsd')"><span class="nav-icon">🪖</span> PTSD</div>
+  <div class="nav-item" onclick="show('ocd')"><span class="nav-icon">🔁</span> OCD</div>
+  <div class="nav-item" onclick="show('other')"><span class="nav-icon">🎭</span> Performance Anxiety</div>
+
+  <div class="nav-section-label">Pharmacology</div>
+  <div class="nav-item" onclick="show('meds')"><span class="nav-icon">💊</span> Drug Classes Overview</div>
+  <div class="nav-item" onclick="show('benzos')"><span class="nav-icon">⚡</span> Benzodiazepines (HIGH YIELD)</div>
+  <div class="nav-item" onclick="show('ssri')"><span class="nav-icon">🔬</span> SSRIs & SNRIs</div>
+  <div class="nav-item" onclick="show('buspirone')"><span class="nav-icon">🌿</span> Buspirone</div>
+
+  <div class="nav-section-label">Exam Prep</div>
+  <div class="nav-item" onclick="show('traps')"><span class="nav-icon">🚨</span> NCLEX Traps & Tips</div>
+  <div class="nav-item" onclick="show('nclex')"><span class="nav-icon">❓</span> NCLEX Practice Questions</div>
+  <div class="nav-item" onclick="show('compare')"><span class="nav-icon">📊</span> Master Comparison Table</div>
+</nav>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div id="main">
+  <div class="topbar">
+    <div class="topbar-title" id="panel-title">Overview & Pathophysiology</div>
+    <span class="topbar-badge">Exam 4 · Spring 2026</span>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: OVERVIEW
+  ══════════════════════════════════ -->
+  <div class="content-panel active" id="panel-overview">
+    <div class="section-hero">
+      <h1>Anxiety Disorders<br><span style="color:var(--accent-teal)">The Foundation</span></h1>
+      <p>Master the core definition, neurobiology, and physiologic response before diving into individual disorders.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-teal">
+        <h4>🔑 What Is Anxiety?</h4>
+        <p>A <strong>subjective feeling of dread or unease</strong> paired with <strong>objective physiologic changes</strong>.</p>
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border)">
+          <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">It becomes a DISORDER when:</div>
+          <ul class="check-list">
+            <li>Persistent (not just occasional)</li>
+            <li>Excessive (out of proportion)</li>
+            <li>Impairs daily functioning</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-coral">
+        <h4>⚡ Autonomic (Sympathetic) Activation — Fight or Flight</h4>
+        <div class="sym-grid">
+          <span class="sym-tag">💓 ↑ HR (tachycardia)</span>
+          <span class="sym-tag">🩸 ↑ BP</span>
+          <span class="sym-tag">💨 ↑ RR (tachypnea)</span>
+          <span class="sym-tag">💧 Sweating</span>
+          <span class="sym-tag">💪 Muscle tension</span>
+        </div>
+        <div class="alert alert-info" style="margin-top:10px">
+          <strong>NCLEX TIP</strong>
+          If you see autonomic symptoms → think <strong>anxiety or panic disorder</strong>
+        </div>
+      </div>
+    </div>
+
+    <h2>Neurotransmitter Pathophysiology</h2>
+    <div class="alert alert-lavender">
+      <strong>🧠 Critical Concept</strong>
+      Anxiety = <strong>Too much excitation + Not enough inhibition</strong><br>
+      The brain needs GABA to calm down — when GABA is low, anxiety goes up.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Neurotransmitter</th><th>Type</th><th>Role</th><th>Effect in Anxiety</th><th>Drug Connection</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--accent-teal)">GABA</strong></td>
+            <td><span class="pill pill-mint">Inhibitory</span></td>
+            <td>Calms the nervous system</td>
+            <td><span class="highlight-coral">↓ GABA = ↑ anxiety</span></td>
+            <td>Benzos enhance GABA → calming</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-lavender)">Serotonin</strong></td>
+            <td><span class="pill pill-lavender">Mood</span></td>
+            <td>Regulates mood &amp; emotion</td>
+            <td>Dysregulation = anxiety + depression</td>
+            <td>SSRIs/SNRIs increase serotonin</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-gold)">Norepinephrine</strong></td>
+            <td><span class="pill pill-gold">Alertness</span></td>
+            <td>Arousal, alertness, "alarm"</td>
+            <td><span class="highlight-coral">↑ NE = hyperarousal</span></td>
+            <td>SNRIs also affect NE</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-rose)">Dopamine</strong></td>
+            <td><span class="pill pill-rose">Reward</span></td>
+            <td>Motivation, reward pathway</td>
+            <td>Imbalance contributes to anxiety</td>
+            <td>Buspirone acts on dopamine receptors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The GABA–Benzodiazepine Connection</h2>
+    <div class="grid-2">
+      <div class="card card-sky">
+        <h4>🔬 How Benzos Work</h4>
+        <p>Benzodiazepines bind to the GABA-A receptor and <strong>enhance GABA's inhibitory effect</strong> → this causes CNS depression → calming, sedation, and anxiolysis.</p>
+        <div class="alert alert-warn" style="margin-top:12px">
+          <strong>Why This Matters for Exams</strong>
+          If a question asks why benzos cause respiratory depression — it's because excessive GABA enhancement depresses the brainstem respiratory centers.
+        </div>
+      </div>
+      <div class="card card-mint">
+        <h4>🔁 Disorder Overview Map</h4>
+        <div style="font-size:13px; line-height:2;">
+          <div>😰 <strong>GAD</strong> — chronic worry, ≥6 months</div>
+          <div>😱 <strong>Panic Disorder</strong> — sudden, peaks in minutes</div>
+          <div>🪖 <strong>PTSD</strong> — re-experiencing, avoidance, hyperarousal</div>
+          <div>🔁 <strong>OCD</strong> — obsessions + compulsions</div>
+          <div>🎭 <strong>Social/Performance Anxiety</strong> — situational</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Quick-Reference Symptom Spectrum</h2>
+    <div class="grid-3">
+      <div class="card card-coral">
+        <h4>⚡ Physical (Somatic)</h4>
+        <ul class="check-list">
+          <li>Muscle tension (GAD classic)</li>
+          <li>Fatigue</li>
+          <li>Tremors</li>
+          <li>Headache</li>
+          <li>GI distress</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <h4>🫀 Autonomic</h4>
+        <ul class="check-list">
+          <li>Tachycardia (↑HR)</li>
+          <li>Diaphoresis (sweating)</li>
+          <li>Cold/clammy hands</li>
+          <li>Tachypnea (↑RR)</li>
+          <li>Palpitations</li>
+        </ul>
+      </div>
+      <div class="card card-lavender">
+        <h4>🧠 Psychological</h4>
+        <ul class="check-list">
+          <li>Poor concentration</li>
+          <li>Irritability</li>
+          <li>Sleep disturbances</li>
+          <li>Fear of losing control</li>
+          <li>Derealization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: GAD
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-gad">
+    <div class="section-hero">
+      <h1>Generalized Anxiety<br><span style="color:var(--accent-gold)">Disorder (GAD)</span></h1>
+      <p>Chronic, excessive worry that isn't tied to one specific trigger. Duration and functional impairment are key diagnostic criteria.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-gold">
+        <h4>🔑 Diagnostic Criteria</h4>
+        <ul class="check-list">
+          <li>Excessive worry about <strong>multiple topics</strong></li>
+          <li>Duration: <span class="highlight-gold">≥ 6 months</span></li>
+          <li>Difficult to control the worry</li>
+          <li>Causes significant impairment</li>
+          <li>Not caused by substance or medical condition</li>
+        </ul>
+      </div>
+      <div class="card card-sky">
+        <h4>🩺 Nursing Assessment Priorities</h4>
+        <ul class="check-list">
+          <li>Assess <strong>sleep patterns</strong> (major symptom)</li>
+          <li>Evaluate <strong>functional impairment</strong></li>
+          <li>Rule out <strong>hyperthyroidism</strong> (mimics anxiety)</li>
+          <li>Rule out <strong>substance use</strong> (caffeine, stimulants)</li>
+          <li>Assess for depression (frequent comorbidity)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Symptom Profile — High Yield</h2>
+    <div class="grid-3">
+      <div class="card card-coral">
+        <h4>💪 Physical / Somatic</h4>
+        <ul class="check-list">
+          <li><span class="highlight">Muscle tension</span> ← VERY common test point</li>
+          <li>Fatigue</li>
+          <li>Tremors</li>
+          <li>Restlessness, feeling "on edge"</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <h4>⚡ Autonomic</h4>
+        <ul class="check-list">
+          <li>Sweating</li>
+          <li>Tachycardia</li>
+          <li>Cold/clammy hands</li>
+          <li>Dry mouth</li>
+        </ul>
+      </div>
+      <div class="card card-lavender">
+        <h4>🧠 Psychological</h4>
+        <ul class="check-list">
+          <li>Poor concentration</li>
+          <li>Irritability</li>
+          <li>Sleep disturbances</li>
+          <li>Mind goes blank</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Treatment — GAD</h2>
+    <div class="alert alert-success">
+      <strong>🥇 Non-Pharmacologic FIRST (in real life)</strong>
+      CBT (Cognitive Behavioral Therapy) is the gold standard. NCLEX often asks "best initial treatment" → therapy/CBT. However, pharmacologic treatment is frequently needed alongside therapy.
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-teal">
+        <h4>🧘 Non-Pharmacologic</h4>
+        <ul class="check-list">
+          <li><strong>CBT</strong> — gold standard psychotherapy</li>
+          <li>Relaxation training (deep breathing, PMR)</li>
+          <li>Biofeedback</li>
+          <li>Exercise (proven anxiolytic effect)</li>
+          <li>Sleep hygiene</li>
+          <li>Mindfulness-based stress reduction</li>
+        </ul>
+      </div>
+      <div class="card card-lavender">
+        <h4>💊 Pharmacologic Options</h4>
+        <div style="font-size:13px">
+          <div style="padding:6px 0; border-bottom:1px solid var(--border)">🥇 <strong>First line:</strong> SSRIs (paroxetine, escitalopram)</div>
+          <div style="padding:6px 0; border-bottom:1px solid var(--border)">🥇 <strong>First line:</strong> SNRIs (venlafaxine, duloxetine)</div>
+          <div style="padding:6px 0; border-bottom:1px solid var(--border)">🥈 <strong>Second line:</strong> Buspirone (safe, no dependence)</div>
+          <div style="padding:6px 0">⚡ <strong>Acute/short-term:</strong> Benzodiazepines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mnemonic-box">
+      <div class="mnemonic-title">🧠 Mnemonic — GAD Symptoms: "WISE MF"</div>
+      <div class="mnemonic-letter"><div class="letter">W</div><div class="meaning"><strong>Worry</strong> <span>— excessive, uncontrollable, multiple topics</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">I</div><div class="meaning"><strong>Irritability</strong> <span>— easily frustrated or angered</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">S</div><div class="meaning"><strong>Sleep problems</strong> <span>— trouble falling/staying asleep</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">E</div><div class="meaning"><strong>Edge (on edge)</strong> <span>— restlessness, keyed up feeling</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">M</div><div class="meaning"><strong>Muscle tension</strong> <span>— very common physical complaint</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">F</div><div class="meaning"><strong>Fatigue + Concentration difficulty</strong> <span>— mind goes blank</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: PANIC
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-panic">
+    <div class="section-hero">
+      <h1>Panic Disorder<br><span style="color:var(--accent-coral)">High-Yield Section</span></h1>
+      <p>Sudden, intense fear episodes that mimic heart attacks. NCLEX loves questions about this.</p>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>⚠️ NURSING PRIORITY #1</strong>
+      Always rule out CARDIAC cause FIRST before diagnosing/treating panic attack. Chest pain + palpitations = assess cardiac first.
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-coral">
+        <h4>😱 Key Features</h4>
+        <ul class="check-list">
+          <li>Sudden, <strong>no warning</strong></li>
+          <li>Intense terror or dread</li>
+          <li>Peaks in <span class="highlight-coral">minutes</span></li>
+          <li>Resolves within <span class="highlight-coral">30 minutes</span></li>
+          <li>Recurrent and unexpected</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <h4>🫀 Symptoms — "Looks Like a Heart Attack"</h4>
+        <ul class="check-list">
+          <li><strong>Chest pain</strong></li>
+          <li>Palpitations (pounding heart)</li>
+          <li>Shortness of breath</li>
+          <li>Dizziness / lightheadedness</li>
+          <li>Feeling of doom / fear of dying</li>
+          <li>Numbness or tingling</li>
+          <li>Derealization (not feeling real)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>🔥 NCLEX TIP</strong>
+      If the stem says <em>"patient thinks they are dying"</em> or <em>"feels like they are going to die"</em> → think <strong>Panic Disorder</strong>
+    </div>
+
+    <h2>Treatment — Panic Disorder</h2>
+    <div class="grid-3">
+      <div class="card card-teal">
+        <h4>🥇 First Line</h4>
+        <p><strong>SSRIs</strong> for long-term prevention and maintenance therapy.</p>
+        <div class="pill pill-teal" style="margin-top:8px">Paroxetine, Sertraline</div>
+      </div>
+      <div class="card card-lavender">
+        <h4>🥈 Acute Episodes</h4>
+        <p><strong>Benzodiazepines</strong> for immediate relief during acute attacks — short-term use only.</p>
+        <div class="pill pill-lavender" style="margin-top:8px">Alprazolam, Lorazepam</div>
+      </div>
+      <div class="card card-sky">
+        <h4>🧘 Therapy</h4>
+        <p><strong>CBT</strong> with exposure therapy to reduce anticipatory anxiety and avoidance behaviors.</p>
+        <div class="pill pill-sky" style="margin-top:8px">Breathing retraining too</div>
+      </div>
+    </div>
+
+    <div class="mnemonic-box">
+      <div class="mnemonic-title">⏱️ Panic Attack Timeline (Know This Cold!)</div>
+      <div style="display:flex; gap:0; margin:10px 0; font-size:13.5px;">
+        <div style="flex:1; background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.3); border-radius:8px 0 0 8px; padding:14px; text-align:center;">
+          <div style="font-size:22px; font-weight:800; color:var(--accent-coral)">0</div>
+          <div style="color:var(--muted); font-size:11px">ONSET</div>
+          <div>Sudden, no warning</div>
+        </div>
+        <div style="flex:1; background:rgba(255,194,71,0.1); border-top:1px solid rgba(255,194,71,0.3); border-bottom:1px solid rgba(255,194,71,0.3); padding:14px; text-align:center;">
+          <div style="font-size:22px; font-weight:800; color:var(--accent-gold)">10 min</div>
+          <div style="color:var(--muted); font-size:11px">PEAK</div>
+          <div>Maximum intensity</div>
+        </div>
+        <div style="flex:1; background:rgba(110,231,183,0.1); border:1px solid rgba(110,231,183,0.3); border-radius:0 8px 8px 0; padding:14px; text-align:center;">
+          <div style="font-size:22px; font-weight:800; color:var(--accent-mint)">30 min</div>
+          <div style="color:var(--muted); font-size:11px">RESOLVE</div>
+          <div>Returns to baseline</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: PTSD
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-ptsd">
+    <div class="section-hero">
+      <h1>PTSD<br><span style="color:var(--accent-sky)">Post-Traumatic Stress Disorder</span></h1>
+      <p>The brain gets "stuck" in danger mode following exposure to severe trauma.</p>
+    </div>
+
+    <div class="card card-sky">
+      <h4>🪖 Core Concept</h4>
+      <p>PTSD occurs after exposure to <strong>actual or threatened death, serious injury, or sexual violence</strong> — either directly experienced, witnessed, or learned about happening to a close person. The brain remains hypervigilant long after the danger has passed.</p>
+    </div>
+
+    <h2>The Core Triad — MEMORIZE</h2>
+    <div class="triad-box">
+      <div class="triad-item" style="border-color:rgba(255,107,107,0.4)">
+        <div class="triad-icon">🔄</div>
+        <div class="triad-title" style="color:var(--accent-coral)">Re-Experiencing</div>
+        <div class="triad-desc">Flashbacks, nightmares, intrusive memories, psychological or physiologic distress when exposed to reminders</div>
+      </div>
+      <div class="triad-item" style="border-color:rgba(56,189,248,0.4)">
+        <div class="triad-icon">🚪</div>
+        <div class="triad-title" style="color:var(--accent-sky)">Avoidance</div>
+        <div class="triad-desc">Avoiding trauma-related thoughts, feelings, people, places, conversations. Emotional numbing, detachment</div>
+      </div>
+      <div class="triad-item" style="border-color:rgba(255,194,71,0.4)">
+        <div class="triad-icon">⚡</div>
+        <div class="triad-title" style="color:var(--accent-gold)">Hyperarousal</div>
+        <div class="triad-desc">Exaggerated startle response, sleep problems, irritability, difficulty concentrating, hypervigilance</div>
+      </div>
+    </div>
+
+    <h2>Treatment — PTSD</h2>
+    <div class="grid-2">
+      <div class="card card-lavender">
+        <h4>💊 Pharmacologic</h4>
+        <ul class="check-list">
+          <li><strong>SSRIs — first line</strong> (sertraline, paroxetine FDA-approved)</li>
+          <li>SNRIs — venlafaxine (effective)</li>
+          <li>Prazosin — for nightmares specifically</li>
+        </ul>
+      </div>
+      <div class="card card-sky">
+        <h4>🧠 Therapy (Very Important)</h4>
+        <ul class="check-list">
+          <li><strong>Trauma-focused CBT</strong></li>
+          <li>Exposure therapy (gradual re-exposure)</li>
+          <li>EMDR (Eye Movement Desensitization and Reprocessing)</li>
+          <li>Stress Inoculation Training</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Nursing Priorities — PTSD</h2>
+    <div class="grid-3">
+      <div class="card card-teal">
+        <h4>🤝 Build Trust</h4>
+        <p>Consistency, honesty, and establishing a safe therapeutic environment are foundational before any other intervention.</p>
+      </div>
+      <div class="card card-coral">
+        <h4>🚨 Avoid Triggers</h4>
+        <p>Identify known trauma triggers. Avoid startling the patient. Ask before touching. Maintain calm, predictable environment.</p>
+      </div>
+      <div class="card card-gold">
+        <h4>🔍 Monitor Closely</h4>
+        <p>High risk for <strong>depression and suicide</strong>. Monitor mood, screen for suicidal ideation, and ensure safety at all times.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>🚨 Safety Alert</strong>
+      PTSD patients have significantly elevated risk of suicide and self-harm. Always assess safety, monitor closely, and document any changes in mood or behavior.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: OCD
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-ocd">
+    <div class="section-hero">
+      <h1>OCD<br><span style="color:var(--accent-mint)">Obsessive-Compulsive Disorder</span></h1>
+      <p>A cycle of intrusive thoughts (obsessions) driving repetitive behaviors (compulsions) to relieve anxiety.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-coral">
+        <h4>💭 Obsessions</h4>
+        <p><strong>Definition:</strong> Recurrent, persistent, intrusive, unwanted thoughts, urges, or images that cause marked anxiety.</p>
+        <div style="margin-top:12px; font-size:13px; color:var(--muted)">Examples:</div>
+        <ul class="check-list" style="margin-top:4px">
+          <li>"My hands are contaminated"</li>
+          <li>Fear of harming others</li>
+          <li>Need for symmetry/order</li>
+          <li>Intrusive sexual or religious thoughts</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h4>🔄 Compulsions</h4>
+        <p><strong>Definition:</strong> Repetitive behaviors or mental acts performed to reduce the distress caused by obsessions.</p>
+        <div style="margin-top:12px; font-size:13px; color:var(--muted)">Examples:</div>
+        <ul class="check-list" style="margin-top:4px">
+          <li>Excessive handwashing</li>
+          <li>Checking locks/appliances repeatedly</li>
+          <li>Counting, tapping, ordering</li>
+          <li>Mental rituals (praying, reviewing)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>🔑 Key Concept</strong>
+      The compulsion temporarily relieves the anxiety caused by the obsession — but reinforces the cycle. The patient knows the behavior is irrational but cannot stop. OCD is <strong>ego-dystonic</strong> (the thoughts feel foreign/unwanted, unlike delusions).
+    </div>
+
+    <h2>Treatment — OCD</h2>
+    <div class="grid-2">
+      <div class="card card-lavender">
+        <h4>💊 Pharmacologic</h4>
+        <ul class="check-list">
+          <li><strong>SSRIs — first line</strong></li>
+          <li>Requires <span class="highlight-lavender">HIGHER doses</span> than depression treatment</li>
+          <li>Clomipramine (TCA) — second line, very effective</li>
+        </ul>
+        <div class="alert alert-warn" style="margin-top:12px">
+          <strong>TEST POINT</strong>
+          OCD needs higher SSRI doses than GAD or depression
+        </div>
+      </div>
+      <div class="card card-teal">
+        <h4>🧠 Behavioral Therapy</h4>
+        <ul class="check-list">
+          <li><strong>ERP: Exposure and Response Prevention</strong> — gold standard therapy</li>
+          <li>Gradual exposure to feared stimuli</li>
+          <li>Prevention of compulsive response</li>
+          <li>Combines with medication for best outcome</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Nursing Priorities — OCD</h2>
+    <div class="grid-2">
+      <div class="card card-gold">
+        <h4>⚠️ Do NOT Interrupt Compulsions Abruptly</h4>
+        <p>Abruptly stopping a compulsion causes <strong>extreme anxiety and distress</strong>. Work with the patient gradually to reduce behaviors through behavioral therapy — never forcefully stop.</p>
+      </div>
+      <div class="card card-mint">
+        <h4>🕐 Allow Time for Rituals (Initially)</h4>
+        <p>Acknowledge the behavior without judgment. Allow extra time for ADLs. Gradually work toward reduction through structured therapy, not abrupt interruption.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: OTHER
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-other">
+    <div class="section-hero">
+      <h1>Performance &amp; Social Anxiety<br><span style="color:var(--accent-rose)">Situational Anxiety</span></h1>
+      <p>Anxiety tied to specific social situations — particularly useful for performance-related scenarios on NCLEX.</p>
+    </div>
+
+    <div class="card card-rose">
+      <h4>🎭 Performance/Social Anxiety</h4>
+      <p>Fear of scrutiny, embarrassment, or humiliation in social or performance situations. Produces intense autonomic symptoms.</p>
+    </div>
+
+    <h2>Key Drug — Propranolol (Beta-Blocker)</h2>
+    <div class="drug-card" style="max-width:500px">
+      <div class="drug-name" style="color:var(--accent-rose)">Propranolol</div>
+      <div class="drug-generic">Beta-Adrenergic Blocker</div>
+      <div class="drug-row"><span class="drug-label">Drug Class</span><span>Non-selective beta-blocker</span></div>
+      <div class="drug-row"><span class="drug-label">Use in Anxiety</span><span>Performance/social anxiety — situational PRN use</span></div>
+      <div class="drug-row"><span class="drug-label">Mechanism</span><span>Blocks sympathetic (β) receptors → blocks peripheral autonomic symptoms</span></div>
+      <div class="drug-row"><span class="drug-label">What it treats</span><span>Tremors, tachycardia, palpitations, sweating</span></div>
+      <div class="drug-row"><span class="drug-label">What it does NOT treat</span><span>Psychological fear or cognitive anxiety</span></div>
+      <div class="drug-row"><span class="drug-label">Key Teaching</span><span>Take ~1 hour before performance; monitor HR &amp; BP</span></div>
+    </div>
+
+    <div class="alert alert-gold" style="background:rgba(255,194,71,0.1); border:1px solid rgba(255,194,71,0.3); border-radius:10px; padding:16px 20px; margin-top:16px">
+      <strong style="color:var(--accent-gold); display:block; margin-bottom:6px; font-size:12px; text-transform:uppercase; letter-spacing:1px">🎯 NCLEX DECISION POINT</strong>
+      "Patient is a musician with tachycardia and tremors before concerts" → <strong>Propranolol</strong><br>
+      "Patient has ongoing social fear and avoidance affecting work" → <strong>SSRI + CBT</strong>
+    </div>
+
+    <h2>Summary: When to Use Each Anxiolytic</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Best Drug Choice</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Immediate relief of acute panic</td><td><strong style="color:var(--accent-lavender)">Benzodiazepine</strong></td><td>Fast-acting GABA enhancement</td></tr>
+          <tr><td>Long-term anxiety management</td><td><strong style="color:var(--accent-teal)">SSRI / SNRI</strong></td><td>Sustained serotonin regulation</td></tr>
+          <tr><td>Chronic anxiety, no abuse risk</td><td><strong style="color:var(--accent-mint)">Buspirone</strong></td><td>No dependence, safest option</td></tr>
+          <tr><td>Autonomic symptoms before performance</td><td><strong style="color:var(--accent-rose)">Propranolol</strong></td><td>Blocks sympathetic activation</td></tr>
+          <tr><td>OCD (any anxiety)</td><td><strong style="color:var(--accent-gold)">SSRI (high dose)</strong></td><td>Required higher doses for OCD</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: MEDS OVERVIEW
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-meds">
+    <div class="section-hero">
+      <h1>Drug Classes<br><span style="color:var(--accent-lavender)">Complete Overview</span></h1>
+      <p>All four major pharmacologic approaches for anxiety — know mechanisms, onset, uses, and key risks.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-header" style="background:rgba(0,212,184,0.15); color:var(--accent-teal)">SSRIs</div>
+        <div class="compare-row"><div class="compare-label">Examples</div>Paroxetine, Escitalopram, Sertraline</div>
+        <div class="compare-row"><div class="compare-label">Onset</div><strong style="color:var(--accent-gold)">4–6 weeks</strong></div>
+        <div class="compare-row"><div class="compare-label">Use</div>GAD, Panic, PTSD, OCD, Social</div>
+        <div class="compare-row"><div class="compare-label">Mechanism</div>Block serotonin reuptake</div>
+        <div class="compare-row"><div class="compare-label">Major Risk</div>Suicidal ideation (young pts)</div>
+        <div class="compare-row"><div class="compare-label">Dependence</div>No</div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header" style="background:rgba(56,189,248,0.15); color:var(--accent-sky)">SNRIs</div>
+        <div class="compare-row"><div class="compare-label">Examples</div>Venlafaxine, Duloxetine</div>
+        <div class="compare-row"><div class="compare-label">Onset</div><strong style="color:var(--accent-gold)">4–6 weeks</strong></div>
+        <div class="compare-row"><div class="compare-label">Use</div>GAD, PTSD, panic</div>
+        <div class="compare-row"><div class="compare-label">Mechanism</div>Block serotonin + NE reuptake</div>
+        <div class="compare-row"><div class="compare-label">Major Risk</div><strong style="color:var(--accent-coral)">Hypertension</strong></div>
+        <div class="compare-row"><div class="compare-label">Dependence</div>No</div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header" style="background:rgba(167,139,250,0.15); color:var(--accent-lavender)">Benzodiazepines</div>
+        <div class="compare-row"><div class="compare-label">Examples</div>Lorazepam, Alprazolam, Diazepam</div>
+        <div class="compare-row"><div class="compare-label">Onset</div><strong style="color:var(--accent-teal)">IMMEDIATE</strong></div>
+        <div class="compare-row"><div class="compare-label">Use</div>Acute anxiety, panic attacks</div>
+        <div class="compare-row"><div class="compare-label">Mechanism</div>Enhance GABA → CNS depression</div>
+        <div class="compare-row"><div class="compare-label">Major Risk</div><strong style="color:var(--accent-coral)">Dependence, Resp. depression</strong></div>
+        <div class="compare-row"><div class="compare-label">Dependence</div><strong style="color:var(--accent-coral)">YES — HIGH</strong></div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header" style="background:rgba(110,231,183,0.15); color:var(--accent-mint)">Buspirone</div>
+        <div class="compare-row"><div class="compare-label">Examples</div>BuSpar</div>
+        <div class="compare-row"><div class="compare-label">Onset</div><strong style="color:var(--accent-gold)">2–6 weeks</strong></div>
+        <div class="compare-row"><div class="compare-label">Use</div>Chronic GAD</div>
+        <div class="compare-row"><div class="compare-label">Mechanism</div>Serotonin + Dopamine receptors</div>
+        <div class="compare-row"><div class="compare-label">Major Risk</div>Minimal — dizziness, headache</div>
+        <div class="compare-row"><div class="compare-label">Dependence</div><strong style="color:var(--accent-mint)">None</strong></div>
+      </div>
+    </div>
+
+    <div class="alert alert-lavender" style="margin-top:20px">
+      <strong>🎯 EXAM DECISION FRAMEWORK</strong>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; font-size:13.5px">
+        <div>🔥 <strong>Immediate relief needed?</strong> → Benzodiazepine</div>
+        <div>⏳ <strong>Long-term management?</strong> → SSRI/SNRI</div>
+        <div>🌿 <strong>No abuse risk wanted?</strong> → Buspirone</div>
+        <div>💪 <strong>Autonomic symptoms only?</strong> → Beta-blocker</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: BENZOS
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-benzos">
+    <div class="section-hero">
+      <h1>Benzodiazepines<br><span style="color:var(--accent-lavender)">High-Priority Drug Class</span></h1>
+      <p>The most tested anxiolytic class. Know the mechanism, risks, withdrawal signs, and nursing priorities cold.</p>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>🚨 THIS SECTION IS EXTREMELY HIGH-YIELD FOR NCLEX</strong>
+      Benzodiazepines appear frequently in NCLEX questions testing pharmacology knowledge. Master every detail here.
+    </div>
+
+    <h2>Mechanism of Action</h2>
+    <div class="card card-lavender">
+      <h4>🔬 How Benzos Work</h4>
+      <p>Benzodiazepines <strong>enhance the effect of GABA</strong> (the brain's main inhibitory neurotransmitter) by binding to the GABA-A receptor complex. This increases chloride ion influx → hyperpolarization → CNS depression.</p>
+      <div class="alert alert-info" style="margin-top:12px">
+        <strong>Result</strong>
+        Sedation · Anxiolysis · Muscle relaxation · Anticonvulsant effects · Respiratory depression at high doses
+      </div>
+    </div>
+
+    <h2>Individual Benzodiazepines</h2>
+    <div class="grid-3">
+      <div class="drug-card">
+        <div class="drug-name" style="color:var(--accent-coral)">Lorazepam</div>
+        <div class="drug-generic">Ativan — Short-to-medium acting</div>
+        <div class="drug-row"><span class="drug-label">Route</span><span>PO, IV, IM</span></div>
+        <div class="drug-row"><span class="drug-label">IV RISKS</span><span style="color:var(--accent-coral)">Apnea · Cardiac arrest · Hypotension</span></div>
+        <div class="drug-row"><span class="drug-label">Awareness</span><span>ICU-level monitoring when given IV</span></div>
+      </div>
+      <div class="drug-card">
+        <div class="drug-name" style="color:var(--accent-gold)">Alprazolam</div>
+        <div class="drug-generic">Xanax — Short-acting</div>
+        <div class="drug-row"><span class="drug-label">Use</span><span>Panic disorder, anxiety</span></div>
+        <div class="drug-row"><span class="drug-label">Abuse Risk</span><span style="color:var(--accent-coral)">Very HIGH — most abused benzo</span></div>
+        <div class="drug-row"><span class="drug-label">Note</span><span>Rapid onset makes dependence likely</span></div>
+      </div>
+      <div class="drug-card">
+        <div class="drug-name" style="color:var(--accent-mint)">Diazepam</div>
+        <div class="drug-generic">Valium — Long-acting</div>
+        <div class="drug-row"><span class="drug-label">Use</span><span>Anxiety, alcohol withdrawal, seizures</span></div>
+        <div class="drug-row"><span class="drug-label">Duration</span><span>Long-acting (active metabolites)</span></div>
+        <div class="drug-row"><span class="drug-label">Special</span><span>Used for alcohol withdrawal seizures</span></div>
+      </div>
+    </div>
+
+    <h2>Major Risks — Memorize All</h2>
+    <div class="grid-2">
+      <div>
+        <div class="alert alert-danger">
+          <strong>🫁 Respiratory Depression</strong>
+          Watch RR — if &lt;12 breaths/min → DANGER. Benzos suppress brainstem respiratory drive. Additive with opioids and alcohol.
+        </div>
+        <div class="alert alert-danger">
+          <strong>🔄 Physical Dependence</strong>
+          Can develop with regular use. Patient will experience withdrawal if stopped abruptly. ALWAYS TAPER.
+        </div>
+      </div>
+      <div>
+        <div class="alert alert-warn">
+          <strong>⚠️ Withdrawal Symptoms — SEVERE</strong>
+          Anxiety rebound · Tremors · Insomnia · Seizures (can be LIFE-THREATENING)
+          <br><br>This is why you NEVER stop benzos abruptly!
+        </div>
+        <div class="alert alert-warn">
+          <strong>😴 Sedation &amp; Falls</strong>
+          CNS depression causes sedation → HIGH fall risk. Always institute fall precautions.
+        </div>
+      </div>
+    </div>
+
+    <h2>Contraindications</h2>
+    <div class="grid-4">
+      <div style="background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.3); border-radius:8px; padding:14px; text-align:center; font-size:13px">
+        <div style="font-size:24px">🤰</div>
+        <strong>Pregnancy</strong>
+        <div style="color:var(--muted); font-size:11px; margin-top:4px">Teratogenic risk</div>
+      </div>
+      <div style="background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.3); border-radius:8px; padding:14px; text-align:center; font-size:13px">
+        <div style="font-size:24px">🍼</div>
+        <strong>Breastfeeding</strong>
+        <div style="color:var(--muted); font-size:11px; margin-top:4px">Excreted in milk</div>
+      </div>
+      <div style="background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.3); border-radius:8px; padding:14px; text-align:center; font-size:13px">
+        <div style="font-size:24px">😴</div>
+        <strong>Sleep Apnea</strong>
+        <div style="color:var(--muted); font-size:11px; margin-top:4px">↑ Apnea episodes</div>
+      </div>
+      <div style="background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.3); border-radius:8px; padding:14px; text-align:center; font-size:13px">
+        <div style="font-size:24px">🚫</div>
+        <strong>Substance Abuse Hx</strong>
+        <div style="color:var(--muted); font-size:11px; margin-top:4px">High addiction risk</div>
+      </div>
+    </div>
+
+    <h2>Deadly Drug Interactions</h2>
+    <div class="alert alert-danger">
+      <strong>💀 LIFE-THREATENING COMBINATIONS</strong>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:8px; font-size:13.5px">
+        <div style="background:rgba(255,107,107,0.1); padding:10px; border-radius:6px; text-align:center">🍺 <strong>Alcohol</strong><br><span style="font-size:11px; color:var(--muted)">Fatal resp. depression</span></div>
+        <div style="background:rgba(255,107,107,0.1); padding:10px; border-radius:6px; text-align:center">💉 <strong>Opioids</strong><br><span style="font-size:11px; color:var(--muted)">Additive CNS depression</span></div>
+        <div style="background:rgba(255,107,107,0.1); padding:10px; border-radius:6px; text-align:center">🌿 <strong>Herbal Sedatives</strong><br><span style="font-size:11px; color:var(--muted)">Valerian, kava, etc.</span></div>
+      </div>
+    </div>
+
+    <h2>Nursing Priorities</h2>
+    <div class="grid-3">
+      <div class="card card-coral">
+        <h4>👁️ Monitor</h4>
+        <ul class="check-list">
+          <li><strong>RR &lt;12 = notify provider</strong></li>
+          <li>Level of consciousness</li>
+          <li>O2 saturation</li>
+          <li>BP (hypotension risk)</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <h4>🚶 Safety</h4>
+        <ul class="check-list">
+          <li>Fall precautions (sedation!)</li>
+          <li>Bed in lowest position</li>
+          <li>Call light within reach</li>
+          <li>Non-skid socks</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h4>📚 Teaching</h4>
+        <ul class="check-list">
+          <li>Never stop abruptly</li>
+          <li>No alcohol or CNS depressants</li>
+          <li>No driving if sedated</li>
+          <li>Short-term use only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: SSRI
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-ssri">
+    <div class="section-hero">
+      <h1>SSRIs &amp; SNRIs<br><span style="color:var(--accent-teal)">First-Line Long-Term Therapy</span></h1>
+      <p>The backbone of anxiety disorder pharmacotherapy. Slow onset but the safest long-term option.</p>
+    </div>
+
+    <h2>SSRIs — Selective Serotonin Reuptake Inhibitors</h2>
+    <div class="grid-2">
+      <div class="card card-teal">
+        <h4>🔬 Mechanism</h4>
+        <p>Block serotonin reuptake pumps in the presynaptic neuron → serotonin accumulates in the synapse → greater receptor activation → improved mood and reduced anxiety over time.</p>
+      </div>
+      <div class="card card-gold">
+        <h4>💊 Key Examples</h4>
+        <div style="font-size:13.5px; line-height:2.2">
+          <div>• <strong>Paroxetine</strong> (Paxil) — GAD, panic, OCD, PTSD, social</div>
+          <div>• <strong>Escitalopram</strong> (Lexapro) — GAD, depression</div>
+          <div>• <strong>Sertraline</strong> (Zoloft) — PTSD, panic, OCD</div>
+          <div>• <strong>Fluoxetine</strong> (Prozac) — OCD, panic, depression</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Critical SSRI Points (Highly Tested)</h2>
+    <div class="grid-2">
+      <div>
+        <div class="alert alert-warn">
+          <strong>⏳ ONSET — MOST TESTED SSRI FACT</strong>
+          Initial effect: ~1 week (sleep, energy may improve)<br>
+          Full therapeutic effect: <strong>4–6 weeks</strong><br><br>
+          NCLEX trap: Patient stops early because "it's not working" → <strong>EDUCATE: takes weeks to work!</strong>
+        </div>
+        <div class="alert alert-danger">
+          <strong>🚨 BLACK BOX WARNING</strong>
+          Increased risk of <strong>suicidal ideation</strong> in children, adolescents, and young adults (under 25). Monitor closely especially in the first few weeks. Paradoxically, as energy returns before mood lifts, risk increases.
+        </div>
+      </div>
+      <div>
+        <div class="alert alert-info">
+          <strong>⚠️ Major Side Effects (Know All)</strong>
+          <ul style="margin-top:8px; padding-left:16px; line-height:2">
+            <li>GI upset (nausea — very common at start)</li>
+            <li>Insomnia or sleep changes</li>
+            <li><strong>Sexual dysfunction</strong> ← VERY tested</li>
+            <li>Weight changes (gain or loss)</li>
+            <li>Headache</li>
+            <li>Serotonin syndrome (with MAOIs)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top:4px">
+      <strong>⚠️ SEROTONIN SYNDROME — RECOGNIZE IT</strong>
+      Caused by: SSRI + MAOI combination (or other serotonergic drugs)<br>
+      Signs: Hyperthermia · Agitation · Muscle rigidity · Tremors · Clonus · Diaphoresis · Confusion<br>
+      Action: STOP medication immediately, supportive care, cyproheptadine (antidote)
+    </div>
+
+    <h2>SNRIs — Serotonin-Norepinephrine Reuptake Inhibitors</h2>
+    <div class="grid-2">
+      <div class="card card-sky">
+        <h4>🔬 Mechanism</h4>
+        <p>Block <strong>both</strong> serotonin AND norepinephrine reuptake. Dual action can be more effective for certain patients and conditions (like pain + anxiety comorbidity).</p>
+      </div>
+      <div class="card card-coral">
+        <h4>⚠️ KEY SIDE EFFECT — HYPERTENSION</h4>
+        <p>The norepinephrine component causes <strong>elevated blood pressure</strong>. This is the most-tested SNRI side effect.</p>
+        <div class="alert alert-danger" style="margin-top:12px">
+          <strong>NURSING ACTION</strong>
+          Monitor BP regularly on SNRIs. Report significant increases to provider.
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Class</th><th>Uses</th><th>Key Nursing Point</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Venlafaxine</strong> (Effexor)</td><td>SNRI</td><td>GAD, PTSD, depression, panic</td><td>Monitor BP; dose-dependent BP increase</td></tr>
+          <tr><td><strong>Duloxetine</strong> (Cymbalta)</td><td>SNRI</td><td>GAD, depression, pain syndromes</td><td>Monitor BP; useful for pain + anxiety</td></tr>
+          <tr><td><strong>Paroxetine</strong> (Paxil)</td><td>SSRI</td><td>GAD, OCD, PTSD, panic, social</td><td>Most anticholinergic SSRI; hardest to D/C</td></tr>
+          <tr><td><strong>Sertraline</strong> (Zoloft)</td><td>SSRI</td><td>PTSD, panic, OCD, depression</td><td>FDA-approved for PTSD; well-tolerated</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: BUSPIRONE
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-buspirone">
+    <div class="section-hero">
+      <h1>Buspirone<br><span style="color:var(--accent-mint)">The "Different" Anxiolytic</span></h1>
+      <p>BuSpar is uniquely different from all other anxiolytics — NCLEX loves testing its comparison to benzos.</p>
+    </div>
+
+    <div class="drug-card" style="max-width:600px; margin-bottom:24px">
+      <div class="drug-name" style="color:var(--accent-mint)">Buspirone</div>
+      <div class="drug-generic">BuSpar — Non-benzo, Non-addictive Anxiolytic</div>
+      <div class="drug-row"><span class="drug-label">Mechanism</span><span>Partial agonist at 5-HT1A (serotonin) receptors; also acts on dopamine receptors</span></div>
+      <div class="drug-row"><span class="drug-label">Onset</span><span style="color:var(--accent-gold)">2–6 weeks (SLOW — must take consistently!)</span></div>
+      <div class="drug-row"><span class="drug-label">Use</span><span>Chronic GAD only — NOT for acute anxiety or panic</span></div>
+      <div class="drug-row"><span class="drug-label">Sedation</span><span style="color:var(--accent-mint)">Minimal — does NOT cause sedation</span></div>
+      <div class="drug-row"><span class="drug-label">Dependence</span><span style="color:var(--accent-mint)">NONE — no physical dependence</span></div>
+      <div class="drug-row"><span class="drug-label">Withdrawal</span><span style="color:var(--accent-mint)">NONE</span></div>
+      <div class="drug-row"><span class="drug-label">Abuse Potential</span><span style="color:var(--accent-mint)">NONE</span></div>
+    </div>
+
+    <div class="alert alert-success">
+      <strong>🌟 WHY BUSPIRONE IS SPECIAL</strong>
+      It is the ONLY anxiolytic with no abuse potential, no dependence, no sedation, and no respiratory depression risk. This makes it ideal for patients with substance abuse history or those needing long-term management without addiction risk.
+    </div>
+
+    <h2>Side Effects</h2>
+    <div class="grid-3">
+      <div class="card card-mint">
+        <h4>💫 Dizziness</h4>
+        <p>Most common side effect. Teach patient to rise slowly (orthostatic precautions).</p>
+      </div>
+      <div class="card card-sky">
+        <h4>🤕 Headache</h4>
+        <p>Common, especially at initiation. Usually resolves with continued therapy.</p>
+      </div>
+      <div class="card card-teal">
+        <h4>🤢 Nausea</h4>
+        <p>GI upset at start. Taking with food can help reduce nausea.</p>
+      </div>
+    </div>
+
+    <h2>Drug Interactions — Buspirone</h2>
+    <div class="alert alert-danger">
+      <strong>🍊 GRAPEFRUIT JUICE — AVOID</strong>
+      Grapefruit inhibits CYP3A4 enzymes → increases buspirone blood levels → increased side effects. TEACH: Do not take with grapefruit juice.
+    </div>
+    <div class="alert alert-warn">
+      <strong>⚠️ CYP3A4 Inhibitors</strong>
+      Erythromycin (antibiotic) and Ketoconazole (antifungal) both inhibit CYP3A4 → increase buspirone levels. Dose adjustment may be needed.
+    </div>
+
+    <h2>Buspirone vs. Benzodiazepines — Comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Buspirone</th><th>Benzodiazepines</th></tr></thead>
+        <tbody>
+          <tr><td>Onset of action</td><td style="color:var(--accent-gold)">2–6 weeks (slow)</td><td style="color:var(--accent-teal)">Minutes–hours (immediate)</td></tr>
+          <tr><td>Sedation</td><td style="color:var(--accent-mint)">❌ Minimal/none</td><td style="color:var(--accent-coral)">✅ Yes — significant</td></tr>
+          <tr><td>Physical dependence</td><td style="color:var(--accent-mint)">❌ None</td><td style="color:var(--accent-coral)">✅ Yes</td></tr>
+          <tr><td>Withdrawal risk</td><td style="color:var(--accent-mint)">❌ None</td><td style="color:var(--accent-coral)">✅ Yes — can be fatal</td></tr>
+          <tr><td>Abuse potential</td><td style="color:var(--accent-mint)">❌ None</td><td style="color:var(--accent-coral)">✅ High</td></tr>
+          <tr><td>Respiratory depression</td><td style="color:var(--accent-mint)">❌ No</td><td style="color:var(--accent-coral)">✅ Yes — dose-dependent</td></tr>
+          <tr><td>Useful for acute panic</td><td style="color:var(--accent-coral)">❌ No — too slow</td><td style="color:var(--accent-mint)">✅ Yes</td></tr>
+          <tr><td>Best for substance abuse patients</td><td style="color:var(--accent-mint)">✅ Yes — first choice</td><td style="color:var(--accent-coral)">❌ Contraindicated</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mnemonic-box">
+      <div class="mnemonic-title">📝 Nursing Teaching for Buspirone</div>
+      <div class="mnemonic-letter"><div class="letter">N</div><div class="meaning"><strong>Not a rescue drug</strong> <span>— cannot use for acute panic attacks</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">O</div><div class="meaning"><strong>Only works if taken consistently</strong> <span>— must take every day, not PRN</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">W</div><div class="meaning"><strong>Wait for it</strong> <span>— 2–6 weeks before full effect</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">G</div><div class="meaning"><strong>Grapefruit = avoid</strong> <span>— CYP3A4 interaction increases drug levels</span></div></div>
+      <div class="mnemonic-letter"><div class="letter">O</div><div class="meaning"><strong>OK if history of addiction</strong> <span>— no dependence/abuse potential</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: TRAPS
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-traps">
+    <div class="section-hero">
+      <h1>NCLEX Traps &amp; Tips<br><span style="color:var(--accent-coral)">Don't Get Fooled</span></h1>
+      <p>The most common ways students lose points on anxiety disorder questions — and how to avoid them.</p>
+    </div>
+
+    <h2>Top NCLEX Traps</h2>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #1: "This medication works immediately"</strong>
+      WRONG for SSRIs, SNRIs, and Buspirone. Only benzos work immediately. SSRIs take 4–6 weeks for full effect. Students often select "the patient reports feeling better after 2 days" as an expected outcome — that is UNEXPECTED for SSRIs.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #2: "Stop the benzodiazepine abruptly"</strong>
+      NEVER stop benzos suddenly → causes rebound anxiety, tremors, and SEIZURES. Always taper. Any answer suggesting abrupt discontinuation is WRONG.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #3: "Buspirone works fast / can be used PRN"</strong>
+      WRONG. Buspirone takes 2–6 weeks. It is NOT for acute panic or PRN use. It must be taken consistently every day to build up therapeutic effect.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #4: "Mix benzodiazepines with alcohol or opioids"</strong>
+      DEADLY combination. Both CNS depressants → synergistic effect → fatal respiratory depression. ALWAYS teach patients to avoid alcohol while on benzos.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #5: "Treat the panic attack before ruling out cardiac cause"</strong>
+      WRONG. Always rule out MI/cardiac cause first when a patient presents with chest pain, palpitations, and SOB — even if it sounds like panic disorder.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #6: "Interrupt the OCD patient's compulsions"</strong>
+      WRONG. Never abruptly interrupt compulsions → causes extreme anxiety. Allow the ritual; work with behavioral therapy gradually.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #7: "SSRIs are safe to stop anytime"</strong>
+      WRONG. SSRIs should NOT be stopped abruptly — causes discontinuation syndrome (flu-like symptoms, dizziness, "brain zaps"). Always taper.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-icon">❌</div>
+      <div class="trap-text"><strong>Trap #8: "Young patients on SSRIs — suicide risk is gone"</strong>
+      WRONG. Black box warning: SSRIs increase suicide risk in patients under 25 — especially in the FIRST FEW WEEKS. Monitor closely; increased energy + unchanged mood = highest risk window.</div>
+    </div>
+
+    <h2>Quick Decision Framework</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>NCLEX Asks About...</th><th>Correct Answer Direction</th></tr></thead>
+        <tbody>
+          <tr><td>Immediate/acute anxiety relief</td><td><strong style="color:var(--accent-lavender)">Benzodiazepine</strong></td></tr>
+          <tr><td>Long-term anxiety management</td><td><strong style="color:var(--accent-teal)">SSRI or SNRI</strong></td></tr>
+          <tr><td>No abuse/dependence risk for chronic use</td><td><strong style="color:var(--accent-mint)">Buspirone</strong></td></tr>
+          <tr><td>Physical symptoms before performance</td><td><strong style="color:var(--accent-rose)">Beta-blocker (propranolol)</strong></td></tr>
+          <tr><td>Benzo + what = fatal</td><td><strong style="color:var(--accent-coral)">Alcohol, opioids</strong></td></tr>
+          <tr><td>SSRI patient says "not working after 1 week"</td><td><strong style="color:var(--accent-gold)">Educate: takes 4–6 weeks</strong></td></tr>
+          <tr><td>Benzo withdrawal symptoms</td><td><strong style="color:var(--accent-coral)">Seizures are most dangerous</strong></td></tr>
+          <tr><td>Buspirone interaction avoid</td><td><strong style="color:var(--accent-gold)">Grapefruit juice</strong></td></tr>
+          <tr><td>PTSD core symptom cluster</td><td><strong style="color:var(--accent-sky)">Re-experiencing + Avoidance + Hyperarousal</strong></td></tr>
+          <tr><td>Best therapy for OCD</td><td><strong style="color:var(--accent-mint)">ERP (Exposure and Response Prevention)</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: NCLEX QUESTIONS
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-nclex">
+    <div class="section-hero">
+      <h1>NCLEX Practice Questions<br><span style="color:var(--accent-gold)">Exam Prep</span></h1>
+      <p>Select All That Apply · Appropriate/Inappropriate Response · Expected/Unexpected Outcome · Priority Questions</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q1</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Select All That Apply</span></div>
+          <div class="q-text">A nurse is caring for a patient newly prescribed sertraline (Zoloft) for generalized anxiety disorder. Which statements, if made by the patient, indicate an understanding of the teaching? Select all that apply.</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q1a" onclick="toggleSATA(this)"><span class="opt-letter">A</span><span>"I should expect to feel completely better within 3–4 days of starting."</span></div>
+        <div class="q-option" id="q1b" onclick="toggleSATA(this)"><span class="opt-letter">B</span><span>"I should not stop this medication abruptly without talking to my doctor."</span></div>
+        <div class="q-option" id="q1c" onclick="toggleSATA(this)"><span class="opt-letter">C</span><span>"It may take 4–6 weeks before I notice the full therapeutic benefit."</span></div>
+        <div class="q-option" id="q1d" onclick="toggleSATA(this)"><span class="opt-letter">D</span><span>"I should report any new thoughts of self-harm or suicide immediately."</span></div>
+        <div class="q-option" id="q1e" onclick="toggleSATA(this)"><span class="opt-letter">E</span><span>"I can have a glass of wine at dinner since this is not a benzo."</span></div>
+        <button class="reveal-btn" onclick="revealSATA('r1', ['q1b','q1c','q1d'])">Reveal Answer</button>
+        <div class="rationale" id="r1">
+          <strong>✅ Correct: B, C, D</strong><br><br>
+          <strong>B — Correct:</strong> SSRIs should never be stopped abruptly — discontinuation syndrome can occur (flu-like symptoms, "brain zaps," dizziness).<br><br>
+          <strong>C — Correct:</strong> Full therapeutic effect takes 4–6 weeks. Initial improvement in sleep and energy may be seen around 1 week, but mood regulation requires weeks.<br><br>
+          <strong>D — Correct:</strong> The black box warning on SSRIs is for suicidal ideation, especially in patients under 25. The patient must report any new suicidal thoughts immediately.<br><br>
+          <strong>A — INCORRECT:</strong> Feeling better in 3–4 days is unrealistic for SSRIs. This is a common NCLEX trap — SSRIs take weeks, not days.<br><br>
+          <strong>E — INCORRECT:</strong> Although SSRIs are not CNS depressants like benzos, alcohol can worsen depression, anxiety, and increase side effect risk. Alcohol should be avoided.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q2</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Expected / Unexpected Outcome</span></div>
+          <div class="q-text">A patient has been taking lorazepam (Ativan) 1 mg PO TID for 3 weeks for anxiety. The provider discontinues the medication and writes "stop lorazepam today." Which outcome would the nurse identify as UNEXPECTED and require immediate action?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q2a" onclick="singleQ('q2',this,'wrong')"><span class="opt-letter">A</span><span>The patient reports feeling more anxious than before starting the medication.</span></div>
+        <div class="q-option" id="q2b" onclick="singleQ('q2',this,'wrong')"><span class="opt-letter">B</span><span>The patient develops mild insomnia over the next two nights.</span></div>
+        <div class="q-option" id="q2c" onclick="singleQ('q2',this,'correct')"><span class="opt-letter">C</span><span>The patient experiences a generalized tonic-clonic seizure 24 hours after stopping.</span></div>
+        <div class="q-option" id="q2d" onclick="singleQ('q2',this,'wrong')"><span class="opt-letter">D</span><span>The patient becomes irritable and requests to speak with their doctor.</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r2','q2c')">Reveal Answer</button>
+        <div class="rationale" id="r2">
+          <strong>✅ Correct Answer: C — Generalized tonic-clonic seizure</strong><br><br>
+          This is the UNEXPECTED and dangerous outcome that requires immediate action. Abrupt discontinuation of benzodiazepines in patients who have been taking them regularly can cause life-threatening withdrawal seizures.<br><br>
+          <strong>Why A, B, D are expected (though concerning):</strong> Rebound anxiety, insomnia, and irritability are all anticipated benzodiazepine withdrawal symptoms — unpleasant but not immediately life-threatening.<br><br>
+          <strong>Key Nursing Action:</strong> The nurse should hold the order, contact the provider, and advocate for a tapering schedule. This order as written is unsafe. Benzos must always be <em>tapered</em>, not stopped abruptly.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q3</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Appropriate / Not Appropriate Response</span></div>
+          <div class="q-text">A nurse is educating a patient newly prescribed buspirone (BuSpar) for chronic anxiety. The patient says, "When I feel really anxious, I'll just take an extra dose." Which response by the nurse is MOST appropriate?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q3a" onclick="singleQ('q3',this,'wrong')"><span class="opt-letter">A</span><span>"That's fine — buspirone is very safe and has no abuse potential, so an extra dose won't harm you."</span></div>
+        <div class="q-option" id="q3b" onclick="singleQ('q3',this,'correct')"><span class="opt-letter">B</span><span>"Buspirone is not effective for acute anxiety. It must be taken consistently every day and requires 2–6 weeks to reach full effect. You should contact your provider for a plan to manage acute episodes."</span></div>
+        <div class="q-option" id="q3c" onclick="singleQ('q3',this,'wrong')"><span class="opt-letter">C</span><span>"You can take buspirone as needed — just don't take more than three doses per day."</span></div>
+        <div class="q-option" id="q3d" onclick="singleQ('q3',this,'wrong')"><span class="opt-letter">D</span><span>"Since buspirone is slow-acting, you should switch to a benzodiazepine for better control."</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r3','q3b')">Reveal Answer</button>
+        <div class="rationale" id="r3">
+          <strong>✅ Correct Answer: B</strong><br><br>
+          Buspirone is <strong>NOT a PRN (as-needed) medication</strong>. It works by gradually modulating serotonin receptors and requires consistent daily dosing over 2–6 weeks to reach therapeutic levels. Taking an extra dose during acute anxiety will not provide immediate relief.<br><br>
+          <strong>A — Wrong:</strong> While safety is accurate, telling the patient "that's fine" to use it PRN is incorrect nursing guidance.<br><br>
+          <strong>C — Wrong:</strong> Buspirone is not a PRN drug under any circumstance.<br><br>
+          <strong>D — Wrong:</strong> Switching to a benzodiazepine is not within the nurse's scope to recommend, and is not appropriate without provider order. The nurse's role is education, not prescribing.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q4</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Select All That Apply</span></div>
+          <div class="q-text">A nurse is assessing a patient admitted for generalized anxiety disorder. Which findings are consistent with the diagnosis? Select all that apply.</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q4a" onclick="toggleSATA(this)"><span class="opt-letter">A</span><span>Patient reports excessive worry about multiple areas of life for the past 8 months.</span></div>
+        <div class="q-option" id="q4b" onclick="toggleSATA(this)"><span class="opt-letter">B</span><span>Patient says they cannot control the worry, even when they know it is excessive.</span></div>
+        <div class="q-option" id="q4c" onclick="toggleSATA(this)"><span class="opt-letter">C</span><span>Patient reports muscle tension and difficulty sleeping.</span></div>
+        <div class="q-option" id="q4d" onclick="toggleSATA(this)"><span class="opt-letter">D</span><span>Patient reports sudden episode of chest pain, palpitations, and fear of dying 15 minutes ago that has now resolved.</span></div>
+        <div class="q-option" id="q4e" onclick="toggleSATA(this)"><span class="opt-letter">E</span><span>Patient has stopped attending work due to worry about performance.</span></div>
+        <button class="reveal-btn" onclick="revealSATA('r4',['q4a','q4b','q4c','q4e'])">Reveal Answer</button>
+        <div class="rationale" id="r4">
+          <strong>✅ Correct: A, B, C, E</strong><br><br>
+          <strong>A — Correct:</strong> GAD requires excessive worry about multiple topics for ≥6 months. 8 months meets criteria.<br><br>
+          <strong>B — Correct:</strong> A hallmark of GAD is the inability to control the worry, even when recognized as excessive.<br><br>
+          <strong>C — Correct:</strong> Muscle tension and sleep disturbance are two of the six associated symptoms required for GAD diagnosis.<br><br>
+          <strong>D — INCORRECT:</strong> This description (sudden onset, peaks in minutes, resolves in 15 min, fear of dying) is classic for a <strong>panic attack/panic disorder</strong>, NOT GAD. GAD involves persistent chronic worry, not discrete attacks.<br><br>
+          <strong>E — Correct:</strong> Functional impairment (unable to attend work) is required for the GAD diagnosis.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q5</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Priority / Which Response is Appropriate</span></div>
+          <div class="q-text">A patient comes to the emergency department with chest pain, shortness of breath, dizziness, and tells the nurse "I feel like I'm dying." The patient has a history of panic disorder. What is the nurse's PRIORITY action?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q5a" onclick="singleQ('q5',this,'correct')"><span class="opt-letter">A</span><span>Obtain an ECG and cardiac enzymes to rule out myocardial infarction before addressing panic disorder.</span></div>
+        <div class="q-option" id="q5b" onclick="singleQ('q5',this,'wrong')"><span class="opt-letter">B</span><span>Administer the patient's prescribed lorazepam and provide reassurance that this is a panic attack.</span></div>
+        <div class="q-option" id="q5c" onclick="singleQ('q5',this,'wrong')"><span class="opt-letter">C</span><span>Ask the patient to breathe into a paper bag to correct hyperventilation.</span></div>
+        <div class="q-option" id="q5d" onclick="singleQ('q5',this,'wrong')"><span class="opt-letter">D</span><span>Place the patient in a quiet room and use therapeutic communication to reduce anxiety first.</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r5','q5a')">Reveal Answer</button>
+        <div class="rationale" id="r5">
+          <strong>✅ Correct Answer: A — Rule out cardiac cause FIRST</strong><br><br>
+          This is the classic NCLEX priority trap for panic disorder. Even though the patient has a known history of panic disorder and the symptoms are classic for a panic attack, <strong>the nurse must ALWAYS rule out a life-threatening cardiac cause first</strong>. Chest pain = cardiac workup before psychiatric assumptions.<br><br>
+          <strong>B — Wrong:</strong> Administering lorazepam before ruling out a cardiac cause is premature and potentially dangerous.<br><br>
+          <strong>C — Wrong:</strong> Paper bag rebreathing is outdated and potentially harmful — can worsen hypoxia. It is no longer recommended.<br><br>
+          <strong>D — Wrong:</strong> Therapeutic communication is important but is not the priority when physical safety is unestablished.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q6</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Select All That Apply</span></div>
+          <div class="q-text">A patient is being discharged with a prescription for lorazepam (Ativan) 0.5 mg PO BID PRN anxiety. Which discharge teaching points should the nurse include? Select all that apply.</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q6a" onclick="toggleSATA(this)"><span class="opt-letter">A</span><span>Avoid driving or operating heavy machinery while taking this medication.</span></div>
+        <div class="q-option" id="q6b" onclick="toggleSATA(this)"><span class="opt-letter">B</span><span>Do not drink alcohol or take other CNS depressants while on lorazepam.</span></div>
+        <div class="q-option" id="q6c" onclick="toggleSATA(this)"><span class="opt-letter">C</span><span>If you miss doses for several days, you can restart the full dose immediately.</span></div>
+        <div class="q-option" id="q6d" onclick="toggleSATA(this)"><span class="opt-letter">D</span><span>Long-term use can lead to physical dependence; use as prescribed and discuss with your doctor before stopping.</span></div>
+        <div class="q-option" id="q6e" onclick="toggleSATA(this)"><span class="opt-letter">E</span><span>Fall precautions are important, especially in older adults, due to the sedating effects.</span></div>
+        <button class="reveal-btn" onclick="revealSATA('r6',['q6a','q6b','q6d','q6e'])">Reveal Answer</button>
+        <div class="rationale" id="r6">
+          <strong>✅ Correct: A, B, D, E</strong><br><br>
+          <strong>A — Correct:</strong> Lorazepam causes sedation and impairs reaction time — no driving or operating machinery.<br><br>
+          <strong>B — Correct:</strong> Benzos + alcohol = synergistic CNS depression → potentially fatal respiratory depression.<br><br>
+          <strong>D — Correct:</strong> Benzodiazepine dependence is a real risk with regular use. Patients should never stop without provider guidance (taper needed).<br><br>
+          <strong>E — Correct:</strong> Sedation greatly increases fall risk, especially in elderly patients. Fall prevention education is essential.<br><br>
+          <strong>C — INCORRECT:</strong> After a prolonged break, the patient may have lower tolerance. Restarting at full dose without provider guidance could cause respiratory depression. Always consult the provider.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q7</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Expected / Unexpected Outcome</span></div>
+          <div class="q-text">A patient with PTSD is admitted to the inpatient psychiatric unit. The nurse is developing a care plan. Which nursing action is MOST appropriate for this patient?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q7a" onclick="singleQ('q7',this,'wrong')"><span class="opt-letter">A</span><span>Assign a new nurse to care for this patient each shift to provide varied interaction styles.</span></div>
+        <div class="q-option" id="q7b" onclick="singleQ('q7',this,'wrong')"><span class="opt-letter">B</span><span>Encourage the patient to discuss the details of the trauma in group therapy on day one.</span></div>
+        <div class="q-option" id="q7c" onclick="singleQ('q7',this,'correct')"><span class="opt-letter">C</span><span>Assign consistent nursing staff and establish a safe, predictable environment while building therapeutic trust gradually.</span></div>
+        <div class="q-option" id="q7d" onclick="singleQ('q7',this,'wrong')"><span class="opt-letter">D</span><span>Place the patient in the most active area of the unit to provide stimulation and reduce hyperarousal.</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r7','q7c')">Reveal Answer</button>
+        <div class="rationale" id="r7">
+          <strong>✅ Correct Answer: C — Consistency, safety, and gradual trust building</strong><br><br>
+          PTSD patients require a <strong>safe, predictable, consistent environment</strong>. Trust is the foundation of therapeutic care. The nurse-patient relationship must be built slowly and carefully — the brain of a PTSD patient is hypervigilant and perceives threats everywhere.<br><br>
+          <strong>A — Wrong:</strong> Rotating staff creates inconsistency and unpredictability — highly problematic for PTSD.<br><br>
+          <strong>B — Wrong:</strong> Forcing trauma discussion too early before trust is established can cause re-traumatization and severe distress.<br><br>
+          <strong>D — Wrong:</strong> A busy, stimulating environment would worsen hyperarousal symptoms. PTSD patients need calm, low-stimulation environments.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q8</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Which Response is NOT Appropriate</span></div>
+          <div class="q-text">A nurse observes a patient with OCD spending 45 minutes repeatedly washing their hands before breakfast. Which nursing response is LEAST appropriate?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q8a" onclick="singleQ('q8',this,'wrong')"><span class="opt-letter">A</span><span>Allow the patient extra time to complete morning care routines without interruption.</span></div>
+        <div class="q-option" id="q8b" onclick="singleQ('q8',this,'wrong')"><span class="opt-letter">B</span><span>Observe the behavior without judgment and document frequency and duration.</span></div>
+        <div class="q-option" id="q8c" onclick="singleQ('q8',this,'correct')"><span class="opt-letter">C</span><span>Tell the patient to stop washing their hands immediately, as breakfast is ready and the behavior is unnecessary.</span></div>
+        <div class="q-option" id="q8d" onclick="singleQ('q8',this,'wrong')"><span class="opt-letter">D</span><span>Collaborate with the treatment team to gradually incorporate exposure and response prevention therapy.</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r8','q8c')">Reveal Answer</button>
+        <div class="rationale" id="r8">
+          <strong>✅ Least Appropriate (Wrong Answer): C — Telling the patient to stop immediately</strong><br><br>
+          Abruptly interrupting compulsions causes <strong>extreme anxiety and distress</strong> in OCD patients. The compulsion serves to temporarily relieve the overwhelming anxiety caused by the obsession. Forcing cessation without therapeutic support is counterproductive and harmful.<br><br>
+          <strong>A — Appropriate:</strong> Allowing time shows respect and reduces situational stressors.<br><br>
+          <strong>B — Appropriate:</strong> Non-judgmental observation and documentation is correct therapeutic nursing.<br><br>
+          <strong>D — Appropriate:</strong> ERP (Exposure and Response Prevention) with the treatment team is the gold-standard approach — gradual, not abrupt.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q9</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Select All That Apply — Pharmacology</span></div>
+          <div class="q-text">A nurse is reviewing medications for a patient who takes diazepam (Valium) for anxiety. Which medications or substances, if reported by the patient, require the nurse to intervene? Select all that apply.</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q9a" onclick="toggleSATA(this)"><span class="opt-letter">A</span><span>Hydrocodone (opioid pain medication) prescribed by another provider.</span></div>
+        <div class="q-option" id="q9b" onclick="toggleSATA(this)"><span class="opt-letter">B</span><span>Daily multivitamin supplement.</span></div>
+        <div class="q-option" id="q9c" onclick="toggleSATA(this)"><span class="opt-letter">C</span><span>Two glasses of wine each evening.</span></div>
+        <div class="q-option" id="q9d" onclick="toggleSATA(this)"><span class="opt-letter">D</span><span>Valerian root tea for sleep (herbal supplement).</span></div>
+        <div class="q-option" id="q9e" onclick="toggleSATA(this)"><span class="opt-letter">E</span><span>Lisinopril for blood pressure taken in the morning.</span></div>
+        <button class="reveal-btn" onclick="revealSATA('r9',['q9a','q9c','q9d'])">Reveal Answer</button>
+        <div class="rationale" id="r9">
+          <strong>✅ Correct — Intervene for: A, C, D</strong><br><br>
+          <strong>A — Intervene:</strong> Opioids + benzodiazepines = additive CNS/respiratory depression. This combination is the leading cause of overdose deaths. Must notify provider immediately.<br><br>
+          <strong>C — Intervene:</strong> Alcohol + benzodiazepines = dangerously synergistic CNS depression → can cause fatal respiratory depression. Patient must be educated and this must be reported.<br><br>
+          <strong>D — Intervene:</strong> Valerian root is a herbal CNS depressant. Combined with diazepam, it can enhance sedation and respiratory depression. Herbal supplements are often overlooked — always ask!<br><br>
+          <strong>B — No Intervention Needed:</strong> Multivitamins have no significant interaction with diazepam.<br><br>
+          <strong>E — No Intervention Needed:</strong> Lisinopril (ACE inhibitor) does not interact with benzodiazepines in a clinically significant way.
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div><div class="q-number">Q10</div></div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; margin-bottom:6px"><span class="q-type">Appropriate Response — Therapeutic Communication</span></div>
+          <div class="q-text">A patient experiencing an acute panic attack tells the nurse, "I can't breathe! My heart is racing! I'm having a heart attack — I'm going to die!" Which response by the nurse is MOST therapeutic?</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-option" id="q10a" onclick="singleQ('q10',this,'wrong')"><span class="opt-letter">A</span><span>"You are not having a heart attack. This is just a panic attack. You will be fine in a few minutes."</span></div>
+        <div class="q-option" id="q10b" onclick="singleQ('q10',this,'correct')"><span class="opt-letter">B</span><span>"I can see you're very frightened. I'm staying right here with you. Let's breathe together slowly — in through your nose, out through your mouth."</span></div>
+        <div class="q-option" id="q10c" onclick="singleQ('q10',this,'wrong')"><span class="opt-letter">C</span><span>"Try to calm down. Your vitals are normal and there is nothing wrong with you physically."</span></div>
+        <div class="q-option" id="q10d" onclick="singleQ('q10',this,'wrong')"><span class="opt-letter">D</span><span>"These feelings are all in your head. Panic attacks are not real medical emergencies."</span></div>
+        <button class="reveal-btn" onclick="revealAnswer('r10','q10b')">Reveal Answer</button>
+        <div class="rationale" id="r10">
+          <strong>✅ Correct Answer: B — Acknowledge, presence, guided breathing</strong><br><br>
+          This response demonstrates the three pillars of therapeutic panic management: <strong>(1) Validate the feeling</strong> ("I can see you're very frightened"), <strong>(2) Presence and safety</strong> ("I'm staying right here with you"), and <strong>(3) Guided breathing</strong> to activate the parasympathetic nervous system and reduce sympathetic activation.<br><br>
+          <strong>A — Wrong:</strong> Dismissing the patient's experience ("just a panic attack") is invalidating and increases anxiety. Also — cardiac must still be ruled out.<br><br>
+          <strong>C — Wrong:</strong> Telling a terrified patient to "calm down" is ineffective and dismissive. It invalidates their experience.<br><br>
+          <strong>D — Wrong:</strong> Calling the symptoms "all in your head" is deeply invalidating, inaccurate, and therapeutically harmful. Panic attacks are real physiologic events.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════
+       PANEL: COMPARE
+  ══════════════════════════════════ -->
+  <div class="content-panel" id="panel-compare">
+    <div class="section-hero">
+      <h1>Master Comparison<br><span style="color:var(--accent-sky)">All Disorders & Drugs</span></h1>
+      <p>Your final review tables — put everything side by side for quick pre-exam reinforcement.</p>
+    </div>
+
+    <h2>Anxiety Disorders — At a Glance</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Disorder</th><th>Duration/Trigger</th><th>Core Features</th><th>First-Line Drug</th><th>Key Nursing Point</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--accent-gold)">GAD</strong></td>
+            <td>≥ 6 months, multiple topics</td>
+            <td>Chronic worry, muscle tension, fatigue, sleep issues</td>
+            <td>SSRI / SNRI + CBT</td>
+            <td>Rule out hyperthyroidism</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-coral)">Panic Disorder</strong></td>
+            <td>Sudden, no trigger, peaks &lt;10 min</td>
+            <td>Chest pain, palpitations, SOB, fear of dying, derealization</td>
+            <td>SSRI (long-term); Benzo (acute)</td>
+            <td>Rule out cardiac FIRST</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-sky)">PTSD</strong></td>
+            <td>After trauma, persists &gt;1 month</td>
+            <td>Re-experiencing, avoidance, hyperarousal — the triad</td>
+            <td>SSRI (sertraline, paroxetine)</td>
+            <td>Build trust; avoid triggers; monitor suicide risk</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-mint)">OCD</strong></td>
+            <td>Persistent, ego-dystonic</td>
+            <td>Obsessions + compulsions, time-consuming (&gt;1 hr/day)</td>
+            <td>SSRI (higher doses) or clomipramine</td>
+            <td>Never interrupt compulsions abruptly; ERP therapy</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-rose)">Social/Performance</strong></td>
+            <td>Situational/specific</td>
+            <td>Sympathetic symptoms (tremors, tachycardia) before events</td>
+            <td>Propranolol (beta-blocker)</td>
+            <td>Treats physical symptoms only; not psychological fear</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Drug Summary — All Anxiolytics</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drug Class</th><th>Examples</th><th>Mechanism</th><th>Onset</th><th>Best Use</th><th>Major Risk</th><th>Contraindications</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--accent-teal)">SSRIs</strong></td>
+            <td>Paroxetine, Escitalopram, Sertraline</td>
+            <td>Block 5-HT reuptake → ↑ serotonin</td>
+            <td>4–6 weeks</td>
+            <td>GAD, panic, PTSD, OCD</td>
+            <td>Suicidal ideation (black box), serotonin syndrome</td>
+            <td>MAOIs (serotonin syndrome)</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-sky)">SNRIs</strong></td>
+            <td>Venlafaxine, Duloxetine</td>
+            <td>Block 5-HT + NE reuptake</td>
+            <td>4–6 weeks</td>
+            <td>GAD, PTSD, panic</td>
+            <td><strong style="color:var(--accent-coral)">Hypertension</strong></td>
+            <td>MAOIs; uncontrolled HTN</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-lavender)">Benzos</strong></td>
+            <td>Lorazepam, Alprazolam, Diazepam</td>
+            <td>Enhance GABA → CNS depression</td>
+            <td>Minutes (immediate)</td>
+            <td>Acute anxiety, panic attack</td>
+            <td>Dependence, resp. depression, withdrawal seizures</td>
+            <td>Pregnancy, sleep apnea, substance abuse hx</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-mint)">Buspirone</strong></td>
+            <td>BuSpar</td>
+            <td>5-HT1A partial agonist + dopamine</td>
+            <td>2–6 weeks</td>
+            <td>Chronic GAD — NO acute use</td>
+            <td>Minimal (dizziness, headache)</td>
+            <td>Grapefruit juice, MAOIs</td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--accent-rose)">Beta-Blockers</strong></td>
+            <td>Propranolol</td>
+            <td>Block β-adrenergic receptors</td>
+            <td>1 hour</td>
+            <td>Situational/performance anxiety</td>
+            <td>Bradycardia, hypotension; masks hypoglycemia signs</td>
+            <td>Asthma, bradycardia, heart block</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>SSRI vs SNRI vs Benzo vs Buspirone — Key Differentiators</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th style="color:var(--accent-teal)">SSRI</th><th style="color:var(--accent-sky)">SNRI</th><th style="color:var(--accent-lavender)">Benzo</th><th style="color:var(--accent-mint)">Buspirone</th></tr></thead>
+        <tbody>
+          <tr><td>Speed of onset</td><td>Slow (4–6 wks)</td><td>Slow (4–6 wks)</td><td>⚡ Immediate</td><td>Slow (2–6 wks)</td></tr>
+          <tr><td>Addiction potential</td><td>None</td><td>None</td><td style="color:var(--accent-coral)">HIGH</td><td>None</td></tr>
+          <tr><td>Sedation</td><td>Mild</td><td>Mild</td><td style="color:var(--accent-coral)">Significant</td><td>Minimal</td></tr>
+          <tr><td>Respiratory depression</td><td>No</td><td>No</td><td style="color:var(--accent-coral)">Yes — dangerous</td><td>No</td></tr>
+          <tr><td>PRN (as needed) use</td><td>No</td><td>No</td><td>Yes (short-term)</td><td>No — must be daily</td></tr>
+          <tr><td>Black box warning</td><td style="color:var(--accent-coral)">Suicidality (under 25)</td><td style="color:var(--accent-coral)">Suicidality</td><td>None</td><td>None</td></tr>
+          <tr><td>Unique side effect</td><td>Sexual dysfunction</td><td style="color:var(--accent-coral)">Hypertension</td><td>Withdrawal seizures</td><td>Avoid grapefruit juice</td></tr>
+          <tr><td>Best for substance hx</td><td>Yes</td><td>Yes</td><td style="color:var(--accent-coral)">AVOID</td><td style="color:var(--accent-mint)">Best choice</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mnemonic-box" style="margin-top:28px">
+      <div class="mnemonic-title">🏆 Final Memory Anchors — Say These Before Your Exam</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:14px; line-height:2">
+        <div>⚡ <strong>Benzos</strong> = fast but dangerous</div>
+        <div>🌱 <strong>SSRIs</strong> = slow but safe long-term</div>
+        <div>🍀 <strong>Buspirone</strong> = safest, slowest, not PRN</div>
+        <div>😱 <strong>Panic attack</strong> = peaks fast, ends fast</div>
+        <div>🪖 <strong>PTSD</strong> = flashbacks + avoidance + hyperarousal</div>
+        <div>🔁 <strong>OCD</strong> = never interrupt compulsions suddenly</div>
+        <div>💀 <strong>Benzo + alcohol/opioids</strong> = respiratory depression death</div>
+        <div>🚨 <strong>Benzo withdrawal</strong> = SEIZURES (always taper!)</div>
+        <div>❤️ <strong>Panic + chest pain</strong> = rule out cardiac FIRST</div>
+        <div>📈 <strong>SNRI unique risk</strong> = hypertension (monitor BP!)</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+  const panelTitles = {
+    'overview': 'Overview & Pathophysiology',
+    'gad': 'Generalized Anxiety Disorder',
+    'panic': 'Panic Disorder',
+    'ptsd': 'PTSD',
+    'ocd': 'OCD',
+    'other': 'Performance Anxiety',
+    'meds': 'Drug Classes Overview',
+    'benzos': 'Benzodiazepines',
+    'ssri': 'SSRIs & SNRIs',
+    'buspirone': 'Buspirone',
+    'traps': 'NCLEX Traps & Tips',
+    'nclex': 'NCLEX Practice Questions',
+    'compare': 'Master Comparison Table'
+  };
+
+  function show(id) {
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
+        n.classList.add('active');
+      }
+    });
+    document.getElementById('panel-title').textContent = panelTitles[id] || id;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleSATA(el) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) {
+      el.style.borderColor = 'var(--accent-teal)';
+      el.style.background = 'rgba(0,212,184,0.06)';
+      el.querySelector('.opt-letter').style.background = 'var(--accent-teal)';
+      el.querySelector('.opt-letter').style.color = 'var(--bg)';
+    } else {
+      el.style.borderColor = '';
+      el.style.background = '';
+      el.querySelector('.opt-letter').style.background = '';
+      el.querySelector('.opt-letter').style.color = '';
+    }
+  }
+
+  function revealSATA(rationaleId, correctIds) {
+    const rationale = document.getElementById(rationaleId);
+    rationale.classList.toggle('show');
+
+    if (rationale.classList.contains('show')) {
+      const qNum = rationaleId.replace('r','');
+      document.querySelectorAll(`[id^="q${qNum}"]`).forEach(opt => {
+        const optId = opt.id;
+        if (correctIds.includes(optId)) {
+          opt.classList.add('correct');
+          opt.classList.remove('incorrect');
+          opt.querySelector('.opt-letter').style.background = 'var(--accent-mint)';
+          opt.querySelector('.opt-letter').style.color = 'var(--bg)';
+        } else {
+          opt.classList.add('incorrect');
+          opt.querySelector('.opt-letter').style.background = 'var(--accent-coral)';
+          opt.querySelector('.opt-letter').style.color = 'white';
+        }
+      });
+    }
+  }
+
+  function singleQ(qPrefix, el, type) {
+    // just visual selection
+    document.querySelectorAll(`[id^="${qPrefix}"]`).forEach(o => {
+      o.style.borderColor = '';
+      o.style.background = '';
+      o.querySelector('.opt-letter').style.background = '';
+      o.querySelector('.opt-letter').style.color = '';
+    });
+    if (type === 'correct') {
+      el.style.borderColor = 'var(--accent-mint)';
+      el.style.background = 'rgba(110,231,183,0.07)';
+      el.querySelector('.opt-letter').style.background = 'var(--accent-mint)';
+      el.querySelector('.opt-letter').style.color = 'var(--bg)';
+    } else {
+      el.style.borderColor = 'rgba(255,107,107,0.5)';
+      el.style.background = 'rgba(255,107,107,0.05)';
+      el.querySelector('.opt-letter').style.background = 'rgba(255,107,107,0.4)';
+      el.querySelector('.opt-letter').style.color = 'white';
+    }
+  }
+
+  function revealAnswer(rationaleId, correctOptId) {
+    const rationale = document.getElementById(rationaleId);
+    rationale.classList.toggle('show');
+
+    if (rationale.classList.contains('show')) {
+      const qNum = rationaleId.replace('r','');
+      document.querySelectorAll(`[id^="q${qNum}"]`).forEach(opt => {
+        if (opt.id === correctOptId) {
+          opt.classList.add('correct');
+          opt.querySelector('.opt-letter').style.background = 'var(--accent-mint)';
+          opt.querySelector('.opt-letter').style.color = 'var(--bg)';
+        } else {
+          opt.classList.add('incorrect');
+          opt.querySelector('.opt-letter').style.background = 'var(--accent-coral)';
+          opt.querySelector('.opt-letter').style.color = 'white';
+        }
+      });
+    }
+  }
+</script>
+</body>
+</html>
