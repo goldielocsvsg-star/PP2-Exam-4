@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych Pharm — Exam 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #fdf6ee;
+  --cream2:   #f9ede0;
+  --paper:    #fff9f3;
+  --sand:     #f0e0cc;
+  --sun:      #f5a623;
+  --amber:    #e8832a;
+  --coral:    #e85d3a;
+  --rose:     #d94f6a;
+  --blush:    #f2a5a0;
+  --dusk:     #7b3f6e;
+  --sky:      #4a7fa5;
+  --sage:     #6b9e6e;
+  --ink:      #2c1810;
+  --ink2:     #4a2c1a;
+  --mid:      #7a4d30;
+  --light-mid:#a87050;
+  --border:   rgba(180,100,50,.18);
+  --shadow:   rgba(120,50,20,.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Nunito',sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%, rgba(245,166,35,.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 0% 100%, rgba(232,93,58,.1) 0%, transparent 50%);
+}
+
+/* ─── HEADER ─── */
+header {
+  background: linear-gradient(135deg, #e85d3a 0%, #f5a623 40%, #d94f6a 100%);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 24px rgba(180,60,20,.25);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px 10px;
+  gap: 16px;
+}
+
+.header-brand h1 {
+  font-family:'Playfair Display',serif;
+  font-size: 26px;
+  color: #fff;
+  letter-spacing: -.5px;
+  line-height: 1;
+}
+
+.header-brand .sub {
+  font-size: 11px;
+  color: rgba(255,255,255,.75);
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-family: 'Courier Prime', monospace;
+}
+
+.exam-flash {
+  background: rgba(255,255,255,.2);
+  border: 1.5px solid rgba(255,255,255,.5);
+  padding: 6px 16px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Courier Prime', monospace;
+  animation: flash 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes flash {
+  0%,100% { opacity:1; }
+  50% { opacity:.6; }
+}
+
+/* ─── TAB NAV ─── */
+.tab-nav {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 20px;
+  gap: 2px;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display:none; }
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,.75);
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  letter-spacing: .3px;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,.1);
+}
+
+.tab-btn.active {
+  color: #fff;
+  border-bottom-color: #fff;
+  background: rgba(255,255,255,.15);
+}
+
+/* ─── MAIN ─── */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.page { display:none; animation: pageIn .3s ease; }
+.page.active { display:block; }
+
+@keyframes pageIn {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── PAGE TITLE ─── */
+.page-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--sand);
+}
+
+.page-title-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.page-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.page-title p {
+  color: var(--mid);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* ─── DRUG CARDS GRID ─── */
+.drug-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* ─── DRUG CARD ─── */
+.dcard {
+  background: var(--paper);
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: box-shadow .2s, transform .2s;
+}
+
+.dcard:hover {
+  box-shadow: 0 6px 28px rgba(180,80,30,.18);
+  transform: translateY(-2px);
+}
+
+.dcard-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dcard-stripe {
+  width: 5px;
+  height: 44px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dcard-info { flex: 1; }
+
+.dcard-class {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.dcard-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.dcard-generic {
+  font-size: 12px;
+  color: var(--light-mid);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.dcard-toggle {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--cream2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  color: var(--mid);
+  flex-shrink: 0;
+  transition: all .2s;
+}
+
+.dcard-header:hover .dcard-toggle {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.dcard-body {
+  display: none;
+  padding: 0 20px 20px;
+}
+.dcard-body.open { display:block; }
+
+/* ─── INFO SECTIONS INSIDE CARD ─── */
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.info-box {
+  background: var(--cream2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+}
+
+.info-box h5 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--light-mid);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.info-box ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+.info-box li {
+  font-size: 13px;
+  display: flex;
+  gap: 7px;
+  color: var(--ink2);
+  line-height: 1.4;
+}
+
+.info-box li::before {
+  content: '›';
+  color: var(--amber);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── ALERT BOXES ─── */
+.alert {
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-left: 4px solid;
+}
+
+.alert.danger {
+  background: rgba(232,93,58,.08);
+  border-color: var(--coral);
+}
+
+.alert.warning {
+  background: rgba(245,166,35,.1);
+  border-color: var(--sun);
+}
+
+.alert.success {
+  background: rgba(107,158,110,.1);
+  border-color: var(--sage);
+}
+
+.alert.info {
+  background: rgba(74,127,165,.1);
+  border-color: var(--sky);
+}
+
+.alert.purple {
+  background: rgba(123,63,110,.08);
+  border-color: var(--dusk);
+}
+
+.alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+.alert h5 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.alert.danger h5 { color: var(--coral); }
+.alert.warning h5 { color: var(--amber); }
+.alert.success h5 { color: var(--sage); }
+.alert.info h5 { color: var(--sky); }
+.alert.purple h5 { color: var(--dusk); }
+
+.alert ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+.alert li {
+  font-size: 13px;
+  color: var(--ink2);
+  display: flex;
+  gap: 8px;
+  line-height: 1.45;
+}
+
+.alert.danger li::before { content:'⚠'; font-size:11px; flex-shrink:0; margin-top:2px; }
+.alert.warning li::before { content:'!'; font-weight:800; color:var(--amber); flex-shrink:0; }
+.alert.success li::before { content:'✓'; color:var(--sage); flex-shrink:0; }
+.alert.info li::before { content:'→'; color:var(--sky); flex-shrink:0; }
+.alert.purple li::before { content:'★'; font-size:11px; color:var(--dusk); flex-shrink:0; margin-top:2px; }
+
+/* ─── MNEMONIC ─── */
+.mnemonic {
+  background: linear-gradient(135deg, rgba(245,166,35,.12), rgba(217,79,106,.1));
+  border: 1.5px solid rgba(245,166,35,.35);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin: 20px 0;
+}
+
+.mnemonic h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--amber);
+  margin-bottom: 14px;
+}
+
+.mnem-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(180,100,50,.1);
+}
+.mnem-row:last-child { border-bottom:none; }
+
+.mnem-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--coral);
+  width: 30px;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.mnem-text {
+  font-size: 13.5px;
+  color: var(--ink2);
+  line-height: 1.5;
+  padding-top: 2px;
+}
+
+.mnem-text strong { color: var(--ink); }
+.mnem-text em { color: var(--mid); font-style: italic; }
+
+/* ─── OVERVIEW TILES ─── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.ov-tile {
+  padding: 18px 16px;
+  border-radius: 14px;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  background: var(--paper);
+  text-align: center;
+}
+
+.ov-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.ov-tile .ti { font-size: 30px; margin-bottom: 8px; }
+.ov-tile h3 { font-family: 'Playfair Display', serif; font-size: 15px; margin-bottom: 4px; }
+.ov-tile p { font-size: 11.5px; color: var(--mid); line-height: 1.4; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 8px;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: .5px;
+}
+
+.badge.first { background: rgba(107,158,110,.2); color: var(--sage); border: 1px solid rgba(107,158,110,.4); }
+.badge.last  { background: rgba(232,93,58,.15);  color: var(--coral); border: 1px solid rgba(232,93,58,.3); }
+.badge.acute { background: rgba(74,127,165,.15); color: var(--sky);   border: 1px solid rgba(74,127,165,.3); }
+
+/* ─── COMPARISON TABLE ─── */
+.ct-wrap {
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.ct-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ct-wrap th {
+  background: linear-gradient(135deg, #e85d3a, #f5a623);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.ct-wrap td {
+  padding: 11px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+  vertical-align: middle;
+}
+
+.ct-wrap tr:last-child td { border-bottom: none; }
+.ct-wrap tr:nth-child(even) td { background: rgba(240,224,204,.3); }
+
+.tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 1px;
+}
+.tag.r  { background:rgba(232,93,58,.15);  color:var(--coral); }
+.tag.g  { background:rgba(107,158,110,.15); color:var(--sage);  }
+.tag.y  { background:rgba(245,166,35,.2);   color:var(--amber); }
+.tag.b  { background:rgba(74,127,165,.15);  color:var(--sky);   }
+.tag.p  { background:rgba(123,63,110,.12);  color:var(--dusk);  }
+
+/* ─── TIMELINE ─── */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 24px;
+}
+
+.timeline::before {
+  content:'';
+  position:absolute;
+  left:8px; top:0; bottom:0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--coral), var(--sun), var(--rose));
+  border-radius: 3px;
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 16px;
+  background: var(--paper);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.tl-item::before {
+  content:'';
+  position:absolute;
+  left: -26px; top: 16px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--sun);
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 2px var(--amber);
+}
+
+.tl-item h4 { color: var(--coral); font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+.tl-item p  { font-size: 13px; color: var(--ink2); }
+
+/* ─── INTERACTION TABLE ─── */
+.int-table {
+  width:100%;
+  border-collapse:collapse;
+  border-radius:14px;
+  overflow:hidden;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.int-table th {
+  background: linear-gradient(90deg, var(--coral), var(--rose));
+  color: #fff;
+  padding: 11px 14px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.int-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink2);
+  vertical-align: middle;
+}
+
+.int-table tr:last-child td { border-bottom:none; }
+.int-table tr:nth-child(even) td { background: rgba(240,224,204,.25); }
+
+/* ─── SEROTONIN SYNDROME ─── */
+.ss-triad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.ss-box {
+  background: var(--paper);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+.ss-box .icon { font-size: 30px; margin-bottom: 10px; }
+.ss-box h4 { font-size: 13px; font-weight: 800; color: var(--coral); margin-bottom: 8px; }
+.ss-box ul { list-style:none; font-size:13px; color:var(--ink2); display:flex; flex-direction:column; gap:4px; }
+
+/* ─── NCLEX ─── */
+.q-card {
+  background: var(--paper);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.q-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.q-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--light-mid);
+  font-weight: 700;
+}
+
+.q-type {
+  padding: 3px 11px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-family: 'Courier Prime', monospace;
+}
+
+.q-type.sata     { background:rgba(123,63,110,.12); color:var(--dusk); }
+.q-type.single   { background:rgba(107,158,110,.15); color:var(--sage); }
+.q-type.priority { background:rgba(245,166,35,.2);  color:var(--amber); }
+.q-type.approp   { background:rgba(74,127,165,.15); color:var(--sky); }
+.q-type.unexpected{ background:rgba(232,93,58,.15); color:var(--coral); }
+
+.q-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.q-text strong { color: var(--coral); }
+
+.opts { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
+
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 11px 15px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  font-size: 13.5px;
+  color: var(--ink2);
+  background: var(--cream2);
+  transition: all .18s;
+  line-height: 1.45;
+}
+
+.opt:hover {
+  border-color: var(--amber);
+  background: rgba(245,166,35,.08);
+}
+
+.opt.correct {
+  border-color: var(--sage) !important;
+  background: rgba(107,158,110,.1) !important;
+  color: var(--sage) !important;
+}
+
+.opt.incorrect {
+  border-color: rgba(180,80,50,.3) !important;
+  background: rgba(232,93,58,.05) !important;
+  color: var(--light-mid) !important;
+}
+
+.opt-letter {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--amber);
+}
+
+.opt.correct .opt-letter { color: var(--sage); }
+.opt.incorrect .opt-letter { color: var(--light-mid); }
+
+.reveal-btn {
+  background: linear-gradient(135deg, var(--coral), var(--sun));
+  border: none;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: .3px;
+  transition: all .2s;
+  box-shadow: 0 3px 12px rgba(232,93,58,.3);
+}
+
+.reveal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(232,93,58,.4);
+}
+
+.rationale {
+  display: none;
+  margin-top: 18px;
+  background: linear-gradient(135deg, rgba(245,166,35,.08), rgba(107,158,110,.06));
+  border: 1.5px solid rgba(245,166,35,.3);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.rationale.open { display:block; }
+
+.correct-label {
+  background: rgba(107,158,110,.15);
+  border: 1px solid rgba(107,158,110,.35);
+  border-radius: 8px;
+  padding: 7px 13px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--sage);
+  font-weight: 800;
+  font-family: 'Courier Prime', monospace;
+}
+
+.rationale h5 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+
+.rationale p { font-size: 13.5px; color: var(--ink2); line-height: 1.75; }
+
+/* ─── QR QUICK REF ─── */
+.qr-card {
+  background: var(--paper);
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+.qr-head {
+  background: linear-gradient(90deg, var(--amber), var(--sun));
+  padding: 10px 18px;
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  gap: 12px;
+}
+
+.qr-head span {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  font-weight: 700;
+}
+
+.qr-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.qr-row:last-child { border-bottom:none; }
+.qr-row:nth-child(even) { background: rgba(240,224,204,.2); }
+
+.qr-drug { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--ink); }
+.qr-rem  { font-size:13px; color:var(--ink2); }
+.qr-avoid { font-size:13px; color:var(--coral); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:700px) {
+  .drug-grid { grid-template-columns:1fr; }
+  .overview-grid { grid-template-columns: repeat(2,1fr); }
+  .ss-triad { grid-template-columns:1fr; }
+  .info-row { grid-template-columns:1fr; }
+  main { padding:20px 14px 60px; }
+  .header-top { padding:12px 16px 8px; }
+  .qr-head, .qr-row { grid-template-columns:1fr; }
+  .page-title h2 { font-size:24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="header-brand">
+      <h1>Psychiatric Pharmacology</h1>
+      <div class="sub">Nursing Exam 4 · Complete Study Guide</div>
+    </div>
+    <div class="exam-flash">🔥 Exam 4 Prep</div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showPage('overview',this)">📋 Overview</button>
+    <button class="tab-btn" onclick="showPage('quickref',this)">⚡ Quick Ref</button>
+    <button class="tab-btn" onclick="showPage('ssri',this)">SSRIs</button>
+    <button class="tab-btn" onclick="showPage('snri',this)">SNRIs</button>
+    <button class="tab-btn" onclick="showPage('tca',this)">TCAs</button>
+    <button class="tab-btn" onclick="showPage('maoi',this)">MAOIs</button>
+    <button class="tab-btn" onclick="showPage('atypical',this)">Bupropion</button>
+    <button class="tab-btn" onclick="showPage('herbal',this)">🌿 St. John's</button>
+    <button class="tab-btn" onclick="showPage('benzo',this)">Benzos</button>
+    <button class="tab-btn" onclick="showPage('buspirone',this)">Buspirone</button>
+    <button class="tab-btn" onclick="showPage('betablocker',this)">Beta Blockers</button>
+    <button class="tab-btn" onclick="showPage('danger',this)">🚨 Danger Zones</button>
+    <button class="tab-btn" onclick="showPage('nclex',this)">🎯 NCLEX Qs</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ════ OVERVIEW ════ -->
+<div id="page-overview" class="page active">
+  <div class="page-title">
+    <div class="page-title-icon">🗺️</div>
+    <div>
+      <h2>Drug Class Overview</h2>
+      <p>Tap any tile to jump to that class. Know First-Line vs Last-Line — always tested.</p>
+    </div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="ov-tile" style="border-color:rgba(107,158,110,.4);" onclick="goTo('ssri')">
+      <div class="ti">💊</div>
+      <h3 style="color:var(--sage)">SSRIs</h3>
+      <p>Fluoxetine · Sertraline · Paroxetine · Escitalopram</p>
+      <div class="badge first">FIRST LINE</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(74,127,165,.4);" onclick="goTo('snri')">
+      <div class="ti">💊</div>
+      <h3 style="color:var(--sky)">SNRIs</h3>
+      <p>Venlafaxine · Duloxetine</p>
+      <div class="badge first">FIRST LINE</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(217,79,106,.35);" onclick="goTo('tca')">
+      <div class="ti">💊</div>
+      <h3 style="color:var(--rose)">TCAs</h3>
+      <p>Imipramine · Amitriptyline · Doxepin</p>
+      <div class="badge last">SECOND LINE</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(232,93,58,.4);" onclick="goTo('maoi')">
+      <div class="ti">⚠️</div>
+      <h3 style="color:var(--coral)">MAOIs</h3>
+      <p>Phenelzine · Isocarboxazid · Selegiline</p>
+      <div class="badge last">LAST LINE</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(245,166,35,.45);" onclick="goTo('atypical')">
+      <div class="ti">🎯</div>
+      <h3 style="color:var(--amber)">Bupropion</h3>
+      <p>Depression · Smoking Cessation</p>
+      <div class="badge first">FIRST LINE</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(107,158,110,.3);" onclick="goTo('herbal')">
+      <div class="ti">🌿</div>
+      <h3 style="color:var(--sage)">St. John's Wort</h3>
+      <p>Herbal — high interaction risk</p>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(123,63,110,.3);" onclick="goTo('benzo')">
+      <div class="ti">😴</div>
+      <h3 style="color:var(--dusk)">Benzos</h3>
+      <p>Diazepam · Alprazolam · Lorazepam</p>
+      <div class="badge acute">ACUTE ANXIETY</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(107,158,110,.35);" onclick="goTo('buspirone')">
+      <div class="ti">🌀</div>
+      <h3 style="color:var(--sage)">Buspirone</h3>
+      <p>GAD long-term · No dependence</p>
+      <div class="badge first">GAD PREFERRED</div>
+    </div>
+    <div class="ov-tile" style="border-color:rgba(74,127,165,.35);" onclick="goTo('betablocker')">
+      <div class="ti">❤️</div>
+      <h3 style="color:var(--sky)">Beta Blockers</h3>
+      <p>Propranolol — performance anxiety</p>
+    </div>
+  </div>
+
+  <div class="page-title" style="margin-top:8px;">
+    <div class="page-title-icon">📊</div>
+    <div><h2 style="font-size:22px">First Line vs Last Line</h2></div>
+  </div>
+
+  <div class="ct-wrap">
+    <table>
+      <thead>
+        <tr><th>Class</th><th>Line</th><th>Primary Use</th><th>Key Fact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>SSRIs</strong></td><td><span class="tag g">FIRST</span></td><td>Depression, Anxiety, OCD, PTSD</td><td>Best safety profile; 2–4 wk onset</td></tr>
+        <tr><td><strong>SNRIs</strong></td><td><span class="tag g">FIRST</span></td><td>Depression, GAD, Neuropathic pain</td><td>Monitor BP — NE raises it</td></tr>
+        <tr><td><strong>Bupropion</strong></td><td><span class="tag g">FIRST</span></td><td>Depression, Smoking cessation</td><td>No sexual dysfunction; seizure risk</td></tr>
+        <tr><td><strong>TCAs</strong></td><td><span class="tag y">SECOND</span></td><td>Depression, Pain, Insomnia</td><td>Cardiotoxic; lethal in overdose</td></tr>
+        <tr><td><strong>MAOIs</strong></td><td><span class="tag r">LAST</span></td><td>Refractory / atypical depression</td><td>Tyramine diet; tons of interactions</td></tr>
+        <tr><td><strong>Benzos</strong></td><td><span class="tag b">ACUTE</span></td><td>Acute anxiety, Panic, Insomnia</td><td>Fast-acting; dependence risk</td></tr>
+        <tr><td><strong>Buspirone</strong></td><td><span class="tag g">GAD</span></td><td>GAD long-term</td><td>No abuse potential; 2–6 wk onset</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════ QUICK REF ════ -->
+<div id="page-quickref" class="page">
+  <div class="page-title">
+    <div class="page-title-icon">⚡</div>
+    <div>
+      <h2>Quick Reference</h2>
+      <p>Last-minute review — critical teaching points, monitoring, and absolute contraindications.</p>
+    </div>
+  </div>
+
+  <div class="qr-card">
+    <div class="qr-head">
+      <span>Drug</span><span>⭐ Remember This</span><span>🚫 Never / Avoid</span>
+    </div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--sage)">SSRIs</div><div class="qr-rem">2–4 weeks to work. Sexual dysfunction very common. Taper slowly.</div><div class="qr-avoid">Never + MAOIs. No abrupt stop.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--sky)">SNRIs</div><div class="qr-rem">Monitor BP! Also treats neuropathic pain (duloxetine).</div><div class="qr-avoid">14-day MAOI washout. No abrupt stop.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--rose)">TCAs</div><div class="qr-rem">Give at NIGHT (sedation). Provide limited supply — lethal OD risk.</div><div class="qr-avoid">No Benadryl. No alcohol. ECG monitoring. Fall precautions.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--coral)">MAOIs</div><div class="qr-rem">Low-tyramine diet always. Monitor BP. Last resort only.</div><div class="qr-avoid">No aged cheese, wine, cured meats. 2-week washout from SSRIs.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--amber)">Bupropion</div><div class="qr-rem">No sexual dysfunction! Take in MORNING. Smoking cessation.</div><div class="qr-avoid">Seizure disorder, eating disorders, head injury — contraindicated.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--sage)">St. John's Wort</div><div class="qr-rem">Always ask about herbals. Photosensitivity — use sunscreen.</div><div class="qr-avoid">Avoid SSRIs, MAOIs, warfarin, birth control, HIV meds.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--dusk)">Benzos</div><div class="qr-rem">Rapid relief. Monitor resp rate ≥12. TAPER — never stop suddenly.</div><div class="qr-avoid">NEVER + alcohol or opioids. Dependence risk. Withdrawal seizures.</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--sage)">Buspirone</div><div class="qr-rem">No abuse potential. 2–6 weeks to work. NOT for acute anxiety.</div><div class="qr-avoid">Avoid grapefruit juice (CYP3A4 inhibition).</div></div>
+    <div class="qr-row"><div class="qr-drug" style="color:var(--sky)">Propranolol</div><div class="qr-rem">Give 1–2 hrs before event. Check HR before every dose.</div><div class="qr-avoid">Hold if HR &lt;60. Caution in asthma. No abrupt stop.</div></div>
+  </div>
+
+  <div class="page-title" style="margin-top:8px;"><div class="page-title-icon">⏱️</div><div><h2 style="font-size:22px">Time to Therapeutic Effect</h2></div></div>
+  <div class="timeline">
+    <div class="tl-item"><h4>IMMEDIATE (minutes–hours)</h4><p>Benzodiazepines (Valium, Xanax, Ativan) · Propranolol (take 1–2 hrs before event)</p></div>
+    <div class="tl-item"><h4>2–4 WEEKS</h4><p>SSRIs — Fluoxetine, Sertraline, Paroxetine, Escitalopram · SNRIs — Venlafaxine, Duloxetine · TCAs · Bupropion</p></div>
+    <div class="tl-item"><h4>2–6 WEEKS</h4><p>Buspirone — Patient MUST know this. Not for acute anxiety. Takes time but has NO dependence risk.</p></div>
+    <div class="tl-item"><h4>Fluoxetine Special Rule</h4><p>Half-life is 2–6 days. When switching FROM fluoxetine TO a MAOI, wait <strong>5 WEEKS</strong> (not just 14 days).</p></div>
+  </div>
+</div>
+
+<!-- ════ SSRIs ════ -->
+<div id="page-ssri" class="page">
+  <div class="page-title">
+    <div class="page-title-icon">💊</div>
+    <div><h2 style="color:var(--sage)">SSRIs</h2><p>Selective Serotonin Reuptake Inhibitors · First-line antidepressants</p></div>
+  </div>
+
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sage)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sage)">SSRI</div>
+          <div class="dcard-name">Fluoxetine · Sertraline · Paroxetine</div>
+          <div class="dcard-generic">Prozac · Zoloft · Paxil</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Block serotonin reuptake</li><li>↑ serotonin in synapse</li><li>Does NOT affect NE/dopamine</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Major depressive disorder</li><li>Anxiety disorders</li><li>OCD (fluoxetine especially)</li><li>PTSD · Panic disorder</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Common Side Effects</h5><ul><li>Sexual dysfunction ★ MOST COMMON</li><li>Nausea (give with food)</li><li>Insomnia · Headache</li><li>Weight gain long-term</li></ul></div>
+          <div class="info-box"><h5>Expected Response</h5><ul><li>Improved mood in 2–4 weeks</li><li>Decreased anxiety</li><li>Better concentration</li><li>Improved sleep patterns</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🚨</div><div><h5>Life-Threatening</h5><ul><li>Serotonin Syndrome — if combined with MAOIs, SNRIs, St. John's Wort</li><li>Suicidal ideation — especially in patients under 25 in first 1–2 weeks</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">⭐</div><div><h5>Top Nursing Priorities</h5><ul><li>Takes 2–4 weeks — educate patient NOT to stop early</li><li>Monitor suicidal ideation especially in youth &lt;25</li><li>NEVER combine with MAOIs — 14-day washout required</li><li>Watch for serotonin syndrome: agitation, fever, diaphoresis, clonus</li><li>Taper slowly — do not stop abruptly</li></ul></div></div>
+      </div>
+    </div>
+
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sky)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sky)">SSRI — QT RISK</div>
+          <div class="dcard-name">Escitalopram · Citalopram</div>
+          <div class="dcard-generic">Lexapro · Celexa</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Same as other SSRIs plus…</h5><ul><li>Escitalopram = more selective (fewer side effects)</li><li>Citalopram = QT prolongation risk ⚠</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Depression · Panic disorder</li><li>PTSD · Social anxiety</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🫀</div><div><h5>Citalopram: QT Prolongation — Critical!</h5><ul><li>Can cause Torsades de Pointes → ventricular fibrillation → sudden death</li><li>Monitor ECG — especially in elderly</li><li>Do NOT combine with other QT-prolonging drugs</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <h3>🧠 SSRI Mnemonic: "FINS"</h3>
+    <div class="mnem-row"><div class="mnem-letter">F</div><div class="mnem-text"><strong>Fluoxetine (Prozac)</strong> — <em>longest half-life; 5-week washout before MAOI</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">I</div><div class="mnem-text"><strong>Insomnia + sexual dysfunction</strong> — <em>most common side effects to teach</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">N</div><div class="mnem-text"><strong>Never with MAOIs</strong> — <em>serotonin syndrome risk; 2-week washout minimum</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">S</div><div class="mnem-text"><strong>Suicide watch</strong> — <em>especially first weeks and patients under age 25</em></div></div>
+  </div>
+</div>
+
+<!-- ════ SNRIs ════ -->
+<div id="page-snri" class="page">
+  <div class="page-title"><div class="page-title-icon">💊</div><div><h2 style="color:var(--sky)">SNRIs</h2><p>Serotonin-Norepinephrine Reuptake Inhibitors · Dual action · First-line</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sky)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sky)">SNRI</div>
+          <div class="dcard-name">Venlafaxine · Duloxetine</div>
+          <div class="dcard-generic">Effexor · Cymbalta</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Block reuptake of serotonin AND norepinephrine</li><li>Dual action = broader effects</li><li>More norepinephrine → raises BP</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Major depressive disorder</li><li>GAD (generalized anxiety)</li><li>Neuropathic pain ★ duloxetine</li><li>Fibromyalgia (duloxetine)</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Nausea — MOST COMMON</li><li>Headache · Insomnia</li><li>Sweating · Nervousness</li><li>HYPERTENSION ★ (NE effect)</li></ul></div>
+          <div class="info-box"><h5>Expected Response</h5><ul><li>Improved mood in 2–4 weeks</li><li>Reduced anxiety & pain</li><li>Better sleep & focus</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🚨</div><div><h5>Life-Threatening</h5><ul><li>Hypertension — NE stimulation can dangerously raise BP</li><li>Serotonin Syndrome if combined with MAOIs</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">⭐</div><div><h5>Critical Nursing Actions</h5><ul><li>MONITOR BLOOD PRESSURE — #1 SNRI nursing action</li><li>DO NOT stop abruptly — discontinuation syndrome (electric shocks, dizziness)</li><li>14-day MAOI washout required</li><li>Duloxetine: monitor liver function; avoid in liver disease</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="alert info" style="margin-top:8px;"><div class="alert-icon">💡</div><div><h5>SSRI vs SNRI — Key Exam Difference</h5><ul><li>SSRIs → serotonin only → no BP concern</li><li>SNRIs → serotonin + norepinephrine → MUST monitor blood pressure</li><li>Duloxetine treats PAIN (fibromyalgia, diabetic neuropathy) — SSRIs do NOT</li></ul></div></div>
+</div>
+
+<!-- ════ TCAs ════ -->
+<div id="page-tca" class="page">
+  <div class="page-title"><div class="page-title-icon">💊</div><div><h2 style="color:var(--rose)">TCAs — Tricyclic Antidepressants</h2><p>Older class · Second-line · HIGH overdose lethality</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--rose)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--rose)">TCA</div>
+          <div class="dcard-name">Imipramine · Amitriptyline · Doxepin</div>
+          <div class="dcard-generic">Tofranil · Elavil · Sinequan</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Block reuptake of NE + serotonin</li><li>Also block histamine, ACh, alpha-1 receptors</li><li>Anticholinergic effects = MANY side effects</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Depression (2nd line)</li><li>Neuropathic pain</li><li>Insomnia (doxepin)</li><li>Bedwetting/enuresis (imipramine)</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Anticholinergic Side Effects</h5><ul><li>Sedation — give at BEDTIME</li><li>Dry mouth · Constipation</li><li>Urinary retention</li><li>Orthostatic hypotension</li><li>Blurred vision</li></ul></div>
+          <div class="info-box"><h5>Expected Response</h5><ul><li>Improved mood</li><li>Better sleep (often first)</li><li>Decreased neuropathic pain</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">💀</div><div><h5>CRITICAL — Overdose = FATAL</h5><ul><li>CARDIOTOXICITY — fatal dysrhythmias (wide QRS, QT prolongation)</li><li>#1 antidepressant class associated with death by overdose</li><li>Monitor ECG regularly</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">⭐</div><div><h5>Priority Nursing Actions</h5><ul><li>Provide SMALL prescription supply only — suicide risk</li><li>Take at NIGHT — use sedation therapeutically</li><li>FALL PRECAUTIONS — orthostatic hypotension</li><li>NEVER give with Benadryl — additive anticholinergic toxicity</li><li>Avoid alcohol — CNS depression + OD risk</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="mnemonic">
+    <h3>🧠 TCA Side Effects: "ANTICHO"</h3>
+    <div class="mnem-row"><div class="mnem-letter">A</div><div class="mnem-text"><strong>Arrhythmias</strong> — <em>most dangerous; monitor ECG always</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">N</div><div class="mnem-text"><strong>Night dosing</strong> — <em>give at bedtime due to sedation</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">T</div><div class="mnem-text"><strong>Tiny supply only</strong> — <em>limit script; lethal overdose risk</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">I</div><div class="mnem-text"><strong>Inhibited bladder</strong> — <em>urinary retention; assess output</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">C</div><div class="mnem-text"><strong>Constipation + dry mouth</strong> — <em>classic anticholinergic effects</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">H</div><div class="mnem-text"><strong>Hypotension (orthostatic)</strong> — <em>fall precautions; rise slowly</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">O</div><div class="mnem-text"><strong>OD risk is LETHAL</strong> — <em>narrowest therapeutic window of any antidepressant</em></div></div>
+  </div>
+</div>
+
+<!-- ════ MAOIs ════ -->
+<div id="page-maoi" class="page">
+  <div class="page-title"><div class="page-title-icon">⚠️</div><div><h2 style="color:var(--coral)">MAOIs</h2><p>Monoamine Oxidase Inhibitors · LAST LINE · Strictest dietary & drug restrictions</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--coral)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--coral)">MAOI — LAST LINE</div>
+          <div class="dcard-name">Phenelzine · Isocarboxazid · Selegiline</div>
+          <div class="dcard-generic">Nardil · Marplan · Emsam patch</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Inhibit MAO enzyme → can't break down monoamines</li><li>↑ serotonin, NE, dopamine simultaneously</li><li>Effect is IRREVERSIBLE (weeks to recover)</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Depression — LAST LINE ONLY</li><li>Atypical depression</li><li>Failed all other antidepressants</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Orthostatic hypotension</li><li>Weight gain · Insomnia</li><li>Dry mouth · Sexual dysfunction</li></ul></div>
+          <div class="info-box"><h5>Foods to AVOID (Tyramine)</h5><ul><li>Aged cheeses (cheddar, blue)</li><li>Cured meats (salami, pepperoni)</li><li>Red wine · Tap/draft beer</li><li>Soy sauce · Miso · Tofu</li><li>Overripe / fermented foods</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🚨</div><div><h5>Hypertensive Crisis — #1 MAOI Emergency</h5><ul><li>Tyramine accumulates → massive NE release → BP skyrockets</li><li>Symptoms: severe headache, hypertension, palpitations, diaphoresis, stroke</li><li>SSRIs + MAOIs = serotonin syndrome (FATAL)</li><li>Meperidine (Demerol) + MAOIs = FATAL</li><li>Decongestants + MAOIs = hypertensive crisis</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">⭐</div><div><h5>Critical Nursing Actions</h5><ul><li>Educate strict low-tyramine diet BEFORE first dose</li><li>Monitor BP closely — orthostatic and hypertensive crisis</li><li>14-day washout before starting SSRIs</li><li>Avoid ALL OTC decongestants (pseudoephedrine)</li><li>Avoid St. John's Wort</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="mnemonic">
+    <h3>🧠 Tyramine Foods: "CALM VASE"</h3>
+    <div class="mnem-row"><div class="mnem-letter">C</div><div class="mnem-text"><strong>Cheese (aged)</strong> — <em>cheddar, parmesan, blue — highest risk</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">A</div><div class="mnem-text"><strong>Alcohol</strong> — <em>especially red wine and tap beer</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">L</div><div class="mnem-text"><strong>Legumes</strong> — <em>fava beans particularly</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">M</div><div class="mnem-text"><strong>Meats (cured)</strong> — <em>salami, pepperoni, hot dogs, smoked fish</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">V</div><div class="mnem-text"><strong>Vermented foods</strong> — <em>soy sauce, miso, sauerkraut</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">A</div><div class="mnem-text"><strong>Avocado</strong> — <em>large amounts</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">S</div><div class="mnem-text"><strong>Smoked fish</strong> — <em>smoked salmon, herring</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">E</div><div class="mnem-text"><strong>Everything overripe</strong> — <em>aging = tyramine accumulation</em></div></div>
+  </div>
+</div>
+
+<!-- ════ BUPROPION ════ -->
+<div id="page-atypical" class="page">
+  <div class="page-title"><div class="page-title-icon">🎯</div><div><h2 style="color:var(--amber)">Bupropion</h2><p>Wellbutrin / Zyban · Dopamine + NE reuptake inhibitor · Atypical antidepressant</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--amber)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--amber)">ATYPICAL ANTIDEPRESSANT</div>
+          <div class="dcard-name">Bupropion</div>
+          <div class="dcard-generic">Wellbutrin (depression) · Zyban (smoking cessation)</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>↑ Dopamine + norepinephrine (NOT serotonin)</li><li>Unique vs SSRIs and SNRIs</li><li>Dopamine boost → mood + motivation</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Major depression</li><li>Smoking cessation (Zyban)</li><li>ADHD (off-label)</li><li>Seasonal affective disorder</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Insomnia → give in MORNING</li><li>Dry mouth · Headache</li><li>Tachycardia</li><li>Weight LOSS (not gain)</li><li>SEIZURES ⚠</li></ul></div>
+          <div class="info-box"><h5>What Makes it DIFFERENT</h5><ul><li>✅ NO sexual dysfunction</li><li>✅ NO weight gain</li><li>✅ Smoking cessation use</li><li>❌ SEIZURE risk = unique danger</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">⚡</div><div><h5>Absolute Contraindications</h5><ul><li>SEIZURE DISORDER — lowers seizure threshold</li><li>Eating disorders (bulimia/anorexia) — higher seizure risk</li><li>Head trauma / brain injury</li><li>Abrupt alcohol or benzo withdrawal</li></ul></div></div>
+        <div class="alert success"><div class="alert-icon">✅</div><div><h5>Key Patient Teaching</h5><ul><li>Take in the MORNING — causes insomnia if at night</li><li>Does NOT cause sexual dysfunction — unique SSRI advantage</li><li>Avoid MAOIs (14-day washout)</li><li>For smoking: reduces nicotine cravings; start before quit date</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ HERBAL ════ -->
+<div id="page-herbal" class="page">
+  <div class="page-title"><div class="page-title-icon">🌿</div><div><h2 style="color:var(--sage)">St. John's Wort</h2><p>Herbal supplement · Often unreported · HIGH interaction risk</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sage)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sage)">HERBAL ANTIDEPRESSANT</div>
+          <div class="dcard-name">St. John's Wort</div>
+          <div class="dcard-generic">Hypericum perforatum — OTC herbal supplement</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>↑ Serotonin, NE, dopamine</li><li>Induces CYP450 enzymes → reduces other drug levels</li></ul></div>
+          <div class="info-box"><h5>Use</h5><ul><li>Mild to moderate depression</li><li>OTC — often self-prescribed</li><li>Patients often don't report it</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Photosensitivity ☀️ — use sunscreen</li><li>GI upset · Fatigue</li><li>Dry mouth · Dizziness</li></ul></div>
+          <div class="info-box"><h5>Drugs It Interferes With</h5><ul><li>Oral contraceptives → pregnancy risk</li><li>Warfarin → clot risk</li><li>HIV medications → treatment failure</li><li>Cyclosporine → organ rejection</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🚨</div><div><h5>Serotonin Syndrome Risk</h5><ul><li>NEVER combine with SSRIs, SNRIs, MAOIs, TCAs</li><li>Can cause life-threatening serotonin syndrome</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">🩺</div><div><h5>Always Ask About Herbals</h5><ul><li>Patients don't think herbals = medications — ALWAYS ask</li><li>Educate: photosensitivity, birth control failure, warfarin interaction</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ BENZOS ════ -->
+<div id="page-benzo" class="page">
+  <div class="page-title"><div class="page-title-icon">😴</div><div><h2 style="color:var(--dusk)">Benzodiazepines</h2><p>CNS depressants · Acute anxiety · High dependence risk</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--dusk)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--dusk)">BENZODIAZEPINE</div>
+          <div class="dcard-name">Diazepam · Alprazolam · Lorazepam</div>
+          <div class="dcard-generic">Valium · Xanax · Ativan</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Enhance GABA activity (inhibitory NT)</li><li>Bind GABA-A receptor → ↑ chloride influx → CNS depression</li><li>Anxiolytic + sedative + muscle relaxant + anticonvulsant</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Acute anxiety / panic attacks</li><li>Insomnia · Seizures</li><li>Alcohol withdrawal (diazepam)</li><li>Status epilepticus (lorazepam)</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Sedation / drowsiness</li><li>Confusion (especially elderly)</li><li>Dizziness · Ataxia</li><li>↓ Respiratory rate</li><li>Anterograde amnesia</li></ul></div>
+          <div class="info-box"><h5>Expected Response</h5><ul><li>Rapid anxiety relief (minutes)</li><li>Calmness · Improved sleep</li><li>Muscle relaxation</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">🫁</div><div><h5>Life-Threatening</h5><ul><li>Respiratory depression (esp. + opioids or alcohol) → FATAL</li><li>Physical dependence develops within weeks</li><li>Withdrawal SEIZURES — FATAL if stopped abruptly after long-term use</li><li>Reversal agent: FLUMAZENIL (short-acting — resedation can occur)</li></ul></div></div>
+        <div class="alert warning"><div class="alert-icon">⭐</div><div><h5>Priority Nursing Actions</h5><ul><li>Monitor respiratory rate — must be ≥12/min</li><li>NEVER combine with alcohol or opioids</li><li>TAPER dose — never abrupt discontinuation</li><li>FALL PRECAUTIONS — sedation + dizziness</li><li>Short-term use only for anxiety management</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="alert purple" style="margin-top:8px;"><div class="alert-icon">💡</div><div><h5>Benzo vs Buspirone — Know the Difference</h5><ul><li>BENZO: Acute anxiety, immediate relief — but dependence risk is HIGH</li><li>BUSPIRONE: Chronic GAD, no dependence — BUT takes 2–6 weeks to work</li><li>Cannot swap overnight — must taper benzo first before switching</li></ul></div></div>
+</div>
+
+<!-- ════ BUSPIRONE ════ -->
+<div id="page-buspirone" class="page">
+  <div class="page-title"><div class="page-title-icon">🌀</div><div><h2 style="color:var(--sage)">Buspirone</h2><p>Atypical anxiolytic · No addiction potential · Preferred for GAD long-term</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sage)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sage)">ATYPICAL ANXIOLYTIC</div>
+          <div class="dcard-name">Buspirone</div>
+          <div class="dcard-generic">Buspar · Partial serotonin (5-HT1A) agonist</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Partial agonist at 5-HT1A serotonin receptors</li><li>Also affects dopamine receptors</li><li>Does NOT affect GABA (unlike benzos)</li></ul></div>
+          <div class="info-box"><h5>Indications</h5><ul><li>Generalized Anxiety Disorder (GAD)</li><li>Long-term anxiety management</li><li>NOT for acute anxiety or panic</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Dizziness · Headache</li><li>Nausea · Nervousness</li><li>Lightheadedness</li></ul></div>
+          <div class="info-box"><h5>Why Buspirone is Special</h5><ul><li>✅ NO abuse/addiction potential</li><li>✅ No physical dependence</li><li>✅ No sedation or respiratory depression</li><li>❌ Takes 2–6 WEEKS — patient must know!</li></ul></div>
+        </div>
+        <div class="alert success"><div class="alert-icon">📚</div><div><h5>Key Patient Teaching</h5><ul><li>Takes 2–6 weeks — will NOT work right away</li><li>NOT for panic attacks or immediate anxiety relief</li><li>AVOID grapefruit juice — inhibits CYP3A4 → drug toxicity</li><li>No habit-forming — this is a major advantage over benzos</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ BETA BLOCKER ════ -->
+<div id="page-betablocker" class="page">
+  <div class="page-title"><div class="page-title-icon">❤️</div><div><h2 style="color:var(--sky)">Beta Blockers — Propranolol</h2><p>Performance anxiety · Somatic symptom relief</p></div></div>
+  <div class="drug-grid">
+    <div class="dcard">
+      <div class="dcard-header" onclick="toggleDcard(this)">
+        <div class="dcard-stripe" style="background:var(--sky)"></div>
+        <div class="dcard-info">
+          <div class="dcard-class" style="color:var(--sky)">BETA BLOCKER</div>
+          <div class="dcard-name">Propranolol</div>
+          <div class="dcard-generic">Inderal — non-selective beta-adrenergic blocker</div>
+        </div>
+        <div class="dcard-toggle">+</div>
+      </div>
+      <div class="dcard-body">
+        <div class="info-row">
+          <div class="info-box"><h5>Mechanism</h5><ul><li>Blocks beta-1 + beta-2 receptors</li><li>Blocks sympathetic (fight-or-flight) response</li><li>Reduces HR, BP, tremors, sweating</li></ul></div>
+          <div class="info-box"><h5>For Anxiety</h5><ul><li>Performance anxiety (public speaking)</li><li>Reduces PHYSICAL symptoms only</li><li>Does NOT reduce emotional/cognitive anxiety</li></ul></div>
+        </div>
+        <div class="info-row">
+          <div class="info-box"><h5>Side Effects</h5><ul><li>Bradycardia · Hypotension</li><li>Fatigue · Dizziness</li><li>Bronchospasm in asthma</li><li>Cold extremities</li></ul></div>
+          <div class="info-box"><h5>Expected Response</h5><ul><li>Reduced tremors</li><li>Slower, calmer heart rate</li><li>Reduced sweating</li><li>Less physical anxiety symptoms</li></ul></div>
+        </div>
+        <div class="alert danger"><div class="alert-icon">💓</div><div><h5>Critical Assessments</h5><ul><li>HOLD if HR &lt;60 bpm — report to provider</li><li>Severe bradycardia / heart block are life-threatening</li><li>Use CAUTIOUSLY in asthma (beta-2 blockade → bronchospasm)</li><li>Do NOT stop abruptly → rebound hypertension / angina</li></ul></div></div>
+        <div class="alert info"><div class="alert-icon">🕐</div><div><h5>Timing</h5><ul><li>Take 1–2 hours BEFORE the anxiety-provoking event</li><li>Not for daily chronic anxiety management</li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ DANGER ZONES ════ -->
+<div id="page-danger" class="page">
+  <div class="page-title"><div class="page-title-icon">🚨</div><div><h2 style="color:var(--coral)">Danger Zones</h2><p>Serotonin syndrome, hypertensive crisis, respiratory depression — know all three cold.</p></div></div>
+
+  <div class="page-title" style="margin-bottom:14px;padding-bottom:12px;"><div class="page-title-icon" style="font-size:28px;">🧪</div><div><h2 style="font-size:20px">Serotonin Syndrome</h2></div></div>
+
+  <div class="alert danger" style="margin-bottom:20px;"><div class="alert-icon">🚨</div><div><h5>What Causes It?</h5><ul><li>Too much serotonin in the CNS — usually from combining two serotonergic drugs</li><li>SSRI + MAOI = classic · SSRI + St. John's Wort · SSRI + Tramadol · MAOI + any serotonergic drug</li></ul></div></div>
+
+  <div class="ss-triad">
+    <div class="ss-box"><div class="icon">🧠</div><h4>Mental Status</h4><ul><li>Agitation</li><li>Confusion</li><li>Anxiety</li><li>Restlessness</li></ul></div>
+    <div class="ss-box"><div class="icon">🫀</div><h4>Autonomic</h4><ul><li>Fever (hyperthermia)</li><li>Diaphoresis</li><li>Tachycardia</li><li>Hypertension</li><li>Diarrhea</li></ul></div>
+    <div class="ss-box"><div class="icon">💪</div><h4>Neuromuscular</h4><ul><li>Clonus ★ key sign</li><li>Hyperreflexia</li><li>Tremor · Ataxia</li><li>Myoclonus</li></ul></div>
+  </div>
+
+  <div class="mnemonic" style="margin-top:20px;">
+    <h3>🧠 Serotonin Syndrome: "FAST CAT"</h3>
+    <div class="mnem-row"><div class="mnem-letter">F</div><div class="mnem-text"><strong>Fever</strong> — <em>hyperthermia</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">A</div><div class="mnem-text"><strong>Agitation</strong> — <em>restlessness, anxiety, confusion</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">S</div><div class="mnem-text"><strong>Sweating</strong> — <em>diaphoresis</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">T</div><div class="mnem-text"><strong>Tremor + Tachycardia</strong></div></div>
+    <div class="mnem-row"><div class="mnem-letter">C</div><div class="mnem-text"><strong>Clonus</strong> — <em>pathological reflex; key diagnostic sign</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">A</div><div class="mnem-text"><strong>Ataxia</strong> — <em>loss of coordination</em></div></div>
+    <div class="mnem-row"><div class="mnem-letter">T</div><div class="mnem-text"><strong>The drugs</strong> — <em>STOP all serotonergic agents immediately; call STAT</em></div></div>
+  </div>
+
+  <div class="page-title" style="margin-top:28px;margin-bottom:14px;padding-bottom:12px;"><div class="page-title-icon" style="font-size:28px;">⚡</div><div><h2 style="font-size:20px">Critical Drug Interactions</h2></div></div>
+
+  <div style="overflow-x:auto;border-radius:14px;box-shadow:0 2px 12px var(--shadow);">
+  <table class="int-table">
+    <thead><tr><th>Drug 1</th><th>+ Drug 2</th><th>Reaction</th><th>Severity</th></tr></thead>
+    <tbody>
+      <tr><td>SSRI</td><td>MAOI</td><td>Serotonin Syndrome</td><td><span class="tag r">FATAL</span></td></tr>
+      <tr><td>Benzo</td><td>Opioid</td><td>Respiratory Depression</td><td><span class="tag r">FATAL</span></td></tr>
+      <tr><td>Benzo</td><td>Alcohol</td><td>CNS Depression / Resp. Failure</td><td><span class="tag r">FATAL</span></td></tr>
+      <tr><td>MAOI</td><td>Meperidine (Demerol)</td><td>Serotonin Syndrome</td><td><span class="tag r">FATAL</span></td></tr>
+      <tr><td>MAOI</td><td>Tyramine foods</td><td>Hypertensive Crisis</td><td><span class="tag r">EMERGENCY</span></td></tr>
+      <tr><td>MAOI</td><td>Decongestants</td><td>Hypertensive Crisis</td><td><span class="tag r">EMERGENCY</span></td></tr>
+      <tr><td>St. John's Wort</td><td>SSRI / SNRI</td><td>Serotonin Syndrome</td><td><span class="tag r">SERIOUS</span></td></tr>
+      <tr><td>St. John's Wort</td><td>Warfarin</td><td>Reduced anticoagulation → clots</td><td><span class="tag y">SERIOUS</span></td></tr>
+      <tr><td>St. John's Wort</td><td>Birth control</td><td>Contraceptive failure</td><td><span class="tag y">MODERATE</span></td></tr>
+      <tr><td>TCA</td><td>Benadryl</td><td>Anticholinergic toxicity</td><td><span class="tag y">SERIOUS</span></td></tr>
+      <tr><td>SNRI</td><td>MAOI</td><td>Serotonin Syndrome</td><td><span class="tag r">FATAL</span></td></tr>
+      <tr><td>Buspirone</td><td>Grapefruit juice</td><td>↑ Drug levels (CYP3A4)</td><td><span class="tag b">MODERATE</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="alert warning" style="margin-top:20px;"><div class="alert-icon">🔑</div><div><h5>Washout Period Rules</h5><ul><li>MAOI → SSRI: Wait 14 days (2 weeks)</li><li>SSRI → MAOI: Wait 14 days — EXCEPT fluoxetine: wait 5 WEEKS (long half-life)</li><li>Any serotonergic switch: always calculate washout before prescribing</li></ul></div></div>
+</div>
+
+<!-- ════ NCLEX ════ -->
+<div id="page-nclex" class="page">
+  <div class="page-title"><div class="page-title-icon">🎯</div><div><h2>NCLEX Practice Questions</h2><p>15 questions — SATA, priority, appropriate response, unexpected outcome. Full rationales included.</p></div></div>
+
+  <!-- Q1 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 1</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A nurse is providing discharge teaching to a client prescribed <strong>sertraline (Zoloft)</strong>. Which statements should be included? <em>Select all that apply.</em></div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> "This medication may take 2–4 weeks before you notice mood improvement."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> "You can stop taking this once you feel better."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> "Avoid taking St. John's Wort while on this medication."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> "Sexual dysfunction is a common side effect."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">E</span> "Do not take this medication if you are also on a MAOI."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> "Take only on an empty stomach."</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, C, D, E</div>
+      <h5>Rationale</h5>
+      <p><strong>A – Correct.</strong> SSRIs have a delayed onset of 2–4 weeks. The patient must understand this to avoid stopping early.<br><br><strong>B – Incorrect.</strong> Never stop abruptly — discontinuation syndrome (flu-like symptoms, electric shocks, dizziness). Must taper slowly.<br><br><strong>C – Correct.</strong> St. John's Wort + SSRI = serotonin syndrome risk — life-threatening.<br><br><strong>D – Correct.</strong> Sexual dysfunction (decreased libido, anorgasmia) is the most common reason patients stop SSRIs. Teaching prevents surprise and non-adherence.<br><br><strong>E – Correct.</strong> SSRIs + MAOIs = fatal serotonin syndrome. 14-day washout required.<br><br><strong>F – Incorrect.</strong> SSRIs can be taken with or without food. Taking with food actually reduces GI side effects.</p>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 2</span><span class="q-type unexpected">Unexpected Outcome</span></div>
+    <div class="q-text">A client taking <strong>venlafaxine (Effexor)</strong> returns for follow-up. Which finding is <strong>most concerning and unexpected</strong>?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Reports mild nausea after the morning dose.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Blood pressure has increased from 118/72 to 152/96 mmHg.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Reports improved mood and better concentration.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Reports mild difficulty sleeping.</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Concerning.</strong> SNRIs block norepinephrine reuptake → stimulates alpha-1 receptors → raises blood pressure. A significant BP increase (118/72 → 152/96) is the #1 SNRI monitoring priority and requires immediate provider notification.<br><br><strong>A – Expected.</strong> Nausea is the most common SNRI side effect; usually resolves. Take with food.<br><br><strong>C – Desired outcome.</strong> Improved mood is the therapeutic goal.<br><br><strong>D – Mildly expected.</strong> Insomnia can occur with SNRIs due to norepinephrine stimulation. Worth monitoring, but not as urgent as dangerous BP elevation.</p>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 3</span><span class="q-type priority">Priority</span></div>
+    <div class="q-text">A client has just been prescribed <strong>phenelzine (Nardil)</strong>. Which nursing action is the <strong>highest priority</strong>?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Teach about the delayed onset of 2–4 weeks.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Educate the client about a strict low-tyramine diet.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Instruct to take the medication with food.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Advise to wear sunscreen when outdoors.</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Priority (Safety first).</strong> The low-tyramine diet is a SAFETY issue. Failure to follow it can cause a hypertensive crisis — severe headache, sky-high BP, stroke, death. This is life-threatening and must be taught before the first dose.<br><br><strong>A – Important but not #1.</strong> Delayed onset is important for adherence but not immediately life-threatening.<br><br><strong>C – Not applicable.</strong> No special food timing restriction applies to MAOIs; tyramine-rich foods are the concern, not timing.<br><br><strong>D – Wrong drug.</strong> Photosensitivity = St. John's Wort, not MAOIs.</p>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 4</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A nurse is assessing a client taking <strong>lorazepam (Ativan)</strong>. Which findings require immediate provider notification? <em>Select all that apply.</em></div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Respiratory rate of 9 breaths/min</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Client reports feeling calm and less anxious</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Client reports drinking two glasses of wine last night</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Slurred speech and ataxia noted</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">E</span> Mild drowsiness</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> Client stopped the medication abruptly 2 days ago</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, C, D, F</div>
+      <h5>Rationale</h5>
+      <p><strong>A – Report immediately.</strong> RR of 9 is critically low (normal minimum = 12). Respiratory depression = medical emergency. Prepare flumazenil (reversal agent).<br><br><strong>B – Expected/desired.</strong> Calmness is the therapeutic goal — no reporting needed.<br><br><strong>C – Report urgently.</strong> Alcohol + benzodiazepine = additive CNS depression = FATAL combination. Critical safety teaching moment.<br><br><strong>D – Report.</strong> Slurred speech and ataxia indicate toxicity / over-sedation beyond expected mild drowsiness.<br><br><strong>E – Expected.</strong> Mild drowsiness is a known, expected side effect. Monitor but not reportable alone.<br><br><strong>F – Report immediately.</strong> Abrupt benzo discontinuation after months of use = life-threatening withdrawal seizures.</p>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 5</span><span class="q-type approp">Appropriate Response</span></div>
+    <div class="q-text">A client on <strong>bupropion (Wellbutrin)</strong> for 3 days calls saying it's "not working" and wants to stop. Which nurse response is <strong>most appropriate</strong>?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> "You're right — 3 days is enough to know if it works."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> "This is completely normal. Antidepressants take 2–4 weeks for full effect. Please continue as directed."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> "Stop it now and I'll switch you to a benzodiazepine that works faster."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> "Double your dose to reach therapeutic levels faster."</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Correct.</strong> Antidepressants (including bupropion) require 2–4 weeks for full therapeutic effect. Education promotes adherence.<br><br><strong>A – Incorrect and inaccurate.</strong> 3 days is far too early to assess efficacy.<br><br><strong>C – Incorrect.</strong> Benzodiazepines are not antidepressants and should not replace bupropion for depression.<br><br><strong>D – Dangerous.</strong> Doubling bupropion dose significantly raises seizure risk — the drug's most dangerous adverse effect. Dose changes require a provider order.</p>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 6</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A client is prescribed <strong>amitriptyline (Elavil)</strong>. Which nursing instructions are appropriate? <em>Select all that apply.</em></div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> "Take this medication at bedtime."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> "You may take Benadryl if you have an allergic reaction."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> "Change positions slowly when getting out of bed."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> "Avoid drinking alcohol while on this medication."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> "Report unusual heart palpitations to your provider."</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, C, D, F</div>
+      <h5>Rationale</h5>
+      <p><strong>A – Correct.</strong> TCAs are highly sedating — bedtime administration uses this therapeutically and reduces daytime impairment.<br><br><strong>B – INCORRECT — DANGEROUS.</strong> Benadryl (diphenhydramine) + TCA = additive anticholinergic toxicity: extreme dry mouth, urinary retention, confusion, tachycardia, constipation.<br><br><strong>C – Correct.</strong> TCAs cause orthostatic hypotension. Slow position changes prevent falls and syncope.<br><br><strong>D – Correct.</strong> Alcohol enhances CNS depression and dramatically increases overdose risk.<br><br><strong>F – Correct.</strong> TCAs cause QT prolongation and arrhythmias. Palpitations must be reported immediately for ECG evaluation.</p>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 7</span><span class="q-type unexpected">Unexpected Outcome</span></div>
+    <div class="q-text">A client started <strong>buspirone (Buspar)</strong> 3 days ago. The client calls saying they still feel anxious. What is the <strong>most accurate</strong> nurse response?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> "Stop taking it and call the provider for a different prescription."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> "This is expected — buspirone takes 2–6 weeks to reach full effect. Continue as directed."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> "Take an extra dose when anxious for faster relief."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> "Add grapefruit juice to help the medication absorb faster."</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Correct.</strong> Buspirone requires 2–6 weeks of consistent use. Day 3 is completely expected — the medication needs time to modulate serotonin receptors.<br><br><strong>A – Premature.</strong> Stopping after 3 days means the drug never had a chance to work. Educate and encourage continued use.<br><br><strong>C – Incorrect.</strong> Extra doses don't speed onset and increase side effects without any benefit.<br><br><strong>D – DANGEROUS.</strong> Grapefruit INHIBITS CYP3A4 → buspirone accumulates → toxicity. Patients must AVOID grapefruit juice.</p>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 8</span><span class="q-type priority">Priority</span></div>
+    <div class="q-text">A client who takes <strong>fluoxetine (Prozac)</strong> has just been prescribed <strong>tramadol</strong> by an on-call provider for pain. What is the nurse's priority action?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Administer the tramadol as prescribed and monitor pain levels.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Hold the tramadol and contact the provider regarding serotonin syndrome risk.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Administer half the dose to reduce risk.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Document the order and notify the charge nurse only.</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Priority.</strong> Tramadol has serotonergic properties (weakly inhibits serotonin reuptake). Combining with an SSRI significantly raises serotonin syndrome risk. HOLD the medication and contact the provider — this is patient advocacy and safety.<br><br><strong>A – Incorrect.</strong> Administering without flagging a known dangerous interaction violates the nurse's safety duty.<br><br><strong>C – Incorrect.</strong> Halving the dose doesn't eliminate the interaction risk, and the nurse cannot independently adjust doses.<br><br><strong>D – Insufficient.</strong> Documenting without direct provider notification is negligent when patient harm is possible.</p>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 9</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A client taking <strong>phenelzine (Nardil)</strong> asks which foods to avoid. Select all to include in teaching.</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Aged cheddar cheese</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Fresh grilled chicken breast</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Red wine</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Salami and pepperoni</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">E</span> Fresh steamed broccoli</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> Soy sauce and miso soup</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">G</span> Tap/draft beer</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, C, D, F, G</div>
+      <h5>Rationale</h5>
+      <p>MAOIs prevent MAO from breaking down tyramine → tyramine accumulates → massive NE release → hypertensive crisis.<br><br><strong>A – AVOID:</strong> Aged cheddar is extremely high in tyramine — highest risk food.<br><br><strong>B – SAFE:</strong> Fresh chicken is fine. The problem is aged, fermented, or cured foods — not fresh proteins.<br><br><strong>C – AVOID:</strong> Red wine is high in tyramine. All alcohol is risky; wine and tap beer especially so.<br><br><strong>D – AVOID:</strong> Cured/processed meats contain high tyramine due to fermentation.<br><br><strong>E – SAFE:</strong> Fresh vegetables are fine — not fermented or aged.<br><br><strong>F – AVOID:</strong> Soy sauce and miso are fermented with very high tyramine content.<br><br><strong>G – AVOID:</strong> Tap/draft beer has especially high tyramine. Bottled beer is lower but should still be limited.</p>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 10</span><span class="q-type approp">Appropriate Response</span></div>
+    <div class="q-text">A client with a history of <strong>seizure disorder</strong> has been offered <strong>bupropion</strong> as an antidepressant. Which nurse response is most appropriate?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Prepare to administer bupropion as an effective antidepressant.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Notify the provider that bupropion is contraindicated in clients with seizure disorders.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Teach the client that bupropion increases energy and should be taken at night.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Administer but monitor for increased seizure activity.</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Correct.</strong> Bupropion LOWERS the seizure threshold — it is absolutely contraindicated in seizure disorders. The nurse must advocate for patient safety by notifying the provider before any administration.<br><br><strong>A – Incorrect.</strong> Effectiveness never overrides an absolute contraindication. Administering is unsafe.<br><br><strong>C – Misinformation.</strong> Bupropion is taken in the MORNING (not at night — it's stimulating). Also, seizure contraindication must be addressed first.<br><br><strong>D – Incorrect.</strong> "Monitor and give anyway" is never acceptable for an absolute contraindication.</p>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 11</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A client presents with agitation, hyperthermia, diaphoresis, and clonus. The nurse suspects <strong>serotonin syndrome</strong>. Which medications in the history support this? <em>Select all that apply.</em></div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Sertraline (Zoloft)</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Metoprolol (Lopressor)</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> St. John's Wort</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Phenelzine (Nardil)</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">E</span> Metformin</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> Tramadol</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, C, D, F</div>
+      <h5>Rationale</h5>
+      <p><strong>A – YES.</strong> Sertraline (SSRI) directly increases serotonin by blocking reuptake.<br><br><strong>B – NO.</strong> Metoprolol is a beta blocker — affects adrenergic receptors, not serotonin.<br><br><strong>C – YES.</strong> St. John's Wort increases serotonin, NE, and dopamine. Combined with any serotonergic drug = high risk.<br><br><strong>D – YES.</strong> MAOIs prevent serotonin breakdown → accumulation. Combined with any serotonergic drug = extremely dangerous.<br><br><strong>E – NO.</strong> Metformin is a biguanide for diabetes. No serotonergic properties.<br><br><strong>F – YES.</strong> Tramadol weakly inhibits serotonin reuptake. Combined with SSRIs or MAOIs, it contributes to serotonin excess.</p>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 12</span><span class="q-type priority">Priority</span></div>
+    <div class="q-text">Before giving <strong>propranolol</strong> for performance anxiety, the nurse checks VS: BP 108/70, HR 52, RR 18, SpO2 98%. What is the priority action?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Administer propranolol since the BP is acceptable.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Hold propranolol and notify the provider — HR is below 60 bpm.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Give half the dose since the HR is slightly low.</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Administer and reassess HR in 30 minutes.</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Correct.</strong> Standard parameter: HOLD beta-blockers if HR &lt; 60 bpm. HR is 52. Propranolol slows the heart further — giving it to a bradycardic client risks dangerous bradycardia, heart block, or cardiac arrest.<br><br><strong>A – Incorrect.</strong> BP acceptability does not override HR. Both must be within safe range.<br><br><strong>C – Incorrect.</strong> Nurses cannot independently adjust doses. Hold and notify provider.<br><br><strong>D – Dangerous.</strong> Administering a medication that further slows an already bradycardic heart is potentially fatal.</p>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 13</span><span class="q-type unexpected">Unexpected Outcome</span></div>
+    <div class="q-text">A client takes <strong>citalopram (Celexa)</strong>. Which finding is <strong>most concerning</strong> and requires immediate provider notification?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Mild headache since starting the medication 2 weeks ago</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> Nausea after morning dose that improves with food</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> ECG shows QTc interval of 520 ms (prolonged)</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Reports decreased sex drive</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: C</div>
+      <h5>Rationale</h5>
+      <p><strong>C – Most Concerning.</strong> Citalopram specifically carries a BLACK BOX WARNING for QT prolongation. QTc of 520 ms is markedly prolonged (normal &lt;440 ms men, &lt;460 ms women). Risk: Torsades de Pointes → ventricular fibrillation → sudden cardiac death. Notify provider immediately.<br><br><strong>A – Expected.</strong> Headache is a common early SSRI side effect; generally resolves.<br><br><strong>B – Expected.</strong> Nausea is the most common SSRI side effect. Improvement with food is reassuring.<br><br><strong>D – Expected.</strong> Sexual dysfunction is one of the most common SSRI side effects — worth addressing but not a safety emergency.</p>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 14</span><span class="q-type sata">Select All That Apply</span></div>
+    <div class="q-text">A client reports taking <strong>St. John's Wort</strong> for a month. The nurse should include which teaching points? <em>Select all that apply.</em></div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> Wear sunscreen when outdoors</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> St. John's Wort may make oral contraceptives less effective</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> Safe to take with any prescription antidepressant</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> Inform all healthcare providers you take this supplement</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">E</span> May reduce the effectiveness of warfarin</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">F</span> Does not interact with any prescription medications</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: A, B, D, E</div>
+      <h5>Rationale</h5>
+      <p><strong>A – Correct.</strong> Photosensitivity is a known side effect. Sun protection is essential.<br><br><strong>B – Correct.</strong> St. John's Wort induces CYP450 → increases breakdown of oral contraceptives → reduced efficacy → pregnancy risk.<br><br><strong>C – INCORRECT and DANGEROUS.</strong> Combining with SSRIs, SNRIs, or MAOIs can cause serotonin syndrome.<br><br><strong>D – Correct.</strong> Patients must disclose all supplements to all providers to prevent dangerous interactions.<br><br><strong>E – Correct.</strong> Increases warfarin metabolism → lower anticoagulation → clot risk. INR must be monitored more frequently.<br><br><strong>F – INCORRECT and DANGEROUS.</strong> St. John's Wort has numerous serious interactions. This statement is false and dangerous misinformation.</p>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card">
+    <div class="q-meta"><span class="q-num">Question 15</span><span class="q-type approp">Appropriate Response</span></div>
+    <div class="q-text">A client who has taken <strong>diazepam (Valium)</strong> for 6 months stopped it cold turkey 3 days ago. Now experiencing tremors, anxiety, and restlessness. What is the nurse's <strong>most appropriate response</strong>?</div>
+    <ul class="opts">
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">A</span> "Great that you want to stop — these symptoms will resolve on their own."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">B</span> "You need immediate evaluation. Abrupt benzo withdrawal can cause life-threatening seizures."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">C</span> "Push through the symptoms — they're just anxiety from your baseline."</li>
+      <li class="opt" onclick="pick(this)"><span class="opt-letter">D</span> "Try melatonin and deep breathing until the symptoms pass."</li>
+    </ul>
+    <button class="reveal-btn" onclick="reveal(this)">▶ Reveal Answer & Rationale</button>
+    <div class="rationale">
+      <div class="correct-label">✓ Correct: B</div>
+      <h5>Rationale</h5>
+      <p><strong>B – Correct and Urgent.</strong> Abrupt discontinuation of benzodiazepines after long-term use (6 months) is a MEDICAL EMERGENCY. GABA receptors have adapted to chronic benzo exposure — without it, CNS excitability surges → tremors, anxiety, diaphoresis, and most dangerously: GRAND MAL SEIZURES and delirium. Benzo withdrawal can be more dangerous than opioid withdrawal. Immediate evaluation and supervised tapering protocol are required.<br><br><strong>A – Dangerous.</strong> Normalizing symptoms dismisses a life-threatening risk. Seizures can occur days after the last dose.<br><br><strong>C – Incorrect.</strong> These are NOT psychological symptoms — they are physiological withdrawal. Ignoring them risks seizures.<br><br><strong>D – Incorrect.</strong> Non-pharmacological interventions are completely insufficient for benzo withdrawal in a long-term user.</p>
+    </div>
+  </div>
+
+</div><!-- end nclex page -->
+
+</main>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goTo(id) {
+  const btn = Array.from(document.querySelectorAll('.tab-btn')).find(b =>
+    b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")
+  );
+  if (btn) showPage(id, btn);
+}
+
+function toggleDcard(header) {
+  const body = header.nextElementSibling;
+  const btn = header.querySelector('.dcard-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  btn.textContent = isOpen ? '+' : '−';
+}
+
+function pick(el) {
+  if (!el.classList.contains('correct') && !el.classList.contains('incorrect')) {
+    const on = el.classList.contains('selected');
+    el.classList.toggle('selected');
+    el.style.borderColor = on ? '' : 'var(--amber)';
+    el.style.background  = on ? '' : 'rgba(245,166,35,.08)';
+  }
+}
+
+function reveal(btn) {
+  const card = btn.closest('.q-card');
+  const rat  = btn.nextElementSibling;
+  rat.classList.add('open');
+  btn.style.display = 'none';
+  const correctText = card.querySelector('.correct-label').textContent;
+  const letters = correctText.match(/[A-G]/g) || [];
+  card.querySelectorAll('.opt').forEach(opt => {
+    const ltr = opt.querySelector('.opt-letter').textContent.trim();
+    opt.style.borderColor = '';
+    opt.style.background  = '';
+    opt.classList.remove('selected');
+    if (letters.includes(ltr)) opt.classList.add('correct');
+    else opt.classList.add('incorrect');
+  });
+}
+</script>
+</body>
+</html>
