@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP2 Module 9 — Anxiety, Depression, Antidepressants & Antianxiety Drugs | Slide-by-Slide Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --primary: #1e40af; --primary-light: #dbeafe; --primary-mid: #3b82f6;
+  --teal: #0f766e; --teal-light: #ccfbf1;
+  --violet: #6d28d9; --violet-light: #ede9fe;
+  --red: #dc2626; --red-light: #fee2e2;
+  --amber: #b45309; --amber-light: #fef3c7;
+  --green: #047857; --green-light: #d1fae5;
+  --rose: #be185d; --rose-light: #fce7f3;
+  --slate: #334155; --slate-light: #f1f5f9;
+  --border: #e2e8f0; --text: #1e293b; --text-muted: #64748b;
+  --bg: #f8fafc; --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 25px -5px rgba(30,64,175,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+.site-header { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #6d28d9 70%, #0f766e 100%); padding: 36px 48px 30px; position: relative; box-shadow: 0 4px 24px rgba(30,64,175,0.35); }
+.header-inner { max-width: 1100px; margin: 0 auto; }
+.header-badge { display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 0.7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.3); }
+.site-header h1 { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: white; line-height: 1.2; margin-bottom: 6px; }
+.site-header p { color: rgba(255,255,255,0.75); font-size: 0.85rem; }
+.nav-wrap { background: white; border-bottom: 1px solid var(--border); position: relative; box-shadow: var(--shadow-sm); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; padding: 10px 16px; }
+.nav-btn { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); background: none; border: none; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.18s; letter-spacing: 0.2px; white-space: nowrap; }
+.nav-btn:hover { background: var(--primary-light); color: var(--primary); }
+.nav-btn.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 36px 20px 60px; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: white; border-radius: 14px; border: 1px solid var(--border); padding: 30px 34px; margin-bottom: 24px; box-shadow: var(--shadow); }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--primary); margin-bottom: 4px; }
+.card-subtitle { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sh { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+.sh:first-child { margin-top: 4px; }
+p.body { font-size: 0.95rem; line-height: 1.75; margin-bottom: 12px; }
+strong { color: var(--slate); font-weight: 700; }
+ul.content-list { list-style: none; padding: 0; margin: 0; }
+ul.content-list li { padding: 5px 0 5px 20px; position: relative; font-size: 0.93rem; line-height: 1.65; color: var(--text); }
+ul.content-list li::before { content: '›'; position: absolute; left: 4px; color: var(--primary-mid); font-weight: 700; font-size: 1rem; top: 4px; }
+ul.content-list li + li { border-top: 1px solid #f8f8fb; }
+.callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 0.92rem; line-height: 1.65; }
+.callout-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px; }
+.callout.priority { background: var(--red-light); border-left: 4px solid var(--red); }
+.callout.priority .callout-label { color: var(--red); }
+.callout.book { background: var(--green-light); border-left: 4px solid var(--green); }
+.callout.book .callout-label { color: var(--green); }
+.callout.exam { background: var(--teal-light); border-left: 4px solid var(--teal); }
+.callout.exam .callout-label { color: var(--teal); }
+.callout.prof { background: var(--amber-light); border-left: 4px solid var(--amber); }
+.callout.prof .callout-label { color: var(--amber); }
+.callout.info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+.callout.info .callout-label { color: var(--primary); }
+.callout.emergency { background: #fff0f0; border: 2px solid var(--red); border-radius: 10px; }
+.callout.emergency .callout-label { color: var(--red); font-size: 0.72rem; }
+.data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 0.88rem; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.data-table th { background: linear-gradient(135deg, var(--primary), var(--teal)); color: white; padding: 11px 16px; text-align: left; font-weight: 600; font-size: 0.8rem; }
+.data-table td { padding: 10px 16px; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.data-table tr:nth-child(even) td { background: #fafafa; }
+.data-table tr:hover td { background: var(--primary-light); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+@media(max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+.mini-panel { background: var(--slate-light); border-radius: 10px; padding: 16px 18px; border-top: 3px solid var(--primary); }
+.mini-panel.green { border-top-color: var(--green); }
+.mini-panel.teal { border-top-color: var(--teal); }
+.mini-panel.red { border-top-color: var(--red); }
+.mini-panel.amber { border-top-color: var(--amber); }
+.mini-panel.violet { border-top-color: var(--violet); }
+.mini-panel h4 { font-size: 0.83rem; font-weight: 700; color: var(--slate); margin-bottom: 10px; text-transform: uppercase; }
+.mini-panel ul { list-style: none; padding: 0; }
+.mini-panel ul li { font-size: 0.88rem; padding: 3px 0 3px 14px; position: relative; line-height: 1.55; }
+.mini-panel ul li::before { content: '·'; position: absolute; left: 2px; color: var(--primary); font-weight: 900; font-size: 1.1rem; line-height: 1.3; }
+.btt { position: fixed; bottom: 28px; right: 28px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 100; }
+.float-nav { position: fixed; bottom: 28px; right: 78px; background: white; color: var(--primary); border: 1px solid var(--border); border-radius: 999px; min-width: 46px; height: 42px; padding: 0 14px; font-size: 0.95rem; font-weight: 700; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 100; }
+.float-nav:hover { background: var(--primary-light); }
+footer { text-align: center; padding: 32px 20px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge">PP2 — Module 9 | Prof. Bryan | Spring 2026</div>
+    <h1>Anxiety, Depression, Antidepressants &amp; Antianxiety Drugs</h1>
+    <p>Slide-by-Slide Study Guide — Lehne Chapters 35 &amp; 38 | Professor Slides + Textbook Notes Integrated</p>
+  </div>
+</header>
+<div class="nav-wrap" id="top-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="show('p1',this)">Objectives</button>
+    <button class="nav-btn" onclick="show('p2',this)">Depression Basics</button>
+    <button class="nav-btn" onclick="show('p3',this)">SSRIs</button>
+    <button class="nav-btn" onclick="show('p4',this)">SNRIs</button>
+    <button class="nav-btn" onclick="show('p5',this)">TCAs</button>
+    <button class="nav-btn" onclick="show('p6',this)">MAOIs</button>
+    <button class="nav-btn" onclick="show('p7',this)">Atypicals</button>
+    <button class="nav-btn" onclick="show('p8',this)">Anxiety Disorders</button>
+    <button class="nav-btn" onclick="show('p9',this)">Benzos &amp; Buspirone</button>
+    <button class="nav-btn" onclick="show('p10',this)">Big Picture</button>
+  </div>
+</div>
+<div class="page-wrap">
+
+<div id="p1" class="section active">
+  <div class="card">
+    <p class="card-subtitle">Module 9 Overview | Course Outcomes + Slide Roadmap</p>
+    <h2 class="card-title">Course Objectives — What This Module Wants You to Be Able to Do</h2>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Explain the physiologic function/role of neurotransmitters.</li>
+        <li>Identify the environmental and genetic factors that place a person at risk for having anxiety and depression.</li>
+        <li>Explain the pathophysiological processes that lead to both anxiety and depression.</li>
+        <li>Identify the key drugs used to treat/manage anxiety and depression.</li>
+        <li>Discuss how the key drugs work to treat/manage anxiety and depression.</li>
+        <li>Apply knowledge of generic drug names, and drug classifications for the selected drugs as well as the action, therapeutic uses, adverse effects, side effects, contraindications, interactions, the method for administration, nursing interventions, patient education, and evaluation.</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>This module is really doing two jobs at once. First, it wants you to understand the <strong>pathophysiology</strong> of depression and anxiety: how altered signaling involving serotonin, norepinephrine, dopamine, and GABA helps produce mood and anxiety symptoms. Second, it wants you to apply that science to <strong>drug safety</strong>. That means your instructors are not just looking for “what drug is used,” but whether you know <strong>why</strong> the drug fits the disorder, <strong>how long it takes to work</strong>, <strong>what dangerous reactions to catch</strong>, and <strong>what patient teaching prevents harm</strong>.</p>
+      <p style="margin-top:8px">For testing, think like this: depression and anxiety questions are rarely just memorization. They usually combine <strong>drug class + adverse effects + patient education + when to intervene</strong>. The harder questions will ask you to decide whether a finding is expected, whether the medication should be held, or whether the patient needs immediate provider notification.</p>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ How This Shows Up on Exams</span>
+      <p>Your professor can test this module from either direction: starting with the <strong>disorder</strong> and asking which drug class fits, or starting with a <strong>drug/adverse effect</strong> and asking what to do. The biggest recurring themes are serotonin syndrome, MAOI food/drug restrictions, suicide monitoring early in antidepressant therapy, benzodiazepine respiratory depression, buspirone delayed onset, TCA cardiotoxicity, and matching specific SSRIs/SNRIs to anxiety disorders.</p>
+    </div>
+  </div>
+</div>
+
+<div id="p2" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 2–10 | Depression Basics, Pathogenesis, Treatment, Suicide Risk, Lifespan</p>
+    <h2 class="card-title">Depression Basics — Clinical Meaning Before the Drug Classes</h2>
+
+    <div class="sh">Slides 2–3 — Antidepressants &amp; Antidepressant Groups</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Antidepressants — Primarily used to relieve symptoms of depression</li>
+        <li>Can also help patients with anxiety disorders</li>
+        <li>Not indicated for uncomplicated bereavement</li>
+        <li>Antidepressant Groups — Tricyclic antidepressants; Selective serotonin reuptake inhibitors (SSRIs); Serotonin/norepinephrine reuptake inhibitors; Monoamine oxidase inhibitors (MAOIs); Atypical antidepressants</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>This distinction matters a lot: <strong>major depression</strong> is a disorder, but uncomplicated bereavement is a normal grief response. That is a classic exam trap. The nurse should not reflexively think “sadness = antidepressant.” Instead, the question is whether the patient has the persistent symptom cluster of major depression and functional impairment.</p>
+      <p style="margin-top:8px">The five major antidepressant classes are considered broadly similar in <strong>efficacy</strong>, but they are not similar in <strong>tolerability, toxicity, and interactions</strong>. That is why drug selection is usually based more on side-effect profile, overdose safety, patient history, and coexisting conditions than on raw antidepressant strength.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <p>Do not assume all low mood is treated the same. For uncomplicated grief, the nurse should assess, support, and monitor rather than treating it as automatic pharmacotherapy. Also remember that older classes like TCAs and MAOIs are more dangerous in overdose and have more interactions, so those drugs demand tighter safety teaching.</p>
+    </div>
+    <div class="callout.exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> a question describing recent loss and normal grief can bait you into choosing an antidepressant too fast. Another trap is assuming “newer = more effective.” SSRIs are usually chosen because they are <strong>safer and better tolerated</strong>, not because they are inherently stronger than everything else.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>In practice, you may see a patient with low mood, poor appetite, poor sleep, and hopelessness after a loss. The nursing job is to decide whether this looks like grief, a major depressive episode, or suicidal deterioration. That clinical judgment changes whether the team emphasizes counseling, crisis safety, or medication management.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>“Sad ≠ SSRI.”</strong> First decide whether it is grief or depression. Then think <strong>5 drug buckets</strong>: S for SSRIs, SN for SNRIs, T for TCAs, M for MAOIs, A for Atypicals.</p>
+    </div>
+
+    <div class="sh">Slides 4–7 — Depression, Clinical Features, Pathogenesis, Treatment Modalities</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Depression — Most common psychiatric disorder; 30% of the U.S. population will experience some form during their lifetime; Approximately one in every eight adults in the United States is depressed; Incidence in women twice as high as that in men; Risk of suicide is high with depression; Often untreated</li>
+        <li>Clinical Features — Depressed mood; Loss of pleasure or interest; Insomnia (or sometimes hypersomnia); Anorexia (or sometimes hyperphagia); Mental slowing and loss of concentration; Feelings of guilt, worthlessness, and helplessness; Thoughts of death and suicide; Overt suicidal behavior; Symptoms must be present most of the day, nearly every day, for at least 2 weeks</li>
+        <li>Pathogenesis — Complex and incomplete; Possible contributing factors: Genetic heritage; Difficult childhood; Chronic low self-esteem; Monoamine hypothesis of depression; Depression is caused by the functional insufficiency of monoamine neurotransmitters</li>
+        <li>Treatment Modalities — Pharmacotherapy; Depression-specific psychotherapy; Electroconvulsive therapy; Transcranial magnetic stimulation</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>The core pathophysiology idea in this module is the <strong>monoamine-deficiency hypothesis</strong>. It says depression is related to too little functional monoamine signaling, especially <strong>serotonin and norepinephrine</strong>. The textbook also makes clear that this model is helpful but incomplete. In other words, it explains the drug logic, but it does not fully explain why depression happens in every patient.</p>
+      <p style="margin-top:8px">This matters because antidepressants that intensify monoamine signaling do <strong>not</strong> work instantly. Reuptake blockade may happen within hours, but symptom relief takes <strong>weeks</strong>. That delay suggests the true therapeutic effect depends on slower adaptive changes in the brain, not just the immediate neurotransmitter shift.</p>
+      <p style="margin-top:8px">Treatment modality questions often test when <strong>ECT</strong> is appropriate. ECT is not first-line for everyone, but it can be used when a rapid response is needed, when severe suicidality is present, or when nutrition is failing in a severely depressed patient.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <p>Suicidal thinking is not just another symptom — it is a safety emergency. When depression includes thoughts of death, the nurse must shift into suicide-risk assessment, observation, environmental safety, and prompt provider communication. Also note that antidepressants are not PRN drugs. A patient saying “I only take it when I feel depressed” requires immediate correction.</p>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ How This Shows Up on Exams</span>
+      <p>You may get a stem asking why the patient is not “better yet” after a few days on an SSRI. Correct thinking: <strong>initial response takes 1–3 weeks; maximal response may take up to 12 weeks</strong>. Another likely testing angle is choosing ECT for severe, urgent depression rather than assuming every patient should just “wait longer” on oral meds.</p>
+    </div>
+
+    <div class="sh">Slides 8–10 — Basic Considerations, Suicide Risk, Across the Lifespan</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Time course of response — Symptoms resolve slowly; Initial responses develop after 1 to 3 weeks; Maximal responses may not be seen for 12 weeks; Failure when taken 1 month without success</li>
+        <li>Drug selection — Antidepressants have nearly equal efficacy; Selection (match side effects with patient symptom)</li>
+        <li>Suicide Risk with Antidepressants — May increase suicidal tendencies during early treatment; Children, adolescents, &lt;25 years old; Observe for suicidality, worsening mood, changes in behavior; Prescriptions should be written for the smallest number of doses; Dosing of inpatients should be directly observed</li>
+        <li>Antidepressants Across the Life Span — Infants: NAS; Pregnant women: PPHN; Breastfeeding women: generally safe; Older adults: SSRIs or SNRIs safer</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Matching side effects to the patient is a high-yield selection principle. A patient with fatigue may benefit from a more activating drug like <strong>fluoxetine or bupropion</strong>; a patient with insomnia may benefit from a more sedating choice like <strong>mirtazapine</strong>; a patient distressed by SSRI-related sexual dysfunction may be switched to <strong>bupropion</strong>.</p>
+      <p style="margin-top:8px">The black box suicide warning is especially important early in therapy. Why? Energy and psychomotor activity may improve before mood fully improves, which can make a previously slowed, hopeless patient more capable of acting on suicidal thoughts. That is why close monitoring is heaviest <strong>early</strong> and after <strong>dose changes</strong>.</p>
+      <p style="margin-top:8px">Late-pregnancy SSRI/SNRI exposure can contribute to <strong>neonatal abstinence syndrome</strong> and <strong>persistent pulmonary hypertension of the newborn</strong>. Older adults usually tolerate SSRIs/SNRIs better than TCAs or MAOIs because there are fewer interactions and less cardiotoxic/anticholinergic burden.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ When to Hold / Call the Provider</span>
+      <ul class="content-list">
+        <li>Emerging suicidality, abrupt worsening mood, agitation, panic, hostility, hypomania, or impulsivity after starting or changing an antidepressant</li>
+        <li>Severe withdrawal symptoms after abrupt discontinuation</li>
+        <li>Late-pregnancy exposure questions that need coordinated maternal-newborn follow-up</li>
+        <li>Requests for large quantities of medication in a high-risk suicidal patient</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="p3" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 11–25 | SSRIs and Individual SSRI Highlights</p>
+    <h2 class="card-title">SSRIs — First-Line, Safer, Still Full of Testable Safety Issues</h2>
+
+    <div class="sh">Slides 11–16 — Fluoxetine / Core SSRI Concepts</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>SSRIs — Most commonly prescribed antidepressants; As effective as TCAs and MAOIs but better tolerated and safer; Death by overdose is extremely rare</li>
+        <li>Fluoxetine [Prozac, Sarafem] — Bipolar disorder; Obsessive-compulsive disorder; Panic disorder; Bulimia nervosa; Off-label uses: PTSD, social phobia, alcoholism, ADHD, Tourette’s syndrome</li>
+        <li>Mechanism of Action — Produce selective inhibition of serotonin reuptake; Produce CNS excitation</li>
+        <li>Adverse Effects — Sexual dysfunction; Headache; Weight gain; Withdrawal syndrome; Neonatal effects when used during pregnancy; Teratogenesis; Extrapyramidal side effects; Bruxism</li>
+        <li>Serotonin syndrome — Potentially life threatening; Begins 2 to 72 hours after treatment; Altered mental status; Incoordination, myoclonus, hyperreflexia, excessive sweating, tremor, and fever; Deaths have occurred; Risk increased by concurrent use of MAOIs and other drugs</li>
+        <li>Drug Interactions — MAOIs; Antiplatelet drugs and anticoagulants; Aspirin and NSAIDs; Warfarin; TCAs and lithium</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>SSRIs work by <strong>blocking neuronal reuptake of serotonin (5-HT)</strong>, which raises serotonin concentration in the synapse and increases postsynaptic receptor activation. The key physiologic point is that they are <strong>selective</strong> compared with older antidepressants, so they generally do not block cholinergic, histaminergic, or alpha1-adrenergic receptors. That is why they cause fewer anticholinergic effects, less sedation, and less orthostatic hypotension than TCAs.</p>
+      <p style="margin-top:8px">Fluoxetine is usually described as <strong>activating</strong>. That helps explain why it can be a good fit for low-energy depression but can also contribute to <strong>nervousness, anxiety, or insomnia</strong>. Sexual dysfunction is one of the most testable and most commonly underreported SSRI problems. Weight changes can be tricky: some patients lose weight early from nausea, but longer-term use may lead to <strong>weight gain</strong>.</p>
+      <p style="margin-top:8px">Serotonin syndrome is one of the biggest safety topics in this whole module. Too much serotonergic activity can produce a cluster of <strong>mental status changes + autonomic instability + neuromuscular hyperactivity</strong>. Think agitation, confusion, sweating, fever, tremor, myoclonus, hyperreflexia. The nurse must recognize that this is not a routine side effect — it is a potentially life-threatening toxicity picture.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <ul class="content-list">
+        <li><strong>Hold and notify provider immediately</strong> for suspected serotonin syndrome</li>
+        <li>Do not combine with MAOIs; MAOIs must be stopped for at least 14 days before starting an SSRI, and fluoxetine needs a longer washout before starting an MAOI because of its long half-life</li>
+        <li>Use caution with aspirin, NSAIDs, warfarin, and anticoagulants because SSRIs increase bleeding risk</li>
+        <li>Taper gradually to reduce withdrawal symptoms; do not stop abruptly</li>
+        <li>Monitor closely for suicidality, especially in younger patients</li>
+      </ul>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>Trap #1:</strong> confusing serotonin syndrome with a routine side effect. Fever + hyperreflexia + agitation is not “keep monitoring”; it is <strong>urgent action</strong>. <strong>Trap #2:</strong> assuming all antidepressants sedate. Most SSRIs are more activating than sedating. <strong>Trap #3:</strong> assuming the patient should feel better within a few days. Not how this class works.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>A patient started on fluoxetine may call after 5 days saying, “I feel jittery and I still feel depressed.” That can still fit expected early treatment. A patient taking sertraline plus another serotonergic drug who develops agitation, tremor, sweating, and fever is a different situation entirely — that patient needs urgent evaluation for serotonin syndrome.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>SSRIs = Serotonin, Safer, Sexual side effects, Serotonin syndrome.</strong> Also remember: <strong>“F” in Fluoxetine = “Fast brain stimulation, slow mood fix.”</strong></p>
+    </div>
+
+    <div class="sh">Slides 17–25 — Other SSRIs: Sertraline, Fluvoxamine, Paroxetine, Citalopram, Escitalopram</div>
+    <table class="data-table">
+      <thead><tr><th>Drug</th><th>Key Uses from Slides</th><th>High-Yield Side Effects / Pearls</th><th>Testing Pearl</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sertraline (Zoloft)</strong></td><td>Major depression, panic disorder, OCD, PTSD, PMDD, social anxiety</td><td>Headache, nausea, tremor, diarrhea, insomnia, weight gain, agitation, sexual dysfunction, NAS/PPHN late pregnancy</td><td>Very testable for anxiety-spectrum disorders and OCD/PTSD</td></tr>
+        <tr><td><strong>Fluvoxamine (Luvox)</strong></td><td>OCD</td><td>Nausea, vomiting, constipation, weight gain, dry mouth, headache, sexual dysfunction, abnormal liver function, sedative effects</td><td>Unlike many SSRIs, this one is more sedating</td></tr>
+        <tr><td><strong>Paroxetine (Paxil)</strong></td><td>Major depression, OCD, social phobia, panic disorder, GAD, PTSD, PMDD</td><td>SSRI class effects</td><td>Shows up repeatedly in anxiety disorder treatment lists</td></tr>
+        <tr><td><strong>Citalopram (Celexa)</strong></td><td>Major depression</td><td>Nausea, somnolence, dry mouth, sexual dysfunction, NAS</td><td>Does not block acetylcholine, NE, or histamine receptors</td></tr>
+        <tr><td><strong>Escitalopram (Lexapro)</strong></td><td>Depression; in anxiety slides, used for GAD</td><td>Nausea, insomnia, somnolence, sweating, fatigue</td><td>Better tolerated than citalopram</td></tr>
+      </tbody>
+    </table>
+    <div class="callout exam"><span class="callout-label">⭐ How This Shows Up on Exams</span>
+      <p>Expect “which SSRI fits this disorder” questions. Paroxetine and sertraline are especially high-yield because they appear over and over in panic disorder, PTSD, OCD, and GAD content. Another favorite move is giving a patient statement like “I will feel better in 3 weeks” and asking if that reflects correct understanding. It is partly right that benefit takes time, but the better concept is that patients often need to continue therapy long term even after initial improvement.</p>
+    </div>
+  </div>
+</div>
+
+<div id="p4" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 26–32 | SNRIs</p>
+    <h2 class="card-title">SNRIs — Depression + Anxiety Coverage With BP and Safety Caveats</h2>
+    <div class="sh">Slides 26–32 — Venlafaxine, Desvenlafaxine, Duloxetine</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Venlafaxine [Effexor] and Duloxetine [Cymbalta]</li>
+        <li>Venlafaxine — Indications: Major depression, GAD, social anxiety disorder, panic disorder; Blocks NE and serotonin uptake; Does not block cholinergic, histaminergic, or alpha1-adrenergic receptors; Serious reactions if combined with MAOIs</li>
+        <li>Venlafaxine side effects — Nausea, headache, anorexia, nervousness, sweating, somnolence, insomnia, weight loss/anorexia, diastolic hypertension, sexual dysfunction, hyponatremia in older adults, neonatal withdrawal syndrome</li>
+        <li>Desvenlafaxine — Strong inhibitor of 5-HT and NE reuptake; Only approved for major depression</li>
+        <li>Duloxetine — Inhibits serotonin and NE reuptake; weakly inhibits dopamine reuptake; Relieves depression; Relieves pain of diabetic peripheral neuropathy; Adverse effects: nausea, somnolence, dry mouth, sweating, insomnia, blurred vision, liver toxicity; Drug interactions: alcohol, MAOIs, CYP1A2/CYP2D6 inhibitors</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>SNRIs intensify both <strong>serotonin and norepinephrine</strong> signaling. Because they affect two monoamine systems, they are used for both mood and several anxiety disorders. Venlafaxine is one of the most exam-relevant because it appears in depression and anxiety content. Duloxetine stands out because it also has a pain indication, especially <strong>diabetic peripheral neuropathy</strong>, which makes it useful in patients with both depression and chronic pain symptoms.</p>
+      <p style="margin-top:8px">Compared with SSRIs, SNRIs can feel similar clinically but bring a stronger emphasis on <strong>blood pressure monitoring</strong>, especially with venlafaxine. Venlafaxine can cause <strong>dose-related sustained diastolic hypertension</strong>. That means you cannot just teach side effects; you have to teach actual monitoring.</p>
+      <p style="margin-top:8px">Duloxetine has one major danger that gets tested hard: <strong>liver toxicity</strong>. If a patient drinks alcohol heavily or develops signs of hepatic injury, the nurse should not shrug off vague nausea or malaise. This class is also still serotonergic, so <strong>MAOI interactions and serotonin syndrome risks still matter</strong>.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <ul class="content-list">
+        <li>Monitor blood pressure with venlafaxine; worsening hypertension requires provider attention</li>
+        <li>Teach not to stop venlafaxine abruptly because withdrawal can be intense</li>
+        <li>Hold / report possible serotonin syndrome if combined with MAOIs or other serotonergic drugs</li>
+        <li>Duloxetine: monitor for liver injury; avoid combining with alcohol; question unexplained jaundice, RUQ pain, dark urine, or marked fatigue</li>
+        <li>Older adults on venlafaxine: watch for hyponatremia and associated confusion or falls</li>
+      </ul>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> choosing benzodiazepines over an SNRI for chronic GAD when the question is asking about <strong>first-line long-term management</strong>. Another trap is ignoring venlafaxine’s hypertension risk. “Anxiety + depression” should make you think of venlafaxine, but “rising BP” should make you think <strong>reassess / notify provider</strong>.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>If a patient with GAD is starting venlafaxine, they may report nausea first and therapeutic relief later. The nurse teaches that nausea is common early, but symptom control takes longer. If the same patient later shows persistent BP elevation, that becomes a safety-management issue, not just reassurance.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>SNRI = Serotonin + Norepinephrine Reuptake Inhibited.</strong> For venlafaxine, remember <strong>“V for Venlafaxine, V for Vital-sign check.”</strong> For duloxetine, think <strong>“Dual use, dual warning”</strong> — mood + pain, but also liver caution.</p>
+    </div>
+  </div>
+</div>
+
+<div id="p5" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 33–40 | TCAs</p>
+    <h2 class="card-title">TCAs — Older, Effective, Much More Dangerous</h2>
+    <div class="sh">Slides 33–40 — Imipramine / Core TCA Content</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Used to be first drug choice for major depression, however, have decreased in popularity due to overdose lethal, cardiotoxic, SSRIs safer alternative</li>
+        <li>Most common adverse effects: Sedation, orthostatic hypotension, and anticholinergic effects</li>
+        <li>May increase risk of suicide during early treatment</li>
+        <li>Imipramine — Produce varying degrees of sedation, orthostatic hypotension, anticholinergic effects; block reuptake of NE and serotonin</li>
+        <li>Therapeutic uses — Depression, bipolar disorder, fibromyalgia syndrome, neuropathic pain, chronic insomnia, ADHD, panic disorder, OCD</li>
+        <li>Adverse effects — Orthostatic hypotension, anticholinergic effects, diaphoresis, sedation, cardiac toxicity, seizures, hypomania</li>
+        <li>Drug interactions — MAOIs, direct-acting sympathomimetics potentiate responses, indirect-acting sympathomimetics decrease responses, anticholinergic agents, CNS depressants</li>
+        <li>Toxicity — Dysrhythmias, tachycardia, intraventricular blocks, complete AV block, ventricular tachycardia, ventricular fibrillation</li>
+        <li>Treatment — Gastric lavage, activated charcoal, IV sodium bicarbonate</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>TCAs are a classic “works well but costs more in safety” class. They block reuptake of <strong>norepinephrine and serotonin</strong>, but unlike SSRIs/SNRIs, they also block other receptors that create a lot of collateral adverse effects. That is why they are associated with the familiar triad of <strong>sedation + orthostatic hypotension + anticholinergic effects</strong>.</p>
+      <p style="margin-top:8px">The most dangerous part of the class is <strong>cardiotoxicity</strong>. This is why TCA overdose is treated so seriously and why the slides emphasize limited supplies. If a depressed patient is at suicide risk, a TCA is inherently more dangerous than an SSRI because an overdose can be fatal from lethal dysrhythmias.</p>
+      <p style="margin-top:8px">The anticholinergic profile explains dry mouth, blurred vision, urinary retention, constipation, and confusion risk, especially in older adults. Orthostatic hypotension also makes falls a real concern. So even if a TCA is pharmacologically appropriate, the nursing lens has to include fall risk, cardiac risk, and overdose risk.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ When to Hold / Call the Provider</span>
+      <ul class="content-list">
+        <li>Palpitations, syncope, new dysrhythmia symptoms, or overdose suspicion</li>
+        <li>Severe anticholinergic effects or inability to void</li>
+        <li>Marked orthostatic hypotension or repeated falls</li>
+        <li>Co-prescribing with an MAOI or concerning sympathomimetic interaction</li>
+      </ul>
+    </div>
+    <div class="callout emergency"><span class="callout-label">🚨 TCA Toxicity — Do Not Miss This</span>
+      <p>TCA overdose is a major exam and real-life emergency. Think <strong>anticholinergic toxicity + cardiotoxicity</strong>. Dangerous rhythms can include VT, VF, conduction blocks, and severe tachycardia. The slides specifically name <strong>IV sodium bicarbonate</strong> for dysrhythmias caused by cardiotoxicity. That detail is high-yield.</p>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> assuming “effective antidepressant” means “good first choice.” TCAs are often <strong>second-line</strong> now because of safety. Another trap is underestimating why prescriptions may be limited to a <strong>one-week supply</strong> — that is suicide-overdose prevention.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>TCA = Toxic Cardiac Antidepressant</strong> is not the official name, but it will keep you out of trouble on exams. Also remember: <strong>3 big common TCA problems = sleepy, dry, dizzy</strong> (sedation, anticholinergic effects, orthostatic hypotension).</p>
+    </div>
+  </div>
+</div>
+
+<div id="p6" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 41–48 | MAOIs and Selegiline</p>
+    <h2 class="card-title">MAOIs — Dangerous If You Forget Food and Interaction Rules</h2>
+    <div class="sh">Slides 41–48 — Oral MAOIs + Transdermal Selegiline</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Second- or third-choice antidepressants for most patients</li>
+        <li>As effective as TCAs and SSRIs but more hazardous</li>
+        <li>Risk of triggering hypertensive crisis if patient eats foods rich in tyramine</li>
+        <li>Drug of choice for atypical depression</li>
+        <li>Mechanism — Convert monoamine neurotransmitters (NE, serotonin, dopamine) into inactive products; inactivate tyramine and other biogenic amines; MAO-A and MAO-B</li>
+        <li>All current MAOIs cause irreversible inhibition</li>
+        <li>Therapeutic uses — Depression; other uses include bulimia nervosa, agoraphobia, ADHD, OCD, panic attacks</li>
+        <li>Adverse effects — CNS stimulation; orthostatic hypotension; hypertensive crisis from dietary tyramine</li>
+        <li>Hypertensive crisis — Severe headache, tachycardia, hypertension, nausea and vomiting, confusion, profuse sweating, stroke, death</li>
+        <li>Treatment — sodium nitroprusside, phentolamine, labetalol</li>
+        <li>Drug interactions — indirect-acting sympathomimetics, antidepressants including TCAs/SSRIs, antihypertensives, meperidine, St. John’s Wort, SAMe</li>
+        <li>Selegiline [Emsam] — first transdermal treatment for depression; lower hypertensive crisis risk than oral route; avoid carbamazepine and oxcarbazepine</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>MAO normally breaks down monoamines. If you inhibit MAO, more norepinephrine, serotonin, and dopamine remain available. That can help depression, but it also creates a giant interaction problem because MAO also helps handle <strong>tyramine</strong>. If tyramine is not broken down, it can trigger massive norepinephrine release and a <strong>hypertensive crisis</strong>.</p>
+      <p style="margin-top:8px">This class is one of the clearest examples of why pharmacology is not just “know the MOA.” You also need to know <strong>food rules</strong> and <strong>washout periods</strong>. Patients on oral MAOIs must avoid tyramine-rich foods and must not combine MAOIs with SSRIs, SNRIs, TCAs, St. John’s Wort, SAMe, or meperidine. The MAOI effect is long-lasting because the inhibition is <strong>irreversible</strong>.</p>
+      <p style="margin-top:8px">Transdermal selegiline lowers the GI exposure that drives tyramine problems, so the risk of hypertensive crisis is lower than with oral MAOIs. But lower risk does not mean no risk. Drug interactions still matter.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <ul class="content-list">
+        <li>Teach strict tyramine avoidance with oral MAOIs</li>
+        <li>Do not combine MAOIs with SSRIs/SNRIs/TCAs or other serotonergic agents</li>
+        <li>Observe required washout periods before switching classes</li>
+        <li>Severe headache + marked hypertension + sweating + palpitations = think hypertensive crisis and act immediately</li>
+      </ul>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> forgetting that MAOIs are not weak drugs — they are effective but hazardous. Another trap is mixing up serotonin syndrome and hypertensive crisis. MAOI + serotonergic drug points toward <strong>serotonin syndrome</strong>; MAOI + tyramine points toward <strong>hypertensive crisis</strong>.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>A patient on phenelzine who reports a severe pounding headache after eating cured meat should set off alarms. The nurse should not just suggest rest and hydration — that picture can mean hypertensive crisis. Another patient asking whether they can take an OTC cold medicine or herbal supplement needs screening before use because sympathomimetic and serotonergic interactions can be dangerous.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>MAOI = Meals Are Off-limits, Interactions everywhere.</strong> For tyramine, think <strong>“aged, fermented, cured = danger.”</strong></p>
+    </div>
+  </div>
+</div>
+
+<div id="p7" class="section">
+  <div class="card">
+    <p class="card-subtitle">Slides 48–52 + textbook expansion | Bupropion and Other Atypicals</p>
+    <h2 class="card-title">Atypical Antidepressants — Different Pearls, Different Traps</h2>
+    <div class="sh">Slides 48–50 — Bupropion</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Bupropion [Wellbutrin] — Acts as stimulant and suppresses appetite; Antidepressant effects begin in 1 to 3 weeks; Does not affect serotonergic, cholinergic, or histaminergic transmission; Does not cause weight gain; Good alternative for patients who cannot tolerate SSRIs; less likely to cause sexual dysfunction; Approved for major depressive disorder</li>
+        <li>Adverse effects — Seizures (especially with high dosage), agitation, tremor, tachycardia, blurred vision, dizziness, headache, insomnia (best to take in the morning), dry mouth, GI upset, constipation, weight loss</li>
+        <li>Drug interactions — MAOIs can increase the risk of bupropion toxicity</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Bupropion is a favorite comparison drug because it behaves differently from SSRIs. It is more activating, is less likely to cause sexual dysfunction, and usually does <strong>not</strong> cause weight gain. That makes it useful when a patient complains, “This antidepressant is killing my sex drive,” or when fatigue is prominent. But the tradeoff is <strong>seizure risk</strong>, especially at higher doses.</p>
+      <p style="margin-top:8px">This is one of those drugs where the nurse must think beyond depression. The more stimulating profile means insomnia and agitation are more believable here than with a sedating drug like mirtazapine. It is also why the slide specifically says to take it in the <strong>morning</strong>.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <p>Use caution in patients with seizure risk. Insomnia, agitation, and tachycardia are not random trivia — they tell you what kind of patient may struggle with this medication. If the patient is taking an MAOI, combining with bupropion is unsafe.</p>
+    </div>
+
+    <div class="sh">Slides 51–52 — Other Atypicals + textbook pearl on mirtazapine</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Mirtazapine [Remeron]</li>
+        <li>Nefazodone [Serzone]</li>
+        <li>Trazodone [Oleptro]</li>
+        <li>Vilazodone [Viibryd]</li>
+        <li>Amoxapine</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Your uploaded slides do not deeply unpack these drugs, so the most useful textbook-based pearl to carry is that <strong>mirtazapine is sedating</strong> and is often a thoughtful choice when depression comes with <strong>insomnia</strong> or poor appetite. This is the flip side of bupropion, which is activating and can worsen insomnia.</p>
+      <p style="margin-top:8px">That is a common exam strategy: not just naming the class, but matching the drug to the patient profile. Tired, poor appetite, can’t sleep? Mirtazapine may fit. Low libido and miserable on an SSRI? Bupropion may fit better.</p>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ How This Shows Up on Exams</span>
+      <p>Expect “which antidepressant is most appropriate” questions that are secretly asking you to match drug side effects with patient needs. Bupropion is the usual answer for <strong>sexual dysfunction concern</strong>; mirtazapine is the usual answer for <strong>insomnia</strong>. That pairing is high-yield.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>Bupropion = Bright / Busy / Breakfast-time.</strong> <strong>Mirtazapine = Midnight snack med</strong> because it is the one you remember for sedation and appetite support.</p>
+    </div>
+  </div>
+</div>
+
+<div id="p8" class="section">
+  <div class="card">
+    <p class="card-subtitle">Anxiety Slides 2–22 | Anxiety, GAD, Panic Disorder, PTSD, OCD, Performance Anxiety</p>
+    <h2 class="card-title">Anxiety Disorders — Know the Disorder Pattern Before Choosing the Drug</h2>
+
+    <div class="sh">Slides 2–5 — Anxiety Definition, Autonomic Features, Pathophysiology, Types</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Anxiety — uncomfortable state with psychological and physical components; fear, apprehension, dread, uneasiness</li>
+        <li>Autonomic response — increased HR, BP, diaphoresis, tachypnea, tachycardia</li>
+        <li>Pathophysiology — GABA, norepinephrine, serotonin, and dopamine regulate anxiety disorders; alterations can lead to anxiety disorders</li>
+        <li>Types — Generalized anxiety disorder, panic disorder, PTSD, OCD</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Depression questions center on low monoamine activity, but anxiety adds a strong role for <strong>GABA</strong>, the brain’s major inhibitory neurotransmitter. That is why benzodiazepines work so quickly: they enhance GABA-mediated inhibition, which rapidly quiets overactive autonomic and psychic symptoms. SSRIs and SNRIs also help anxiety, but they work more slowly because they rely on long-term adaptive changes.</p>
+      <p style="margin-top:8px">The autonomic symptoms matter because they explain why panic attacks can feel like cardiac emergencies. Tachycardia, chest discomfort, sweating, shortness of breath, and trembling can be intense. Exams love forcing you to recognize that pattern so you do not mislabel it.</p>
+    </div>
+
+    <div class="sh">Slides 6–13 — GAD + first-line meds + benzos + buspirone</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>GAD — Uncontrollable worrying that lasts 6 months or longer; not situational anxiety</li>
+        <li>Physical characteristics — trembling, muscle tension, restlessness, tachycardia, sweating, cold clammy hands, vigilance, tension, apprehension, poor concentration, difficulty sleeping</li>
+        <li>Treatment — supportive therapy, CBT, biofeedback, relaxation training; SSRIs and SNRIs first line; benzodiazepines second choice; buspirone</li>
+        <li>SSRIs/SNRIs — effects develop slowly; initial effect about 1 week; optimal response several weeks; paroxetine and escitalopram listed; duloxetine and venlafaxine effective short and long term; nausea most common side effect; headache, anorexia, nervousness, sweating, daytime somnolence, insomnia, hypertension</li>
+        <li>Benzodiazepines — immediate onset; dependence/abuse potential; avoid CNS depressants and sedating herbs; sedation, respiratory depression, psychomotor slowing; taper slowly</li>
+        <li>Buspirone — not a CNS depressant; no abuse potential; does not intensify CNS depressants; anxiolytic effects develop slowly; interactions with erythromycin, ketoconazole, grapefruit juice; no withdrawal symptoms observed</li>
+      </ul>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> choosing a benzodiazepine as the best long-term first-line treatment for chronic GAD. Benzos work fast, but the safer first-line long-term strategy is usually <strong>SSRI/SNRI</strong>. Buspirone is also easy to miss because students expect it to work immediately — it does <strong>not</strong>.</p>
+    </div>
+
+    <div class="sh">Slides 14–22 — Panic Disorder, PTSD, Performance Anxiety, OCD</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Panic disorder — overwhelming anxiety and fear without apparent cause; recurrent panic attacks; peak in a few minutes and dissipate within 30 minutes; symptoms include palpitations, chest discomfort, shortness of breath, choking feeling, dizziness, fear of losing control, fear of dying, tingling, chills/flushes</li>
+        <li>Panic disorder treatment — CBT; SSRIs first line (paroxetine, fluoxetine, sertraline); TCAs second line (imipramine, clomipramine); MAOIs last line (phenelzine); benzodiazepines second line</li>
+        <li>PTSD — develops after traumatic event; re-experiencing, avoiding reminders, hyperarousal; strong evidence for fluoxetine, paroxetine, sertraline, venlafaxine; psychotherapy includes exposure therapy and stress inoculation training</li>
+        <li>Performance anxiety — propranolol 1–2 hours before performance to reduce autonomic hyperactivity symptoms</li>
+        <li>OCD — persistent obsessions and compulsions causing marked distress; behavioral therapy very important; SSRIs first line (paroxetine, fluoxetine, sertraline, fluvoxamine); clomipramine second line due to side effects</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Panic disorder questions often try to distract you with the dramatic physical symptoms. Chest pain and palpitations can sound like MI, but the pattern of a sudden surge that peaks quickly and resolves within about 30 minutes is classic panic. PTSD questions are usually more pattern-recognition based: <strong>flashbacks + avoidance + hyperarousal</strong>. OCD questions split into the mental part (<strong>obsessions</strong>) and the action part (<strong>compulsions</strong>).</p>
+      <p style="margin-top:8px">Therapeutically, SSRIs keep showing up across anxiety-spectrum disorders because serotonin regulation is central to long-term symptom reduction. Propranolol is different: it does not treat the core anxiety disorder; it helps with <strong>autonomic symptoms</strong> like tremor, tachycardia, and palpitations in performance situations.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ Nursing Priority / Safety</span>
+      <p>Do not promise immediate improvement with SSRIs/SNRIs for anxiety disorders. That teaching error gets questions wrong and hurts adherence in real life. Also be careful not to normalize panic symptoms so much that you ignore safety. Chest pain still deserves assessment even if panic is suspected.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>A patient with OCD may say, “I know the thought is irrational, but I still have to wash my hands again.” That is the obsession-compulsion cycle in real life. A patient with PTSD may avoid fireworks and crowded places because their body is acting like danger is present even when it is not. Those are classic pattern cues your instructors want you to recognize quickly.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>GAD = General, all-day worry.</strong> <strong>Panic = Peaks fast.</strong> <strong>PTSD = Past trauma still driving present physiology.</strong> <strong>OCD = Obsession is the thought, compulsion is the act.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div id="p9" class="section">
+  <div class="card">
+    <p class="card-subtitle">Anxiety Slides 23–29 | Key Anxiety Drugs</p>
+    <h2 class="card-title">Benzodiazepines &amp; Buspirone — Fast Relief vs Safer Long-Term Use</h2>
+
+    <div class="sh">Slides 23–28 — Diazepam, Alprazolam, Lorazepam</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Key Anxiety Drugs — diazepam, alprazolam, lorazepam, buspirone</li>
+        <li>Benzodiazepines increase inhibitory effects of GABA; used for anxiety, panic disorder, seizures, insomnia; intended for short-term use because of dependency risk</li>
+        <li>Benzodiazepines caution — sedation, CNS depression, withdrawal effects with long-term use, toxicity with respiratory depression; pregnancy category D; do not use if breastfeeding; monitor grapefruit juice; avoid sedating herbs including kava kava, chamomile, valerian root, passionflower</li>
+        <li>Lorazepam — PO/IM/IV; IV adverse reactions include apnea, cardiac arrest, bradycardia, hypotension; contraindications include angle-closure glaucoma, pregnancy, breastfeeding, sleep apnea, hypotension</li>
+        <li>Alprazolam — PO; contraindications include pregnancy, breastfeeding, obstructive sleep apnea, angle-closure glaucoma</li>
+        <li>Diazepam — PO/IV/IM/PR; used for anxiety, status epilepticus, alcohol withdrawal, conscious sedation; avoid abrupt withdrawal</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Benzodiazepines work quickly because they enhance <strong>GABA</strong>, the major inhibitory neurotransmitter. That is exactly why they are useful in acute anxiety and panic states — and exactly why they can also cause <strong>sedation, psychomotor slowing, CNS depression, and respiratory depression</strong>. The same mechanism that calms the brain can oversuppress it.</p>
+      <p style="margin-top:8px">Lorazepam is especially high-yield because IV administration raises the stakes. The slides are very explicit: <strong>apnea and cardiac arrest</strong> are possible with IV use. That means route matters. A drug that is routine by mouth can become much riskier IV.</p>
+      <p style="margin-top:8px">These are short-term tools, not ideal chronic solutions, because tolerance, dependence, and withdrawal can become major problems. That is why the slides repeatedly say to <strong>taper</strong>, not stop abruptly.</p>
+    </div>
+    <div class="callout priority"><span class="callout-label">⚠️ When to Hold / Call the Provider</span>
+      <ul class="content-list">
+        <li>Excessive sedation, respiratory depression, low oxygenation, or slowed respirations</li>
+        <li>Profound hypotension or bradycardia, especially with IV lorazepam</li>
+        <li>Use in pregnancy, breastfeeding, sleep apnea, or angle-closure glaucoma when contraindicated</li>
+        <li>Concurrent alcohol/CNS depressant use that raises life-threatening CNS depression risk</li>
+      </ul>
+    </div>
+    <div class="callout exam"><span class="callout-label">⭐ Exam Tips / NCLEX Traps</span>
+      <p><strong>This is a trap:</strong> mistaking immediate relief for best long-term therapy. Benzos are fast, but their abuse/dependence profile is why they are usually not the preferred chronic solution. Another trap is forgetting route-specific severity: <strong>IV lorazepam</strong> should make you think high-risk monitoring.</p>
+    </div>
+
+    <div class="sh">Slide 29 — Buspirone</div>
+    <div class="callout prof"><span class="callout-label">📊 Slide Content — Exactly as Presented</span>
+      <ul class="content-list">
+        <li>Action not completely understood; binds to serotonin and dopamine receptors in the brain</li>
+        <li>Used to treat anxiety</li>
+        <li>Given PO</li>
+        <li>Side effects — dizziness, drowsiness, fatigue, headache, insomnia, chest pain, increased HR, myalgia, constipation</li>
+        <li>Adverse reactions — suicidal thoughts</li>
+        <li>Contraindications — use of MAOIs</li>
+        <li>Education — avoid grapefruit juice; can take 2–6 weeks for results</li>
+      </ul>
+    </div>
+    <div class="callout book"><span class="callout-label">📖 Textbook Expansion</span>
+      <p>Buspirone is the anti-benzodiazepine in terms of teaching. It is <strong>not</strong> a CNS depressant, has <strong>no abuse potential</strong>, does <strong>not</strong> intensify the effects of CNS depressants, and has <strong>no withdrawal syndrome</strong> in the way benzodiazepines do. But the tradeoff is slow onset. It is not a rescue drug for acute panic.</p>
+      <p style="margin-top:8px">That delayed onset is the heart of nearly every buspirone question. If the patient wants something that works “right now,” buspirone will disappoint. If the patient needs a safer long-term anxiolytic without abuse potential, buspirone becomes much more attractive.</p>
+    </div>
+    <div class="callout info"><span class="callout-label">🩺 Clinical Connection</span>
+      <p>A patient switched from a benzodiazepine to buspirone may say, “This medicine is not doing anything.” The nurse needs to explain that buspirone can take <strong>2–6 weeks</strong> to work and is not meant to give the same immediate sedating relief. That teaching is what prevents nonadherence.</p>
+    </div>
+    <div class="callout book"><span class="callout-label">🧠 Quick Memory Tools</span>
+      <p><strong>Buspirone = Bus, not race car.</strong> It gets there safely, but not fast. <strong>Benzos = brake pedal</strong> — fast, but too much can shut things down.</p>
+    </div>
+  </div>
+</div>
+
+<div id="p10" class="section">
+  <div class="card">
+    <p class="card-subtitle">Module Wrap-Up | High-Yield Synthesis</p>
+    <h2 class="card-title">Big Picture Summary + Highest-Yield Exam Takeaways</h2>
+
+    <div class="callout info"><span class="callout-label">🌎 Big Picture Summary</span>
+      <p>Anxiety and depression are heavily tied to altered neurotransmission. Depression in this module is primarily framed through <strong>serotonin and norepinephrine deficiency/imbalance concepts</strong>, while anxiety adds major relevance for <strong>GABA</strong> and autonomic overactivation. The drugs in this module all try to shift those signaling systems, but they do so with very different safety burdens.</p>
+      <p style="margin-top:8px">In practical nursing terms, this module is really about three big skills: <strong>(1) recognizing the disorder pattern, (2) matching the right drug class to the situation, and (3) catching the dangerous stuff early.</strong> That dangerous stuff includes suicidality early in antidepressant therapy, serotonin syndrome, MAOI hypertensive crisis, venlafaxine hypertension, duloxetine hepatotoxicity, TCA cardiotoxicity, and benzodiazepine respiratory depression/withdrawal.</p>
+    </div>
+
+    <div class="sh">Top 10 Must-Know Exam Points</div>
+    <div class="callout exam"><span class="callout-label">⭐ Highest-Yield Concepts</span>
+      <ul class="content-list">
+        <li>Antidepressants are <strong>not PRN</strong>; initial benefit is delayed and maximal response can take weeks</li>
+        <li>Suicide risk can increase <strong>early</strong> in antidepressant treatment, especially in younger patients</li>
+        <li>SSRIs are first-line largely because they are <strong>safer and better tolerated</strong> than TCAs/MAOIs</li>
+        <li>SSRIs and SNRIs can cause <strong>serotonin syndrome</strong>, especially with MAOIs and other serotonergic drugs</li>
+        <li>Venlafaxine is high-yield for <strong>anxiety + depression</strong> but monitor <strong>blood pressure</strong></li>
+        <li>Duloxetine helps with depression and neuropathic pain, but think <strong>liver toxicity</strong></li>
+        <li>TCAs are effective but dangerous in overdose because of <strong>cardiotoxicity</strong>; sodium bicarbonate is a key toxicity treatment detail</li>
+        <li>MAOIs require <strong>strict tyramine and drug interaction teaching</strong>; oral MAOI + tyramine can trigger hypertensive crisis</li>
+        <li>Benzodiazepines work <strong>immediately</strong> but have dependence, CNS depression, and withdrawal risks</li>
+        <li>Buspirone has <strong>slow onset</strong> but no abuse potential and is not a CNS depressant</li>
+      </ul>
+    </div>
+
+    <div class="sh">Things That Will Get You Questions Wrong</div>
+    <div class="callout priority"><span class="callout-label">⚠️ Common Mistakes / Misunderstandings</span>
+      <ul class="content-list">
+        <li>Thinking the patient should feel better after only a few days on an antidepressant</li>
+        <li>Choosing a benzodiazepine as the best first-line long-term option for chronic anxiety</li>
+        <li>Forgetting that buspirone is <strong>delayed</strong>, not immediate</li>
+        <li>Missing serotonin syndrome because you mistake it for mild medication side effects</li>
+        <li>Forgetting MAOI washout periods or tyramine restrictions</li>
+        <li>Ignoring blood pressure with venlafaxine</li>
+        <li>Ignoring liver concerns with duloxetine</li>
+        <li>Forgetting that TCA overdose is much more dangerous than SSRI overdose</li>
+        <li>Assuming grief always equals depression</li>
+        <li>Confusing obsessions (thoughts) with compulsions (acts)</li>
+      </ul>
+    </div>
+
+    <div class="sh">Medication Quick-Compare Table</div>
+    <table class="data-table">
+      <thead><tr><th>Drug/Class</th><th>Mechanism</th><th>Best Memory Hook</th><th>Biggest Danger</th><th>Classic Teaching Point</th></tr></thead>
+      <tbody>
+        <tr><td>SSRIs</td><td>Block serotonin reuptake</td><td>Safer first-line</td><td>Serotonin syndrome / suicidality / bleeding</td><td>Takes weeks; taper, don’t stop abruptly</td></tr>
+        <tr><td>SNRIs</td><td>Block serotonin + norepinephrine reuptake</td><td>Mood + anxiety coverage</td><td>BP elevation, serotonin syndrome, liver toxicity depending on drug</td><td>Monitor BP; report hepatic symptoms</td></tr>
+        <tr><td>TCAs</td><td>Block NE + serotonin reuptake</td><td>Older and dirtier</td><td>Cardiotoxic overdose</td><td>Limited supply; fall and anticholinergic precautions</td></tr>
+        <tr><td>MAOIs</td><td>Inhibit monoamine oxidase</td><td>Food and interaction nightmare</td><td>Hypertensive crisis / serotonin syndrome</td><td>Avoid tyramine; obey washout rules</td></tr>
+        <tr><td>Bupropion</td><td>Atypical; not serotonergic like SSRIs</td><td>Activating, low sexual dysfunction</td><td>Seizures</td><td>Take in the morning</td></tr>
+        <tr><td>Benzodiazepines</td><td>Increase GABA effect</td><td>Fast relief</td><td>Respiratory depression / dependence</td><td>Short term; do not stop abruptly</td></tr>
+        <tr><td>Buspirone</td><td>Exact MOA not fully understood; serotonin/dopamine receptor effects</td><td>Slow but safer</td><td>Delayed relief can hurt adherence</td><td>No abuse potential; avoid grapefruit juice</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+<footer><p>PP2 — Module 9 | Anxiety, Depression, Antidepressants &amp; Antianxiety Drugs | Slide-by-Slide Study Guide | Spring 2026</p></footer>
+<button class="float-nav" onclick="document.getElementById('top-nav').scrollIntoView({behavior:'smooth', block:'start'})">☰ Nav</button>
+<button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function show(id, btn){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('top-nav').scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+</body>
+</html>

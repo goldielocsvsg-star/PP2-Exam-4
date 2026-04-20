@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP2 Modules 7 & 8 — Psychosis, Schizophrenia & Bipolar Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Theme Tokens ========== */
+:root {
+  --bg: #f6f4ee;
+  --bg-grad-a: #f3eeff;
+  --bg-grad-b: #eaf5fb;
+  --surface: rgba(255,255,255,0.72);
+  --surface-solid: #ffffff;
+  --ink: #0a0b14;
+  --ink-soft: #3b3d56;
+  --muted: #6a6d86;
+  --line: rgba(10,11,20,0.09);
+  --line-strong: rgba(10,11,20,0.16);
+  --accent: #5b3df5;
+  --accent-2: #0ea5e9;
+  --accent-3: #ec4899;
+  --ok: #0a8f5a;
+  --ok-bg: rgba(10,143,90,0.08);
+  --err: #c41e3a;
+  --err-bg: rgba(196,30,58,0.07);
+  --warn: #8a5a00;
+  --warn-bg: rgba(251,191,36,0.16);
+  --shadow-sm: 0 1px 2px rgba(10,11,20,0.05), 0 1px 3px rgba(10,11,20,0.04);
+  --shadow-md: 0 8px 24px -8px rgba(91,61,245,0.18), 0 2px 6px rgba(10,11,20,0.06);
+  --shadow-lg: 0 20px 50px -20px rgba(91,61,245,0.3), 0 6px 16px rgba(10,11,20,0.08);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+[data-theme="dark"] {
+  --bg: #08090f;
+  --bg-grad-a: #0f0b25;
+  --bg-grad-b: #071428;
+  --surface: rgba(20,21,34,0.72);
+  --surface-solid: #13142a;
+  --ink: #f5f3ff;
+  --ink-soft: #cfcde6;
+  --muted: #8a8cab;
+  --line: rgba(255,255,255,0.09);
+  --line-strong: rgba(255,255,255,0.18);
+  --accent: #a78bfa;
+  --accent-2: #67e8f9;
+  --accent-3: #f472b6;
+  --ok: #4ade80;
+  --ok-bg: rgba(74,222,128,0.1);
+  --err: #fb7185;
+  --err-bg: rgba(251,113,133,0.1);
+  --warn: #fbbf24;
+  --warn-bg: rgba(251,191,36,0.1);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-md: 0 8px 24px -8px rgba(167,139,250,0.35), 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-lg: 0 24px 60px -20px rgba(167,139,250,0.5), 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* ========== Base ========== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Atmospheric background mesh */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 800px 600px at 10% 0%, var(--bg-grad-a) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 90% 20%, var(--bg-grad-b) 0%, transparent 55%),
+    radial-gradient(ellipse 600px 800px at 50% 100%, var(--bg-grad-a) 0%, transparent 60%),
+    var(--bg);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 1200px 900px at 50% 30%, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 1200px 900px at 50% 30%, black, transparent 80%);
+  pointer-events: none;
+}
+
+/* ========== Header ========== */
+.nav {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 22px 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.nav-brand::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+.theme-btn {
+  appearance: none;
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.theme-btn-icon {
+  width: 14px; height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.hero {
+  max-width: 1040px;
+  margin: 32px auto 24px;
+  padding: 0 24px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6.5vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(110deg, var(--accent) 30%, var(--accent-3) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.hero-sub {
+  max-width: 640px;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+
+/* ========== Cards ========== */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease;
+}
+.card-title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.card-title em { font-style: italic; color: var(--accent); }
+.small { color: var(--muted); font-size: 13.5px; }
+
+/* ========== Stats Grid ========== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.stat {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px 18px 16px;
+  background: var(--surface-solid);
+  position: relative;
+  overflow: hidden;
+}
+.stat::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.8;
+}
+.stat .k {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat .v {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 10px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.stat .v.small-v { font-size: 22px; line-height: 1.2; margin-top: 14px; }
+
+/* ========== Buttons ========== */
+button {
+  appearance: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 12px;
+  letter-spacing: 0.005em;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="dark"] .btn-primary { background: var(--accent); color: #0a0a14; }
+.btn-primary::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-secondary {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+.btn-accent:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-finish {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+.btn-finish:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.hidden { display: none !important; }
+
+/* ========== Select ========== */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 38px 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-solid);
+  color: var(--ink);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f3ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+
+/* ========== Progress ========== */
+.prog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.prog-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.prog-meta { color: var(--muted); font-size: 13px; font-family: "JetBrains Mono", monospace; }
+.prog-meta strong { color: var(--ink); font-family: "Inter Tight", sans-serif; font-weight: 700; }
+.progress-shell {
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-3), var(--accent-2));
+  background-size: 200% 100%;
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ========== Chips ========== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-soft);
+}
+.chip-accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* ========== Question Block ========== */
+.q-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.q-head-meta { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+.q-stem {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(22px, 3.2vw, 28px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ========== Options ========== */
+.option-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.option {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+  background: var(--surface-solid);
+  position: relative;
+}
+.option:hover { border-color: var(--accent); transform: translateX(2px); }
+.option.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface-solid));
+}
+.option.correct {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+}
+.option.incorrect {
+  border-color: var(--err);
+  background: var(--err-bg);
+}
+.letter {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--line);
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+.option.selected .letter { background: var(--accent); color: white; }
+.option.correct .letter { background: var(--ok); color: white; }
+.option.incorrect .letter { background: var(--err); color: white; }
+.option-body { flex: 1; min-width: 0; display: flex; align-items: flex-start; gap: 10px; }
+.option input {
+  margin: 4px 0 0;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.option-text { flex: 1; color: var(--ink); font-size: 15px; line-height: 1.5; }
+
+/* ========== Rationale ========== */
+.rationale {
+  margin-top: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 35%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 7%, var(--surface-solid));
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.rationale-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 10px;
+}
+.rationale-head::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px var(--accent-2);
+}
+.rationale-body { color: var(--ink); font-size: 14.5px; line-height: 1.6; }
+
+/* ========== Notice ========== */
+.notice {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.notice-icon {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== Results ========== */
+.result-card { text-align: center; padding: 40px 28px; position: relative; overflow: hidden; }
+.result-card::before {
+  content: "";
+  position: absolute;
+  top: -40%; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.result-card > * { position: relative; z-index: 1; }
+.result-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.score-big {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(80px, 14vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 12px 0;
+  background: linear-gradient(140deg, var(--accent) 15%, var(--accent-3) 55%, var(--accent-2) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.score-line {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+/* ========== Answer Key ========== */
+.answer-key-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 12px 0;
+  background: var(--surface-solid);
+}
+.review-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.review-pill::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.review-correct { background: var(--ok-bg); color: var(--ok); }
+.review-incorrect { background: var(--err-bg); color: var(--err); }
+.review-partial { background: var(--warn-bg); color: var(--warn); }
+.review-points {
+  background: var(--line);
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", monospace;
+}
+.review-points::before { display: none; }
+.ak-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.ak-stem {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.ak-ans { margin: 4px 0; font-size: 13.5px; color: var(--ink-soft); }
+.ak-ans strong { color: var(--ink); font-weight: 700; margin-right: 4px; }
+.ak-ans code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  background: var(--line);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+/* ========== Mobile ========== */
+@media (max-width: 720px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 0 16px; }
+  .nav { padding: 18px 16px 0; }
+  .card { padding: 22px 20px; }
+  .q-head { flex-direction: column; }
+  .option { padding: 12px 14px; }
+  .btn-primary, .btn-secondary, .btn-accent, .btn-finish { flex: 1 1 auto; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">PP2 &middot; Modules 7 &amp; 8 &middot; NCLEX Style</div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+    <svg class="theme-btn-icon" id="themeIcon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+    </svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow">PP2 · Modules 7 &amp; 8 · No-Mercy Build</span>
+  <h1>Master Psychosis, Schizophrenia <em>&amp;</em> Bipolar.</h1>
+  <p class="hero-sub">Every question is pulled straight from your Mods 7 &amp; 8 study guides and book notes. Brutal distractors. Shuffled choices. Partial credit on SATA. No backtracking. Pick immediate feedback or submit everything at the end &mdash; either way, you leave knowing exactly where you stand.</p>
+</header>
+
+<main class="wrap">
+
+  <!-- START SCREEN -->
+  <section class="card" id="startCard">
+    <h2 class="card-title">Ready? <em>Let's go.</em></h2>
+    <p class="small" style="max-width:620px;">Brutal distractors. Shuffled choices. Rationales that actually teach. Mixed MC and SATA with <strong>partial credit</strong>. No backtracking — lock it in and keep moving. Every question pulled from your own study materials.</p>
+
+    <div class="grid" style="margin:22px 0 20px">
+      <div class="stat"><div class="k">Total questions</div><div class="v">66</div></div>
+      <div class="stat"><div class="k">Question types</div><div class="v small-v">MC &#43; SATA</div></div>
+      <div class="stat"><div class="k">Backtracking</div><div class="v small-v">Disabled</div></div>
+    </div>
+
+    <div class="row" style="margin:0 0 18px">
+      <label class="small" for="gradingMode" style="font-weight:600; color:var(--ink);">Grading mode</label>
+      <select id="gradingMode">
+        <option value="immediate">Grade me now &mdash; show the rationale after every question</option>
+        <option value="save">Hold my grades &mdash; score everything at the end</option>
+      </select>
+    </div>
+
+    <div class="notice small">
+      <svg class="notice-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+      <span><strong>SATA partial credit is ON.</strong> Every correct pick is +1. Every wrong pick is –1. Minimum score per item is zero — you can't go negative, but you have to earn every point.</span>
+    </div>
+
+    <div class="row" style="margin-top:22px">
+      <button class="btn-primary" id="startBtn">Let's do this &rarr;</button>
+    </div>
+  </section>
+
+  <!-- EXAM SCREEN -->
+  <section class="hidden" id="examCard">
+    <div class="card" style="padding:20px 24px;">
+      <div class="prog-head">
+        <div>
+          <div class="prog-label" id="progressLabel">Question 1 / 66</div>
+          <div class="prog-meta" style="margin-top:4px;">Score <strong id="correctSoFar">0</strong> &nbsp;·&nbsp; Answered <strong id="answeredSoFar">0</strong></div>
+        </div>
+        <div class="chip chip-accent" id="modeChip">Immediate grading</div>
+      </div>
+      <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="q-head">
+        <div class="q-head-meta">
+          <div class="row" style="gap:8px;">
+            <span class="chip" id="qCat"></span>
+            <span class="chip chip-accent" id="qType"></span>
+          </div>
+          <h2 class="q-stem" id="qStem"></h2>
+        </div>
+      </div>
+      <div class="option-list" id="options"></div>
+
+      <div class="row" style="margin-top:22px">
+        <button class="btn-primary" id="submitNowBtn">Lock it in</button>
+        <button class="btn-secondary" id="saveContinueBtn">Save &amp; keep going</button>
+        <button class="btn-accent hidden" id="nextBtn">Next &rarr;</button>
+        <button class="btn-finish hidden" id="finishBtn">Finish &rarr;</button>
+      </div>
+
+      <div class="rationale hidden" id="rationaleBox">
+        <div class="rationale-head">Rationale</div>
+        <div class="rationale-body" id="rationaleText"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS SCREEN -->
+  <section class="hidden" id="resultCard">
+    <div class="card result-card">
+      <div class="result-eyebrow">The verdict</div>
+      <div class="score-big" id="scoreBig">0%</div>
+      <div class="score-line" id="scoreLine"></div>
+      <p class="small" id="scoreSub"></p>
+      <div class="row" style="margin-top:22px; justify-content:center;">
+        <button class="btn-primary" onclick="location.reload()">Run it back</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="card-title" style="font-size:24px; margin-bottom:18px;">Answer key <em>&amp; rationales</em></h3>
+      <div id="answerKey"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const rawQuestions = [{"type": "mc", "category": "Schizophrenia Symptoms", "stem": "A client is brought to the psychiatric unit after telling police, “The radio host is speaking in code directly to me, and my coworkers placed cameras inside my apartment.” During the interview, the client is highly suspicious, scans the room constantly, and answers unrelated questions with fragmented statements. Which interpretation is most accurate?", "options": ["The client is displaying positive psychotic symptoms associated with schizophrenia", "The client is displaying primarily negative symptoms associated with schizophrenia", "The client is displaying expected findings of uncomplicated grief", "The client is experiencing therapeutic effects of an antipsychotic"], "answer": 0, "rationale": "Delusions, paranoia, and disorganized thought/speech are positive psychotic symptoms. Negative symptoms reflect loss of normal function, such as blunted affect, social withdrawal, poverty of speech, and poor self-care."}, {"type": "mc", "category": "Schizophrenia Symptoms", "stem": "Which finding would best support the nurse’s conclusion that a client’s schizophrenia symptoms are predominantly negative rather than positive?", "options": ["The client reports hearing two voices arguing", "The client is socially withdrawn, minimally verbal, and poorly motivated to complete hygiene", "The client states, “My food is poisoned”", "The client becomes acutely combative and paranoid"], "answer": 1, "rationale": "Social withdrawal, poor motivation, reduced speech, and impaired self-care are negative symptoms. Hallucinations, paranoia, and combativeness are positive symptoms."}, {"type": "sata", "category": "Schizophrenia Symptoms", "stem": "A nurse assessing a client with schizophrenia wants to distinguish positive symptoms from negative symptoms. Which findings should the nurse classify as positive symptoms? Select all that apply.", "options": ["Auditory hallucinations", "Persecutory delusions", "Agitation", "Blunted affect", "Poverty of speech"], "answer": [0, 1, 2], "rationale": "Positive symptoms include hallucinations, delusions, agitation, tension, paranoia, and disorganized speech/thought. Blunted affect and poverty of speech are negative symptoms."}, {"type": "mc", "category": "Pathophysiology", "stem": "The nurse explains to a student that schizophrenia is thought to involve biologic abnormalities in neurotransmission. Which statement by the student indicates correct understanding?", "options": ["Psychosocial stress is the sole cause of schizophrenia", "Possible mechanisms include excessive dopamine activity and reduced glutamate/NMDA function", "Schizophrenia occurs only when serotonin is absent", "The disease is caused by too much GABA in all brain pathways"], "answer": 1, "rationale": "Your course materials describe schizophrenia as having a biologic basis, with suspected dopamine excess and glutamate/NMDA hypofunction. Psychosocial stressors can trigger exacerbations but are not the sole cause."}, {"type": "mc", "category": "Pathophysiology", "stem": "A faculty member asks how antipsychotic drugs help organize thought processes in psychosis. Which response is best supported by the source material?", "options": ["They increase dopamine transmission in mesolimbic pathways", "They block dopamine receptors, lowering excessive dopamine effects linked with psychosis", "They cure the underlying disease process by restoring neuron growth immediately", "They work only by stimulating acetylcholine receptors"], "answer": 1, "rationale": "The class plan ties psychosis to excessive dopamine activity and explains that antipsychotics help by blocking dopamine receptors, thereby reducing psychotic symptoms."}, {"type": "mc", "category": "EPS", "stem": "A client receives a first dose of haloperidol in the emergency department. Four hours later, the client develops forceful upward deviation of the eyes and painful contraction of the neck muscles. Which action should the nurse anticipate first?", "options": ["Recognize acute dystonia and prepare to treat the reaction promptly", "Document expected sedation and continue observation only", "Hold all future antipsychotics permanently because this is tardive dyskinesia", "Reassure the client that this is a normal sign of therapeutic response"], "answer": 0, "rationale": "Acute dystonia can occur within hours to days of starting an antipsychotic and is characterized by severe muscle spasms, including oculogyric crisis. It requires prompt recognition and treatment."}, {"type": "mc", "category": "Antipsychotic Safety", "stem": "Which finding in a client receiving an antipsychotic requires the most immediate follow-up by the nurse?", "options": ["Dry mouth and mild constipation", "A temperature of 103°F with severe generalized rigidity", "Increased appetite over the past week", "Sleepiness after the evening dose"], "answer": 1, "rationale": "High fever with severe rigidity is highly concerning for neuroleptic malignant syndrome, a life-threatening emergency. The other findings may occur with antipsychotic therapy but are not the highest priority."}, {"type": "sata", "category": "EPS", "stem": "The nurse reviews charted findings for a client started on a first-generation antipsychotic 2 weeks ago. Which findings are most consistent with extrapyramidal symptoms? Select all that apply.", "options": ["Restlessness with inability to sit still", "Shuffling gait and rigidity", "Sustained facial and neck muscle spasm", "Repetitive lip-smacking after years of therapy", "Weight gain with elevated triglycerides"], "answer": [0, 1, 2, 3], "rationale": "Akathisia, parkinsonism, acute dystonia, and tardive dyskinesia are all EPS. Weight gain and dyslipidemia are metabolic effects, more associated with SGAs."}, {"type": "mc", "category": "FGA vs SGA", "stem": "A student nurse says, “Second-generation antipsychotics are always safer than first-generation drugs.” Which response by the instructor is best?", "options": ["That is correct because SGAs do not cause serious adverse effects", "That is incorrect because SGAs lower EPS risk overall but raise concern for metabolic syndrome", "That is incorrect because FGAs and SGAs have no meaningful side-effect differences", "That is correct because SGAs are curative whereas FGAs are only symptomatic"], "answer": 1, "rationale": "FGAs generally carry greater EPS risk, while SGAs generally carry lower EPS risk but more metabolic risk, including weight gain, diabetes, and dyslipidemia."}, {"type": "mc", "category": "Clozapine", "stem": "The nurse is reviewing morning labs for four clients prescribed antipsychotics. Which client should the nurse assess first?", "options": ["Client taking haloperidol who reports dry mouth", "Client taking quetiapine who has gained 2 lb this week", "Client taking clozapine who reports sore throat and has a low WBC count", "Client taking risperidone who feels sleepy after the bedtime dose"], "answer": 2, "rationale": "Clozapine is associated with agranulocytosis. Infection symptoms plus a low WBC require urgent assessment and follow-up."}, {"type": "sata", "category": "Clozapine", "stem": "The nurse provides discharge teaching for a client newly prescribed clozapine. Which instructions are essential? Select all that apply.", "options": ["Keep all scheduled blood-count monitoring appointments", "Report fever, sore throat, or other infection symptoms right away", "Use caution with alcohol or other sedating medications", "This medication is preferred for dementia-related psychosis in older adults", "Change positions slowly because dizziness may occur"], "answer": [0, 1, 2, 4], "rationale": "Clozapine requires WBC/ANC monitoring, urgent reporting of infection symptoms, caution with sedating substances, and orthostatic precautions. It is not preferred for dementia-related psychosis in older adults."}, {"type": "mc", "category": "EPS Treatment", "stem": "A client prescribed haloperidol develops acute dystonia. Which prescribed medication best addresses this complication based on your course content?", "options": ["Benztropine", "Lithium", "Sertraline", "Valproic acid"], "answer": 0, "rationale": "Benztropine is used to manage EPS such as acute dystonia and parkinsonism by helping restore the dopamine/acetylcholine balance."}, {"type": "mc", "category": "Antipsychotic Teaching", "stem": "A client taking chlorpromazine says, “I’m also taking over-the-counter sleep aids and I drink wine most nights.” Which nurse response is best?", "options": ["That combination is fine because chlorpromazine does not cause CNS depression", "Use caution and discuss this with the prescriber because added sedatives and alcohol can increase danger", "Increase your fluid intake and continue everything as usual", "Skip the chlorpromazine on nights you drink wine"], "answer": 1, "rationale": "Antipsychotics can cause sedation and other CNS effects. Alcohol and sedating agents may intensify adverse effects and increase safety risks."}, {"type": "mc", "category": "Therapeutic Response", "stem": "Which change best indicates that antipsychotic therapy is effective for a hospitalized client with schizophrenia?", "options": ["The client has complete elimination of the disease process", "The client demonstrates fewer hallucinations and better organization of thought", "The client develops mild orthostatic dizziness", "The client no longer needs maintenance treatment after discharge"], "answer": 1, "rationale": "Antipsychotics are expected to reduce psychotic symptoms such as hallucinations and delusions and improve organization/functioning. They are not curative and often require maintenance therapy."}, {"type": "mc", "category": "Bipolar Recognition", "stem": "A client is pacing nonstop, speaking rapidly, interrupting others, sleeping 2 hours nightly, and announcing plans to buy three luxury cars despite being unemployed. Which episode is most likely?", "options": ["Major depressive episode", "Manic episode", "Negative schizophrenia symptom pattern", "Acute dystonia"], "answer": 1, "rationale": "Decreased need for sleep, pressured/rapid speech, hyperactivity, and impulsive high-risk spending strongly support mania."}, {"type": "mc", "category": "Bipolar I vs II", "stem": "Which finding would move the nurse away from hypomania and toward full mania in a client with bipolar disorder?", "options": ["Elevated mood without psychosis", "Psychotic features with marked impairment in functioning", "Improved concentration and normal sleep", "Mild increase in goal-directed activity only"], "answer": 1, "rationale": "Your materials emphasize that hypomania does not include psychosis, whereas full mania may include psychotic symptoms and more severe functional impairment."}, {"type": "mc", "category": "Priority", "stem": "A client with acute mania is shouting at peers, attempting to leave the locked unit, and throwing objects into the hallway. Which nursing priority is most appropriate?", "options": ["Begin detailed medication education immediately", "Protect the client and others from harm while rapid stabilization is pursued", "Encourage the client to join group therapy first", "Wait to intervene until the next provider round"], "answer": 1, "rationale": "In acute mania, safety is the priority. Your source material emphasizes protection from self-harm or harm to others during severe manic escalation."}, {"type": "mc", "category": "Lithium", "stem": "Which assessment finding in a client taking lithium should the nurse treat as most concerning based on the source content about therapeutic range and toxicity risk?", "options": ["Lithium level 0.8 mEq/L", "Lithium level 1.6 mEq/L", "Follow-up scheduled in 3 months", "Morning level drawn 12 hours after the last dose"], "answer": 1, "rationale": "Your bipolar materials state that lithium toxicity is a concern when levels exceed 1.5 mEq/L. A level of 1.6 mEq/L is most concerning."}, {"type": "sata", "category": "Lithium", "stem": "The nurse teaches a client starting lithium about factors that can affect safety. Which statements are appropriate? Select all that apply.", "options": ["Lithium requires periodic blood-level monitoring", "Low sodium can increase lithium toxicity risk", "Kidney function matters because lithium is excreted renally", "Lithium can be stopped abruptly once mood improves", "Serum levels should be drawn consistently using proper timing"], "answer": [0, 1, 2, 4], "rationale": "Lithium has a narrow therapeutic range, is excreted by the kidneys, and becomes more toxic when sodium is low. Clients should not stop it abruptly just because they feel better."}, {"type": "mc", "stem": "Which expected therapeutic response best indicates an antipsychotic medication is working for schizophrenia?", "options": ["Increased grandiosity and talkativeness", "Decreased positive symptoms and improved functioning", "Complete cure of the underlying disease", "No need for maintenance therapy"], "answer": 1, "rationale": "Antipsychotics provide symptomatic relief, especially by decreasing positive symptoms and helping suppress acute episodes and prevent exacerbations. They do not cure the underlying disease.", "category": "Therapeutic Response"}, {"type": "mc", "stem": "A client is withdrawn, poorly groomed, and speaks very little. Which symptom cluster is the nurse identifying?", "options": ["Positive symptoms of schizophrenia", "Negative symptoms of schizophrenia", "Acute dystonia", "Lithium toxicity"], "answer": 1, "rationale": "Poor self-care, social withdrawal, and poverty of speech are negative symptoms of schizophrenia.", "category": "Diagnosis Recognition"}, {"type": "mc", "stem": "A client with schizophrenia has difficulty with attention, memory, and organized thinking. Which symptom group is most accurate?", "options": ["Positive symptoms", "Negative symptoms", "Cognitive symptoms", "Only medication side effects"], "answer": 2, "rationale": "Difficulty with attention, learning, memory, and disordered thinking fits cognitive symptoms of schizophrenia.", "category": "Schizophrenia Symptoms"}, {"type": "mc", "stem": "Which client is at greatest risk for mortality if prescribed an antipsychotic according to the source content?", "options": ["A young adult with acute psychosis", "An older adult with dementia-related psychosis", "An adult with bipolar I disorder", "A client with EPS treated by benztropine"], "answer": 1, "rationale": "Your antipsychotic study guide specifically warns against using antipsychotics for dementia-related psychosis in older adults because mortality risk is increased.", "category": "Antipsychotic Safety"}, {"type": "mc", "stem": "A client says, “I have not slept in days, I’m overflowing with energy, and I just invested all my savings into a wild new business idea.” What episode is most likely?", "options": ["Major depressive episode", "Pure manic episode", "Negative schizophrenia symptom cluster", "Generalized anxiety disorder"], "answer": 1, "rationale": "Mania is associated with decreased need for sleep, hyperactivity, excessive enthusiasm, grandiosity, impulsivity, and high-risk behavior.", "category": "Bipolar Recognition"}, {"type": "mc", "stem": "Which finding best supports hypomania rather than full mania?", "options": ["Psychosis is present", "The mood is elevated but there is no psychosis", "The client has severe rigidity and fever", "The client has only social withdrawal"], "answer": 1, "rationale": "Your materials emphasize that hypomania involves elevated or irritable mood without psychosis. Full mania can include psychosis and greater severity.", "category": "Bipolar Recognition"}, {"type": "mc", "stem": "Which statement best differentiates bipolar I disorder from bipolar II disorder?", "options": ["Bipolar I includes hypomania only", "Bipolar II includes at least one full manic episode", "Bipolar I includes mania, whereas bipolar II includes hypomania without full mania", "There is no difference in episode types"], "answer": 2, "rationale": "Bipolar I involves at least one full manic episode and may include mixed episodes and depression. Bipolar II involves hypomania plus depression, with no full mania.", "category": "Bipolar I vs II"}, {"type": "mc", "stem": "A client with elevated mood, no sleep, grandiosity, and hallucinations is most likely experiencing which condition?", "options": ["Hypomania", "Major depression", "Full mania associated with bipolar I disorder", "Only social anxiety"], "answer": 2, "rationale": "Psychosis may occur with full mania, not hypomania. This presentation fits bipolar I disorder with mania.", "category": "Diagnosis Recognition"}, {"type": "sata", "stem": "Which findings are consistent with a manic episode? Select all that apply.", "options": ["Flight of ideas", "Reduced need for sleep", "Grandiose ideas", "High-risk behaviors", "Poverty of speech"], "answer": [0, 1, 2, 3], "rationale": "Mania includes flight of ideas, reduced need for sleep, grandiosity, excessive sociability, talkativeness, hyperactivity, and high-risk behaviors. Poverty of speech is not a manic hallmark.", "category": "Bipolar Recognition"}, {"type": "mc", "stem": "Which bipolar episode is considered especially dangerous because high energy is combined with depressive symptoms?", "options": ["Hypomanic episode", "Mixed episode", "Residual schizophrenia", "Acute dystonia"], "answer": 1, "rationale": "Your study guide highlights mixed episodes as dangerous because manic energy coexists with depressive symptoms, increasing risk for harm and suicide concerns.", "category": "Bipolar Recognition"}, {"type": "mc", "stem": "A hospitalized client with acute mania is hyperactive, impulsive, and threatening other clients. What is the nurse’s first priority?", "options": ["Teach detailed relapse-prevention content", "Protect the client and others from harm", "Encourage group socialization", "Delay treatment until the client sleeps"], "answer": 1, "rationale": "Your class plan explicitly identifies protecting the client from self-harm or harm to others as the priority nursing action during acute mania requiring stabilization.", "category": "Priority"}, {"type": "mc", "stem": "Which medication class is considered a mainstay of therapy for bipolar disorder in your materials?", "options": ["Mood stabilizers such as lithium and valproic acid", "Only SSRIs", "Only benzodiazepines", "Only anticholinergics"], "answer": 0, "rationale": "The bipolar materials identify lithium and valproic acid/divalproex as mainstays of bipolar treatment. Antipsychotics and benzodiazepines may also be used depending on phase and severity.", "category": "Bipolar Treatment"}, {"type": "sata", "stem": "The nurse teaches a client about drug therapy for bipolar disorder. Which statements are accurate? Select all that apply.", "options": ["Mood stabilizers help relieve symptoms and prevent recurrence", "Antipsychotics may be used during acute severe mania or long-term", "Benzodiazepines may be used acutely for insomnia, anxiety, or agitation", "Psychotherapy has no role in bipolar disorder", "Treatment often needs to continue long term"], "answer": [0, 1, 2, 4], "rationale": "Your sources describe bipolar disorder as chronic and often requiring lifelong treatment. Mood stabilizers, antipsychotics, and adjunctive benzodiazepines all have roles, and psychotherapy is also part of care.", "category": "Bipolar Treatment"}, {"type": "mc", "stem": "Which statement by a client prescribed lithium indicates correct understanding of the medication’s therapeutic index?", "options": ["Lithium is very forgiving, so levels are rarely important", "Lithium has a low therapeutic index, so levels must be monitored closely", "Lithium levels are checked only if I feel sick", "Lithium is not excreted by the kidneys"], "answer": 1, "rationale": "Lithium has a low therapeutic index, is excreted by the kidneys, and requires regular serum level monitoring.", "category": "Lithium"}, {"type": "mc", "stem": "Which lithium level is most concerning for toxicity according to your uploaded bipolar content?", "options": ["0.6 mEq/L", "1.0 mEq/L", "1.6 mEq/L", "0.4 mEq/L"], "answer": 2, "rationale": "Your bipolar slides note that lithium must stay below 1.5 mEq/L and that toxicity is a concern when levels are greater than 1.5 mEq/L.", "category": "Lithium"}, {"type": "mc", "stem": "When should a lithium level be drawn according to the source material?", "options": ["Immediately after the morning dose", "At bedtime after the evening dose", "In the morning, about 12 hours after the evening dose", "At any random time of day"], "answer": 2, "rationale": "The bipolar lecture materials specify drawing lithium levels in the morning, approximately 12 hours after the evening dose.", "category": "Lithium"}, {"type": "mc", "stem": "The nurse reviews factors that increase lithium toxicity risk. Which finding is most concerning?", "options": ["Low sodium level", "Mild insomnia", "Occasional overeating", "Dry skin only"], "answer": 0, "rationale": "Your materials state that lithium excretion is reduced when sodium is low, which increases the risk for lithium toxicity.", "category": "Lithium"}, {"type": "mc", "stem": "Which statement best describes lithium’s mechanism of action based on your uploaded materials?", "options": ["It is completely understood and works only by serotonin blockade", "Its exact mechanism is unknown, but it may stabilize calcium channels and modulate dopamine, glutamate, and GABA", "It works only by blocking histamine receptors", "It directly cures psychosis in one dose"], "answer": 1, "rationale": "Your bipolar notes repeatedly state that lithium’s exact mechanism is unknown, while describing possible effects on intracellular proteins, calcium channels, neuronal activity, and neurotransmitter modulation.", "category": "Lithium"}, {"type": "sata", "stem": "Which statements should the nurse include in follow-up teaching for a client taking lithium? Select all that apply.", "options": ["Keep follow-up appointments for lithium level monitoring", "Report possible toxicity or unusual symptoms promptly", "Know that sodium balance matters with this medication", "Stop the medication suddenly if you feel better", "Kidney function is relevant to lithium handling"], "answer": [0, 1, 2, 4], "rationale": "Lithium requires ongoing monitoring, attention to toxicity, and awareness that sodium balance and renal excretion are clinically important. Clients should not stop lithium abruptly just because they feel better.", "category": "Lithium"}, {"type": "mc", "stem": "Which drug is specifically identified in your materials as being able to lower risperidone levels?", "options": ["Benztropine", "Carbamazepine", "Lorazepam", "Fluoxetine"], "answer": 1, "rationale": "The uploaded med sheet and drug cards specifically flag carbamazepine as lowering risperidone levels.", "category": "Drug Interactions"}, {"type": "mc", "stem": "A client taking ziprasidone tells the nurse about a new rash. What is the best response?", "options": ["That is expected and does not matter", "Report the rash promptly because your source material flags serious rash concern with this drug", "Double the next dose", "Take alcohol to help you relax"], "answer": 1, "rationale": "Your psychosis/bipolar drug cards uniquely flag rash and Stevens-Johnson syndrome concern with ziprasidone and instruct clients to report rash promptly.", "category": "Drug Safety"}, {"type": "mc", "stem": "Which antipsychotic is especially highlighted in your bipolar study guide as useful for both acute mania and bipolar depressive episodes?", "options": ["Haloperidol", "Quetiapine", "Benztropine", "Lithium only"], "answer": 1, "rationale": "Your bipolar HTML study guide specifically calls out quetiapine as uniquely useful because it is approved for both acute mania and depressive episodes in bipolar disorder.", "category": "Bipolar Treatment"}, {"type": "mc", "stem": "Why might an antipsychotic be prescribed for bipolar disorder even when no hallucinations or delusions are present?", "options": ["Because antipsychotics only work when psychosis is present", "Because they can help control acute manic hyperactivity, agitation, and behavioral dysregulation", "Because mood stabilizers work immediately while antipsychotics do not", "Because antipsychotics replace all need for monitoring"], "answer": 1, "rationale": "Your bipolar study guide explains that antipsychotics can quickly control manic symptoms and help stabilize mood, even when psychotic symptoms are absent.", "category": "Bipolar Treatment"}, {"type": "sata", "stem": "Which medications are listed in your materials as antipsychotics used as sedatives in bipolar disorder? Select all that apply.", "options": ["Olanzapine", "Risperidone", "Aripiprazole", "Ziprasidone", "Quetiapine"], "answer": [0, 1, 2, 3, 4], "rationale": "Your medication fun-facts chart lists olanzapine, risperidone, aripiprazole, ziprasidone, and quetiapine as antipsychotics used as sedatives in bipolar disorder.", "category": "Bipolar Treatment"}, {"type": "mc", "stem": "Which benzodiazepine is identified in your bipolar study materials as useful for acute insomnia, anxiety, or agitation?", "options": ["Lorazepam", "Benztropine", "Clozapine", "Chlorpromazine"], "answer": 0, "rationale": "The bipolar materials identify benzodiazepines such as lorazepam and clonazepam as adjuncts for acute insomnia, anxiety, and agitation.", "category": "Bipolar Treatment"}, {"type": "sata", "stem": "The nurse is teaching a client about benzodiazepines used in bipolar disorder. Which points are appropriate? Select all that apply.", "options": ["They are used acutely, not as the primary long-term mood stabilizer", "They can cause sedation and increase fall risk", "Alcohol and other CNS depressants increase danger", "They are not associated with dependence concerns", "They may help insomnia and agitation"], "answer": [0, 1, 2, 4], "rationale": "Your study materials describe benzodiazepines as adjuncts for acute insomnia, anxiety, and agitation. They can cause sedation and have dependence and CNS-depressant interaction concerns.", "category": "Benzodiazepines"}, {"type": "mc", "stem": "A client prescribed an antipsychotic says, “I feel dizzy every time I stand up.” Which medication effect is the nurse most likely recognizing?", "options": ["Orthostatic hypotension from alpha-1 blockade", "Therapeutic response to the drug", "No effect of the medication", "Evidence of lithium benefit"], "answer": 0, "rationale": "Your antipsychotic study guide explains that alpha-1 blockade causes vasodilation and can lead to orthostatic hypotension, especially when standing.", "category": "Mechanism to Side Effect"}, {"type": "mc", "stem": "Which explanation best links histamine receptor blockade to an antipsychotic side effect?", "options": ["Histamine blockade commonly contributes to sedation", "Histamine blockade prevents all falls", "Histamine blockade cures bipolar disorder", "Histamine blockade causes agranulocytosis only"], "answer": 0, "rationale": "Your materials connect histamine receptor blockade with sedation and drowsiness from antipsychotic therapy.", "category": "Mechanism to Side Effect"}, {"type": "mc", "stem": "Which effect is most closely associated with anticholinergic properties of antipsychotic medications?", "options": ["Urinary retention and constipation", "Reduced WBC count only", "Immediate relief of psychosis", "No pupil changes ever"], "answer": 0, "rationale": "Your materials repeatedly flag anticholinergic effects such as urinary hesitancy/retention, constipation, tachycardia, and visual changes.", "category": "Antipsychotic Safety"}, {"type": "sata", "stem": "Which client histories require caution or clarification before giving certain antipsychotic medications according to your course materials? Select all that apply.", "options": ["Glaucoma", "Cardiovascular disease", "Urinary hesitancy", "Constipation", "Need for fall-risk teaching"], "answer": [0, 1, 2, 3], "rationale": "Your medication sheets specifically flag glaucoma, cardiovascular disease, urinary hesitancy, and constipation as important concerns with antipsychotics that have anticholinergic or cardiovascular effects. Fall-risk teaching is important but is not a history item itself.", "category": "Hold / Clarify"}, {"type": "mc", "stem": "Which statement by a client receiving antipsychotics indicates a need for further teaching?", "options": ["I should avoid alcohol while taking this medication", "If I become very drowsy or dizzy, I should use caution with activities", "These drugs are safe and recommended for dementia-related psychosis in older adults", "I should report severe muscle stiffness and fever right away"], "answer": 2, "rationale": "The statement about dementia-related psychosis in older adults is incorrect. Your materials explicitly warn that antipsychotics are not recommended in that setting because of increased mortality risk.", "category": "Teaching"}, {"type": "mc", "stem": "Which finding best indicates therapeutic response to lithium in a client hospitalized for mania?", "options": ["Persistent grandiosity and no sleep", "Decreased agitation and improved mood stabilization", "New fever and rigidity", "Worsening impulsive behavior"], "answer": 1, "rationale": "Mood stabilizers such as lithium are expected to reduce manic symptoms and help stabilize mood over time. Fever/rigidity would suggest a different medication emergency, not lithium effectiveness.", "category": "Therapeutic Response"}, {"type": "mc", "stem": "The nurse understands that lithium is excreted primarily by which organ system?", "options": ["Hepatic system", "Renal system", "Pulmonary system", "Integumentary system"], "answer": 1, "rationale": "Your bipolar notes state that lithium is excreted by the kidneys, which is why renal status and sodium balance matter.", "category": "Lithium"}, {"type": "mc", "stem": "Which episode pattern is most consistent with bipolar II disorder?", "options": ["Full mania with psychosis and mixed episodes", "Hypomania alternating with one or more major depressive episodes", "Only chronic psychosis without mood changes", "Only anxiety with no mood episodes"], "answer": 1, "rationale": "Bipolar II is characterized by hypomania plus depression, without full mania.", "category": "Bipolar I vs II"}, {"type": "mc", "stem": "A client says, “I feel worthless and depressed, but I’m also severely agitated and can’t stop moving.” Which bipolar episode should the nurse suspect?", "options": ["Hypomanic episode", "Mixed episode", "Pure negative schizophrenia symptoms", "Resolved mania"], "answer": 1, "rationale": "A mixed episode combines features of mania and depression at the same time. Your study guide highlights this as a dangerous presentation.", "category": "Diagnosis Recognition"}, {"type": "sata", "stem": "Which manifestations in a client with bipolar disorder suggest a manic episode rather than a depressive episode? Select all that apply.", "options": ["Excessive talkativeness", "Flight of ideas", "High-risk gambling", "Worthlessness with low energy only", "Reduced need for sleep"], "answer": [0, 1, 2, 4], "rationale": "Mania is associated with talkativeness, flight of ideas, decreased need for sleep, hyperactivity, and high-risk behavior. Worthlessness with low energy alone fits depression more than mania.", "category": "Bipolar Recognition"}, {"type": "mc", "stem": "Which medication in the uploaded bipolar class plan is ordered PRN for sleep in the Mr. Riley case?", "options": ["Trazodone", "Haloperidol", "Benztropine", "Ziprasidone"], "answer": 0, "rationale": "The class plan’s Mr. Riley case lists trazodone PRN for sleep in the admission orders.", "category": "Case Study"}, {"type": "mc", "stem": "A client with mania has had no sleep, is hyperverbal, and is making reckless sexual and financial decisions. What is the most likely disease process the client is experiencing?", "options": ["Panic disorder", "Manic episode associated with bipolar disorder", "Major depression only", "Negative symptoms of schizophrenia"], "answer": 1, "rationale": "No sleep, hyperverbal behavior, and reckless high-risk acts are classic manic-episode features in your bipolar materials.", "category": "Diagnosis Recognition"}, {"type": "mc", "stem": "A client is socially withdrawn, has poor self-care, blunted affect, and little speech. What disease process is the client most likely experiencing?", "options": ["Negative symptom pattern of schizophrenia", "Acute mania", "Acute dystonia from medication", "Only generalized anxiety"], "answer": 0, "rationale": "The cluster of social withdrawal, poor self-care, blunted affect, and poverty of speech points to negative symptoms of schizophrenia.", "category": "Diagnosis Recognition"}, {"type": "mc", "stem": "A client develops auditory hallucinations, persecutory delusions, and disorganized speech. Which disorder is most consistent with this presentation?", "options": ["Psychotic disorder such as schizophrenia", "Hypomania only", "Simple insomnia", "Expected lithium effect"], "answer": 0, "rationale": "Auditory hallucinations, persecutory delusions, and disorganized speech are hallmark positive symptoms seen in schizophrenia and other psychotic disorders.", "category": "Diagnosis Recognition"}, {"type": "mc", "stem": "Which client statement best shows understanding of the expected benefit of antipsychotic maintenance therapy?", "options": ["This medication cures the underlying cause permanently", "This medication helps reduce relapse and acute exacerbations if I keep taking it", "Once I improve, I can stop it abruptly with no concerns", "It only helps for one day at a time"], "answer": 1, "rationale": "Your materials note that antipsychotics suppress acute symptoms and, when continued, can help reduce relapse and exacerbations, although they are not curative.", "category": "Therapeutic Response"}, {"type": "mc", "stem": "Which client would the nurse identify as most likely needing rapid symptom control with an antipsychotic in bipolar disorder?", "options": ["A stable outpatient with no current symptoms", "A client with acute severe mania and agitation", "A client with only mild situational stress", "A client receiving benztropine for EPS"], "answer": 1, "rationale": "Your bipolar content states that antipsychotics are used to acutely control symptoms during manic episodes and may also be used long term.", "category": "Priority"}, {"type": "sata", "stem": "Which adverse effects should the nurse teach a client to watch for when taking a typical antipsychotic such as haloperidol or chlorpromazine? Select all that apply.", "options": ["EPS", "Orthostatic hypotension", "Sedation", "Anticholinergic effects", "Dysrhythmias / prolonged QT"], "answer": [0, 1, 2, 3, 4], "rationale": "Your med sheets list EPS, orthostatic hypotension, sedation, anticholinergic effects, and dysrhythmias/prolonged QT among major concerns for haloperidol and chlorpromazine.", "category": "Antipsychotic Safety"}, {"type": "mc", "stem": "A client prescribed an SGA gains weight and develops elevated glucose and lipids. Which adverse-effect pattern is most accurate?", "options": ["Extrapyramidal symptom cluster", "Metabolic syndrome", "Only anticholinergic effects", "Expected therapeutic response"], "answer": 1, "rationale": "Weight gain, diabetes risk, and dyslipidemia point to metabolic syndrome, a major concern with many SGAs in your materials.", "category": "Drug Safety"}, {"type": "mc", "stem": "Which symptom pattern would most strongly support a diagnosis of schizophrenia rather than uncomplicated bipolar depression?", "options": ["Anhedonia and low energy only", "Persistent hallucinations and delusions with disorganized thought", "Low appetite and insomnia only", "Brief situational sadness"], "answer": 1, "rationale": "Psychosis with hallucinations, delusions, and disorganized thinking is core to schizophrenia and other psychotic disorders, whereas uncomplicated bipolar depression centers on depressive symptoms.", "category": "Diagnosis Recognition"}, {"type": "mc", "stem": "A client asks why ongoing treatment is needed for bipolar disorder. Which response is best?", "options": ["Bipolar disorder is usually a short-term illness and rarely recurs", "Bipolar disorder is chronic and treatment helps manage episodes and reduce recurrence", "Treatment is only needed during one hospitalization", "Psychotherapy is never part of care"], "answer": 1, "rationale": "Your bipolar lecture notes describe bipolar disorder as a chronic condition that often requires lifelong management with drugs, psychotherapy, education, and follow-up.", "category": "Patient Teaching"}, {"type": "sata", "stem": "The nurse is evaluating whether an antipsychotic is helping a client with schizophrenia. Which outcomes support therapeutic response? Select all that apply.", "options": ["Fewer hallucinations", "Reduced delusional intensity", "Better organization of thoughts", "Improved ability to function", "Sudden fever with rigidity"], "answer": [0, 1, 2, 3], "rationale": "Therapeutic response is reflected by reduced psychotic symptoms and improved functioning. Fever with rigidity suggests a severe adverse reaction, not therapeutic benefit.", "category": "Therapeutic Response"}];
+
+const app = {
+  mode: "immediate",
+  qIndex: 0,
+  score: 0,             // fractional — SATA can earn partial credit
+  answered: 0,
+  userAnswers: Array(rawQuestions.length).fill(null),
+  graded: Array(rawQuestions.length).fill(false),
+  perQuestionScore: Array(rawQuestions.length).fill(0),  // 0..1 per question
+  rendered: []
+};
+
+function shuffle(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function prepareQuestions() {
+  app.rendered = rawQuestions.map(q => {
+    const opts = q.options.map((text, idx) => ({ text, originalIndex: idx }));
+    return { ...q, shuffledOptions: shuffle(opts) };
+  });
+}
+
+function letter(i) { return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]; }
+
+function answerSetEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false;
+  const x = [...a].sort((m,n)=>m-n);
+  const y = [...b].sort((m,n)=>m-n);
+  return x.every((v,i)=>v===y[i]);
+}
+
+function getSelectedOriginalIndices() {
+  return [...document.querySelectorAll(".option input:checked")]
+    .map(el => Number(el.dataset.original))
+    .sort((a,b)=>a-b);
+}
+
+// Returns a fractional score in [0, 1].
+// MC: 1 if the single correct option is picked, else 0.
+// SATA: NGN-style partial credit. +1 for each correct pick, -1 for each wrong pick,
+//       floor at 0, divided by the number of correct options.
+function scoreAnswer(q, selected) {
+  if (!Array.isArray(selected) || selected.length === 0) return 0;
+  if (q.type === "mc") {
+    return (selected.length === 1 && selected[0] === q.answer) ? 1 : 0;
+  }
+  const correctSet = new Set(q.answer);
+  let earned = 0;
+  for (const idx of selected) {
+    if (correctSet.has(idx)) earned += 1;
+    else earned -= 1;
+  }
+  earned = Math.max(0, earned);
+  const maxPoints = q.answer.length;
+  return maxPoints > 0 ? earned / maxPoints : 0;
+}
+
+// Classify a question score for answer-key pills: "full" | "partial" | "zero"
+function scoreBucket(s) {
+  if (s >= 0.999) return "full";
+  if (s <= 0.001) return "zero";
+  return "partial";
+}
+
+// Format running score: "12.5" or "12" (drop trailing .0)
+function fmtScore(n) {
+  const rounded = Math.round(n * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+}
+
+// Format a per-question partial credit label like "2/3 points"
+function fmtPartial(q, s) {
+  if (q.type === "mc") return s >= 0.999 ? "1/1 point" : "0/1 points";
+  const max = q.answer.length;
+  const earned = Math.round(s * max * 10) / 10;
+  const earnedStr = Number.isInteger(earned) ? String(earned) : earned.toFixed(1);
+  return `${earnedStr}/${max} points`;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderQuestion() {
+  const q = app.rendered[app.qIndex];
+  document.getElementById("progressLabel").textContent = `Question ${app.qIndex + 1} / ${app.rendered.length}`;
+  const pct = ((app.qIndex) / app.rendered.length) * 100;
+  document.getElementById("progressBar").style.width = pct + "%";
+  document.getElementById("correctSoFar").textContent = fmtScore(app.score);
+  document.getElementById("answeredSoFar").textContent = app.answered;
+  document.getElementById("qCat").textContent = q.category || "Question";
+  document.getElementById("qStem").textContent = q.stem;
+  document.getElementById("qType").textContent = q.type === "mc" ? "Multiple choice" : "Select all that apply";
+  document.getElementById("modeChip").textContent = app.mode === "immediate" ? "Immediate grading" : "Save & submit mode";
+  document.getElementById("rationaleBox").classList.add("hidden");
+  document.getElementById("rationaleText").innerHTML = "";
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.shuffledOptions.forEach((opt, idx) => {
+    const prior = app.userAnswers[app.qIndex];
+    const isChecked = Array.isArray(prior) && prior.includes(opt.originalIndex);
+    const label = document.createElement("label");
+    label.className = "option" + (isChecked ? " selected" : "");
+    const inputType = q.type === "mc" ? "radio" : "checkbox";
+    label.innerHTML = `
+      <div class="letter">${letter(idx)}</div>
+      <div class="option-body">
+        <input type="${inputType}" name="q_${app.qIndex}" data-original="${opt.originalIndex}" ${isChecked ? "checked" : ""}>
+        <span class="option-text">${escapeHtml(opt.text)}</span>
+      </div>
+    `;
+    optionsDiv.appendChild(label);
+  });
+
+  // selection highlighting
+  optionsDiv.addEventListener("change", () => {
+    if (app.graded[app.qIndex]) return;
+    optionsDiv.querySelectorAll(".option").forEach(opt => {
+      const inp = opt.querySelector("input");
+      opt.classList.toggle("selected", inp && inp.checked);
+    });
+  }, { once: false });
+
+  const isLast = app.qIndex === app.rendered.length - 1;
+  document.getElementById("nextBtn").classList.add("hidden");
+  document.getElementById("finishBtn").classList.toggle("hidden", !isLast || app.mode !== "save");
+  document.getElementById("saveContinueBtn").classList.toggle("hidden", app.mode !== "save" || isLast);
+  document.getElementById("submitNowBtn").classList.toggle("hidden", app.mode !== "immediate");
+
+  if (app.graded[app.qIndex]) {
+    showGradedState();
+  }
+}
+
+function saveCurrentAnswer() {
+  const q = app.rendered[app.qIndex];
+  const selected = getSelectedOriginalIndices();
+  if (q.type === "mc" && selected.length > 1) return null;
+  app.userAnswers[app.qIndex] = selected;
+  return selected;
+}
+
+function gradeCurrent(showRationale = true) {
+  const q = app.rendered[app.qIndex];
+  const selected = saveCurrentAnswer();
+  if (!selected || selected.length === 0) {
+    alert("Select an answer before continuing.");
+    return false;
+  }
+  const alreadyGraded = app.graded[app.qIndex];
+  const frac = scoreAnswer(q, selected);
+
+  if (!alreadyGraded) {
+    app.graded[app.qIndex] = true;
+    app.answered += 1;
+    app.perQuestionScore[app.qIndex] = frac;
+    app.score += frac;
+  }
+
+  if (showRationale) {
+    decorateAnswers(selected, q);
+    document.getElementById("rationaleText").innerHTML = q.rationale;
+    document.getElementById("rationaleBox").classList.remove("hidden");
+    document.getElementById("nextBtn").classList.toggle("hidden", app.qIndex === app.rendered.length - 1);
+    document.getElementById("finishBtn").classList.toggle("hidden", app.qIndex !== app.rendered.length - 1);
+    document.getElementById("submitNowBtn").classList.add("hidden");
+    document.getElementById("saveContinueBtn").classList.add("hidden");
+  }
+  document.getElementById("correctSoFar").textContent = fmtScore(app.score);
+  document.getElementById("answeredSoFar").textContent = app.answered;
+  return true;
+}
+
+function decorateAnswers(selected, q) {
+  document.querySelectorAll(".option").forEach(opt => {
+    const input = opt.querySelector("input");
+    const original = Number(input.dataset.original);
+    opt.classList.remove("selected");
+    const isSelected = selected.includes(original);
+    const isCorrect = q.type === "mc" ? original === q.answer : q.answer.includes(original);
+    if (isCorrect) opt.classList.add("correct");
+    if (isSelected && !isCorrect) opt.classList.add("incorrect");
+    input.disabled = true;
+  });
+}
+
+function showGradedState() {
+  const q = app.rendered[app.qIndex];
+  const selected = app.userAnswers[app.qIndex] || [];
+  decorateAnswers(selected, q);
+  document.getElementById("rationaleText").innerHTML = q.rationale;
+  document.getElementById("rationaleBox").classList.remove("hidden");
+  document.getElementById("submitNowBtn").classList.add("hidden");
+  document.getElementById("saveContinueBtn").classList.add("hidden");
+  document.getElementById("nextBtn").classList.toggle("hidden", app.qIndex === app.rendered.length - 1);
+  document.getElementById("finishBtn").classList.toggle("hidden", app.qIndex !== app.rendered.length - 1);
+}
+
+function nextQuestion() {
+  if (app.qIndex < app.rendered.length - 1) {
+    app.qIndex += 1;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    finishExam();
+  }
+}
+
+// Save & continue: store the current answer and advance, but DO NOT mark as graded
+// so final grading can count it correctly.
+function saveAndContinue() {
+  const sel = saveCurrentAnswer();
+  if (!sel || sel.length === 0) {
+    alert("Select an answer before continuing.");
+    return;
+  }
+  if (app.qIndex === app.rendered.length - 1) {
+    finishExam();
+  } else {
+    nextQuestion();
+  }
+}
+
+function finishExam() {
+  // If we're in save mode on the last question, capture the current selection first
+  if (app.mode === "save") {
+    const cur = getSelectedOriginalIndices();
+    const q = app.rendered[app.qIndex];
+    if (cur.length > 0 && !(q.type === "mc" && cur.length > 1)) {
+      app.userAnswers[app.qIndex] = cur;
+    }
+  }
+
+  // Grade every question that hasn't been graded yet (partial credit for SATA)
+  for (let i = 0; i < app.rendered.length; i++) {
+    if (app.graded[i]) continue;
+    const ans = app.userAnswers[i];
+    const q = app.rendered[i];
+    if (!ans || ans.length === 0) continue; // unanswered -> zero, don't count as answered
+    app.graded[i] = true;
+    app.answered += 1;
+    const frac = scoreAnswer(q, ans);
+    app.perQuestionScore[i] = frac;
+    app.score += frac;
+  }
+
+  document.getElementById("examCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.remove("hidden");
+
+  const pct = Math.round((app.score / app.rendered.length) * 100);
+  // Count buckets for the results summary
+  let full = 0, partial = 0, zero = 0;
+  for (let i = 0; i < app.rendered.length; i++) {
+    const b = scoreBucket(app.perQuestionScore[i]);
+    if (b === "full") full += 1;
+    else if (b === "partial") partial += 1;
+    else zero += 1;
+  }
+  document.getElementById("scoreBig").textContent = pct + "%";
+  document.getElementById("scoreLine").textContent = `${fmtScore(app.score)} of ${app.rendered.length} points earned`;
+  document.getElementById("scoreSub").textContent = `${full} fully correct · ${partial} partial · ${zero} missed. Unanswered questions count as zero.`;
+
+  const key = document.getElementById("answerKey");
+  key.innerHTML = "";
+  app.rendered.forEach((q, i) => {
+    const user = app.userAnswers[i] || [];
+    const frac = app.perQuestionScore[i] || 0;
+    const bucket = scoreBucket(frac);
+    const pillClass = bucket === "full" ? "review-correct"
+                    : bucket === "partial" ? "review-partial"
+                    : "review-incorrect";
+    const pillLabel = bucket === "full" ? "Correct"
+                    : bucket === "partial" ? "Partial"
+                    : "Incorrect";
+
+    const correctText = q.type === "mc"
+      ? q.options[q.answer]
+      : q.answer.map(idx => q.options[idx]).join("; ");
+
+    const yourText = user.length
+      ? user.map(idx => q.options[idx]).join("; ")
+      : "No answer selected";
+
+    const pointsLabel = fmtPartial(q, frac);
+
+    const box = document.createElement("div");
+    box.className = "answer-key-item";
+    box.innerHTML = `
+      <div class="row" style="gap:8px; margin-bottom:10px;">
+        <div class="review-pill ${pillClass}">${pillLabel}</div>
+        <div class="review-pill review-points">${pointsLabel}</div>
+      </div>
+      <div class="ak-meta">Q${String(i+1).padStart(2,"0")} &nbsp;·&nbsp; ${escapeHtml(q.category || "")} &nbsp;·&nbsp; ${q.type === "mc" ? "MC" : "SATA"}</div>
+      <div class="ak-stem">${escapeHtml(q.stem)}</div>
+      <div class="ak-ans"><strong>Your answer:</strong> ${escapeHtml(yourText)}</div>
+      <div class="ak-ans"><strong>Correct:</strong> ${escapeHtml(correctText)}</div>
+      <div class="rationale" style="margin-top:12px;">
+        <div class="rationale-head">Rationale</div>
+        <div class="rationale-body">${q.rationale}</div>
+      </div>
+    `;
+    key.appendChild(box);
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ---------- Theme toggle ---------- //
+function setTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  const icon = document.getElementById("themeIcon");
+  const label = document.getElementById("themeLabel");
+  if (mode === "dark") {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+    label.textContent = "Light";
+  } else {
+    icon.innerHTML = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>';
+    label.textContent = "Dark";
+  }
+}
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  setTheme(current === "dark" ? "light" : "dark");
+});
+
+// ---------- Main wiring ---------- //
+document.getElementById("startBtn").addEventListener("click", () => {
+  app.mode = document.getElementById("gradingMode").value;
+  prepareQuestions();
+  document.getElementById("startCard").classList.add("hidden");
+  document.getElementById("examCard").classList.remove("hidden");
+  renderQuestion();
+});
+
+document.getElementById("submitNowBtn").addEventListener("click", () => gradeCurrent(true));
+document.getElementById("saveContinueBtn").addEventListener("click", saveAndContinue);
+document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+document.getElementById("finishBtn").addEventListener("click", () => {
+  // In immediate mode the current question is already graded — just finish.
+  // In save mode we need to capture the last answer (handled inside finishExam).
+  finishExam();
+});
+
+setTheme("light");
+</script>
+</body>
+</html>

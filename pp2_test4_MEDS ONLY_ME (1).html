@@ -1,0 +1,3364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PP2 Test 4 · Pathopharm Medications Mock Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   THEME TOKENS — Clinical/Professional aesthetic
+   Light = ivory + navy + teal. Dark = deep navy + soft mint accents.
+   ================================================================== */
+:root {
+  --bg: #f3f1ea;
+  --bg-tint-1: rgba(29, 78, 115, 0.06);
+  --bg-tint-2: rgba(13, 148, 136, 0.05);
+  --surface: #ffffff;
+  --surface-elev: #ffffff;
+  --surface-muted: #f7f5ee;
+  --text: #10223a;
+  --text-soft: #2e4361;
+  --muted: #6b7a94;
+  --faint: #98a4bb;
+  --border: #e2dccb;
+  --border-strong: #c8c0a9;
+  --hair: #edeadf;
+
+  --accent: #0d6b7f;          /* teal */
+  --accent-soft: #d9efef;
+  --accent-ink: #053f4f;
+  --brand: #1d4e73;           /* navy */
+  --brand-soft: #dce7f0;
+  --gold: #b8884a;
+  --gold-soft: #f5ebd8;
+
+  --good: #0f6a47;
+  --good-bg: #d9efe2;
+  --bad: #962f24;
+  --bad-bg: #f8e0dc;
+  --warn: #7a5b15;
+  --warn-bg: #fbf0d6;
+
+  --shadow-sm: 0 1px 2px rgba(16, 34, 58, 0.06), 0 1px 1px rgba(16, 34, 58, 0.04);
+  --shadow-md: 0 6px 18px rgba(16, 34, 58, 0.08), 0 2px 6px rgba(16, 34, 58, 0.05);
+  --shadow-lg: 0 18px 48px rgba(16, 34, 58, 0.12), 0 4px 12px rgba(16, 34, 58, 0.06);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body.dark {
+  --bg: #0c1624;
+  --bg-tint-1: rgba(88, 178, 195, 0.08);
+  --bg-tint-2: rgba(129, 153, 187, 0.06);
+  --surface: #142035;
+  --surface-elev: #19263d;
+  --surface-muted: #0f1a2c;
+  --text: #ecf2fb;
+  --text-soft: #c8d4e8;
+  --muted: #8c9bb6;
+  --faint: #5d6c88;
+  --border: #2a3a56;
+  --border-strong: #3e517a;
+  --hair: #1c2a43;
+
+  --accent: #58b2c3;
+  --accent-soft: rgba(88, 178, 195, 0.16);
+  --accent-ink: #c4edf2;
+  --brand: #7fa7cf;
+  --brand-soft: rgba(127, 167, 207, 0.16);
+  --gold: #d6b376;
+  --gold-soft: rgba(214, 179, 118, 0.14);
+
+  --good: #5ed39a;
+  --good-bg: rgba(94, 211, 154, 0.12);
+  --bad: #ff9a8d;
+  --bad-bg: rgba(255, 154, 141, 0.12);
+  --warn: #ecc769;
+  --warn-bg: rgba(236, 199, 105, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+
+/* ==================================================================
+   BASE
+   ================================================================== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(ellipse 70% 60% at 15% -10%, var(--bg-tint-1), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 95% 110%, var(--bg-tint-2), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin: 0; }
+h1 { font-size: clamp(1.75rem, 2.4vw, 2.4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 1.4rem; line-height: 1.2; }
+h3 { font-size: 1.1rem; line-height: 1.3; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ==================================================================
+   HEADER
+   ================================================================== */
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--surface) 88%, transparent),
+    color-mix(in srgb, var(--surface) 78%, transparent));
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-left { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hero-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.hero-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* ==================================================================
+   CONTAINER
+   ================================================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 96px;
+}
+
+/* ==================================================================
+   BUTTONS
+   ================================================================== */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+  user-select: none;
+  line-height: 1;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn.primary {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.btn.primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brand) 88%, black);
+  box-shadow: var(--shadow-md);
+}
+.btn.accent {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn.accent:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 88%, black);
+  box-shadow: var(--shadow-md);
+}
+.btn.success {
+  background: var(--good);
+  color: #fff;
+  border-color: var(--good);
+}
+.btn.success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--good) 88%, black);
+  box-shadow: var(--shadow-md);
+}
+.btn.ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn.ghost:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+.btn.tiny {
+  font-size: 0.8rem;
+  padding: 7px 12px;
+  border-radius: 10px;
+}
+
+/* ==================================================================
+   CARDS / PANELS
+   ================================================================== */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==================================================================
+   SETUP SCREEN
+   ================================================================== */
+.setup {
+  padding: 36px;
+  display: block;
+}
+.setup.hidden { display: none; }
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .setup-grid { grid-template-columns: 1fr; }
+  .setup { padding: 24px; }
+}
+.setup h1 {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.setup .lead {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+.what-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.what-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+.what-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.mode-card {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.mode-card h3 { margin-bottom: 14px; }
+.mode-grid {
+  display: grid;
+  gap: 10px;
+}
+.mode-btn {
+  text-align: left;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-family: var(--font-body);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mode-btn:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+.mode-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.mode-btn strong { font-size: 0.96rem; font-weight: 700; color: var(--text); }
+.mode-btn span { font-size: 0.84rem; color: var(--muted); line-height: 1.4; }
+
+.small {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ==================================================================
+   EXAM SHELL
+   ================================================================== */
+.exam-shell {
+  display: none;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.exam-shell.active { display: grid; }
+@media (max-width: 980px) {
+  .exam-shell { grid-template-columns: 1fr; }
+}
+
+.sidebar {
+  padding: 22px;
+  position: sticky;
+  top: 92px;
+}
+@media (max-width: 980px) {
+  .sidebar { position: static; }
+}
+.sidebar h3 { margin-bottom: 14px; font-size: 1rem; }
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.metric {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 10px;
+  text-align: center;
+}
+.metric .num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+.metric .lbl {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+.progress-wrap { margin-bottom: 16px; }
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.progress-bar {
+  height: 6px;
+  background: var(--hair);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  width: 0%;
+  transition: width 0.3s ease;
+  border-radius: 999px;
+}
+
+.mode-label {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  margin-bottom: 12px;
+}
+
+.jump-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin: 16px 0 10px;
+}
+.jump-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+}
+.jump-btn {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  transition: all 0.1s ease;
+  padding: 0;
+}
+.jump-btn:hover { border-color: var(--accent); }
+.jump-btn.current {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+  font-weight: 600;
+}
+.jump-btn.answered {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.jump-btn.correct {
+  background: var(--good-bg);
+  color: var(--good);
+  border-color: color-mix(in srgb, var(--good) 40%, transparent);
+}
+.jump-btn.incorrect {
+  background: var(--bad-bg);
+  color: var(--bad);
+  border-color: color-mix(in srgb, var(--bad) 40%, transparent);
+}
+.jump-btn.partial {
+  background: var(--warn-bg);
+  color: var(--warn);
+  border-color: color-mix(in srgb, var(--warn) 40%, transparent);
+}
+
+.legend {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.legend-item { display: flex; gap: 8px; align-items: center; }
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.legend-dot.current { background: var(--brand); border-color: var(--brand); }
+.legend-dot.answered { background: var(--accent-soft); border-color: var(--accent); }
+.legend-dot.correct { background: var(--good-bg); border-color: var(--good); }
+.legend-dot.incorrect { background: var(--bad-bg); border-color: var(--bad); }
+.legend-dot.partial { background: var(--warn-bg); border-color: var(--warn); }
+
+/* ==================================================================
+   MAIN QUESTION AREA
+   ================================================================== */
+.main {
+  padding: 32px;
+  min-height: 560px;
+}
+@media (max-width: 640px) {
+  .main { padding: 22px; }
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+.chip.category {
+  background: var(--brand-soft);
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 30%, transparent);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.chip.sata {
+  background: var(--gold-soft);
+  color: var(--gold);
+  border-color: color-mix(in srgb, var(--gold) 30%, transparent);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.mode-hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.stem {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  line-height: 1.5;
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  margin-bottom: 22px;
+  padding: 4px 0 2px;
+}
+.stem strong { font-weight: 700; }
+
+/* ==================================================================
+   OPTIONS — clean, accessible, clear selection states
+   ================================================================== */
+.options {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.option {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.option:hover:not(.locked) {
+  border-color: var(--accent);
+  background: var(--surface-elev);
+  box-shadow: var(--shadow-sm);
+}
+.option.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.option.selected .option-letter {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.option.correct-reveal {
+  border-color: var(--good);
+  background: var(--good-bg);
+  color: var(--text);
+}
+.option.correct-reveal .option-letter {
+  background: var(--good);
+  color: #fff;
+  border-color: var(--good);
+}
+.option.incorrect-reveal {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  color: var(--text);
+}
+.option.incorrect-reveal .option-letter {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+.option.missed-reveal {
+  border-color: var(--good);
+  background: var(--surface);
+  border-style: dashed;
+}
+.option.missed-reveal .option-letter {
+  border-color: var(--good);
+  color: var(--good);
+}
+.option.locked { cursor: default; }
+
+.option-letter {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface-muted);
+  color: var(--text-soft);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.12s ease;
+}
+.option-body { flex: 1; min-width: 0; }
+.option-text { font-size: 0.96rem; line-height: 1.5; }
+.option-badge {
+  display: none;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.option.correct-reveal .option-badge.badge-correct,
+.option.incorrect-reveal .option-badge.badge-incorrect,
+.option.missed-reveal .option-badge.badge-missed { display: inline-block; }
+.option-badge.badge-correct { color: var(--good); }
+.option-badge.badge-incorrect { color: var(--bad); }
+.option-badge.badge-missed { color: var(--good); }
+
+.option-rationale {
+  display: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+.option.locked .option-rationale { display: block; }
+
+/* ==================================================================
+   CONTROLS BAR
+   ================================================================== */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ==================================================================
+   RATIONALE / TEACH PANEL
+   ================================================================== */
+.teach-panel {
+  display: none;
+  margin-top: 20px;
+  padding: 22px 24px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+}
+.teach-panel.visible { display: block; }
+.teach-panel .teach-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.teach-panel .teach-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.result-banner {
+  display: none;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  align-items: center;
+  gap: 10px;
+}
+.result-banner.visible { display: flex; }
+.result-banner.good { background: var(--good-bg); color: var(--good); }
+.result-banner.bad { background: var(--bad-bg); color: var(--bad); }
+.result-banner.partial { background: var(--warn-bg); color: var(--warn); }
+
+/* ==================================================================
+   FINAL SCORE CARD
+   ================================================================== */
+.final-card {
+  display: none;
+  margin-top: 28px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--brand-soft), var(--accent-soft));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+.final-card.visible { display: block; }
+.final-card .final-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.final-card .final-score {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--brand);
+  margin: 8px 0;
+  letter-spacing: -0.03em;
+}
+body.dark .final-card .final-score { color: var(--brand); }
+.final-card .final-line {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.final-card .final-sub {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  max-width: 56ch;
+  margin: 8px auto 18px;
+  line-height: 1.55;
+}
+.final-card .btn-group { justify-content: center; }
+
+/* ==================================================================
+   MISC
+   ================================================================== */
+.footer-note {
+  margin-top: 20px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.theme-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.12s ease;
+  font-size: 1rem;
+}
+.theme-btn:hover { border-color: var(--accent); }
+
+/* Keyboard focus ring for options */
+.option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Print-friendly */
+@media print {
+  .hero, .sidebar, .controls { display: none; }
+  .main { box-shadow: none; border: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="logo-mark">P2</div>
+      <div>
+        <div class="hero-title">PP2 Test 4 · Pathopharm Medications</div>
+        <div class="hero-sub">Modules 7–9 · Antipsychotics · Mood Stabilizers · Antidepressants · Anxiolytics</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <button id="themeBtn" class="theme-btn" type="button" aria-label="Toggle theme">🌙</button>
+      <button id="restartFromHeader" class="btn ghost tiny" type="button" style="display:none;">Restart</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ============ SETUP SCREEN ============ -->
+  <section id="setupPanel" class="panel setup">
+    <div class="setup-grid">
+      <div>
+        <div class="eyebrow">Source-limited mock exam</div>
+        <h1 style="margin-top:8px;">Mock Exam · Test 4 Review</h1>
+        <p class="lead">
+          Built directly from your Modules 7–9 EAQ, Psychosis &amp; Bipolar med chart, Anxiety &amp; Depression med chart, and lecture/book notes. Question stems mirror the EAQ wording and traps you&rsquo;ve been seeing. Each rationale explains the right answer <strong>and</strong> why every distractor is wrong.
+        </p>
+
+        <ul class="what-list">
+          <li>First- vs second-generation antipsychotics, EPS vs NMS differentiation, clozapine REMS</li>
+          <li>Lithium, divalproex, carbamazepine, lamotrigine &mdash; levels, toxicity, red flags</li>
+          <li>SSRIs, SNRIs, TCAs, MAOIs, bupropion &mdash; teaching, contraindications, timing</li>
+          <li>Benzodiazepines, buspirone, propranolol &mdash; anxiety ladder and onset differences</li>
+          <li>Symptom recognition: positive vs negative vs cognitive; mania vs hypomania vs depression</li>
+          <li>Priority, hold-vs-give, therapeutic-vs-adverse, cross-class traps</li>
+        </ul>
+      </div>
+
+      <div class="mode-card">
+        <h3>Choose your scoring mode</h3>
+        <div class="mode-grid">
+          <button class="mode-btn active" data-mode="immediate" type="button">
+            <strong>Immediate feedback</strong>
+            <span>Submit each question individually and see right/wrong plus full rationale right away.</span>
+          </button>
+          <button class="mode-btn" data-mode="final" type="button">
+            <strong>Submit at the end</strong>
+            <span>Answer every question first, then submit the full exam for scoring and complete review.</span>
+          </button>
+        </div>
+        <p class="small" style="margin-top:16px;">
+          <strong>SATA scoring:</strong> partial credit awarded. +1 for each correct option selected, −1 for each incorrect option selected, floor at 0, divided by the number of correct options.
+        </p>
+        <p class="small">
+          Answer choices shuffle on each load so you can&rsquo;t memorize position.
+        </p>
+        <div style="margin-top:18px;">
+          <button id="startBtn" class="btn accent" type="button" style="width:100%; justify-content:center; padding: 14px;">
+            Launch mock exam →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXAM SHELL ============ -->
+  <section id="examShell" class="exam-shell">
+
+    <aside class="panel sidebar">
+      <div class="mode-label" id="modeLabel">Immediate feedback</div>
+
+      <div class="metric-grid">
+        <div class="metric"><div class="num" id="answeredMetric">0</div><div class="lbl">Answered</div></div>
+        <div class="metric"><div class="num" id="remainingMetric">72</div><div class="lbl">Left</div></div>
+        <div class="metric"><div class="num" id="correctMetric">0</div><div class="lbl">Points</div></div>
+        <div class="metric"><div class="num" id="scoreMetric">—</div><div class="lbl">Score</div></div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-row">
+          <span id="progressText">Question 1 of 72</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="jump-label">Jump to question</div>
+      <div class="jump-grid" id="jumpGrid"></div>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot current"></span> Current</div>
+        <div class="legend-item"><span class="legend-dot answered"></span> Answered (not yet scored)</div>
+        <div class="legend-item"><span class="legend-dot correct"></span> Full credit</div>
+        <div class="legend-item"><span class="legend-dot partial"></span> Partial credit</div>
+        <div class="legend-item"><span class="legend-dot incorrect"></span> Incorrect</div>
+      </div>
+
+      <div class="footer-note">
+        Single-file build. Runs fully offline once downloaded.
+      </div>
+    </aside>
+
+    <section class="panel main">
+      <div class="meta-row">
+        <div class="chips">
+          <span class="chip" id="qidChip">Q1</span>
+        </div>
+        <div class="mode-hint" id="modeHint">Submit this question to see instant rationale.</div>
+      </div>
+
+      <div class="stem" id="stem"></div>
+
+      <div class="result-banner" id="resultBanner"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="teach-panel" id="teachPanel">
+        <div class="teach-eyebrow">Key takeaway</div>
+        <div class="teach-body" id="teachBody"></div>
+      </div>
+
+      <div class="controls">
+        <div class="btn-group">
+          <button class="btn ghost" id="prevBtn" type="button">← Previous</button>
+          <button class="btn ghost" id="nextBtn" type="button">Next →</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn ghost" id="clearBtn" type="button">Clear selection</button>
+          <button class="btn accent" id="submitCurrentBtn" type="button">Submit question</button>
+          <button class="btn success" id="submitExamBtn" type="button" style="display:none;">Submit full exam</button>
+        </div>
+      </div>
+
+      <div class="final-card" id="finalCard">
+        <div class="final-eyebrow">Exam complete</div>
+        <div class="final-score" id="finalScore">0%</div>
+        <div class="final-line" id="finalLine"></div>
+        <div class="final-sub" id="finalSub"></div>
+        <div class="btn-group">
+          <button class="btn accent" id="restartBtn" type="button">Restart with fresh randomization</button>
+        </div>
+      </div>
+    </section>
+
+  </section>
+</main>
+
+<script>
+/* ==================================================================
+   QUESTION DATA  —  built from Sophia's uploaded materials
+   EAQ wording preserved where possible; distractors tightened.
+   ================================================================== */
+const ORIGINAL_QUESTIONS = [
+  {
+    "id": 1,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A young adult with schizophrenia is started on haloperidol and asks the nurse, \u201cWhat is this medication supposed to do for me?\u201d Which response by the nurse is most accurate?",
+    "options": [
+      {
+        "text": "\u201cIt will raise your seizure threshold so your thoughts stay organized.\u201d",
+        "explanation": "Haloperidol actually LOWERS the seizure threshold \u2014 this statement reverses the effect. This distractor mirrors the EAQ trap and sounds plausible because seizure-threshold language is used with other psychotropics."
+      },
+      {
+        "text": "\u201cIt will help you relax and think more clearly.\u201d",
+        "explanation": "Correct. Haloperidol blocks postsynaptic dopamine receptors, which reduces positive symptoms (hallucinations, delusions) so the client can relax and organize thought. This is the exact wording the EAQ rationale supports."
+      },
+      {
+        "text": "\u201cIt will keep your mood even and control your temper.\u201d",
+        "explanation": "Haloperidol is a neuroleptic \u2014 it is NOT primarily a mood stabilizer. Lithium, divalproex, carbamazepine, and lamotrigine are the mood stabilizers. This is a classic NCLEX substitution trap."
+      },
+      {
+        "text": "\u201cIt cures schizophrenia by correcting the underlying brain chemistry.\u201d",
+        "explanation": "Antipsychotics provide symptomatic control only. No antipsychotic cures schizophrenia. Any absolute statement like \u201ccures\u201d should be eliminated on nursing exams."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Haloperidol is a first-generation antipsychotic (butyrophenone). It blocks dopamine, acetylcholine, histamine, and norepinephrine receptors. Primary use: reduce positive symptoms of schizophrenia. It does NOT raise the seizure threshold, does NOT primarily stabilize mood, and does NOT cure the underlying disease."
+  },
+  {
+    "id": 2,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A client with organic mental disorder becomes increasingly agitated and abusive and is prescribed haloperidol. Which adverse effect is most important for the nurse to monitor for?",
+    "options": [
+      {
+        "text": "Tremors",
+        "explanation": "Tremors are more characteristic of SSRI adverse effects (per EAQ rationale). While EPS involves motor findings, the specific term the source ties to haloperidol is pseudoparkinsonism, not generic tremor."
+      },
+      {
+        "text": "Pseudoparkinsonism",
+        "explanation": "Correct. Pseudoparkinsonism is an extrapyramidal side effect (EPS) strongly associated with first-generation antipsychotics like haloperidol. Expect shuffling gait, rigidity, and tremor."
+      },
+      {
+        "text": "Syndrome of inappropriate antidiuretic hormone (SIADH)",
+        "explanation": "SIADH is an SSRI-class endocrine effect per the source material, NOT a haloperidol effect. This is a class-crossover trap."
+      },
+      {
+        "text": "New-onset type 2 diabetes mellitus",
+        "explanation": "Metabolic syndrome (including new diabetes) is associated with SECOND-generation antipsychotics (clozapine, olanzapine, etc.), not first-generation haloperidol. The EAQ specifically uses this as a distractor."
+      }
+    ],
+    "correct": 1,
+    "explanation": "EPS findings with FGAs include acute dystonia, pseudoparkinsonism, akathisia, and tardive dyskinesia. Metabolic syndrome = SGA concern. SIADH = SSRI concern. Agranulocytosis = clozapine concern. Don\u2019t cross the wires."
+  },
+  {
+    "id": 3,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A client receiving haloperidol has a sudden change in status: temperature 105\u00b0F, HR 128, RR 26, BP unstable, severe muscle rigidity, diaphoresis, decreasing LOC, metabolic acidosis, and an elevated creatine phosphokinase (CPK). Which complication should the nurse suspect?",
+    "options": [
+      {
+        "text": "Oculogyric crisis",
+        "explanation": "Oculogyric crisis is a specific EPS in which the eyes roll upward. It does NOT produce hyperpyrexia, autonomic instability, or elevated CPK."
+      },
+      {
+        "text": "Serotonin syndrome",
+        "explanation": "Serotonin syndrome has many overlapping features (hyperthermia, autonomic changes), but it is triggered by serotonergic medications (SSRIs, SNRIs, MAOIs, St. John\u2019s wort) \u2014 this client is on haloperidol, a dopamine blocker, so the serotonin pathway is not the driver."
+      },
+      {
+        "text": "Haloperidol toxicity",
+        "explanation": "Toxicity presents as intensified side effects (more sedation, more EPS, anticholinergic overload). Hyperpyrexia, severe rigidity, and elevated CPK are NOT classic toxicity findings \u2014 those are NMS."
+      },
+      {
+        "text": "Neuroleptic malignant syndrome (NMS)",
+        "explanation": "Correct. The hallmark NMS tetrad = hyperthermia + severe (\u201clead-pipe\u201d) muscle rigidity + altered mental status + autonomic instability. Elevated CPK (from muscle breakdown) and metabolic acidosis support the diagnosis. STOP the antipsychotic, provide supportive care, cool, hydrate, and expect dantrolene and/or bromocriptine."
+      }
+    ],
+    "correct": 3,
+    "explanation": "NMS mnemonic \u2192 FEVER: Fever, Encephalopathy, Vitals unstable, Enzymes \u2191 (CPK), Rigidity. It is rare but life-threatening. Serotonin syndrome can look similar but requires a serotonergic trigger."
+  },
+  {
+    "id": 4,
+    "type": "sata",
+    "category": "Antipsychotics",
+    "stem": "A client on haloperidol develops akathisia and acute dystonia. Which medications would the nurse anticipate being prescribed to manage extrapyramidal symptoms? Select all that apply.",
+    "options": [
+      {
+        "text": "Benztropine",
+        "explanation": "Correct. Anticholinergic used first-line for acute dystonia and antipsychotic-induced parkinsonism. Restores dopamine/acetylcholine balance. IV or IM for severe dystonia."
+      },
+      {
+        "text": "Trihexyphenidyl",
+        "explanation": "Correct. Anticholinergic used for antipsychotic-induced parkinsonism. Works by the same dopamine/ACh balance mechanism as benztropine."
+      },
+      {
+        "text": "Bupropion",
+        "explanation": "Bupropion is an atypical antidepressant (dopamine/NE reuptake blocker). It does NOT treat EPS. Don\u2019t let the word \u201cdopamine\u201d in the mechanism tempt you \u2014 it isn\u2019t an anticholinergic."
+      },
+      {
+        "text": "Duloxetine",
+        "explanation": "Duloxetine is an SNRI \u2014 used for depression and GAD, not EPS."
+      },
+      {
+        "text": "Amitriptyline",
+        "explanation": "Amitriptyline is a TCA antidepressant. Though it has anticholinergic side effects, it is NOT used to treat antipsychotic-induced EPS in your course materials."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "For EPS, the drugs used are anticholinergics (benztropine, trihexyphenidyl, diphenhydramine) or a dopamine releaser (amantadine). EPS is a dopamine\u2013ACh imbalance problem, so we restore balance; we do NOT treat the underlying psychosis with these agents."
+  },
+  {
+    "id": 5,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A client with schizophrenia begins having difficulty breathing and the eyes begin to roll upward after the FIRST dose of chlorpromazine. Which nursing intervention is the PRIORITY?",
+    "options": [
+      {
+        "text": "Reduce the chlorpromazine dosage.",
+        "explanation": "Dose adjustment may happen LATER, but the airway-threatening dystonic reaction must be treated first. This distractor tempts the student who confuses adverse-effect management with emergency management."
+      },
+      {
+        "text": "Administer intravenous (IV) benztropine.",
+        "explanation": "Correct. This is acute dystonia \u2014 an airway-compromising extrapyramidal emergency after a first dose of a first-generation antipsychotic. Parenteral anticholinergic (IV or IM benztropine) provides rapid relief."
+      },
+      {
+        "text": "Administer an oral benzodiazepine.",
+        "explanation": "Oral benzodiazepines are used for neuroleptic-induced parkinsonism, not acute dystonia. Also, if the airway is threatened, oral route is inappropriate \u2014 onset is too slow."
+      },
+      {
+        "text": "Obtain serum liver function tests.",
+        "explanation": "Labs are not priority during an airway emergency. They might be drawn AFTER the client is stabilized. ABC beats labs every time on priority questions."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Acute dystonia = airway-threatening EPS. Treat immediately with IV or IM benztropine (or diphenhydramine). Dose reduction, labs, and teaching are all AFTER the airway is safe. Remember: priority questions = ABC first."
+  },
+  {
+    "id": 6,
+    "type": "sata",
+    "category": "Antipsychotics",
+    "stem": "While assessing a client with schizophrenia who is receiving chlorpromazine, the nurse finds lead-pipe rigidity, sudden high fever, and sweating. Which medications would the nurse anticipate being used to treat this adverse effect? Select all that apply.",
+    "options": [
+      {
+        "text": "Dantrolene",
+        "explanation": "Correct. Direct-acting muscle relaxant used to reduce muscle rigidity and hyperthermia in NMS."
+      },
+      {
+        "text": "Bromocriptine",
+        "explanation": "Correct. Dopamine receptor agonist that helps relieve CNS toxicity in NMS."
+      },
+      {
+        "text": "Loxapine",
+        "explanation": "Loxapine is a first-generation antipsychotic \u2014 giving another FGA would WORSEN NMS. This is a trap for students who don\u2019t recognize NMS as an antipsychotic emergency."
+      },
+      {
+        "text": "Thiothixene",
+        "explanation": "Thiothixene is also a first-generation antipsychotic and is contraindicated in this scenario. Same trap as loxapine."
+      },
+      {
+        "text": "Haloperidol",
+        "explanation": "Haloperidol is an FGA and is itself a common NMS trigger \u2014 adding more dopamine blockade is unsafe."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "NMS treatment = STOP the offending antipsychotic + dantrolene + bromocriptine + supportive care (cooling, hydration, vital support). Never give another antipsychotic to treat NMS."
+  },
+  {
+    "id": 7,
+    "type": "sata",
+    "category": "Antipsychotics",
+    "stem": "Which antipsychotic medications are contraindicated for a 70-year-old client with dementia-related psychosis? Select all that apply.",
+    "options": [
+      {
+        "text": "Haloperidol",
+        "explanation": "Correct. First-generation antipsychotics carry a boxed warning: increased mortality when used for dementia-related psychosis in older adults."
+      },
+      {
+        "text": "Chlorpromazine",
+        "explanation": "Correct. Also a first-generation antipsychotic with the same increased-mortality warning in dementia-related psychosis."
+      },
+      {
+        "text": "Quetiapine",
+        "explanation": "Per the EAQ source, quetiapine is a second-generation antipsychotic that is NOT flagged as contraindicated at this level in older adults with dementia-related psychosis (though still used with caution in practice). Answer to the source."
+      },
+      {
+        "text": "Aripiprazole",
+        "explanation": "Same reasoning \u2014 second-generation antipsychotic; not singled out as contraindicated at the source-material level."
+      },
+      {
+        "text": "Risperidone",
+        "explanation": "Same reasoning \u2014 SGA; not identified as contraindicated in the source-material-level EAQ rationale."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "EAQ-level answer: the FGAs (haloperidol, chlorpromazine) carry the strongest \u201cnot recommended\u201d warning in older adults with dementia-related psychosis. In real practice, ALL antipsychotics carry the boxed warning, but this exam is source-bound to the wording the EAQ uses."
+  },
+  {
+    "id": 8,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A client with schizophrenia develops shuffling gait, tremor, and rigidity on chlorpromazine. Benztropine is added to the regimen. Which property do these two medications SHARE?",
+    "options": [
+      {
+        "text": "Cholinesterase inhibition",
+        "explanation": "This describes neostigmine, not chlorpromazine or benztropine. Opposite direction of action \u2014 both block acetylcholine; they don\u2019t increase it."
+      },
+      {
+        "text": "Anticholinergic properties",
+        "explanation": "Correct. Both block central acetylcholine receptors. That shared anticholinergic property is why both cause dry mouth, constipation, blurred vision, and urinary retention."
+      },
+      {
+        "text": "Antipsychotic effects",
+        "explanation": "Only chlorpromazine has antipsychotic effects. Benztropine treats EPS, not psychosis."
+      },
+      {
+        "text": "Antimanic properties",
+        "explanation": "Neither is classified primarily for mania. Mania \u2192 lithium, divalproex, carbamazepine, lamotrigine, or SGAs."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Know the anticholinergic effect cluster: dry mouth, blurred vision, photophobia, urinary retention, constipation, tachycardia. Many antipsychotics AND their EPS antidotes cause it \u2014 additive risk."
+  },
+  {
+    "id": 9,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "Which instruction is most appropriate for a nurse to provide when administering a LIQUID formulation of chlorpromazine?",
+    "options": [
+      {
+        "text": "\u201cStore this medication only in a metal container to preserve potency.\u201d",
+        "explanation": "Not a source-supported teaching point and not accurate."
+      },
+      {
+        "text": "\u201cAvoid allowing the liquid to touch your skin.\u201d",
+        "explanation": "Correct. Phenothiazine liquid formulations can cause contact dermatitis. EAQ specifically teaches to refrain from skin contact."
+      },
+      {
+        "text": "\u201cTake this medication with grapefruit juice to aid absorption.\u201d",
+        "explanation": "Grapefruit juice is a CYP3A4 inhibitor and generally something to AVOID with psychotropics. This distractor flips safe practice."
+      },
+      {
+        "text": "\u201cExpect urine to turn bright orange within 24 hours.\u201d",
+        "explanation": "Orange urine is associated with rifampin, not chlorpromazine. Cross-class visual distractor."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Handling precautions for phenothiazine liquids: avoid skin contact to prevent dermatitis. Loxapine is inhaled; asenapine is sublingual; each has its own handling quirk."
+  },
+  {
+    "id": 10,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "Which antipsychotic medication is specifically contraindicated in clients with blood dyscrasias?",
+    "options": [
+      {
+        "text": "Duloxetine",
+        "explanation": "Duloxetine is an SNRI (not an antipsychotic). Its main contraindication in the source is uncontrolled angle-closure glaucoma."
+      },
+      {
+        "text": "Bupropion",
+        "explanation": "Bupropion is an antidepressant. Its key contraindications are seizure history, anorexia/bulimia, and MAOI use."
+      },
+      {
+        "text": "Mirtazapine",
+        "explanation": "Mirtazapine is an antidepressant. Main contraindications: MAOI use and hypersensitivity."
+      },
+      {
+        "text": "Chlorpromazine",
+        "explanation": "Correct. The EAQ source specifically identifies chlorpromazine as contraindicated in clients with blood dyscrasias."
+      }
+    ],
+    "correct": 3,
+    "explanation": "This is a matching question from the EAQ. Memorize which contraindication belongs to which drug: chlorpromazine \u2194 blood dyscrasias; duloxetine \u2194 uncontrolled angle-closure glaucoma; bupropion \u2194 anorexia/bulimia/seizures; mirtazapine \u2194 MAOIs."
+  },
+  {
+    "id": 11,
+    "type": "mcq",
+    "category": "Clozapine / SGA",
+    "stem": "A client with schizophrenia is also being treated for depression. Medications: clozapine and fluoxetine. Labs: Hgb 13.5, Hct 45%, platelets 150,000, WBC 3,500, neutrophils 100. Which information is MOST important for the nurse to provide?",
+    "options": [
+      {
+        "text": "\u201cCome in for weekly blood tests to monitor for medication-induced agranulocytosis.\u201d",
+        "explanation": "Correct. Neutrophils of 100 and a WBC of 3,500 are borderline low \u2014 exactly the scenario the EAQ flags for clozapine-induced agranulocytosis. Weekly CBC is required."
+      },
+      {
+        "text": "\u201cReport any unusual bleeding or easy bruising while taking fluoxetine.\u201d",
+        "explanation": "The platelet count is low-normal but fluoxetine is not the bleeding concern in this lab picture. This distractor plays on the presence of the SSRI."
+      },
+      {
+        "text": "\u201cExpect to be prescribed only a 1-week supply of fluoxetine at a time.\u201d",
+        "explanation": "Weekly dispensing is tied to clozapine (to ensure weekly blood draws), NOT fluoxetine. EAQ trap."
+      },
+      {
+        "text": "\u201cConsume a high-protein diet to offset the risk of anemia while taking clozapine.\u201d",
+        "explanation": "Clozapine is not strongly linked to anemia in the source. The protein/anemia link is not a clozapine teaching point."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Clozapine = REMS program = weekly CBC with ANC monitoring, especially in the first 6 months, because of agranulocytosis risk. Fluoxetine + clozapine together can compound the neutropenia risk."
+  },
+  {
+    "id": 12,
+    "type": "mcq",
+    "category": "Clozapine / SGA",
+    "stem": "A client taking clozapine calls the clinic to report the sudden development of a sore throat and high fever. Which instruction will the nurse give?",
+    "options": [
+      {
+        "text": "\u201cStay in bed, drink fluids, take aspirin, and ask the provider to lower the dose.\u201d",
+        "explanation": "Delaying evaluation is unsafe \u2014 agranulocytosis may be developing. Also, the nurse does not adjust the dose over the phone."
+      },
+      {
+        "text": "\u201cDiscontinue the medication and make an appointment with your provider for when one becomes available.\u201d",
+        "explanation": "Close \u2014 but it says to WAIT for an appointment. Agranulocytosis is life-threatening and cannot wait. This is the classic \u201calmost right\u201d EAQ distractor."
+      },
+      {
+        "text": "\u201cContinue the medication, take aspirin, and see the provider in a few days if symptoms do not improve.\u201d",
+        "explanation": "Continuing the drug and waiting days is dangerous when agranulocytosis is suspected."
+      },
+      {
+        "text": "\u201cStop the medication, and if the provider is unavailable today, go to the emergency department for evaluation.\u201d",
+        "explanation": "Correct. Fever + sore throat + clozapine = presume agranulocytosis until proven otherwise. STOP the drug and obtain same-day evaluation \u2014 ED if the PCP isn\u2019t available."
+      }
+    ],
+    "correct": 3,
+    "explanation": "Clozapine patients get the memorized warning: ANY sign of infection (fever, sore throat, mouth sores, flu symptoms) \u2192 stop the drug and get evaluated TODAY. This is life-threatening, not next-week."
+  },
+  {
+    "id": 13,
+    "type": "sata",
+    "category": "Clozapine / SGA",
+    "stem": "A healthcare provider prescribes clozapine to a client with schizophrenia. Which parameter(s) would the nurse assess BEFORE administering the medication? Select all that apply.",
+    "options": [
+      {
+        "text": "White blood cell count",
+        "explanation": "Correct. Baseline WBC is required because of agranulocytosis risk."
+      },
+      {
+        "text": "Absolute neutrophil count (ANC)",
+        "explanation": "Correct. Baseline ANC is also required and monitored weekly with clozapine."
+      },
+      {
+        "text": "Body mass index",
+        "explanation": "Correct. Clozapine causes metabolic syndrome and weight gain \u2014 baseline BMI is established and re-checked every visit for 6 months."
+      },
+      {
+        "text": "Prolactin levels",
+        "explanation": "Prolactin elevation is associated with RISPERIDONE (galactorrhea, gynecomastia), not specifically clozapine per the source."
+      },
+      {
+        "text": "Serum potassium levels",
+        "explanation": "Potassium monitoring is more relevant for first-generation antipsychotics prolonging QT, not the baseline required for clozapine per the EAQ."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Clozapine baseline: WBC + ANC (agranulocytosis) and BMI (metabolic syndrome). Risperidone \u2192 prolactin. QT risk \u2192 potassium and ECG."
+  },
+  {
+    "id": 14,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "A client taking risperidone plans to spend a day at the beach with family. Which nursing action is most important?",
+    "options": [
+      {
+        "text": "Encourage the client to use sunscreen and protective clothing.",
+        "explanation": "Correct. Risperidone causes photosensitivity. Sunscreen and protective clothing are standard teaching points."
+      },
+      {
+        "text": "Caution the client to avoid physical activity throughout the day.",
+        "explanation": "There is no activity restriction based on risperidone. The client should be allowed to participate fully."
+      },
+      {
+        "text": "Instruct the client to bring an extra dose of medication to take after lunch.",
+        "explanation": "Taking additional doses without provider order is unsafe and outside of prescribing."
+      },
+      {
+        "text": "Have the client check blood pressure before leaving for the outing.",
+        "explanation": "An outing does not specifically trigger a BP check. Risperidone CAN cause orthostatic hypotension, but a pre-outing check is not the essential teaching."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Risperidone teaching: photosensitivity (sunscreen), metabolic syndrome (weight/lipids/glucose), prolactin elevation (gynecomastia/galactorrhea), orthostatic hypotension, and low but possible EPS risk."
+  },
+  {
+    "id": 15,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "Which psychotropic medication is MOST strongly associated with metabolic syndrome per the uploaded materials?",
+    "options": [
+      {
+        "text": "Lithium",
+        "explanation": "Lithium can cause weight gain but is NOT identified as causing metabolic syndrome in the source (cholesterol and triglyceride elevation are not lithium features)."
+      },
+      {
+        "text": "Diazepam",
+        "explanation": "Benzodiazepines are not linked to metabolic syndrome per the source."
+      },
+      {
+        "text": "Alprazolam",
+        "explanation": "Same reasoning \u2014 benzodiazepines can cause weight changes but not metabolic syndrome as defined in the source."
+      },
+      {
+        "text": "Risperidone",
+        "explanation": "Correct. Atypical antipsychotics (risperidone, olanzapine, clozapine, quetiapine) cause metabolic syndrome: weight gain + elevated cholesterol + elevated triglycerides + altered glucose."
+      }
+    ],
+    "correct": 3,
+    "explanation": "SGA metabolic syndrome = weight gain + dyslipidemia + hyperglycemia. Monitor weight, glucose, and lipids at baseline and periodically. This is why atypicals are often avoided in clients with existing metabolic disease."
+  },
+  {
+    "id": 16,
+    "type": "mcq",
+    "category": "Antipsychotics",
+    "stem": "Which medication is MOST likely to cause extrapyramidal side effects (EPS)?",
+    "options": [
+      {
+        "text": "Clozapine",
+        "explanation": "Clozapine has the LOWEST EPS risk of the listed antipsychotics. Its big concern is agranulocytosis, not EPS."
+      },
+      {
+        "text": "Haloperidol",
+        "explanation": "Correct. As a typical (first-generation) antipsychotic, haloperidol has strong dopamine blockade and is the most common cause of EPS per the EAQ."
+      },
+      {
+        "text": "Risperidone",
+        "explanation": "Risperidone is atypical (SGA) and has a lower EPS risk than haloperidol, though EPS can occur at higher doses."
+      },
+      {
+        "text": "Aripiprazole",
+        "explanation": "Aripiprazole is a partial dopamine agonist with low EPS risk compared to FGAs."
+      }
+    ],
+    "correct": 1,
+    "explanation": "EPS risk ranking: FGAs (haloperidol, chlorpromazine) >> SGAs (risperidone, aripiprazole, olanzapine) > clozapine (lowest). Clozapine\u2019s trade-off: fewer EPS but more agranulocytosis and metabolic effects."
+  },
+  {
+    "id": 17,
+    "type": "mcq",
+    "category": "Schizophrenia (Symptom Recognition)",
+    "stem": "A client with schizophrenia rarely speaks, shows little facial expression, and has stopped bathing regularly. Which symptom cluster does the nurse document?",
+    "options": [
+      {
+        "text": "Positive symptoms",
+        "explanation": "Positive symptoms ADD something that shouldn\u2019t be there \u2014 hallucinations, delusions, paranoia. This client shows the opposite pattern."
+      },
+      {
+        "text": "Negative symptoms",
+        "explanation": "Correct. Negative symptoms = loss of normal function: blunted affect, alogia (poverty of speech), avolition, poor self-care, social withdrawal. These are notoriously hard to treat and often persist even on medication."
+      },
+      {
+        "text": "Cognitive symptoms",
+        "explanation": "Cognitive symptoms affect attention, memory, and executive function. This client\u2019s picture is primarily about affect, motivation, and self-care \u2014 a negative-symptom pattern."
+      },
+      {
+        "text": "Affective symptoms",
+        "explanation": "This is not one of the three classic schizophrenia symptom groups (positive, negative, cognitive) in your course materials."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Positive = ADDED (hallucinations, delusions). Negative = LOST (affect, motivation, speech, self-care). Cognitive = attention/memory/learning. FGAs treat positive well; SGAs and clozapine reach further into negative and cognitive."
+  },
+  {
+    "id": 18,
+    "type": "mcq",
+    "category": "Schizophrenia (Symptom Recognition)",
+    "stem": "Which finding is MOST consistent with cognitive symptoms of schizophrenia?",
+    "options": [
+      {
+        "text": "Auditory hallucinations",
+        "explanation": "This is a positive symptom."
+      },
+      {
+        "text": "Grandiose delusions",
+        "explanation": "This is a positive symptom."
+      },
+      {
+        "text": "Reduced attention span and prominent learning or memory difficulty",
+        "explanation": "Correct. Cognitive symptoms include disordered thinking, reduced attention, and learning/memory problems."
+      },
+      {
+        "text": "Blunted affect and lack of motivation",
+        "explanation": "These are negative symptoms."
+      }
+    ],
+    "correct": 2,
+    "explanation": "When a schizophrenia question describes problems with attention, concentration, memory, or learning \u2014 think cognitive. When the client has hallucinations, delusions, paranoia, or agitation \u2014 positive. When they\u2019ve lost affect, motivation, speech, or hygiene \u2014 negative."
+  },
+  {
+    "id": 19,
+    "type": "mcq",
+    "category": "Schizophrenia (Symptom Recognition)",
+    "stem": "A client with schizophrenia reports \u201cThe voices are telling me that I\u2019m special and chosen to save the world.\u201d Which symptom is the nurse documenting?",
+    "options": [
+      {
+        "text": "A cognitive symptom reflecting memory problems",
+        "explanation": "Memory is intact here; the issue is perceptual content."
+      },
+      {
+        "text": "A negative symptom of avolition",
+        "explanation": "Avolition is absence of motivation. This client is showing active, added symptoms, not absence."
+      },
+      {
+        "text": "A positive symptom \u2014 both hallucination and grandiose delusion",
+        "explanation": "Correct. Voices = auditory hallucination (positive). Belief of being chosen/special = grandiose delusion (positive). Both ADDED experiences = positive symptoms."
+      },
+      {
+        "text": "An extrapyramidal symptom of chronic antipsychotic use",
+        "explanation": "EPS is motor, not perceptual. Wrong symptom category."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Hallucinations and delusions usually co-occur and both fall under POSITIVE symptoms. Expect FGAs and SGAs to reduce them first; negative and cognitive symptoms are slower to respond."
+  },
+  {
+    "id": 20,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Lithium)",
+    "stem": "A client is being discharged on lithium carbonate. Which instruction will the nurse include in the discharge teaching plan?",
+    "options": [
+      {
+        "text": "\u201cRestrict your intake of gluten-containing foods.\u201d",
+        "explanation": "Gluten restriction is not a lithium teaching point."
+      },
+      {
+        "text": "\u201cTake the medication with milk to prevent GI upset.\u201d",
+        "explanation": "Milk is not required \u2014 the source says lithium doesn\u2019t cause significant GI problems requiring milk. Take with food or milk is acceptable but not the key teaching."
+      },
+      {
+        "text": "\u201cHave a complete blood count performed once a month.\u201d",
+        "explanation": "Monthly CBC is associated with CLOZAPINE monitoring (agranulocytosis). Lithium doesn\u2019t affect blood cells."
+      },
+      {
+        "text": "\u201cHave your lithium blood level tested regularly.\u201d",
+        "explanation": "Correct. Lithium has a narrow therapeutic index (0.6\u20131.2 mEq/L maintenance; >1.5 toxic). Regular blood levels are essential for safety."
+      }
+    ],
+    "correct": 3,
+    "explanation": "Lithium level: draw in the morning, 12 hours after the evening dose. Therapeutic = 0.6\u20131.2. Toxic = >1.5. Levels rise with dehydration, low sodium, NSAIDs, and diuretics."
+  },
+  {
+    "id": 21,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Lithium)",
+    "stem": "A client is prescribed lithium carbonate 600 mg PO TID. Which finding should the client be instructed to report IMMEDIATELY to the provider?",
+    "options": [
+      {
+        "text": "Difficulty urinating",
+        "explanation": "Lithium causes POLYURIA (increased urination), not urinary retention. Trap for students who confuse anticholinergic effects with lithium effects."
+      },
+      {
+        "text": "Sensitivity to bright light or sun",
+        "explanation": "Photosensitivity is associated with PHENOTHIAZINES (chlorpromazine) and some antipsychotics \u2014 not lithium."
+      },
+      {
+        "text": "Fine hand tremor or slurred speech",
+        "explanation": "Correct. These are early signs of lithium toxicity. Toxicity also includes coarse tremor, ataxia, sluggishness, confusion, and N/V/D."
+      },
+      {
+        "text": "Sexual dysfunction or breast enlargement",
+        "explanation": "These are not associated with lithium. Gynecomastia/galactorrhea \u2194 risperidone (prolactin elevation)."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Lithium toxicity red flags \u2192 fine hand tremor, slurred speech, ataxia, N/V/D, confusion, sluggishness. Any of these at any level = call provider. Above 1.5 mEq/L = hold the drug."
+  },
+  {
+    "id": 22,
+    "type": "sata",
+    "category": "Mood Stabilizers (Lithium)",
+    "stem": "A client with new-onset bipolar disorder is prescribed lithium. Labs: Na 132, TSH 10, Hgb 14.5, platelets 160,000, WBC 6,600. Which teachings should the nurse provide? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cYour thyroid function will require frequent assessment while taking lithium.\u201d",
+        "explanation": "Correct. TSH of 10 is a high-normal/borderline value. Lithium can cause goiter and hypothyroidism; regular thyroid monitoring is standard."
+      },
+      {
+        "text": "\u201cLow sodium levels can lead to lithium toxicity, so your provider needs to know the level is 132.\u201d",
+        "explanation": "Correct. When serum sodium drops, the kidneys reabsorb more lithium \u2014 raising lithium levels and risk of toxicity. 132 is hyponatremic and must be flagged."
+      },
+      {
+        "text": "\u201cLithium can lower your white blood cell production, raising infection risk.\u201d",
+        "explanation": "Lithium does NOT affect white blood cells in the source. That teaching belongs to clozapine."
+      },
+      {
+        "text": "\u201cNeutropenic precautions will be initiated because your platelets are low.\u201d",
+        "explanation": "Platelets don\u2019t trigger neutropenic precautions, and lithium doesn\u2019t cause neutropenia. Double error."
+      },
+      {
+        "text": "\u201cYou will need regular monitoring of hemoglobin and hematocrit because of lithium.\u201d",
+        "explanation": "Lithium doesn\u2019t affect red blood cell production \u2014 this is a false teaching."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "Lithium affects thyroid (monitor TSH), renal function (monitor BUN/Cr), and sodium balance (hyponatremia raises lithium). It does NOT suppress bone marrow."
+  },
+  {
+    "id": 23,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Lithium)",
+    "stem": "A client has been taking lithium carbonate for 3 days. The nurse reviews the lithium level before administering the next dose and finds it is 0.3 mEq/L. Which action will the nurse take?",
+    "options": [
+      {
+        "text": "Withhold the next dose of the medication.",
+        "explanation": "The level is SUBTHERAPEUTIC, not toxic \u2014 holding the dose would prevent the client from reaching the therapeutic range."
+      },
+      {
+        "text": "Notify the primary healthcare provider.",
+        "explanation": "The provider doesn\u2019t need urgent notification for a subtherapeutic level on day 3 of therapy \u2014 lithium takes time to reach target."
+      },
+      {
+        "text": "Administer the medication as prescribed.",
+        "explanation": "Correct. Therapeutic range is 0.5\u20131.5 mEq/L. A level of 0.3 is below therapeutic, so giving the next scheduled dose helps the serum level climb toward target."
+      },
+      {
+        "text": "Watch for adverse side effects of toxicity.",
+        "explanation": "Adverse toxic effects are not expected at 0.3 mEq/L \u2014 levels must exceed 1.5 to be toxic. Wrong concern, wrong level."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Lithium climbs slowly to therapeutic range over days/weeks. Don\u2019t confuse subtherapeutic (below 0.5) with toxic (above 1.5). Give the dose for low; hold and notify for high."
+  },
+  {
+    "id": 24,
+    "type": "mcq",
+    "category": "Mood Stabilizers",
+    "stem": "Which medication would the nurse recognize as an effective mood stabilizer used for acute treatment of mania and prevention of recurrent mania and depressive episodes in bipolar disorder?",
+    "options": [
+      {
+        "text": "Doxepin",
+        "explanation": "TCA antidepressant \u2014 treats depression, not mania."
+      },
+      {
+        "text": "Amitriptyline",
+        "explanation": "TCA \u2014 also an antidepressant. Not used for primary acute mania."
+      },
+      {
+        "text": "Clozapine",
+        "explanation": "Antipsychotic. Can treat psychotic features of mania, but is NOT the first-line mood stabilizer due to its side-effect profile (seizures, weight gain, agranulocytosis)."
+      },
+      {
+        "text": "Lithium carbonate",
+        "explanation": "Correct. Lithium is often the first-choice mood stabilizer for acute mania AND relapse prevention for both mania and depression."
+      }
+    ],
+    "correct": 3,
+    "explanation": "Lithium is unique \u2014 it covers both mania AND depressive phases in bipolar, plus prophylaxis. Divalproex, carbamazepine, and lamotrigine are the antiepileptic mood stabilizers."
+  },
+  {
+    "id": 25,
+    "type": "sata",
+    "category": "Mood Stabilizers",
+    "stem": "Which antiseizure medications would the nurse identify as used to stabilize mood by suppressing mania associated with bipolar disorder? Select all that apply.",
+    "options": [
+      {
+        "text": "Carbamazepine",
+        "explanation": "Correct. Antiepileptic used to suppress mania and prevent recurrence."
+      },
+      {
+        "text": "Divalproex sodium",
+        "explanation": "Correct. Antiepileptic used for acute mania and relapse prevention."
+      },
+      {
+        "text": "Lithium",
+        "explanation": "Lithium IS a mood stabilizer, but it is NOT an antiseizure drug \u2014 it\u2019s a salt/ion. The question asks specifically for antiseizure medications."
+      },
+      {
+        "text": "Quetiapine",
+        "explanation": "Atypical antipsychotic, not an antiseizure drug. Used as an adjunct mood stabilizer or sedative in bipolar, but category is wrong here."
+      },
+      {
+        "text": "Ziprasidone",
+        "explanation": "Atypical antipsychotic, not antiseizure."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "Read the stem carefully: this asks for ANTISEIZURE mood stabilizers. The three are carbamazepine, divalproex, and lamotrigine. Lithium and SGAs are mood stabilizers but not antiseizure drugs."
+  },
+  {
+    "id": 26,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Divalproex)",
+    "stem": "Which adverse effect is MOST important for the nurse to monitor for in a client taking divalproex per the uploaded materials?",
+    "options": [
+      {
+        "text": "Agranulocytosis as the primary class effect",
+        "explanation": "Agranulocytosis is a clozapine concern. Divalproex can cause thrombocytopenia but the hallmark concerns are different."
+      },
+      {
+        "text": "Hypertensive crisis from tyramine ingestion",
+        "explanation": "Tyramine\u2013hypertensive crisis belongs to MAOIs."
+      },
+      {
+        "text": "Pancreatitis, liver failure, and thrombocytopenia",
+        "explanation": "Correct. Divalproex has specific, serious risks: pancreatitis, hepatotoxicity, and thrombocytopenia. Also teratogenic."
+      },
+      {
+        "text": "Stevens-Johnson syndrome only",
+        "explanation": "SJS is the LAMOTRIGINE red flag, not divalproex."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Match each mood stabilizer to its signature toxicity \u2192 Lithium: renal/thyroid/toxicity >1.5. Divalproex: pancreas/liver/platelets. Carbamazepine: thrombocytopenia/aplastic anemia. Lamotrigine: Stevens-Johnson syndrome."
+  },
+  {
+    "id": 27,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Divalproex)",
+    "stem": "A client takes divalproex for acute mania. Which trough level reflects therapeutic monitoring per the uploaded materials?",
+    "options": [
+      {
+        "text": "4 to 12 mcg/mL",
+        "explanation": "This range is for CARBAMAZEPINE \u2014 classic trap."
+      },
+      {
+        "text": "50 to 120 mcg/mL",
+        "explanation": "Correct. Divalproex therapeutic trough per the source."
+      },
+      {
+        "text": "1 to 5 mcg/L",
+        "explanation": "This is the LAMOTRIGINE range."
+      },
+      {
+        "text": "0.6 to 1.2 mEq/L",
+        "explanation": "This is the LITHIUM maintenance range \u2014 different drug and different unit (mEq/L vs mcg/mL)."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Memorize the numbers. Lithium: 0.6\u20131.2 mEq/L maintenance, >1.5 toxic. Divalproex: 50\u2013120 mcg/mL. Carbamazepine: 4\u201312 mcg/mL. Lamotrigine: 1\u20135 mcg/L."
+  },
+  {
+    "id": 28,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Lamotrigine)",
+    "stem": "A client taking lamotrigine reports a new rash. What is the nurse\u2019s priority action?",
+    "options": [
+      {
+        "text": "Reassure the client that rash is a minor, expected side effect.",
+        "explanation": "This is never safe teaching for lamotrigine. ANY rash on lamotrigine must be evaluated."
+      },
+      {
+        "text": "Hold the next dose and notify the provider immediately.",
+        "explanation": "Correct. Lamotrigine carries a Stevens-Johnson syndrome risk. Any rash requires provider notification and likely discontinuation."
+      },
+      {
+        "text": "Apply hydrocortisone cream and continue the medication.",
+        "explanation": "Topical treatment doesn\u2019t fix a drug-induced SJS risk. The drug itself must be evaluated."
+      },
+      {
+        "text": "Obtain a CBC with differential before deciding.",
+        "explanation": "Lab-first delays a potentially life-threatening decision. SJS requires drug discontinuation, not lab confirmation."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Lamotrigine + any rash = STOP and CALL. SJS is mucocutaneous, can progress to necrosis, and is life-threatening. This is a rapid-decision scenario, not a wait-and-see."
+  },
+  {
+    "id": 29,
+    "type": "mcq",
+    "category": "Mood Stabilizers (Carbamazepine)",
+    "stem": "A client with bipolar disorder is receiving carbamazepine and risperidone together. Which interaction should the nurse recognize?",
+    "options": [
+      {
+        "text": "Carbamazepine RAISES risperidone levels, increasing toxicity.",
+        "explanation": "Reversed. Carbamazepine induces hepatic enzymes, which LOWERS levels of many drugs."
+      },
+      {
+        "text": "Carbamazepine LOWERS risperidone levels.",
+        "explanation": "Correct. This is the interaction flagged in the psychosis/bipolar med sheet. The provider may need a higher risperidone dose or a different SGA."
+      },
+      {
+        "text": "Risperidone blocks carbamazepine metabolism.",
+        "explanation": "Not the direction of the interaction."
+      },
+      {
+        "text": "There is no clinically significant interaction between these drugs.",
+        "explanation": "There is a specifically documented interaction."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Carbamazepine is a potent CYP3A4 inducer \u2014 it speeds metabolism of many drugs and lowers their levels (including risperidone and oral contraceptives)."
+  },
+  {
+    "id": 30,
+    "type": "sata",
+    "category": "Bipolar Adjuncts",
+    "stem": "A client with acute bipolar mania is prescribed lorazepam. Which teaching points are appropriate? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cThis medication can cause drowsiness and increase fall risk.\u201d",
+        "explanation": "Correct. Benzodiazepines sedate and increase fall risk \u2014 fall precautions are part of the teaching."
+      },
+      {
+        "text": "\u201cAvoid alcohol and other CNS depressants while taking this medication.\u201d",
+        "explanation": "Correct. Additive CNS depression with alcohol or opioids can cause respiratory depression."
+      },
+      {
+        "text": "\u201cConstipation and difficulty urinating may occur.\u201d",
+        "explanation": "Correct. Anticholinergic-type effects are listed in the source for benzodiazepines in bipolar use."
+      },
+      {
+        "text": "\u201cThis medication has no abuse potential so you may take it long-term.\u201d",
+        "explanation": "Benzos ARE addictive \u2014 short-term use is preferred and long-term use is avoided."
+      },
+      {
+        "text": "\u201cThis medication works slowly over several weeks, like buspirone.\u201d",
+        "explanation": "Benzodiazepines have IMMEDIATE onset. Buspirone is the one with delayed onset (1\u20136 weeks)."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Benzodiazepines in bipolar = short-term bridge for agitation/insomnia/anxiety while the mood stabilizer reaches therapeutic effect. Dependence risk means you don\u2019t park patients on them."
+  },
+  {
+    "id": 31,
+    "type": "mcq",
+    "category": "Bipolar (Episode Recognition)",
+    "stem": "A client has been sleeping only 2 hours a night for the past 10 days, has spent $12,000 on impulse purchases, speaks rapidly with flight of ideas, and reports being \u201cchosen by God to save humanity.\u201d Which episode is the client MOST likely experiencing?",
+    "options": [
+      {
+        "text": "A depressive episode",
+        "explanation": "Depression presents with LOW mood, anergia, hypersomnia or insomnia, anhedonia, guilt, and sometimes suicidal ideation \u2014 not elevated, euphoric, expansive, or grandiose symptoms."
+      },
+      {
+        "text": "A hypomanic episode",
+        "explanation": "Hypomania involves similar symptoms but is LESS severe (typically \u22654 days), with no psychotic features, no marked impairment, and no hospitalization. This client has psychotic features (\u201cchosen by God\u201d) and severe functional impairment \u2014 that takes it past hypomania."
+      },
+      {
+        "text": "A manic episode",
+        "explanation": "Correct. \u22651 week of elevated/irritable mood + decreased need for sleep + pressured speech/flight of ideas + grandiosity + impulsive spending + psychotic features = mania. Marked impairment is the key clinical tipping point from hypomania to mania."
+      },
+      {
+        "text": "A mixed anxiety episode",
+        "explanation": "This is not one of the episode types in bipolar disorder (mania, hypomania, mixed, depressed are the DSM types). \u201cMixed anxiety\u201d is not a bipolar classification."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Mania vs hypomania differentiators \u2192 (1) duration (\u22657 days for mania, \u22654 for hypomania), (2) severity/impairment (marked in mania, not hypomania), (3) psychotic features (mania can, hypomania can\u2019t), (4) hospitalization (mania often requires it)."
+  },
+  {
+    "id": 32,
+    "type": "mcq",
+    "category": "Bipolar (Medication Logic)",
+    "stem": "A client with bipolar disorder is in an acute manic episode with severe agitation and psychotic features. The provider orders an atypical antipsychotic in addition to a mood stabilizer. Which statement BEST explains the atypical antipsychotic\u2019s role?",
+    "options": [
+      {
+        "text": "Atypical antipsychotics are the only drugs that treat acute mania.",
+        "explanation": "Overstated. Mood stabilizers (lithium, divalproex) treat mania too. The antipsychotic is adjunctive."
+      },
+      {
+        "text": "Atypical antipsychotics calm agitation and psychosis while the mood stabilizer reaches therapeutic effect.",
+        "explanation": "Correct. SGAs acutely control symptoms (sedation + antipsychotic effect) while lithium or divalproex reach therapeutic levels. They can continue as part of long-term mood stabilization too."
+      },
+      {
+        "text": "Atypical antipsychotics replace the need for mood stabilizers after discharge.",
+        "explanation": "Not routine care \u2014 mood stabilizers remain the foundation of long-term bipolar treatment."
+      },
+      {
+        "text": "Atypical antipsychotics treat only the depressive phase of bipolar disorder.",
+        "explanation": "They treat mania, mixed states, AND can help in bipolar depression \u2014 broader than this answer suggests."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Acute bipolar mania with psychosis usually gets: mood stabilizer (lithium or divalproex) + SGA (olanzapine, risperidone, quetiapine, aripiprazole, or ziprasidone) + short-term benzodiazepine for sleep/agitation. Three classes, three jobs."
+  },
+  {
+    "id": 33,
+    "type": "mcq",
+    "category": "SSRIs",
+    "stem": "The nurse is preparing a teaching plan for a client prescribed sertraline. Which side effect is most appropriate to include?",
+    "options": [
+      {
+        "text": "Seizures as a primary class effect",
+        "explanation": "Seizures are associated with CLOZAPINE and BUPROPION, not SSRIs."
+      },
+      {
+        "text": "Agitation",
+        "explanation": "Correct. SSRIs cause CNS effects including agitation, anxiety, restlessness, confusion, drowsiness, and headache."
+      },
+      {
+        "text": "Tachycardia as a hallmark effect",
+        "explanation": "Tachycardia is a TCA adverse effect (anticholinergic), not a sertraline hallmark."
+      },
+      {
+        "text": "Agranulocytosis",
+        "explanation": "Agranulocytosis is the CLOZAPINE signature, not sertraline."
+      }
+    ],
+    "correct": 1,
+    "explanation": "SSRI side-effect cluster: agitation, anxiety, nausea, headache, somnolence, sexual dysfunction, weight gain, sleep disturbance. Life-threatening = serotonin syndrome. Paradoxical early risk = increased suicidality in clients under 25."
+  },
+  {
+    "id": 34,
+    "type": "mcq",
+    "category": "SSRIs",
+    "stem": "The nurse is caring for a client taking an SSRI for depression. Which statement by the client REQUIRES additional teaching?",
+    "options": [
+      {
+        "text": "\u201cI should take the medication at the same time every day.\u201d",
+        "explanation": "Correct practice. Consistency improves effect."
+      },
+      {
+        "text": "\u201cI can stop taking this medication when I feel better.\u201d",
+        "explanation": "Correct \u2014 this statement NEEDS correction. Stopping SSRIs abruptly causes withdrawal syndrome (dizziness, nausea, sensory disturbances, dysphoria). Taper slowly."
+      },
+      {
+        "text": "\u201cI will exercise to help control any weight gain the medication may cause.\u201d",
+        "explanation": "Appropriate teaching \u2014 exercise is part of managing SSRI-related weight gain."
+      },
+      {
+        "text": "\u201cI need to report any new agitation to my provider.\u201d",
+        "explanation": "Appropriate \u2014 reporting agitation/restlessness is part of SSRI teaching."
+      }
+    ],
+    "correct": 1,
+    "explanation": "\u201cRequires teaching / needs correction\u201d questions flip the logic \u2014 you pick the WRONG statement. For SSRIs, the red flag is abrupt discontinuation. Always taper."
+  },
+  {
+    "id": 35,
+    "type": "sata",
+    "category": "SSRIs",
+    "stem": "Which effects should the nurse monitor for in a client taking an SSRI? Select all that apply.",
+    "options": [
+      {
+        "text": "Anxiety",
+        "explanation": "Correct. SSRIs can worsen anxiety and cause restlessness, especially early in treatment."
+      },
+      {
+        "text": "Nausea",
+        "explanation": "Correct. Nausea is a common GI effect of SSRIs."
+      },
+      {
+        "text": "Sedation",
+        "explanation": "Correct. Somnolence and sedation are listed SSRI side effects."
+      },
+      {
+        "text": "Restlessness",
+        "explanation": "Correct. Restlessness/akathisia-like findings are common."
+      },
+      {
+        "text": "Suicidal ideation",
+        "explanation": "Correct. Early in treatment, as energy returns, suicide risk may RISE before mood fully improves \u2014 monitor closely, especially in clients under 25."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "explanation": "This is one of those SATA items where ALL answers are correct \u2014 the EAQ specifically lists anxiety, nausea, sedation, restlessness, suicidal ideation, and increased energy level among SSRI monitoring points."
+  },
+  {
+    "id": 36,
+    "type": "mcq",
+    "category": "SSRIs",
+    "stem": "A postpartum client with depression wishes to continue breastfeeding. Which SSRI is preferred per the uploaded materials?",
+    "options": [
+      {
+        "text": "Fluoxetine",
+        "explanation": "Fluoxetine STAYS in breast milk per the source \u2014 so it is not preferred for breastfeeding mothers."
+      },
+      {
+        "text": "Sertraline",
+        "explanation": "Correct. Sertraline is specifically noted as safe for breastfeeding mothers."
+      },
+      {
+        "text": "Sumatriptan",
+        "explanation": "Sumatriptan is a triptan for migraines \u2014 not an antidepressant."
+      },
+      {
+        "text": "Bromocriptine",
+        "explanation": "Bromocriptine is contraindicated in lactating women \u2014 it suppresses lactation."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Memory hook: Sertraline = Safe for breastfeeding. Fluoxetine = Fails lactation (stays in milk)."
+  },
+  {
+    "id": 37,
+    "type": "sata",
+    "category": "SSRIs",
+    "stem": "A nurse is reinforcing teaching for a client starting sertraline. Which teaching points are appropriate? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cTake the medication at the same time each day.\u201d",
+        "explanation": "Correct. Consistent timing helps effectiveness."
+      },
+      {
+        "text": "\u201cDo not stop this medication abruptly when you begin to feel better.\u201d",
+        "explanation": "Correct. Abrupt cessation \u2192 withdrawal syndrome."
+      },
+      {
+        "text": "\u201cReport any increased agitation to your provider.\u201d",
+        "explanation": "Correct. Increased anxiety/agitation is a concerning early side effect."
+      },
+      {
+        "text": "\u201cExpect immediate relief after the first dose.\u201d",
+        "explanation": "SSRIs take 1\u20133 weeks for initial effect and up to 12 weeks for maximum benefit. Not immediate."
+      },
+      {
+        "text": "\u201cAgranulocytosis is the most important adverse effect to watch for.\u201d",
+        "explanation": "Agranulocytosis is a clozapine concern, not an SSRI concern."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "SSRI starter teaching \u2192 consistent timing, no abrupt discontinuation, report worsening anxiety/agitation, watch for suicidality (especially in <25 year-olds), delayed onset, no PRN use."
+  },
+  {
+    "id": 38,
+    "type": "mcq",
+    "category": "SSRIs",
+    "stem": "A client taking an SSRI is also started on an MAOI. Within a day, the client develops confusion, hyperthermia, muscle rigidity, and hyperreflexia. Which complication is the nurse MOST concerned about?",
+    "options": [
+      {
+        "text": "Hypertensive crisis from tyramine ingestion",
+        "explanation": "Tyramine-related hypertensive crisis requires tyramine-containing FOOD. This is a drug\u2013drug toxicity, not a food trigger."
+      },
+      {
+        "text": "Serotonin syndrome",
+        "explanation": "Correct. Combining two serotonergic drugs (SSRI + MAOI) is high-risk for serotonin syndrome: altered mental status, autonomic instability, neuromuscular hyperactivity (clonus, hyperreflexia)."
+      },
+      {
+        "text": "Neuroleptic malignant syndrome",
+        "explanation": "NMS is triggered by antipsychotics (dopamine blockers). This client is not on an antipsychotic."
+      },
+      {
+        "text": "Withdrawal syndrome",
+        "explanation": "Withdrawal would follow STOPPING the SSRI. Adding another drug causes toxicity, not withdrawal."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Serotonin syndrome vs NMS vs anticholinergic toxicity \u2192 Serotonin: hyperreflexia, clonus, shivering, diaphoresis, agitation; triggers = serotonergic combos. NMS: lead-pipe rigidity, hyporeflexia, slower onset; trigger = dopamine blocker. Anticholinergic: dry/flushed/hot/tachycardic, no rigidity."
+  },
+  {
+    "id": 39,
+    "type": "mcq",
+    "category": "SSRIs",
+    "stem": "Washout: a client is switching from an SSRI to an MAOI. What is the rationale for a 14-day washout period before starting the MAOI?",
+    "options": [
+      {
+        "text": "The washout prevents orthostatic hypotension.",
+        "explanation": "Orthostatic hypotension is a side effect but not the reason for the washout."
+      },
+      {
+        "text": "The washout prevents a dangerous drug interaction, specifically serotonin syndrome.",
+        "explanation": "Correct. MAOIs and SSRIs together \u2192 severe serotonin toxicity. A washout allows serotonin receptors to normalize before the MAOI is introduced."
+      },
+      {
+        "text": "The washout allows the SSRI to continue working as it is slowly cleared.",
+        "explanation": "Not the reason \u2014 the goal is to CLEAR the SSRI, not to keep it working."
+      },
+      {
+        "text": "The washout is a billing and scheduling convention with no pharmacologic rationale.",
+        "explanation": "There is a very real pharmacologic rationale."
+      }
+    ],
+    "correct": 1,
+    "explanation": "MAOI\u2013SSRI switches require washout. SSRI \u2192 MAOI = 14 days (5 weeks for fluoxetine because of its long half-life). MAOI \u2192 SSRI = 14 days. Never overlap these two classes."
+  },
+  {
+    "id": 40,
+    "type": "mcq",
+    "category": "SNRIs",
+    "stem": "Which adverse effect is MOST characteristic of venlafaxine per the uploaded source materials?",
+    "options": [
+      {
+        "text": "Agranulocytosis",
+        "explanation": "Clozapine signature."
+      },
+      {
+        "text": "Hypertension",
+        "explanation": "Correct. Venlafaxine can cause sustained diastolic hypertension and pupil dilation \u2014 monitor blood pressure regularly."
+      },
+      {
+        "text": "Hypertensive crisis from dietary tyramine",
+        "explanation": "MAOI signature."
+      },
+      {
+        "text": "Stevens-Johnson syndrome",
+        "explanation": "Lamotrigine signature."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Venlafaxine + HTN monitoring is a must. It\u2019s an SNRI (blocks serotonin AND norepinephrine reuptake), so the NE piece drives the blood pressure effect."
+  },
+  {
+    "id": 41,
+    "type": "sata",
+    "category": "SNRIs",
+    "stem": "Which instructions would the nurse provide to a client with anxiety and depression prescribed venlafaxine ER? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cDo not crush or cut the tablets.\u201d",
+        "explanation": "Correct. Extended-release tablets must remain intact to maintain the proper release profile."
+      },
+      {
+        "text": "\u201cReport any suicidal thoughts to your provider.\u201d",
+        "explanation": "Correct. All antidepressants carry a suicidality warning, especially early in treatment."
+      },
+      {
+        "text": "\u201cThe medication takes 3 to 4 weeks to reach full effect.\u201d",
+        "explanation": "Correct. Delayed onset; manage expectations so the client doesn\u2019t stop early."
+      },
+      {
+        "text": "\u201cDo not suddenly stop taking this medication.\u201d",
+        "explanation": "Correct. Venlafaxine affects serotonin levels and abrupt cessation can cause serious withdrawal effects."
+      },
+      {
+        "text": "\u201cTaper your dose UP to the required dose as prescribed.\u201d",
+        "explanation": "Correct. Starting low and titrating up is standard for SNRIs to minimize side effects."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "explanation": "Venlafaxine ER teaching: don\u2019t crush, report suicidal thoughts, expect 3\u20134 weeks for full effect, taper up to target, and never stop abruptly. All five are correct."
+  },
+  {
+    "id": 42,
+    "type": "mcq",
+    "category": "SNRIs",
+    "stem": "A client taking duloxetine reports daily alcohol use. What is the nurse\u2019s priority concern?",
+    "options": [
+      {
+        "text": "Increased risk of hepatotoxicity",
+        "explanation": "Correct. Duloxetine + alcohol = high hepatotoxicity risk. Avoid alcohol on duloxetine."
+      },
+      {
+        "text": "Need for REMS monitoring",
+        "explanation": "Not duloxetine. REMS applies to clozapine."
+      },
+      {
+        "text": "Risk of hypertensive crisis from tyramine",
+        "explanation": "MAOI teaching."
+      },
+      {
+        "text": "Risk of agranulocytosis",
+        "explanation": "Clozapine concern, not duloxetine."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Duloxetine: avoid alcohol (liver) and avoid in uncontrolled angle-closure glaucoma. Venlafaxine: monitor BP. Both SNRIs: slow onset, don\u2019t stop abruptly, not PRN."
+  },
+  {
+    "id": 43,
+    "type": "sata",
+    "category": "TCAs",
+    "stem": "Which emergency treatments are priority for a client who intentionally overdosed on a tricyclic antidepressant? Select all that apply.",
+    "options": [
+      {
+        "text": "Gastric lavage with activated charcoal",
+        "explanation": "Correct. Reduces absorption of remaining TCA."
+      },
+      {
+        "text": "Support of physiologic function (mechanical ventilation if needed)",
+        "explanation": "Correct. Supportive care maintains airway/breathing/circulation until the TCA clears."
+      },
+      {
+        "text": "Cardiac monitoring for arrhythmias or ECG changes",
+        "explanation": "Correct. TCAs cause QRS widening, QT prolongation, VT, and VF. Continuous cardiac monitoring is required."
+      },
+      {
+        "text": "Administration of physostigmine as soon as possible",
+        "explanation": "Physostigmine was used historically but is CONTRAINDICATED now \u2014 it can cause bradycardia, asystole, and seizures in TCA toxicity."
+      },
+      {
+        "text": "Obtain a signed no-suicide contract with the client before further interventions",
+        "explanation": "Medical stabilization comes first. No-suicide contracts are used during psychosocial stabilization, not during medical emergency."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "TCA overdose = airway, breathing, circulation, gastric lavage + activated charcoal, cardiac monitoring, sodium bicarb for QRS widening. NO physostigmine. Psychosocial steps come after medical stabilization."
+  },
+  {
+    "id": 44,
+    "type": "sata",
+    "category": "TCAs",
+    "stem": "The nurse is teaching a client about tricyclic antidepressants. Which potential side effects would the nurse include? Select all that apply.",
+    "options": [
+      {
+        "text": "Dry mouth",
+        "explanation": "Correct. Classic anticholinergic effect."
+      },
+      {
+        "text": "Drowsiness",
+        "explanation": "Correct. Sedation is common early in treatment and usually decreases with continued use."
+      },
+      {
+        "text": "Constipation",
+        "explanation": "Correct. Anticholinergic; manage with stool softeners and a high-fiber diet."
+      },
+      {
+        "text": "Orthostatic hypotension",
+        "explanation": "Correct. Rise slowly to prevent falls."
+      },
+      {
+        "text": "Severe hypertension",
+        "explanation": "Hypertension is not a TCA hallmark. MAOIs cause hypertensive crisis with tyramine. Don\u2019t confuse these."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "TCA side-effect cluster = anticholinergic (dry mouth, constipation, urinary retention, blurred vision) + sedation + orthostatic hypotension + cardiotoxicity in overdose. High suicide-overdose risk \u2192 dispense limited supply."
+  },
+  {
+    "id": 45,
+    "type": "mcq",
+    "category": "TCAs",
+    "stem": "A depressed client has been prescribed a tricyclic antidepressant. How long will it usually take before the client notices a significant change in mood?",
+    "options": [
+      {
+        "text": "4 to 6 days",
+        "explanation": "Too short \u2014 subtherapeutic blood levels."
+      },
+      {
+        "text": "2 to 4 weeks",
+        "explanation": "Correct. TCAs typically need 2\u20134 weeks for therapeutic effect, with maximum response by 6\u20138 weeks."
+      },
+      {
+        "text": "5 to 6 weeks",
+        "explanation": "Improvement should be noticeable SOONER than this. This distractor plays on the full-response timeline."
+      },
+      {
+        "text": "12 to 16 hours",
+        "explanation": "Way too short \u2014 not how antidepressants work."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Antidepressant timelines: initial response 1\u20133 weeks (SSRIs/SNRIs), 2\u20134 weeks (TCAs); maximum response 6\u201312 weeks. This is why they are NOT PRN medications."
+  },
+  {
+    "id": 46,
+    "type": "mcq",
+    "category": "TCAs",
+    "stem": "Which medication class does amitriptyline belong to?",
+    "options": [
+      {
+        "text": "Tricyclic antidepressants",
+        "explanation": "Correct. Amitriptyline, imipramine, and doxepin are TCAs."
+      },
+      {
+        "text": "Monoamine oxidase inhibitors",
+        "explanation": "MAOIs = phenelzine, isocarboxazid, selegiline."
+      },
+      {
+        "text": "Selective serotonin reuptake inhibitors",
+        "explanation": "SSRIs = fluoxetine, sertraline, paroxetine, escitalopram, citalopram."
+      },
+      {
+        "text": "Serotonin-norepinephrine reuptake inhibitors",
+        "explanation": "SNRIs = venlafaxine, duloxetine."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Drug-class matching is frequently tested. The TCA family ends in -pramine/-triptyline/-pin. SSRIs = -oxetine/-opram/-traline. SNRIs = -faxine/-oxetine (duloxetine is the exception)."
+  },
+  {
+    "id": 47,
+    "type": "mcq",
+    "category": "MAOIs",
+    "stem": "A client prescribed phenelzine hands the nurse the following menu selections for tomorrow: cooked oatmeal with raisins, toast with milk, orange juice, coffee, grilled chicken sandwich with tomato, french fries, applesauce, iced tea, baked cod with rice pilaf, green salad, fresh fruit, hot tea. Which response by the nurse is BEST?",
+    "options": [
+      {
+        "text": "\u201cYour diet is high in cholesterol and fat \u2014 let\u2019s discuss some changes.\u201d",
+        "explanation": "The diet is not particularly high in fat, and the primary issue with phenelzine is tyramine, not cholesterol."
+      },
+      {
+        "text": "\u201cYou\u2019ve made appropriate choices, but remember your increased protein need.\u201d",
+        "explanation": "There is no special protein requirement for phenelzine. And the menu isn\u2019t safe to approve."
+      },
+      {
+        "text": "\u201cYour selections show we need to discuss how to avoid foods that contain tyramine and caffeine.\u201d",
+        "explanation": "Correct. The concerning items are COFFEE and TEA (caffeine) \u2014 tyramine-sensitive clients should also avoid aged cheese, cured meats, fermented foods, and fava beans. Caffeine can also trigger hypertensive episodes on MAOIs."
+      },
+      {
+        "text": "\u201cYou\u2019ve made wise selections that are healthy and appropriate for your medication.\u201d",
+        "explanation": "The selections include caffeine \u2014 they are NOT appropriate for a client on an MAOI."
+      }
+    ],
+    "correct": 2,
+    "explanation": "MAOI dietary teaching \u2192 AVOID: aged/mature cheeses, cured and smoked meats, fermented foods (sauerkraut, soy sauce, miso), draft beer, fava beans, and caffeine. Hypertensive crisis can follow tyramine ingestion."
+  },
+  {
+    "id": 48,
+    "type": "mcq",
+    "category": "MAOIs",
+    "stem": "A client on phenelzine ate aged cheese at a party and is now reporting severe headache, tachycardia, and sweating. Which complication does the nurse suspect?",
+    "options": [
+      {
+        "text": "Serotonin syndrome",
+        "explanation": "Serotonin syndrome is triggered by serotonergic drug combinations, not by food. Different trigger, different pattern."
+      },
+      {
+        "text": "Hypertensive crisis",
+        "explanation": "Correct. MAOI + tyramine ingestion = hypertensive crisis: severe headache, tachycardia, hypertension, N/V, confusion, sweating, risk of stroke."
+      },
+      {
+        "text": "Withdrawal syndrome",
+        "explanation": "Withdrawal requires stopping the drug, not a food exposure on active therapy."
+      },
+      {
+        "text": "Neuroleptic malignant syndrome",
+        "explanation": "NMS requires dopamine blockade (antipsychotics). Phenelzine is an MAOI, not an antipsychotic."
+      }
+    ],
+    "correct": 1,
+    "explanation": "MAOI + tyramine = hypertensive crisis \u2192 can cause stroke and death. Treatment is emergent BP control. Teach clients BEFORE starting the drug; it\u2019s easier to prevent than treat."
+  },
+  {
+    "id": 49,
+    "type": "sata",
+    "category": "MAOIs",
+    "stem": "Which teaching points should the nurse include for a client prescribed an MAOI? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cAvoid aged cheeses and cured or smoked meats.\u201d",
+        "explanation": "Correct. Classic low-tyramine diet teaching."
+      },
+      {
+        "text": "\u201cDo not combine this medication with SSRIs or TCAs.\u201d",
+        "explanation": "Correct. Combining with other serotonergic drugs = severe toxicity risk."
+      },
+      {
+        "text": "\u201cA severe headache with tachycardia and sweating should be reported immediately.\u201d",
+        "explanation": "Correct. These are signs of hypertensive crisis."
+      },
+      {
+        "text": "\u201cOver-the-counter sympathomimetic cold products are safe to use.\u201d",
+        "explanation": "Sympathomimetics (pseudoephedrine, phenylephrine) must also be avoided \u2014 they can trigger hypertensive crisis."
+      },
+      {
+        "text": "\u201cThis is the first-line drug class for uncomplicated depression.\u201d",
+        "explanation": "MAOIs are LAST-line (second or third choice) per the source \u2014 reserved for treatment-resistant or atypical depression."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "MAOI teaching = low-tyramine diet + avoid sympathomimetics + no SSRIs/TCAs + report HTN crisis signs + understand last-line status. Also remember: 2-week washout between MAOI and SSRI."
+  },
+  {
+    "id": 50,
+    "type": "mcq",
+    "category": "MAOIs",
+    "stem": "Which statement about the selegiline patch is MOST accurate per the uploaded materials?",
+    "options": [
+      {
+        "text": "It is the first transdermal treatment for depression.",
+        "explanation": "Correct. Source identifies selegiline patch as the first transdermal antidepressant."
+      },
+      {
+        "text": "It is the preferred first-line medication for GAD.",
+        "explanation": "GAD first-line is SSRIs/SNRIs, not selegiline."
+      },
+      {
+        "text": "It can be safely combined with St. John\u2019s wort.",
+        "explanation": "St. John\u2019s wort is a serotonergic herb and must be avoided with MAOIs."
+      },
+      {
+        "text": "It has no interaction concerns with sympathomimetics.",
+        "explanation": "Interaction concerns with sympathomimetics persist even with the patch."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Selegiline patch \u2014 transdermal delivery bypasses gut MAO-A at low doses, reducing tyramine-crisis risk. BUT drug interactions (especially sympathomimetics, carbamazepine, oxcarbazepine) still apply."
+  },
+  {
+    "id": 51,
+    "type": "sata",
+    "category": "Bupropion",
+    "stem": "The provider is reviewing a client\u2019s history before prescribing bupropion for depression. Which statements by the client would SUPPORT the decision NOT to prescribe bupropion? Select all that apply.",
+    "options": [
+      {
+        "text": "\u201cI have a history of epilepsy.\u201d",
+        "explanation": "Correct. Bupropion lowers the seizure threshold \u2014 contraindicated in seizure disorders."
+      },
+      {
+        "text": "\u201cI have a history of congestive heart failure.\u201d",
+        "explanation": "Correct. Cardiac disease including CHF is listed as a contraindication in the EAQ source."
+      },
+      {
+        "text": "\u201cI have recently been diagnosed with anorexia nervosa.\u201d",
+        "explanation": "Correct. Bupropion is contraindicated in anorexia and bulimia due to increased seizure risk."
+      },
+      {
+        "text": "\u201cI have not used phenelzine for 2 months.\u201d",
+        "explanation": "A 2-month wait is MORE than the required 14-day washout, so this does NOT prevent bupropion use."
+      },
+      {
+        "text": "\u201cI have recently been diagnosed with glaucoma.\u201d",
+        "explanation": "Angle-closure glaucoma is a DULOXETINE contraindication, not bupropion."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Bupropion contraindications = seizure history/risk + eating disorders + recent MAOI use + cardiac disease (CHF per source). NOT bupropion-related: glaucoma (that\u2019s duloxetine)."
+  },
+  {
+    "id": 52,
+    "type": "mcq",
+    "category": "Bupropion",
+    "stem": "A client taking bupropion reports insomnia. Which nursing suggestion is BEST?",
+    "options": [
+      {
+        "text": "\u201cTake the medication at bedtime.\u201d",
+        "explanation": "Bedtime dosing would worsen insomnia \u2014 bupropion is stimulating."
+      },
+      {
+        "text": "\u201cTake the medication in the morning.\u201d",
+        "explanation": "Correct. Morning dosing is preferred when insomnia occurs because bupropion has amphetamine-like stimulating effects."
+      },
+      {
+        "text": "\u201cStop the medication immediately.\u201d",
+        "explanation": "Insomnia alone doesn\u2019t warrant abrupt discontinuation of an antidepressant."
+      },
+      {
+        "text": "\u201cTake it only on nights you feel depressed.\u201d",
+        "explanation": "Antidepressants are not PRN medications."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Bupropion advantages: less sexual dysfunction, less weight gain, smoking cessation aid. Disadvantages: seizure risk (cap at 450 mg/day, slow titration), insomnia (morning dose), agitation, and contraindications in eating disorders and seizures."
+  },
+  {
+    "id": 53,
+    "type": "mcq",
+    "category": "Anxiety (Disorder Recognition)",
+    "stem": "A client reports to the nurse, \u201cI am afraid of every little thing and I have a fear of dying. My heart races all the time and I break out in sweats.\u201d Which first-line medications would the nurse anticipate for this client per the uploaded materials?",
+    "options": [
+      {
+        "text": "Phenelzine",
+        "explanation": "Phenelzine is an MAOI \u2014 last-line for panic disorder per the source."
+      },
+      {
+        "text": "Alprazolam",
+        "explanation": "Benzodiazepine \u2014 second-line for panic. Fast-acting but not preferred as first-line due to dependence."
+      },
+      {
+        "text": "Sertraline or fluoxetine",
+        "explanation": "Correct. SSRIs are first-line for panic disorder per the source. They treat the underlying disorder with no abuse potential."
+      },
+      {
+        "text": "Imipramine",
+        "explanation": "TCA \u2014 second-line option for panic disorder, not first."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Panic disorder treatment ladder: 1st = SSRIs (sertraline, fluoxetine, paroxetine). 2nd = TCAs (imipramine) or benzodiazepines (alprazolam). Last = MAOIs."
+  },
+  {
+    "id": 54,
+    "type": "mcq",
+    "category": "Anxiety (Disorder Recognition)",
+    "stem": "Which description is MOST consistent with generalized anxiety disorder (GAD) per the uploaded lecture materials?",
+    "options": [
+      {
+        "text": "A 2-day period of worry before a final exam",
+        "explanation": "This is situational anxiety, not GAD. Duration and context don\u2019t meet GAD criteria."
+      },
+      {
+        "text": "Uncontrollable worrying lasting 6 months or longer",
+        "explanation": "Correct. The lecture material defines GAD as uncontrollable worry for 6+ months about multiple life areas."
+      },
+      {
+        "text": "Elevated mood with decreased need for sleep and grandiosity",
+        "explanation": "This is mania, not GAD."
+      },
+      {
+        "text": "Persistent hallucinations and delusions",
+        "explanation": "These are psychotic symptoms, not anxiety."
+      }
+    ],
+    "correct": 1,
+    "explanation": "GAD vs panic vs OCD vs PTSD \u2192 GAD: chronic worry, 6+ months, diffuse. Panic: discrete attacks with somatic symptoms. OCD: intrusive thoughts + rituals. PTSD: trauma exposure + re-experiencing + avoidance + hyperarousal."
+  },
+  {
+    "id": 55,
+    "type": "mcq",
+    "category": "Anxiety (Treatment)",
+    "stem": "A client with GAD needs rapid symptom relief today. Which medication class provides the MOST immediate benefit?",
+    "options": [
+      {
+        "text": "SSRIs",
+        "explanation": "1\u20133 weeks to initial effect. Too slow for today."
+      },
+      {
+        "text": "SNRIs",
+        "explanation": "3\u20134 weeks to effect. Too slow for today."
+      },
+      {
+        "text": "Benzodiazepines",
+        "explanation": "Correct. Immediate onset \u2014 benefits within ~30 minutes. Ideal for acute symptom relief."
+      },
+      {
+        "text": "Buspirone",
+        "explanation": "1\u20136 weeks onset. Good long-term but slow to start."
+      }
+    ],
+    "correct": 2,
+    "explanation": "GAD med timing \u2192 IMMEDIATE: benzodiazepines. SLOW: SSRIs, SNRIs, buspirone. Plan accordingly \u2014 use a benzo as a bridge while the long-term drug kicks in."
+  },
+  {
+    "id": 56,
+    "type": "mcq",
+    "category": "Anxiety (Buspirone)",
+    "stem": "Which client statement about buspirone REQUIRES correction by the nurse?",
+    "options": [
+      {
+        "text": "\u201cIt may take a few weeks before I feel the full effect.\u201d",
+        "explanation": "Accurate \u2014 buspirone has delayed onset (1\u20136 weeks)."
+      },
+      {
+        "text": "\u201cI can use this medication as needed for sudden panic attacks because it works right away.\u201d",
+        "explanation": "Correct \u2014 this statement NEEDS correction. Buspirone is NOT PRN. It has delayed onset and won\u2019t help acute panic."
+      },
+      {
+        "text": "\u201cGrapefruit juice may interfere with this medication.\u201d",
+        "explanation": "Accurate \u2014 grapefruit juice increases buspirone levels."
+      },
+      {
+        "text": "\u201cIf I\u2019m switching from a benzodiazepine, it may need to be tapered slowly.\u201d",
+        "explanation": "Accurate \u2014 overlap the buspirone 2\u20134 weeks before fully withdrawing the benzodiazepine."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Buspirone: NOT a CNS depressant, NO abuse potential, NO PRN use, delayed onset, no withdrawal. Think of it as the anti-benzodiazepine for GAD \u2014 safer but slower."
+  },
+  {
+    "id": 57,
+    "type": "mcq",
+    "category": "Anxiety (Propranolol)",
+    "stem": "A musician becomes anxious before public performances, reporting tremors, palpitations, and sweating. Which medication is MOST appropriate for this performance-anxiety situation?",
+    "options": [
+      {
+        "text": "Buspirone",
+        "explanation": "Delayed onset \u2014 not useful for an event-specific situation."
+      },
+      {
+        "text": "Propranolol",
+        "explanation": "Correct. Propranolol blocks autonomic hyperactivity (tremor, palpitations, sweating). Given 1\u20132 hours before performance."
+      },
+      {
+        "text": "Paroxetine",
+        "explanation": "SSRI used for longer-term anxiety disorders, not for a single event."
+      },
+      {
+        "text": "Phenelzine",
+        "explanation": "MAOI used for refractory depression, not performance anxiety."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Propranolol is the go-to for PERFORMANCE anxiety because it blocks the peripheral autonomic symptoms (\u03b21/\u03b22 blockade). It doesn\u2019t treat general anxiety disorder \u2014 it blunts the visible stage-fright response."
+  },
+  {
+    "id": 58,
+    "type": "mcq",
+    "category": "Anxiety (Alprazolam)",
+    "stem": "For which therapeutic effect will the nurse monitor a client prescribed alprazolam?",
+    "options": [
+      {
+        "text": "Pain relief",
+        "explanation": "Alprazolam is not an analgesic."
+      },
+      {
+        "text": "Decreased anxiety",
+        "explanation": "Correct. Alprazolam is an anxiolytic benzodiazepine that reduces anxiety and promotes muscle relaxation and rest."
+      },
+      {
+        "text": "Reduction in dysrhythmias",
+        "explanation": "Alprazolam is not an antiarrhythmic."
+      },
+      {
+        "text": "Reduced blood pressure",
+        "explanation": "Transient hypotension is a side effect, not the therapeutic goal."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Monitoring THERAPEUTIC effect (did the drug do what it was supposed to do?) = decreased anxiety. Monitoring ADVERSE effect = sedation, respiratory depression, orthostatic hypotension, dependence."
+  },
+  {
+    "id": 59,
+    "type": "mcq",
+    "category": "Anxiety (Alprazolam)",
+    "stem": "A client is prescribed alprazolam. Which action must the nurse include in the client assessment during the INITIATION of therapy?",
+    "options": [
+      {
+        "text": "Measure the client\u2019s urine output.",
+        "explanation": "Not an early benzodiazepine concern. May develop with prolonged use."
+      },
+      {
+        "text": "Examine the client\u2019s pupils daily.",
+        "explanation": "CNS depression signs aren\u2019t the earliest issue and pupil exam isn\u2019t the standard early assessment."
+      },
+      {
+        "text": "Check the client\u2019s blood pressure.",
+        "explanation": "Correct. Orthostatic hypotension is a common side effect that appears EARLY in therapy \u2014 check BP during initiation."
+      },
+      {
+        "text": "Assess the abdomen for distention.",
+        "explanation": "Constipation may occur with prolonged use but isn\u2019t the early assessment."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Benzodiazepine initiation monitoring: BP (orthostatic), respiratory rate (respiratory depression), LOC (sedation), fall risk. BP is specifically the early one the EAQ flags."
+  },
+  {
+    "id": 60,
+    "type": "mcq",
+    "category": "Depression (Symptom Recognition)",
+    "stem": "A client with depression presents with feelings of sadness and difficulty sleeping. Which ADDITIONAL findings would the nurse monitor for? Select the option that best fits the depressive symptom profile.",
+    "options": [
+      {
+        "text": "Rigidity with narrowing of perception",
+        "explanation": "Narrowing of perception occurs with anxiety. Rigidity is uncommon in depression."
+      },
+      {
+        "text": "Alternating episodes of fatigue and high energy",
+        "explanation": "This pattern reflects bipolar disorder, not unipolar depression."
+      },
+      {
+        "text": "Diminished pleasure in activities and alteration in appetite",
+        "explanation": "Correct. Anhedonia (reduced pleasure) and appetite change (increased or decreased) are core depression findings."
+      },
+      {
+        "text": "Excessive socialization and increased pleasure in new activities",
+        "explanation": "Opposite of depression. Depression is marked by withdrawal and anhedonia."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Depression core features (SIG E CAPS): Sleep, Interest (anhedonia), Guilt, Energy, Concentration, Appetite, Psychomotor, Suicidality. Five or more symptoms for \u22652 weeks = major depressive episode."
+  },
+  {
+    "id": 61,
+    "type": "mcq",
+    "category": "Depression (Age-Specific)",
+    "stem": "Which explanation is TRUE for childhood depression per the uploaded materials?",
+    "options": [
+      {
+        "text": "It may appear as acting-out behavior rather than classic sadness.",
+        "explanation": "Correct. Children have difficulty verbalizing feelings; depression often presents as temper tantrums, irritability, school problems, or somatic complaints."
+      },
+      {
+        "text": "It looks almost identical to adult depression.",
+        "explanation": "Adult and childhood depression manifest differently."
+      },
+      {
+        "text": "It does not respond to conventional antidepressant treatment.",
+        "explanation": "Many conventional therapies do help children with depression; this statement is false."
+      },
+      {
+        "text": "It is short in duration and resolves on its own.",
+        "explanation": "Childhood depression can be persistent and requires treatment, not passive observation."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Childhood depression often presents as behavioral dysregulation, irritability, and somatic complaints \u2014 NOT the flat sadness adults describe. Clinicians have to recognize the disguise."
+  },
+  {
+    "id": 62,
+    "type": "sata",
+    "category": "Depression (Age-Specific)",
+    "stem": "Which precipitating factors for depression would be common in an older adult without neurocognitive problems? Select all that apply.",
+    "options": [
+      {
+        "text": "Multiple losses",
+        "explanation": "Correct. Death of family and friends, relocation away from support, and loss of independence are major triggers."
+      },
+      {
+        "text": "Declines in health",
+        "explanation": "Correct. Chronic illness, functional decline, and loss of mobility are strongly linked to late-life depression."
+      },
+      {
+        "text": "Dementia",
+        "explanation": "Dementia is a neurocognitive problem \u2014 this question excludes clients with neurocognitive disorders."
+      },
+      {
+        "text": "A milestone birthday",
+        "explanation": "No strong research support for milestone birthdays as a precipitant."
+      },
+      {
+        "text": "A traumatic injury",
+        "explanation": "Not a common specific precipitant in the source-material framing for older adult depression."
+      }
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "Older-adult depression triggers per the source = multiple losses + declines in health (especially chronic illness). Watch for somatic symptoms, weight loss, and social withdrawal \u2014 depression in older adults is often under-recognized."
+  },
+  {
+    "id": 63,
+    "type": "sata",
+    "category": "Depression (Safety)",
+    "stem": "Which information would support the nurse\u2019s decision to arrange for a staff member to remain with a depressed client continuously? Select all that apply.",
+    "options": [
+      {
+        "text": "Agitated pacing in the hall",
+        "explanation": "Correct. Agitation increases impulsivity, which increases self-harm risk."
+      },
+      {
+        "text": "History of suicide attempts",
+        "explanation": "Correct. Past attempt is the strongest single predictor of future attempt."
+      },
+      {
+        "text": "Statements that life is not worth living",
+        "explanation": "Correct. Suicidal ideation, even passive, warrants close observation."
+      },
+      {
+        "text": "Refusal to eat any food",
+        "explanation": "Important clinically but not the reason for continuous observation per the EAQ."
+      },
+      {
+        "text": "Inability to concentrate",
+        "explanation": "Common in depression but not specifically linked to suicide risk at the observation level."
+      }
+    ],
+    "correct": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Indications for continuous observation: agitation, past attempts, suicidal statements. Nutrition and concentration problems matter clinically but don\u2019t alone drive 1:1 observation."
+  },
+  {
+    "id": 64,
+    "type": "mcq",
+    "category": "Antidepressants (Priority / Suicidality)",
+    "stem": "A client on an antidepressant for 10 days suddenly seems to have more energy and begins talking about death. What is the nurse\u2019s MOST accurate interpretation?",
+    "options": [
+      {
+        "text": "The medication is fully working, and suicide risk is no longer present.",
+        "explanation": "This is the opposite of what the source teaches. Returning energy can precede improved mood and creates a paradoxical risk window."
+      },
+      {
+        "text": "This may represent increased suicide risk during early treatment and requires immediate follow-up.",
+        "explanation": "Correct. As energy returns before mood fully lifts, clients may have newfound capacity to act on persistent suicidal thoughts."
+      },
+      {
+        "text": "This is expected progress and does not require intervention.",
+        "explanation": "Talking about death in a client with depression is never to be passively observed."
+      },
+      {
+        "text": "The client should stop the medication abruptly to prevent harm.",
+        "explanation": "Abrupt discontinuation causes withdrawal and won\u2019t reduce suicide risk."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Paradoxical early suicide risk on antidepressants: weeks 1\u20133 especially. Energy returns before mood fully improves. Monitor closely. Black-box warning especially for <25-year-olds."
+  },
+  {
+    "id": 65,
+    "type": "mcq",
+    "category": "Antidepressants (Teaching)",
+    "stem": "A client prescribed an antidepressant tells the nurse, \u201cI\u2019ll just take it on the days I feel the worst.\u201d Which response by the nurse is BEST?",
+    "options": [
+      {
+        "text": "\u201cThat\u2019s appropriate because antidepressants work best as needed.\u201d",
+        "explanation": "Incorrect \u2014 antidepressants are scheduled, not PRN."
+      },
+      {
+        "text": "\u201cThese medications work slowly and should be taken consistently, not as needed.\u201d",
+        "explanation": "Correct. Initial effect 1\u20133 weeks, maximum effect up to 12 weeks. Consistent daily dosing is required."
+      },
+      {
+        "text": "\u201cOnly MAOIs need to be taken daily.\u201d",
+        "explanation": "ALL antidepressant classes are scheduled, not just MAOIs."
+      },
+      {
+        "text": "\u201cTaking it occasionally lowers side effects without losing benefit.\u201d",
+        "explanation": "Intermittent dosing undermines therapeutic levels and prolongs the time to improvement."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Antidepressants are NOT PRN. Set this expectation at initiation \u2014 it\u2019s a leading reason patients stop prematurely (\u201cI don\u2019t feel different yet\u201d)."
+  },
+  {
+    "id": 66,
+    "type": "mcq",
+    "category": "Antidepressants (Mechanism)",
+    "stem": "A client asks how psychotropic medications work. Which response by the nurse is MOST appropriate?",
+    "options": [
+      {
+        "text": "\u201cThey decrease the metabolic needs of your brain.\u201d",
+        "explanation": "Incorrect mechanism \u2014 psychotropics don\u2019t work by lowering brain metabolism."
+      },
+      {
+        "text": "\u201cThey increase the production of healthy nervous tissue.\u201d",
+        "explanation": "Incorrect \u2014 they don\u2019t produce new neurons as their primary mechanism."
+      },
+      {
+        "text": "\u201cThey affect the chemicals used in communication between nerve cells.\u201d",
+        "explanation": "Correct. Psychotropic medications modulate neurotransmitters (dopamine, serotonin, norepinephrine, GABA) at synapses."
+      },
+      {
+        "text": "\u201cThey regulate sensory input received from the external environment.\u201d",
+        "explanation": "Not the primary mechanism \u2014 any sensory change is secondary to neurotransmitter changes."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Neurotransmitter targets by class: Antipsychotics \u2192 dopamine (\u00b1ACh, HA, NE). SSRIs \u2192 serotonin. SNRIs \u2192 serotonin + NE. TCAs \u2192 serotonin + NE (+ ACh, HA, \u03b11). MAOIs \u2192 all three monoamines. Benzos \u2192 GABA. Buspirone \u2192 serotonin (5-HT1A)."
+  },
+  {
+    "id": 67,
+    "type": "mcq",
+    "category": "Cross-Class Differentiation",
+    "stem": "A client presents with hyperthermia, muscle rigidity, altered mental status, and autonomic instability. Which additional finding would most strongly suggest NEUROLEPTIC MALIGNANT SYNDROME rather than SEROTONIN SYNDROME?",
+    "options": [
+      {
+        "text": "Hyperreflexia and clonus",
+        "explanation": "Hyperreflexia and clonus point TOWARD serotonin syndrome, not NMS. NMS has hyporeflexia and lead-pipe rigidity."
+      },
+      {
+        "text": "Lead-pipe muscle rigidity with elevated creatine phosphokinase",
+        "explanation": "Correct. NMS classically has severe diffuse (\u201clead-pipe\u201d) rigidity, muscle breakdown, and elevated CPK. Serotonin syndrome has more neuromuscular HYPERactivity (clonus, hyperreflexia, shivering)."
+      },
+      {
+        "text": "Recent addition of an SSRI to an MAOI regimen",
+        "explanation": "This medication history points to SEROTONIN syndrome."
+      },
+      {
+        "text": "Tremor and diarrhea",
+        "explanation": "More typical of serotonin syndrome."
+      }
+    ],
+    "correct": 1,
+    "explanation": "NMS vs serotonin syndrome: NMS = dopamine blocker + rigidity + fever + elevated CPK, slower onset (days). Serotonin = serotonergic combo + clonus + hyperreflexia + shivering + diarrhea, rapid onset (hours)."
+  },
+  {
+    "id": 68,
+    "type": "mcq",
+    "category": "Cross-Class Differentiation",
+    "stem": "Which finding would best distinguish an antipsychotic THERAPEUTIC response from an ADVERSE effect?",
+    "options": [
+      {
+        "text": "Reduction in auditory hallucinations and improved organized thinking",
+        "explanation": "Correct. These improvements reflect the intended dopamine-blocking therapeutic effect."
+      },
+      {
+        "text": "New onset shuffling gait and tremor",
+        "explanation": "This is EPS \u2014 an adverse effect, not a therapeutic response."
+      },
+      {
+        "text": "New hyperthermia with severe muscle rigidity",
+        "explanation": "These findings are NMS \u2014 a life-threatening adverse effect."
+      },
+      {
+        "text": "New sustained dry mouth and urinary retention",
+        "explanation": "These are anticholinergic side effects \u2014 adverse, not therapeutic."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Therapeutic response to antipsychotics = reduction in positive symptoms (hallucinations, delusions, paranoia, agitation) over days to weeks. Any new motor finding, autonomic change, or severe rigidity = adverse."
+  },
+  {
+    "id": 69,
+    "type": "mcq",
+    "category": "Cross-Class Differentiation",
+    "stem": "A client on a mood stabilizer reports fine hand tremor, slurred speech, and nausea. The nurse would prioritize checking which lab value?",
+    "options": [
+      {
+        "text": "Serum lithium level",
+        "explanation": "Correct. This symptom cluster is classic lithium toxicity. Check level immediately, hold the drug, and notify the provider."
+      },
+      {
+        "text": "Serum carbamazepine level",
+        "explanation": "Carbamazepine toxicity typically presents with visual changes, ataxia, and vertigo \u2014 the source flags these early neurologic effects. Fine tremor + slurred speech better fit lithium."
+      },
+      {
+        "text": "Serum divalproex level",
+        "explanation": "Divalproex toxicity involves liver, platelets, and pancreas \u2014 not fine tremor and slurred speech."
+      },
+      {
+        "text": "Serum lamotrigine level",
+        "explanation": "Lamotrigine toxicity primarily presents as rash/SJS, not fine tremor and slurred speech."
+      }
+    ],
+    "correct": 0,
+    "explanation": "Match the toxicity picture to the drug \u2192 Fine tremor + slurred speech + N/V + confusion = LITHIUM. Visual changes + ataxia + vertigo = CARBAMAZEPINE. Rash = LAMOTRIGINE. Pancreatitis/hepatitis/thrombocytopenia = DIVALPROEX."
+  },
+  {
+    "id": 70,
+    "type": "mcq",
+    "category": "Cross-Class Differentiation (Hold vs Give)",
+    "stem": "A client is prescribed haloperidol. Which assessment finding would make the nurse HOLD the next dose and notify the provider?",
+    "options": [
+      {
+        "text": "Mild dry mouth and blurred vision",
+        "explanation": "These are common anticholinergic side effects \u2014 uncomfortable but not a hold parameter."
+      },
+      {
+        "text": "Temperature 105\u00b0F with severe muscle rigidity and elevated CPK",
+        "explanation": "Correct. NMS is life-threatening. HOLD and notify immediately."
+      },
+      {
+        "text": "Mild drowsiness during the day",
+        "explanation": "Sedation is expected and usually improves. Not a hold parameter."
+      },
+      {
+        "text": "Patient reports feeling calmer and less paranoid",
+        "explanation": "This is a therapeutic response \u2014 the opposite of a hold parameter."
+      }
+    ],
+    "correct": 1,
+    "explanation": "Hold antipsychotic: NMS signs (fever, rigidity, elevated CPK), severe EPS, severe orthostatic hypotension, QT prolongation, or agranulocytosis (clozapine). Side effects that need management but not a hold: mild anticholinergic effects, mild sedation."
+  },
+  {
+    "id": 71,
+    "type": "mcq",
+    "category": "Priority / First Action",
+    "stem": "A nurse has four clients on a psychiatric unit. Which client should the nurse assess FIRST?",
+    "options": [
+      {
+        "text": "A client on sertraline who reports mild nausea this morning",
+        "explanation": "Nausea is a common SSRI side effect; not urgent."
+      },
+      {
+        "text": "A client on lithium whose morning level is 0.8 mEq/L",
+        "explanation": "This is within the therapeutic range (0.6\u20131.2). No urgent action."
+      },
+      {
+        "text": "A client on clozapine who reports sore throat and a fever of 102\u00b0F",
+        "explanation": "Correct. Fever + sore throat + clozapine = presume agranulocytosis. Life-threatening \u2014 assess first, stop drug, arrange immediate evaluation."
+      },
+      {
+        "text": "A client on alprazolam who reports orthostatic dizziness when standing",
+        "explanation": "Common early benzodiazepine effect. Safety teaching (rise slowly) is needed but not first-priority."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Priority ranking in psych meds: any sign of life-threatening toxicity (NMS, serotonin syndrome, agranulocytosis, hypertensive crisis, lithium toxicity, SJS) comes first. Routine side effects go to the end of the list."
+  },
+  {
+    "id": 72,
+    "type": "mcq",
+    "category": "Nonessential vs Indicated",
+    "stem": "A 30-year-old client is starting clozapine for treatment-resistant schizophrenia. The nurse is planning care. Which assessment is NONESSENTIAL at this point?",
+    "options": [
+      {
+        "text": "Baseline WBC and ANC",
+        "explanation": "Essential \u2014 required by the REMS program due to agranulocytosis risk."
+      },
+      {
+        "text": "Baseline body mass index",
+        "explanation": "Essential \u2014 clozapine causes metabolic syndrome and BMI is re-checked every visit for 6 months."
+      },
+      {
+        "text": "Baseline thyroid-stimulating hormone (TSH)",
+        "explanation": "Correct. TSH is important for LITHIUM \u2014 not a baseline clozapine requirement. Not essential here."
+      },
+      {
+        "text": "Teaching about reporting any signs of infection immediately",
+        "explanation": "Essential \u2014 sore throat, fever, or flu symptoms must be reported immediately for possible agranulocytosis."
+      }
+    ],
+    "correct": 2,
+    "explanation": "Clozapine baseline essentials: WBC, ANC, BMI, fasting glucose, lipids, blood pressure, infection teaching. Thyroid is for lithium, not clozapine."
+  }
+];
+
+/* ==================================================================
+   STATE
+   ================================================================== */
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function prepareQuestions() {
+  return ORIGINAL_QUESTIONS.map(q => {
+    // Shuffle options; remap correct indices.
+    const optionsWithIndex = q.options.map((opt, idx) => ({ ...opt, origIdx: idx }));
+    const shuffled = shuffle(optionsWithIndex);
+    const correctOrig = Array.isArray(q.correct) ? q.correct : [q.correct];
+    const correctShuffled = shuffled
+      .map((opt, idx) => correctOrig.includes(opt.origIdx) ? idx : null)
+      .filter(v => v !== null);
+
+    return {
+      ...q,
+      options: shuffled,
+      correctIndices: correctShuffled,
+      userSelection: q.type === 'sata' ? [] : null,
+      submitted: false,
+      isCorrect: null,
+      score: null
+    };
+  });
+}
+
+let questions = prepareQuestions();
+let currentIndex = 0;
+let mode = 'immediate';        // 'immediate' | 'final'
+let examSubmitted = false;
+
+/* ==================================================================
+   DOM
+   ================================================================== */
+const setupPanel = document.getElementById('setupPanel');
+const examShell = document.getElementById('examShell');
+const stemEl = document.getElementById('stem');
+const optionsEl = document.getElementById('options');
+const teachPanel = document.getElementById('teachPanel');
+const teachBody = document.getElementById('teachBody');
+const resultBanner = document.getElementById('resultBanner');
+const jumpGrid = document.getElementById('jumpGrid');
+const finalCard = document.getElementById('finalCard');
+
+const qidChip = document.getElementById('qidChip');
+const modeHint = document.getElementById('modeHint');
+const modeLabel = document.getElementById('modeLabel');
+
+const progressText = document.getElementById('progressText');
+const progressPct = document.getElementById('progressPct');
+const progressFill = document.getElementById('progressFill');
+const answeredMetric = document.getElementById('answeredMetric');
+const remainingMetric = document.getElementById('remainingMetric');
+const correctMetric = document.getElementById('correctMetric');
+const scoreMetric = document.getElementById('scoreMetric');
+
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const clearBtn = document.getElementById('clearBtn');
+const submitCurrentBtn = document.getElementById('submitCurrentBtn');
+const submitExamBtn = document.getElementById('submitExamBtn');
+const restartBtn = document.getElementById('restartBtn');
+const restartFromHeader = document.getElementById('restartFromHeader');
+const startBtn = document.getElementById('startBtn');
+const themeBtn = document.getElementById('themeBtn');
+
+/* ==================================================================
+   EVENTS
+   ================================================================== */
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+  });
+});
+
+startBtn.addEventListener('click', () => {
+  setupPanel.classList.add('hidden');
+  examShell.classList.add('active');
+  restartFromHeader.style.display = 'inline-flex';
+  modeLabel.textContent = mode === 'immediate' ? 'Immediate feedback' : 'Submit at end';
+  updateModeHint();
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) { currentIndex--; render(); }
+});
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < questions.length - 1) { currentIndex++; render(); }
+});
+clearBtn.addEventListener('click', () => {
+  const q = questions[currentIndex];
+  if (isQuestionLocked(q)) return;
+  q.userSelection = q.type === 'sata' ? [] : null;
+  render();
+});
+submitCurrentBtn.addEventListener('click', submitCurrent);
+submitExamBtn.addEventListener('click', submitEntireExam);
+restartBtn.addEventListener('click', () => window.location.reload());
+restartFromHeader.addEventListener('click', () => {
+  if (confirm('Restart the exam? All answers will be cleared.')) window.location.reload();
+});
+
+/* ==================================================================
+   LOGIC
+   ================================================================== */
+function updateModeHint() {
+  modeHint.textContent = mode === 'immediate'
+    ? 'Submit this question to see instant rationale.'
+    : 'Answer every question, then submit the full exam at the end.';
+}
+
+function isQuestionLocked(q) {
+  if (examSubmitted) return true;
+  if (mode === 'immediate' && q.submitted) return true;
+  return false;
+}
+
+function hasSelection(q) {
+  if (q.type === 'sata') return q.userSelection.length > 0;
+  return q.userSelection !== null;
+}
+
+function computeCorrect(q) {
+  // Returns a score between 0 and 1.
+  // MCQ: 1 if the right option is picked, else 0.
+  // SATA: +1 per correct selection, -1 per incorrect selection, floored at 0,
+  //       divided by the total number of correct options.
+  if (q.type === 'sata') {
+    const correctSet = new Set(q.correctIndices);
+    let hits = 0;
+    let wrongPicks = 0;
+    q.userSelection.forEach(idx => {
+      if (correctSet.has(idx)) hits++;
+      else wrongPicks++;
+    });
+    const totalCorrect = q.correctIndices.length;
+    if (totalCorrect === 0) return 0;
+    return Math.max(0, (hits - wrongPicks) / totalCorrect);
+  }
+  return q.userSelection === q.correctIndices[0] ? 1 : 0;
+}
+
+function submitCurrent() {
+  const q = questions[currentIndex];
+  if (isQuestionLocked(q)) return;
+  if (!hasSelection(q)) {
+    alert('Please select an answer before submitting.');
+    return;
+  }
+  q.submitted = true;
+  q.score = computeCorrect(q);
+  q.isCorrect = q.score === 1;
+  render();
+}
+
+function submitEntireExam() {
+  const anyUnanswered = questions.some(q => !hasSelection(q));
+  if (anyUnanswered) {
+    const proceed = confirm('Some questions are unanswered. They will be marked incorrect. Submit anyway?');
+    if (!proceed) return;
+  }
+  examSubmitted = true;
+  questions.forEach(q => {
+    q.submitted = true;
+    q.score = hasSelection(q) ? computeCorrect(q) : 0;
+    q.isCorrect = q.score === 1;
+  });
+  currentIndex = 0;
+  render();
+  finalCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ==================================================================
+   RENDER
+   ================================================================== */
+function render() {
+  const q = questions[currentIndex];
+  const locked = isQuestionLocked(q);
+
+  // Header chips
+  qidChip.textContent = 'Q' + q.id;
+
+  // Stem
+  stemEl.innerHTML = q.stem;
+
+  // Options
+  optionsEl.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+  q.options.forEach((opt, idx) => {
+    const row = document.createElement('div');
+    row.className = 'option';
+    row.setAttribute('role', q.type === 'sata' ? 'checkbox' : 'radio');
+    row.setAttribute('tabindex', '0');
+
+    const isSelected = q.type === 'sata'
+      ? q.userSelection.includes(idx)
+      : q.userSelection === idx;
+    const isCorrectAns = q.correctIndices.includes(idx);
+
+    row.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+
+    if (locked) {
+      row.classList.add('locked');
+      if (isSelected && isCorrectAns) row.classList.add('correct-reveal');
+      else if (isSelected && !isCorrectAns) row.classList.add('incorrect-reveal');
+      else if (!isSelected && isCorrectAns) row.classList.add('missed-reveal');
+    } else if (isSelected) {
+      row.classList.add('selected');
+    }
+
+    let badge = '';
+    if (locked) {
+      if (isSelected && isCorrectAns) badge = '<div class="option-badge badge-correct">Your answer · Correct</div>';
+      else if (isSelected && !isCorrectAns) badge = '<div class="option-badge badge-incorrect">Your answer · Incorrect</div>';
+      else if (!isSelected && isCorrectAns) badge = '<div class="option-badge badge-missed">Correct answer · You did not select</div>';
+    }
+
+    row.innerHTML = `
+      <div class="option-letter">${letters[idx] || (idx + 1)}</div>
+      <div class="option-body">
+        <div class="option-text">${opt.text}</div>
+        ${badge}
+        ${locked ? `<div class="option-rationale"><strong>Why:</strong> ${opt.explanation}</div>` : ''}
+      </div>
+    `;
+
+    if (!locked) {
+      row.addEventListener('click', () => handleSelect(q, idx));
+      row.addEventListener('keydown', e => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          handleSelect(q, idx);
+        }
+      });
+    }
+    optionsEl.appendChild(row);
+  });
+
+  // Result banner + teach panel
+  if (locked) {
+    resultBanner.classList.add('visible');
+    resultBanner.classList.remove('good', 'bad', 'partial');
+    if (q.score === 1) {
+      resultBanner.classList.add('good');
+      resultBanner.textContent = '✓ Correct';
+    } else if (q.score === 0) {
+      resultBanner.classList.add('bad');
+      resultBanner.textContent = '✗ Incorrect — review the rationales below';
+    } else {
+      resultBanner.classList.add('partial');
+      // Build breakdown for SATA partial credit
+      const correctSet = new Set(q.correctIndices);
+      const hits = q.userSelection.filter(idx => correctSet.has(idx)).length;
+      const wrongPicks = q.userSelection.filter(idx => !correctSet.has(idx)).length;
+      const missed = q.correctIndices.length - hits;
+      const pct = Math.round(q.score * 100);
+      let breakdown = `${hits} of ${q.correctIndices.length} correct selected`;
+      if (wrongPicks > 0) breakdown += `, ${wrongPicks} wrong pick${wrongPicks > 1 ? 's' : ''}`;
+      if (missed > 0) breakdown += `, ${missed} missed`;
+      resultBanner.textContent = `◐ Partial credit — ${pct}% (${breakdown})`;
+    }
+    teachPanel.classList.add('visible');
+    teachBody.textContent = q.explanation;
+  } else {
+    resultBanner.classList.remove('visible');
+    teachPanel.classList.remove('visible');
+  }
+
+  // Controls visibility
+  if (locked) {
+    submitCurrentBtn.style.display = 'none';
+    clearBtn.style.display = 'none';
+  } else {
+    submitCurrentBtn.style.display = mode === 'immediate' ? 'inline-flex' : 'none';
+    clearBtn.style.display = 'inline-flex';
+  }
+  submitExamBtn.style.display = (mode === 'final' && !examSubmitted) ? 'inline-flex' : 'none';
+
+  prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = currentIndex === questions.length - 1;
+
+  // Progress + metrics
+  const total = questions.length;
+  const answered = questions.filter(hasSelection).length;
+  const submittedQs = questions.filter(x => x.submitted);
+  const totalEarned = submittedQs.reduce((sum, x) => sum + (x.score || 0), 0);
+  const submitted = submittedQs.length;
+
+  progressText.textContent = `Question ${currentIndex + 1} of ${total}`;
+  progressPct.textContent = Math.round((answered / total) * 100) + '%';
+  progressFill.style.width = (answered / total * 100) + '%';
+
+  answeredMetric.textContent = answered;
+  remainingMetric.textContent = total - answered;
+  // "Correct" metric shows points earned (one decimal when fractional)
+  correctMetric.textContent = Number.isInteger(totalEarned) ? totalEarned : totalEarned.toFixed(1);
+  scoreMetric.textContent = submitted > 0 ? Math.round(totalEarned / submitted * 100) + '%' : '—';
+
+  // Jump grid
+  renderJumpGrid();
+
+  // Final card
+  if (examSubmitted) {
+    finalCard.classList.add('visible');
+    const pct = Math.round(totalEarned / total * 100);
+    const earnedDisplay = Number.isInteger(totalEarned) ? totalEarned : totalEarned.toFixed(1);
+    document.getElementById('finalScore').textContent = pct + '%';
+    document.getElementById('finalLine').textContent = `${earnedDisplay} of ${total} points earned`;
+    document.getElementById('finalSub').textContent =
+      pct >= 90 ? 'Outstanding work. This build is intentionally tough — a score this high means you can articulate the mechanism, the teaching, and the trap for each question.'
+      : pct >= 80 ? 'Strong performance. Review the misses carefully, especially priority and hold-vs-give items.'
+      : pct >= 75 ? 'Passing. Target the cross-class differentiation questions and the lithium/clozapine/MAOI red flags on round 2.'
+      : 'Use the rationales hard. The biggest gains are in class differences, toxicity patterns, and patient teaching. Re-do this exam with fresh randomization after reviewing.';
+  } else {
+    finalCard.classList.remove('visible');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleSelect(q, idx) {
+  if (isQuestionLocked(q)) return;
+  if (q.type === 'sata') {
+    const pos = q.userSelection.indexOf(idx);
+    if (pos >= 0) q.userSelection.splice(pos, 1);
+    else q.userSelection.push(idx);
+  } else {
+    q.userSelection = idx;
+  }
+  render();
+}
+
+function renderJumpGrid() {
+  jumpGrid.innerHTML = '';
+  questions.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'jump-btn';
+    b.textContent = q.id;
+
+    if (idx === currentIndex) b.classList.add('current');
+    else if (q.submitted) {
+      if (q.score === 1) b.classList.add('correct');
+      else if (q.score === 0) b.classList.add('incorrect');
+      else b.classList.add('partial');
+    } else if (hasSelection(q)) {
+      b.classList.add('answered');
+    }
+
+    b.addEventListener('click', () => { currentIndex = idx; render(); });
+    jumpGrid.appendChild(b);
+  });
+}
+
+// First render is held until the user clicks Start.
+</script>
+</body>
+</html>

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP2 Module 9 — Anxiety &amp; Depression Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Theme Tokens ========== */
+:root {
+  --bg: #f6f4ee;
+  --bg-grad-a: #f3eeff;
+  --bg-grad-b: #eaf5fb;
+  --surface: rgba(255,255,255,0.72);
+  --surface-solid: #ffffff;
+  --ink: #0a0b14;
+  --ink-soft: #3b3d56;
+  --muted: #6a6d86;
+  --line: rgba(10,11,20,0.09);
+  --line-strong: rgba(10,11,20,0.16);
+  --accent: #5b3df5;
+  --accent-2: #0ea5e9;
+  --accent-3: #ec4899;
+  --ok: #0a8f5a;
+  --ok-bg: rgba(10,143,90,0.08);
+  --err: #c41e3a;
+  --err-bg: rgba(196,30,58,0.07);
+  --warn: #8a5a00;
+  --warn-bg: rgba(251,191,36,0.16);
+  --shadow-sm: 0 1px 2px rgba(10,11,20,0.05), 0 1px 3px rgba(10,11,20,0.04);
+  --shadow-md: 0 8px 24px -8px rgba(91,61,245,0.18), 0 2px 6px rgba(10,11,20,0.06);
+  --shadow-lg: 0 20px 50px -20px rgba(91,61,245,0.3), 0 6px 16px rgba(10,11,20,0.08);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+[data-theme="dark"] {
+  --bg: #08090f;
+  --bg-grad-a: #0f0b25;
+  --bg-grad-b: #071428;
+  --surface: rgba(20,21,34,0.72);
+  --surface-solid: #13142a;
+  --ink: #f5f3ff;
+  --ink-soft: #cfcde6;
+  --muted: #8a8cab;
+  --line: rgba(255,255,255,0.09);
+  --line-strong: rgba(255,255,255,0.18);
+  --accent: #a78bfa;
+  --accent-2: #67e8f9;
+  --accent-3: #f472b6;
+  --ok: #4ade80;
+  --ok-bg: rgba(74,222,128,0.1);
+  --err: #fb7185;
+  --err-bg: rgba(251,113,133,0.1);
+  --warn: #fbbf24;
+  --warn-bg: rgba(251,191,36,0.1);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-md: 0 8px 24px -8px rgba(167,139,250,0.35), 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-lg: 0 24px 60px -20px rgba(167,139,250,0.5), 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* ========== Base ========== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Atmospheric background mesh */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 800px 600px at 10% 0%, var(--bg-grad-a) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 90% 20%, var(--bg-grad-b) 0%, transparent 55%),
+    radial-gradient(ellipse 600px 800px at 50% 100%, var(--bg-grad-a) 0%, transparent 60%),
+    var(--bg);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 1200px 900px at 50% 30%, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 1200px 900px at 50% 30%, black, transparent 80%);
+  pointer-events: none;
+}
+
+/* ========== Header ========== */
+.nav {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 22px 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.nav-brand::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+.theme-btn {
+  appearance: none;
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.theme-btn-icon {
+  width: 14px; height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.hero {
+  max-width: 1040px;
+  margin: 32px auto 24px;
+  padding: 0 24px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6.5vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(110deg, var(--accent) 30%, var(--accent-3) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.hero-sub {
+  max-width: 640px;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+
+/* ========== Cards ========== */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease;
+}
+.card-title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.card-title em { font-style: italic; color: var(--accent); }
+.small { color: var(--muted); font-size: 13.5px; }
+
+/* ========== Stats Grid ========== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.stat {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px 18px 16px;
+  background: var(--surface-solid);
+  position: relative;
+  overflow: hidden;
+}
+.stat::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.8;
+}
+.stat .k {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat .v {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 10px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.stat .v.small-v { font-size: 22px; line-height: 1.2; margin-top: 14px; }
+
+/* ========== Buttons ========== */
+button {
+  appearance: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 12px;
+  letter-spacing: 0.005em;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="dark"] .btn-primary { background: var(--accent); color: #0a0a14; }
+.btn-primary::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-secondary {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+.btn-accent:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-finish {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+.btn-finish:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.hidden { display: none !important; }
+
+/* ========== Select ========== */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 38px 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-solid);
+  color: var(--ink);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f3ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+
+/* ========== Progress ========== */
+.prog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.prog-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.prog-meta { color: var(--muted); font-size: 13px; font-family: "JetBrains Mono", monospace; }
+.prog-meta strong { color: var(--ink); font-family: "Inter Tight", sans-serif; font-weight: 700; }
+.progress-shell {
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-3), var(--accent-2));
+  background-size: 200% 100%;
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ========== Chips ========== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-soft);
+}
+.chip-accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* ========== Question Block ========== */
+.q-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.q-head-meta { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+.q-stem {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(22px, 3.2vw, 28px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ========== Options ========== */
+.option-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.option {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+  background: var(--surface-solid);
+  position: relative;
+}
+.option:hover { border-color: var(--accent); transform: translateX(2px); }
+.option.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface-solid));
+}
+.option.correct {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+}
+.option.incorrect {
+  border-color: var(--err);
+  background: var(--err-bg);
+}
+.letter {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--line);
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+.option.selected .letter { background: var(--accent); color: white; }
+.option.correct .letter { background: var(--ok); color: white; }
+.option.incorrect .letter { background: var(--err); color: white; }
+.option-body { flex: 1; min-width: 0; display: flex; align-items: flex-start; gap: 10px; }
+.option input {
+  margin: 4px 0 0;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.option-text { flex: 1; color: var(--ink); font-size: 15px; line-height: 1.5; }
+
+/* ========== Rationale ========== */
+.rationale {
+  margin-top: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 35%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 7%, var(--surface-solid));
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.rationale-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 10px;
+}
+.rationale-head::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px var(--accent-2);
+}
+.rationale-body { color: var(--ink); font-size: 14.5px; line-height: 1.6; }
+
+/* ========== Notice ========== */
+.notice {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.notice-icon {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== Results ========== */
+.result-card { text-align: center; padding: 40px 28px; position: relative; overflow: hidden; }
+.result-card::before {
+  content: "";
+  position: absolute;
+  top: -40%; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.result-card > * { position: relative; z-index: 1; }
+.result-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.score-big {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(80px, 14vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 12px 0;
+  background: linear-gradient(140deg, var(--accent) 15%, var(--accent-3) 55%, var(--accent-2) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.score-line {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+/* ========== Answer Key ========== */
+.answer-key-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 12px 0;
+  background: var(--surface-solid);
+}
+.review-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.review-pill::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.review-correct { background: var(--ok-bg); color: var(--ok); }
+.review-incorrect { background: var(--err-bg); color: var(--err); }
+.review-partial { background: var(--warn-bg); color: var(--warn); }
+.review-points {
+  background: var(--line);
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", monospace;
+}
+.review-points::before { display: none; }
+.ak-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.ak-stem {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.ak-ans { margin: 4px 0; font-size: 13.5px; color: var(--ink-soft); }
+.ak-ans strong { color: var(--ink); font-weight: 700; margin-right: 4px; }
+.ak-ans code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  background: var(--line);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+/* ========== Mobile ========== */
+@media (max-width: 720px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 0 16px; }
+  .nav { padding: 18px 16px 0; }
+  .card { padding: 22px 20px; }
+  .q-head { flex-direction: column; }
+  .option { padding: 12px 14px; }
+  .btn-primary, .btn-secondary, .btn-accent, .btn-finish { flex: 1 1 auto; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">PP2 &middot; Module 9 &middot; NCLEX Style</div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+    <svg class="theme-btn-icon" id="themeIcon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+    </svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow">PP2 · Module 9 · No-Mercy Build</span>
+  <h1>Master Anxiety, Depression <em>&amp;</em> Antidepressants.</h1>
+  <p class="hero-sub">Every question is pulled straight from your Module 9 study guide and book notes. Brutal distractors. Shuffled choices. Partial credit on SATA. No backtracking. Pick immediate feedback or submit everything at the end &mdash; either way, you leave knowing exactly where you stand.</p>
+</header>
+
+<main class="wrap">
+
+  <!-- START SCREEN -->
+  <section class="card" id="startCard">
+    <h2 class="card-title">Ready? <em>Let's go.</em></h2>
+    <p class="small" style="max-width:620px;">Brutal distractors. Shuffled choices. Rationales that actually teach. Mixed MC and SATA with <strong>partial credit</strong>. No backtracking — lock it in and keep moving. Every question pulled from your own study materials.</p>
+
+    <div class="grid" style="margin:22px 0 20px">
+      <div class="stat"><div class="k">Total questions</div><div class="v">60</div></div>
+      <div class="stat"><div class="k">Question types</div><div class="v small-v">MC &#43; SATA</div></div>
+      <div class="stat"><div class="k">Backtracking</div><div class="v small-v">Disabled</div></div>
+    </div>
+
+    <div class="row" style="margin:0 0 18px">
+      <label class="small" for="gradingMode" style="font-weight:600; color:var(--ink);">Grading mode</label>
+      <select id="gradingMode">
+        <option value="immediate">Grade me now &mdash; show the rationale after every question</option>
+        <option value="save">Hold my grades &mdash; score everything at the end</option>
+      </select>
+    </div>
+
+    <div class="notice small">
+      <svg class="notice-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+      <span><strong>SATA partial credit is ON.</strong> Every correct pick is +1. Every wrong pick is –1. Minimum score per item is zero — you can't go negative, but you have to earn every point.</span>
+    </div>
+
+    <div class="row" style="margin-top:22px">
+      <button class="btn-primary" id="startBtn">Let's do this &rarr;</button>
+    </div>
+  </section>
+
+  <!-- EXAM SCREEN -->
+  <section class="hidden" id="examCard">
+    <div class="card" style="padding:20px 24px;">
+      <div class="prog-head">
+        <div>
+          <div class="prog-label" id="progressLabel">Question 1 / 60</div>
+          <div class="prog-meta" style="margin-top:4px;">Score <strong id="correctSoFar">0</strong> &nbsp;·&nbsp; Answered <strong id="answeredSoFar">0</strong></div>
+        </div>
+        <div class="chip chip-accent" id="modeChip">Immediate grading</div>
+      </div>
+      <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="q-head">
+        <div class="q-head-meta">
+          <div class="row" style="gap:8px;">
+            <span class="chip" id="qCat"></span>
+            <span class="chip chip-accent" id="qType"></span>
+          </div>
+          <h2 class="q-stem" id="qStem"></h2>
+        </div>
+      </div>
+      <div class="option-list" id="options"></div>
+
+      <div class="row" style="margin-top:22px">
+        <button class="btn-primary" id="submitNowBtn">Lock it in</button>
+        <button class="btn-secondary" id="saveContinueBtn">Save &amp; keep going</button>
+        <button class="btn-accent hidden" id="nextBtn">Next &rarr;</button>
+        <button class="btn-finish hidden" id="finishBtn">Finish &rarr;</button>
+      </div>
+
+      <div class="rationale hidden" id="rationaleBox">
+        <div class="rationale-head">Rationale</div>
+        <div class="rationale-body" id="rationaleText"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS SCREEN -->
+  <section class="hidden" id="resultCard">
+    <div class="card result-card">
+      <div class="result-eyebrow">The verdict</div>
+      <div class="score-big" id="scoreBig">0%</div>
+      <div class="score-line" id="scoreLine"></div>
+      <p class="small" id="scoreSub"></p>
+      <div class="row" style="margin-top:22px; justify-content:center;">
+        <button class="btn-primary" onclick="location.reload()">Run it back</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="card-title" style="font-size:24px; margin-bottom:18px;">Answer key <em>&amp; rationales</em></h3>
+      <div id="answerKey"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const rawQuestions = [{"type": "mc", "stem": "The nurse is assessing a client who reports persistent sadness, loss of interest in usual activities, poor concentration, insomnia, and feelings of worthlessness for the last 3 weeks. Which interpretation is most accurate?", "options": ["The client’s findings are most consistent with major depression", "The client is demonstrating expected grief and no treatment is indicated", "The client is most likely experiencing panic disorder", "The client’s symptoms are too brief to support a depressive disorder"], "answer": 0, "rationale": "Major depression is supported by depressed mood or loss of pleasure plus associated symptoms that persist most of the day nearly every day for at least 2 weeks. Grief is not the best answer because the pattern here is persistent and impairing. Panic disorder is episodic and abrupt, and 3 weeks is long enough to support concern for depression.", "category": "Depression Basics"}, {"type": "mc", "stem": "Which finding best supports the monoamine-deficiency hypothesis of depression?", "options": ["Relief of depressive symptoms when monoamine-mediated neurotransmission is intensified", "Immediate cure of depression after one antidepressant dose", "Improvement in depression when GABA is completely blocked", "Resolution of depression when psychotherapy is avoided"], "answer": 0, "rationale": "The monoamine-deficiency hypothesis links depression to deficient norepinephrine and/or serotonin function. Improvement with drugs that intensify monoamine signaling supports the theory. Immediate cure is false, GABA blockade is not the core explanation, and avoiding psychotherapy is not evidence.", "category": "Pathophysiology"}, {"type": "mc", "stem": "The nurse teaches a client newly prescribed fluoxetine for major depression. Which statement by the client indicates correct understanding of the expected time course?", "options": ["I should expect some improvement within 1 to 3 weeks, but full response may take much longer", "I will know by tonight whether this medication works for me", "I should take this medication only on days when symptoms are worse", "If I do not feel fully better after 3 days, the drug has failed"], "answer": 0, "rationale": "Antidepressants are delayed-action medications. Early improvement may take 1 to 3 weeks and maximal benefit may take much longer. They are not PRN medications and should not be judged a failure after only a few days.", "category": "Antidepressants"}, {"type": "sata", "stem": "A client started an SSRI 5 days ago. Which findings require close follow-up by the nurse? Select all that apply.", "options": ["New suicidal thoughts", "Abrupt increase in agitation", "Mild dry mouth relieved with sips of water", "Insomnia that developed suddenly after starting therapy", "Hostility and impulsive behavior"], "answer": [0, 1, 3, 4], "rationale": "Early in therapy, the nurse monitors for suicidality, worsening mood, agitation, insomnia, hostility, and impulsive behavior. Mild dry mouth alone is not the most urgent concern compared with behavioral decline and suicide risk.", "category": "Antidepressants"}, {"type": "mc", "stem": "The nurse is planning care for a client with severe depression. Which treatment approach is supported by the content for the best overall effect?", "options": ["A combination of pharmacotherapy and psychotherapy", "Psychotherapy alone for all clients regardless of severity", "Aerobic exercise alone as the only treatment", "PRN antidepressant dosing when symptoms are worst"], "answer": 0, "rationale": "For more severe depression, combining medication with psychotherapy is better than either alone. Exercise can help but is not the only treatment. Antidepressants are not used PRN.", "category": "Depression Basics"}, {"type": "mc", "stem": "A client with depression reports chronic pain and asks whether one medication might help both problems. Which medication class would the nurse recognize as a reasonable fit from the source material?", "options": ["An SNRI such as duloxetine", "A benzodiazepine such as alprazolam", "Buspirone", "A nonprescription herbal product used PRN"], "answer": 0, "rationale": "Duloxetine and TCAs can help chronic pain while treating depression. Benzodiazepines and buspirone are not the classic dual-purpose answers for depression with chronic pain in the provided content.", "category": "Drug Selection"}, {"type": "mc", "stem": "Which medication would the nurse anticipate may be preferred for a client with depression who is also troubled by insomnia?", "options": ["Mirtazapine", "Bupropion", "Fluoxetine", "Venlafaxine"], "answer": 0, "rationale": "Mirtazapine is the classic sedating option and is often matched to clients with depression plus insomnia. Bupropion and fluoxetine are more activating.", "category": "Atypicals"}, {"type": "mc", "stem": "A client taking an antidepressant says, 'I feel better, so I stopped taking it yesterday.' Which response by the nurse is best?", "options": ["Continue therapy as prescribed and taper only when directed, because abrupt discontinuation can trigger withdrawal symptoms", "Stopping is appropriate as soon as symptoms improve", "Restart only if symptoms return and become severe", "Take the medication every other day instead"], "answer": 0, "rationale": "After remission, therapy usually continues for months to prevent relapse, and antidepressants should be tapered rather than stopped abruptly because withdrawal symptoms can occur. The other choices encourage unsafe self-adjustment.", "category": "Antidepressants"}, {"type": "mc", "stem": "Which client would the nurse identify as requiring the closest observation for antidepressant-associated suicidality?", "options": ["A 22-year-old who just started therapy and has new anxiety and insomnia", "A 58-year-old who has taken the same dose for 2 years without change", "A 65-year-old who completed therapy 6 months ago", "A 40-year-old who missed one dose yesterday but feels unchanged"], "answer": 0, "rationale": "Suicide risk is especially important early in therapy and with dose changes, with greatest concern in clients younger than 25. New anxiety and insomnia shortly after starting therapy raise concern for worsening status.", "category": "Antidepressants"}, {"type": "sata", "stem": "A client with generalized anxiety disorder (GAD) is prescribed buspirone. Which teaching points should the nurse include? Select all that apply.", "options": ["This medication does not cause significant CNS depression like benzodiazepines", "This medication has no known abuse potential", "You should expect immediate relief after the first dose", "Grapefruit juice can increase the level of this medication", "Erythromycin and ketoconazole can increase buspirone levels"], "answer": [0, 1, 3, 4], "rationale": "Buspirone does not significantly depress the CNS, has no abuse potential, and can interact with grapefruit juice, erythromycin, and ketoconazole. It does not provide immediate relief.", "category": "Buspirone"}, {"type": "mc", "stem": "The nurse is caring for a client with severe GAD who needs rapid stabilization of symptoms. Which medication category would the nurse anticipate may provide the fastest relief?", "options": ["Benzodiazepines", "SSRIs", "SNRIs", "Buspirone"], "answer": 0, "rationale": "Benzodiazepines suppress GAD symptoms immediately, making them the best answer for rapid stabilization. SSRIs, SNRIs, and buspirone have delayed effects.", "category": "Benzodiazepines"}, {"type": "mc", "stem": "Which statement about buspirone is most accurate?", "options": ["It is better suited for long-term management than rapid relief", "It should be used only for panic attacks as needed", "It is a CNS depressant that strongly potentiates alcohol", "It commonly causes physical dependence when used as prescribed"], "answer": 0, "rationale": "Buspirone has delayed onset, so it is more useful for long-term management than immediate rescue. It is not a CNS depressant and does not have the dependence profile of benzodiazepines.", "category": "Buspirone"}, {"type": "sata", "stem": "The nurse is developing a teaching plan for a client taking a benzodiazepine for generalized anxiety disorder. Which information should be included? Select all that apply.", "options": ["This drug can cause sedation and psychomotor slowing", "Long-term use can lead to physical dependence", "The dose should be tapered gradually rather than stopped suddenly", "This medication is first-line for OCD maintenance therapy", "Combining this medication with other CNS depressants can be dangerous"], "answer": [0, 1, 2, 4], "rationale": "Benzodiazepines can cause sedation and psychomotor slowing, can lead to dependence, should be tapered gradually, and can dangerously intensify CNS depression from other drugs. They are not the classic first-line maintenance answer for OCD.", "category": "Benzodiazepines"}, {"type": "mc", "stem": "A client reports recurrent episodes of overwhelming fear with palpitations, chest discomfort, shortness of breath, derealization, and fear of dying that peak within minutes. Which disorder does the nurse suspect?", "options": ["Panic disorder", "Generalized anxiety disorder", "Obsessive-compulsive disorder", "Major depression"], "answer": 0, "rationale": "The abrupt cluster of intense fear, palpitations, chest discomfort, dyspnea, derealization, and fear of dying is classic for panic attacks and supports panic disorder.", "category": "Panic Disorder"}, {"type": "mc", "stem": "Which medication class is considered first-line for panic disorder?", "options": ["SSRIs", "Benzodiazepines", "TCAs", "MAOIs"], "answer": 0, "rationale": "SSRIs are first-line for panic disorder because they reduce anticipatory anxiety, avoidance behavior, and the frequency and intensity of attacks. The others may be used in some cases but are not the usual first-line answer.", "category": "Panic Disorder"}, {"type": "mc", "stem": "A client with panic disorder also avoids public places because escape might be difficult if symptoms start. The nurse should document this as which condition?", "options": ["Agoraphobia", "Akathisia", "Anhedonia", "Aphasia"], "answer": 0, "rationale": "Agoraphobia is anxiety about situations from which escape may be difficult or help unavailable during a panic attack. The other terms describe different problems.", "category": "Panic Disorder"}, {"type": "mc", "stem": "Which statement about obsessive-compulsive disorder (OCD) is most accurate?", "options": ["Persistent obsessions and compulsions can consume at least 1 hour per day and significantly interfere with daily living", "OCD is defined primarily by episodic panic attacks lasting 30 minutes", "OCD is treated first-line with benzodiazepines taken only when needed", "OCD is the same as situational anxiety before an exam"], "answer": 0, "rationale": "OCD is characterized by distressing obsessions and compulsions that consume time and interfere with function. Panic attacks, PRN benzodiazepines, and situational anxiety do not define OCD.", "category": "OCD"}, {"type": "mc", "stem": "Which medication class is first-line for most clients with obsessive-compulsive disorder?", "options": ["SSRIs", "Buspirone", "Benzodiazepines", "Beta blockers"], "answer": 0, "rationale": "SSRIs are first-line for OCD in the provided material. Buspirone and benzodiazepines are not the standard first-line maintenance answers here.", "category": "OCD"}, {"type": "mc", "stem": "A client has an intense, irrational fear of being scrutinized by others and of doing something embarrassing in public. Which disorder does the nurse suspect?", "options": ["Social anxiety disorder", "Generalized anxiety disorder", "Post-traumatic stress disorder", "Major depression"], "answer": 0, "rationale": "Social anxiety disorder is characterized by fear of scrutiny, embarrassment, or humiliation. The other disorders have different core patterns.", "category": "Social Anxiety"}, {"type": "mc", "stem": "A client experiences severe anxiety only when giving occasional public presentations and asks about treatment. Which option would the nurse recognize as the best match from the provided content?", "options": ["PRN benzodiazepine use may be preferred over long-term SSRI therapy when the situation occurs infrequently", "Buspirone taken once immediately before speaking", "Daily MAOI therapy for life", "Immediate use of a TCA before each presentation"], "answer": 0, "rationale": "For infrequent performance-only social anxiety, PRN benzodiazepine treatment may be preferred to long-term SSRI therapy. Buspirone does not work immediately, and chronic MAOI or TCA therapy is not the best fit.", "category": "Social Anxiety"}, {"type": "mc", "stem": "Which client statement best reflects the core symptom cluster of PTSD?", "options": ["I keep reliving the trauma, avoid reminders, and stay constantly keyed up", "I worry about many everyday issues for at least 6 months", "I have repetitive compulsions that consume several hours a day", "I lose interest in my hobbies and feel worthless"], "answer": 0, "rationale": "PTSD is built around re-experiencing, avoidance/emotional numbing, and hyperarousal. The other answers describe GAD, OCD, or depression.", "category": "PTSD"}, {"type": "sata", "stem": "The nurse is teaching a client about events that can precipitate PTSD. Which examples should the nurse include? Select all that apply.", "options": ["Combat exposure", "Physical or sexual assault", "Natural disasters", "Being taken hostage", "Routine daily stress without trauma"], "answer": [0, 1, 2, 3], "rationale": "PTSD can follow major traumatic events such as combat, assault, natural disasters, and hostage situations. Routine daily stress without trauma is not the same level of precipitating event.", "category": "PTSD"}, {"type": "mc", "stem": "Which SSRIs are FDA-approved first-line drug treatment options for PTSD according to the provided content?", "options": ["Paroxetine and sertraline", "Escitalopram and citalopram", "Fluvoxamine and citalopram", "Fluoxetine and escitalopram"], "answer": 0, "rationale": "The provided key points identify paroxetine and sertraline as FDA-approved first-line SSRIs for PTSD.", "category": "PTSD"}, {"type": "mc", "stem": "The nurse is planning care for a client with anxiety and depression. Which statement is most accurate regarding combined treatment?", "options": ["Psychotherapy plus drug therapy is often more effective than either approach alone", "Drug therapy should always replace psychotherapy", "Psychotherapy has no role if symptoms are severe", "Only nonpharmacologic care should be used when anxiety is disabling"], "answer": 0, "rationale": "The material emphasizes that combined psychotherapy and medication often produces better outcomes than either alone. The other options are unnecessarily absolute and inaccurate.", "category": "Big Picture"}, {"type": "mc", "stem": "A client with GAD asks why an SSRI is being prescribed even though the client is not depressed. Which response by the nurse is best?", "options": ["SSRIs can be effective for anxiety disorders whether or not depression is present", "SSRIs only work when the client also has OCD", "SSRIs are used only to help the client sleep", "SSRIs provide immediate relief the same day they are started"], "answer": 0, "rationale": "SRIs can treat anxiety disorders even when depression is absent. They are not limited to OCD, are not sleep-only drugs, and do not provide same-day relief.", "category": "SSRIs"}, {"type": "mc", "stem": "The nurse is reviewing adverse effects of SSRIs. Which effect should the nurse expect to emphasize as common?", "options": ["Sexual dysfunction", "Lead-pipe rigidity", "Severe anticholinergic toxicity as the usual effect", "Profound respiratory depression as the expected effect"], "answer": 0, "rationale": "Common SSRI adverse effects include nausea, agitation or insomnia, and sexual dysfunction. The other options fit other syndromes or drug classes better.", "category": "SSRIs"}, {"type": "mc", "stem": "A client taking fluoxetine reports restlessness and poor sleep shortly after starting therapy. Which explanation is most accurate?", "options": ["Fluoxetine can be activating and may cause agitation or insomnia", "Fluoxetine is expected to cause heavy sedation", "These findings prove the client is experiencing a hypertensive crisis", "The medication is causing anticholinergic toxicity"], "answer": 0, "rationale": "Fluoxetine can be activating and may cause agitation or insomnia. Heavy sedation is not the classic teaching point for this medication.", "category": "SSRIs"}, {"type": "sata", "stem": "A client is prescribed venlafaxine for anxiety. Which adverse effects should the nurse teach the client to monitor? Select all that apply.", "options": ["Nausea", "Headache", "Sweating", "Daytime somnolence or insomnia", "Hypertension"], "answer": [0, 1, 2, 3, 4], "rationale": "Venlafaxine and related SNRIs can cause nausea, headache, sweating, somnolence or insomnia, and hypertension. All are relevant teaching points.", "category": "SNRIs"}, {"type": "mc", "stem": "Which statement by a client prescribed venlafaxine for GAD indicates correct understanding?", "options": ["This medication may help, but I should not expect optimal response for several weeks", "I should use this only on days when I feel more nervous", "If I still have anxiety after 3 days, I should double the dose on my own", "This drug should work immediately like a rescue medication"], "answer": 0, "rationale": "Venlafaxine has delayed anxiolytic effects and is not a rescue medication. It should not be used PRN and clients should never self-increase doses.", "category": "SNRIs"}, {"type": "mc", "stem": "A client with panic disorder has failed a trial of an SSRI. Which medication class would the nurse anticipate may be considered next but is less well tolerated because of sedation, orthostatic hypotension, anticholinergic effects, and overdose risk?", "options": ["TCAs", "Buspirone", "SSRIs", "Benzodiazepines as first-line long-term monotherapy for all clients"], "answer": 0, "rationale": "TCAs such as imipramine or clomipramine can be considered after SSRI failure in panic disorder but are less well tolerated and more dangerous in overdose.", "category": "TCAs"}, {"type": "sata", "stem": "The nurse is teaching a client prescribed a tricyclic antidepressant (TCA). Which adverse effects should the nurse include? Select all that apply.", "options": ["Dry mouth", "Blurred vision", "Urinary retention", "Constipation", "Orthostatic hypotension"], "answer": [0, 1, 2, 3, 4], "rationale": "TCAs commonly cause anticholinergic effects such as dry mouth, blurred vision, urinary retention, and constipation, and they can also cause orthostatic hypotension.", "category": "TCAs"}, {"type": "mc", "stem": "Which TCA-related risk is most concerning in overdose?", "options": ["Fatal dysrhythmias", "Profound serotonin depletion", "Complete loss of renal function as the usual effect", "Immediate irreversible hearing loss"], "answer": 0, "rationale": "Fatal dysrhythmias are the key overdose danger with TCAs. That risk is one reason they are much less safe than SSRIs.", "category": "TCAs"}, {"type": "mc", "stem": "Which antidepressant class is generally reserved for clients who do not respond to first-line drugs because of greater adverse effects and interaction burden?", "options": ["MAOIs", "SSRIs", "SNRIs", "Buspirone"], "answer": 0, "rationale": "MAOIs are older antidepressants with significant adverse effects and interaction concerns, so they are generally reserved for clients who do not respond to first-line agents.", "category": "MAOIs"}, {"type": "mc", "stem": "The nurse is caring for a client prescribed an oral MAOI. Which additional topic is most important to reinforce in teaching compared with many other antidepressants?", "options": ["Drug interaction risk", "That the medication can be taken only as needed", "That benefit should occur after the first dose", "That monitoring mood changes is unnecessary"], "answer": 0, "rationale": "MAOIs are especially notable for interaction burden, so drug interaction teaching is crucial. They are not PRN medications and mood monitoring still matters.", "category": "MAOIs"}, {"type": "mc", "stem": "A client with depression reports low energy and bothersome SSRI-related sexual dysfunction. Which medication would the nurse expect the prescriber may consider if clinically appropriate?", "options": ["Bupropion", "Mirtazapine", "Phenelzine", "Clomipramine"], "answer": 0, "rationale": "Bupropion is the classic high-yield alternative when sexual dysfunction is a concern and when a more activating antidepressant may fit the client’s symptoms.", "category": "Atypicals"}, {"type": "mc", "stem": "Which client history requires clarification before administering bupropion?", "options": ["Anorexia nervosa", "Occasional seasonal allergies", "Mild situational anxiety before exams", "A preference for taking pills with breakfast"], "answer": 0, "rationale": "Bupropion lowers seizure threshold and is especially concerning in clients with anorexia nervosa or bulimia because seizure risk is increased.", "category": "Atypicals"}, {"type": "mc", "stem": "A client with depression and insomnia asks why mirtazapine might be useful. Which response by the nurse is best?", "options": ["This drug can be sedating and may support sleep while treating depression", "This drug is chosen because it causes immediate anxiolysis after one dose", "This drug is preferred because it has no adverse effects", "This drug is used only for PTSD and not for depression"], "answer": 0, "rationale": "Mirtazapine is often remembered as the sedating antidepressant that can help clients who also struggle with insomnia. It is not an immediate rescue drug and is not adverse-effect free.", "category": "Atypicals"}, {"type": "mc", "stem": "The nurse is comparing classes of drugs for depression. Which statement is most accurate?", "options": ["SSRIs, SNRIs, bupropion, and mirtazapine are usual first-line choices because tolerability and safety often guide selection", "MAOIs are preferred first-line because they have the fewest interactions", "TCAs are preferred first-line because overdose deaths are rare", "All antidepressants should be selected only by cost and never by side-effect profile"], "answer": 0, "rationale": "When efficacy is broadly similar, tolerability and safety guide selection. SSRIs, SNRIs, bupropion, and mirtazapine are common first-line choices. MAOIs and TCAs have more limitations.", "category": "Drug Selection"}, {"type": "sata", "stem": "A nurse is reinforcing education for a client taking an antidepressant. Which instructions support safe management during the first months of therapy? Select all that apply.", "options": ["Report worsening mood or new suicidal thoughts right away", "Family members should watch for abrupt changes such as agitation or hostility", "It is safe to save multiple doses in case symptoms worsen suddenly", "Follow-up is especially important when the dose is increased or decreased", "Abrupt stopping is acceptable if side effects are mild"], "answer": [0, 1, 3], "rationale": "Clients and families should monitor for worsening mood, suicidality, agitation, and hostility, especially early in treatment and around dose changes. Saving up extra doses is unsafe, and abrupt stopping is not recommended.", "category": "Antidepressants"}, {"type": "mc", "stem": "The nurse is selecting a stem response for a client with moderate situational anxiety before an exam. Which interpretation is best?", "options": ["Moderate situational anxiety may be adaptive and may not require drug therapy", "This always represents GAD and requires lifelong pharmacotherapy", "This confirms PTSD", "This pattern requires immediate benzodiazepine dependence teaching"], "answer": 0, "rationale": "The content distinguishes temporary situational anxiety from pathological anxiety. Moderate anxiety before an exam can be adaptive and does not automatically require medication.", "category": "Anxiety Disorders"}, {"type": "mc", "stem": "Which neurotransmitter has the strongest immediate mechanistic relationship to why benzodiazepines work quickly for anxiety?", "options": ["GABA", "Histamine", "Acetylcholine", "Glutamate only"], "answer": 0, "rationale": "Benzodiazepines enhance GABA-mediated inhibition, which helps quiet anxiety quickly. The other options do not best explain the rapid anxiolytic effect.", "category": "Pathophysiology"}, {"type": "mc", "stem": "The nurse is reviewing features of GAD. Which finding is most consistent with this diagnosis?", "options": ["Uncontrollable worrying for 6 months with muscle tension, vigilance, and poor concentration", "Intrusive flashbacks after trauma with persistent hyperarousal", "Compulsions that consume over an hour each day", "Abrupt episodes peaking within minutes with fear of dying"], "answer": 0, "rationale": "GAD is the chronic excessive worry disorder and commonly includes muscle tension, vigilance, poor concentration, and sleep difficulty. The other options describe PTSD, OCD, and panic disorder.", "category": "GAD"}, {"type": "sata", "stem": "The nurse assesses a client with generalized anxiety disorder. Which findings are expected manifestations of the disorder? Select all that apply.", "options": ["Muscle tension", "Restlessness", "Cold, clammy hands", "Poor concentration", "Vigilance"], "answer": [0, 1, 2, 3, 4], "rationale": "GAD can present with both psychological and autonomic findings, including muscle tension, restlessness, cold clammy hands, poor concentration, and vigilance.", "category": "GAD"}, {"type": "mc", "stem": "Which statement by a client taking buspirone indicates a need for further teaching?", "options": ["I can use grapefruit juice with this medication because it does not interact", "This medication is not intended for immediate rescue of severe anxiety", "This medication does not have the same abuse potential as benzodiazepines", "I should expect the effect to build gradually over time"], "answer": 0, "rationale": "Grapefruit juice can increase buspirone levels, so that statement reflects a teaching deficit. The other statements are accurate.", "category": "Buspirone"}, {"type": "mc", "stem": "The nurse is prioritizing teaching for a client prescribed alprazolam. Which instruction is most important?", "options": ["Avoid combining this medication with other CNS depressants unless specifically directed", "Take the medication with grapefruit juice to improve absorption", "Stop the drug suddenly once anxiety decreases", "Expect the medication to take several weeks to relieve severe anxiety"], "answer": 0, "rationale": "Benzodiazepines can dangerously intensify CNS depression from alcohol or other depressants. Abrupt stopping is unsafe, and these drugs act quickly rather than over several weeks.", "category": "Benzodiazepines"}, {"type": "mc", "stem": "A client with panic disorder asks why SSRIs are used even when not depressed. Which response by the nurse is best?", "options": ["SSRIs decrease the frequency and intensity of panic attacks and reduce avoidance behavior even when depression is absent", "SSRIs work only if the client has both panic disorder and OCD", "SSRIs are chosen because they act faster than benzodiazepines", "SSRIs are used only to prevent medication abuse"], "answer": 0, "rationale": "SSRIs can treat panic disorder even when depression is absent. They reduce the attacks themselves and also anticipatory anxiety and avoidance behavior. They do not work faster than benzodiazepines.", "category": "Panic Disorder"}, {"type": "mc", "stem": "Which statement by a client with OCD indicates correct understanding of the disorder?", "options": ["The problem is not just quirky habits; the obsessions and compulsions can cause distress and interfere with daily life", "OCD is the same thing as occasional public-speaking anxiety", "OCD means worry about everything for 6 months or longer", "OCD is mainly treated with PRN buspirone"], "answer": 0, "rationale": "OCD involves distressing obsessions and compulsions that consume time and impair function. The other answers confuse it with social anxiety, GAD, and inappropriate treatment.", "category": "OCD"}, {"type": "mc", "stem": "Which client with depression is the best fit for bupropion if no contraindications are present?", "options": ["A client bothered by sexual dysfunction and low energy", "A client who wants a sedating bedtime option for insomnia", "A client who needs immediate treatment of panic attacks", "A client with a history of anorexia nervosa"], "answer": 0, "rationale": "Bupropion is often chosen when sexual dysfunction is a concern and a more activating profile may help low energy. It is not the best sedating option and should be avoided in eating-disorder history.", "category": "Atypicals"}, {"type": "mc", "stem": "Which client with depression is the best fit for mirtazapine if no contraindications are present?", "options": ["A client with insomnia and poor appetite", "A client who needs a more stimulating medication due to fatigue", "A client who wants to avoid sedation at all costs", "A client who needs immediate relief of severe panic"], "answer": 0, "rationale": "Mirtazapine is often remembered as the sedating, appetite-supportive antidepressant, making it a strong fit for depression with insomnia and poor intake.", "category": "Atypicals"}, {"type": "sata", "stem": "The nurse is reviewing the difference between expected therapeutic effects and urgent follow-up findings after starting an antidepressant. Which findings require immediate follow-up? Select all that apply.", "options": ["Emergence of suicidality", "Abrupt panic attacks and severe agitation", "Gradual mild improvement in mood after 2 weeks", "New hostility and impulsivity", "Client reports sleeping slightly better after 10 days"], "answer": [0, 1, 3], "rationale": "Urgent follow-up focuses on suicidality and abrupt behavioral worsening such as severe agitation, panic attacks, hostility, and impulsivity. Mild improvement in mood or sleep is not the dangerous finding here.", "category": "Antidepressants"}, {"type": "mc", "stem": "The nurse is teaching a client with depression about treatment expectations. Which statement is most accurate?", "options": ["Treatment failure should not be assumed until the medication has had an adequate trial, generally at least about a month", "If symptoms are present after 48 hours, the drug is ineffective", "All antidepressants should be taken only when the client feels sad", "The highest dose should be started immediately to make the medication work faster"], "answer": 0, "rationale": "Antidepressants require an adequate trial before being judged ineffective. They are not PRN drugs and are usually started low then titrated upward to reduce side effects.", "category": "Antidepressants"}, {"type": "mc", "stem": "Which finding would best indicate that an antidepressant prescribed for depression is effective?", "options": ["The client reports renewed interest in usual activities and improved mood", "The client has complete symptom resolution after one dose", "The client becomes suddenly more impulsive", "The client starts hoarding medication doses"], "answer": 0, "rationale": "Therapeutic response is shown by improved mood, return of interest, and better function over time. Sudden impulsivity or hoarding doses are safety concerns, not signs of effectiveness.", "category": "Antidepressants"}, {"type": "sata", "stem": "The nurse is preparing discharge teaching for a client prescribed an SSRI. Which statements indicate correct understanding? Select all that apply.", "options": ["I will not take extra doses when I feel especially down", "I should not stop this medication suddenly without guidance", "I may need several weeks before I notice the full benefit", "If I feel more restless or suicidal, I should tell my provider right away", "This medication should be used only on stressful days"], "answer": [0, 1, 2, 3], "rationale": "SSRIs are scheduled medications, not PRN drugs. They should not be stopped abruptly, benefit may take weeks, and worsening restlessness or suicidality requires prompt reporting.", "category": "SSRIs"}, {"type": "mc", "stem": "Which nursing interpretation is most accurate for a client with anxiety who asks for a medication that works immediately but has no abuse potential and no CNS depression?", "options": ["Buspirone will not fit the need for immediate relief even though it has those safety advantages", "A benzodiazepine is ideal because it has no abuse potential", "An SSRI is ideal because it works immediately after one dose", "A TCA is best because it has minimal adverse effects"], "answer": 0, "rationale": "Buspirone has the safety advantages of no abuse potential and minimal CNS depression, but it does not work immediately. Benzodiazepines work quickly but do have abuse and sedation concerns.", "category": "Buspirone"}, {"type": "mc", "stem": "The nurse is caring for a client with panic disorder who asks what improvement would indicate therapy is working. Which response is best?", "options": ["Fewer panic attacks, less anticipatory anxiety, and less avoidance behavior", "Complete elimination of all stress from daily life", "Immediate sedation after taking the medication proves long-term control", "More willingness to skip doses because symptoms are better"], "answer": 0, "rationale": "Effective panic-disorder treatment is reflected by fewer or less intense attacks, lower anticipatory anxiety, and less avoidance behavior. The other answers are unrealistic or unsafe.", "category": "Panic Disorder"}, {"type": "mc", "stem": "Which anxiety disorder is most associated with persistent obsessions and compulsions rather than fear of trauma reminders or episodic panic attacks?", "options": ["OCD", "PTSD", "Panic disorder", "GAD"], "answer": 0, "rationale": "OCD is the disorder centered on obsessions and compulsions. PTSD, panic disorder, and GAD have different defining features.", "category": "OCD"}, {"type": "mc", "stem": "The nurse is comparing anxiety-disorder medication classes. Which statement is most accurate?", "options": ["SRIs are used across anxiety disorders, while benzodiazepines are used primarily for GAD and panic disorder", "Buspirone is first-line for PTSD and OCD because it acts immediately", "MAOIs are the safest first-line drugs for all anxiety disorders", "Benzodiazepines are preferred for lifelong monotherapy because dependence is not a concern"], "answer": 0, "rationale": "SRIs are used broadly across anxiety disorders. Benzodiazepines are used primarily for GAD and panic disorder. Buspirone does not act immediately, MAOIs are not the safest broad first-line answer, and dependence is a real benzodiazepine concern.", "category": "Big Picture"}, {"type": "sata", "stem": "A nurse is assessing whether anxiety is more likely situational or pathologic. Which findings support pathologic anxiety requiring intervention? Select all that apply.", "options": ["Persistent symptoms that are disabling", "Uncontrollable worrying lasting 6 months or longer", "Temporary nervousness before a single exam", "Significant interference with daily functioning", "Panic attacks with avoidance behavior"], "answer": [0, 1, 3, 4], "rationale": "Persistent disabling symptoms, chronic uncontrollable worrying, functional impairment, and panic with avoidance support pathologic anxiety. Temporary nervousness before one exam can be adaptive situational anxiety.", "category": "Anxiety Disorders"}, {"type": "mc", "stem": "Which combination should be avoided based on the source content that SSRIs can interact adversely with MAOIs and other serotonergic drugs?", "options": ["An SSRI with an MAOI", "Buspirone with grapefruit juice", "A benzodiazepine with buspirone", "Mirtazapine with dinner"], "answer": 0, "rationale": "SSRIs can interact adversely with MAOIs and other serotonergic drugs, so that combination should be avoided. Buspirone plus grapefruit is an interaction too, but the question specifically reflects the high-risk SSRI teaching point from the source content.", "category": "SSRIs"}, {"type": "mc", "stem": "A client says, 'Because my anxiety got better with alprazolam, I’ll stop it abruptly tonight.' Which response by the nurse is best?", "options": ["Do not stop abruptly; benzodiazepines should be tapered gradually to reduce withdrawal symptoms", "Stopping abruptly is safest once symptoms improve", "You only need to taper SSRIs, not benzodiazepines", "Abrupt withdrawal improves long-term outcomes"], "answer": 0, "rationale": "Long-term benzodiazepine use can cause physical dependence, so tapering is important to reduce withdrawal symptoms. Abrupt cessation is unsafe.", "category": "Benzodiazepines"}];
+
+const app = {
+  mode: "immediate",
+  qIndex: 0,
+  score: 0,             // fractional — SATA can earn partial credit
+  answered: 0,
+  userAnswers: Array(rawQuestions.length).fill(null),
+  graded: Array(rawQuestions.length).fill(false),
+  perQuestionScore: Array(rawQuestions.length).fill(0),  // 0..1 per question
+  rendered: []
+};
+
+function shuffle(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function prepareQuestions() {
+  app.rendered = rawQuestions.map(q => {
+    const opts = q.options.map((text, idx) => ({ text, originalIndex: idx }));
+    return { ...q, shuffledOptions: shuffle(opts) };
+  });
+}
+
+function letter(i) { return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]; }
+
+function answerSetEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false;
+  const x = [...a].sort((m,n)=>m-n);
+  const y = [...b].sort((m,n)=>m-n);
+  return x.every((v,i)=>v===y[i]);
+}
+
+function getSelectedOriginalIndices() {
+  return [...document.querySelectorAll(".option input:checked")]
+    .map(el => Number(el.dataset.original))
+    .sort((a,b)=>a-b);
+}
+
+// Returns a fractional score in [0, 1].
+// MC: 1 if the single correct option is picked, else 0.
+// SATA: NGN-style partial credit. +1 for each correct pick, -1 for each wrong pick,
+//       floor at 0, divided by the number of correct options.
+function scoreAnswer(q, selected) {
+  if (!Array.isArray(selected) || selected.length === 0) return 0;
+  if (q.type === "mc") {
+    return (selected.length === 1 && selected[0] === q.answer) ? 1 : 0;
+  }
+  const correctSet = new Set(q.answer);
+  let earned = 0;
+  for (const idx of selected) {
+    if (correctSet.has(idx)) earned += 1;
+    else earned -= 1;
+  }
+  earned = Math.max(0, earned);
+  const maxPoints = q.answer.length;
+  return maxPoints > 0 ? earned / maxPoints : 0;
+}
+
+// Classify a question score for answer-key pills: "full" | "partial" | "zero"
+function scoreBucket(s) {
+  if (s >= 0.999) return "full";
+  if (s <= 0.001) return "zero";
+  return "partial";
+}
+
+// Format running score: "12.5" or "12" (drop trailing .0)
+function fmtScore(n) {
+  const rounded = Math.round(n * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+}
+
+// Format a per-question partial credit label like "2/3 points"
+function fmtPartial(q, s) {
+  if (q.type === "mc") return s >= 0.999 ? "1/1 point" : "0/1 points";
+  const max = q.answer.length;
+  const earned = Math.round(s * max * 10) / 10;
+  const earnedStr = Number.isInteger(earned) ? String(earned) : earned.toFixed(1);
+  return `${earnedStr}/${max} points`;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderQuestion() {
+  const q = app.rendered[app.qIndex];
+  document.getElementById("progressLabel").textContent = `Question ${app.qIndex + 1} / ${app.rendered.length}`;
+  const pct = ((app.qIndex) / app.rendered.length) * 100;
+  document.getElementById("progressBar").style.width = pct + "%";
+  document.getElementById("correctSoFar").textContent = fmtScore(app.score);
+  document.getElementById("answeredSoFar").textContent = app.answered;
+  document.getElementById("qCat").textContent = q.category || "Question";
+  document.getElementById("qStem").textContent = q.stem;
+  document.getElementById("qType").textContent = q.type === "mc" ? "Multiple choice" : "Select all that apply";
+  document.getElementById("modeChip").textContent = app.mode === "immediate" ? "Immediate grading" : "Save & submit mode";
+  document.getElementById("rationaleBox").classList.add("hidden");
+  document.getElementById("rationaleText").innerHTML = "";
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.shuffledOptions.forEach((opt, idx) => {
+    const prior = app.userAnswers[app.qIndex];
+    const isChecked = Array.isArray(prior) && prior.includes(opt.originalIndex);
+    const label = document.createElement("label");
+    label.className = "option" + (isChecked ? " selected" : "");
+    const inputType = q.type === "mc" ? "radio" : "checkbox";
+    label.innerHTML = `
+      <div class="letter">${letter(idx)}</div>
+      <div class="option-body">
+        <input type="${inputType}" name="q_${app.qIndex}" data-original="${opt.originalIndex}" ${isChecked ? "checked" : ""}>
+        <span class="option-text">${escapeHtml(opt.text)}</span>
+      </div>
+    `;
+    optionsDiv.appendChild(label);
+  });
+
+  // selection highlighting
+  optionsDiv.addEventListener("change", () => {
+    if (app.graded[app.qIndex]) return;
+    optionsDiv.querySelectorAll(".option").forEach(opt => {
+      const inp = opt.querySelector("input");
+      opt.classList.toggle("selected", inp && inp.checked);
+    });
+  }, { once: false });
+
+  const isLast = app.qIndex === app.rendered.length - 1;
+  document.getElementById("nextBtn").classList.add("hidden");
+  document.getElementById("finishBtn").classList.toggle("hidden", !isLast || app.mode !== "save");
+  document.getElementById("saveContinueBtn").classList.toggle("hidden", app.mode !== "save" || isLast);
+  document.getElementById("submitNowBtn").classList.toggle("hidden", app.mode !== "immediate");
+
+  if (app.graded[app.qIndex]) {
+    showGradedState();
+  }
+}
+
+function saveCurrentAnswer() {
+  const q = app.rendered[app.qIndex];
+  const selected = getSelectedOriginalIndices();
+  if (q.type === "mc" && selected.length > 1) return null;
+  app.userAnswers[app.qIndex] = selected;
+  return selected;
+}
+
+function gradeCurrent(showRationale = true) {
+  const q = app.rendered[app.qIndex];
+  const selected = saveCurrentAnswer();
+  if (!selected || selected.length === 0) {
+    alert("Select an answer before continuing.");
+    return false;
+  }
+  const alreadyGraded = app.graded[app.qIndex];
+  const frac = scoreAnswer(q, selected);
+
+  if (!alreadyGraded) {
+    app.graded[app.qIndex] = true;
+    app.answered += 1;
+    app.perQuestionScore[app.qIndex] = frac;
+    app.score += frac;
+  }
+
+  if (showRationale) {
+    decorateAnswers(selected, q);
+    document.getElementById("rationaleText").innerHTML = q.rationale;
+    document.getElementById("rationaleBox").classList.remove("hidden");
+    document.getElementById("nextBtn").classList.toggle("hidden", app.qIndex === app.rendered.length - 1);
+    document.getElementById("finishBtn").classList.toggle("hidden", app.qIndex !== app.rendered.length - 1);
+    document.getElementById("submitNowBtn").classList.add("hidden");
+    document.getElementById("saveContinueBtn").classList.add("hidden");
+  }
+  document.getElementById("correctSoFar").textContent = fmtScore(app.score);
+  document.getElementById("answeredSoFar").textContent = app.answered;
+  return true;
+}
+
+function decorateAnswers(selected, q) {
+  document.querySelectorAll(".option").forEach(opt => {
+    const input = opt.querySelector("input");
+    const original = Number(input.dataset.original);
+    opt.classList.remove("selected");
+    const isSelected = selected.includes(original);
+    const isCorrect = q.type === "mc" ? original === q.answer : q.answer.includes(original);
+    if (isCorrect) opt.classList.add("correct");
+    if (isSelected && !isCorrect) opt.classList.add("incorrect");
+    input.disabled = true;
+  });
+}
+
+function showGradedState() {
+  const q = app.rendered[app.qIndex];
+  const selected = app.userAnswers[app.qIndex] || [];
+  decorateAnswers(selected, q);
+  document.getElementById("rationaleText").innerHTML = q.rationale;
+  document.getElementById("rationaleBox").classList.remove("hidden");
+  document.getElementById("submitNowBtn").classList.add("hidden");
+  document.getElementById("saveContinueBtn").classList.add("hidden");
+  document.getElementById("nextBtn").classList.toggle("hidden", app.qIndex === app.rendered.length - 1);
+  document.getElementById("finishBtn").classList.toggle("hidden", app.qIndex !== app.rendered.length - 1);
+}
+
+function nextQuestion() {
+  if (app.qIndex < app.rendered.length - 1) {
+    app.qIndex += 1;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    finishExam();
+  }
+}
+
+// Save & continue: store the current answer and advance, but DO NOT mark as graded
+// so final grading can count it correctly.
+function saveAndContinue() {
+  const sel = saveCurrentAnswer();
+  if (!sel || sel.length === 0) {
+    alert("Select an answer before continuing.");
+    return;
+  }
+  if (app.qIndex === app.rendered.length - 1) {
+    finishExam();
+  } else {
+    nextQuestion();
+  }
+}
+
+function finishExam() {
+  // If we're in save mode on the last question, capture the current selection first
+  if (app.mode === "save") {
+    const cur = getSelectedOriginalIndices();
+    const q = app.rendered[app.qIndex];
+    if (cur.length > 0 && !(q.type === "mc" && cur.length > 1)) {
+      app.userAnswers[app.qIndex] = cur;
+    }
+  }
+
+  // Grade every question that hasn't been graded yet (partial credit for SATA)
+  for (let i = 0; i < app.rendered.length; i++) {
+    if (app.graded[i]) continue;
+    const ans = app.userAnswers[i];
+    const q = app.rendered[i];
+    if (!ans || ans.length === 0) continue; // unanswered -> zero, don't count as answered
+    app.graded[i] = true;
+    app.answered += 1;
+    const frac = scoreAnswer(q, ans);
+    app.perQuestionScore[i] = frac;
+    app.score += frac;
+  }
+
+  document.getElementById("examCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.remove("hidden");
+
+  const pct = Math.round((app.score / app.rendered.length) * 100);
+  // Count buckets for the results summary
+  let full = 0, partial = 0, zero = 0;
+  for (let i = 0; i < app.rendered.length; i++) {
+    const b = scoreBucket(app.perQuestionScore[i]);
+    if (b === "full") full += 1;
+    else if (b === "partial") partial += 1;
+    else zero += 1;
+  }
+  document.getElementById("scoreBig").textContent = pct + "%";
+  document.getElementById("scoreLine").textContent = `${fmtScore(app.score)} of ${app.rendered.length} points earned`;
+  document.getElementById("scoreSub").textContent = `${full} fully correct · ${partial} partial · ${zero} missed. Unanswered questions count as zero.`;
+
+  const key = document.getElementById("answerKey");
+  key.innerHTML = "";
+  app.rendered.forEach((q, i) => {
+    const user = app.userAnswers[i] || [];
+    const frac = app.perQuestionScore[i] || 0;
+    const bucket = scoreBucket(frac);
+    const pillClass = bucket === "full" ? "review-correct"
+                    : bucket === "partial" ? "review-partial"
+                    : "review-incorrect";
+    const pillLabel = bucket === "full" ? "Correct"
+                    : bucket === "partial" ? "Partial"
+                    : "Incorrect";
+
+    const correctText = q.type === "mc"
+      ? q.options[q.answer]
+      : q.answer.map(idx => q.options[idx]).join("; ");
+
+    const yourText = user.length
+      ? user.map(idx => q.options[idx]).join("; ")
+      : "No answer selected";
+
+    const pointsLabel = fmtPartial(q, frac);
+
+    const box = document.createElement("div");
+    box.className = "answer-key-item";
+    box.innerHTML = `
+      <div class="row" style="gap:8px; margin-bottom:10px;">
+        <div class="review-pill ${pillClass}">${pillLabel}</div>
+        <div class="review-pill review-points">${pointsLabel}</div>
+      </div>
+      <div class="ak-meta">Q${String(i+1).padStart(2,"0")} &nbsp;·&nbsp; ${escapeHtml(q.category || "")} &nbsp;·&nbsp; ${q.type === "mc" ? "MC" : "SATA"}</div>
+      <div class="ak-stem">${escapeHtml(q.stem)}</div>
+      <div class="ak-ans"><strong>Your answer:</strong> ${escapeHtml(yourText)}</div>
+      <div class="ak-ans"><strong>Correct:</strong> ${escapeHtml(correctText)}</div>
+      <div class="rationale" style="margin-top:12px;">
+        <div class="rationale-head">Rationale</div>
+        <div class="rationale-body">${q.rationale}</div>
+      </div>
+    `;
+    key.appendChild(box);
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ---------- Theme toggle ---------- //
+function setTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  const icon = document.getElementById("themeIcon");
+  const label = document.getElementById("themeLabel");
+  if (mode === "dark") {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+    label.textContent = "Light";
+  } else {
+    icon.innerHTML = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>';
+    label.textContent = "Dark";
+  }
+}
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  setTheme(current === "dark" ? "light" : "dark");
+});
+
+// ---------- Main wiring ---------- //
+document.getElementById("startBtn").addEventListener("click", () => {
+  app.mode = document.getElementById("gradingMode").value;
+  prepareQuestions();
+  document.getElementById("startCard").classList.add("hidden");
+  document.getElementById("examCard").classList.remove("hidden");
+  renderQuestion();
+});
+
+document.getElementById("submitNowBtn").addEventListener("click", () => gradeCurrent(true));
+document.getElementById("saveContinueBtn").addEventListener("click", saveAndContinue);
+document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+document.getElementById("finishBtn").addEventListener("click", () => {
+  // In immediate mode the current question is already graded — just finish.
+  // In save mode we need to capture the last answer (handled inside finishExam).
+  finishExam();
+});
+
+setTheme("light");
+</script>
+</body>
+</html>
